@@ -1,4 +1,4 @@
 //设置7z默认语言、编辑器、查看器
-REGI $HKLM\Tmp_Software\Software\7-Zip\\Lang=zh-cn
-REGI $HKLM\Tmp_Software\Software\7-Zip\FM\\Editor=notepad.exe
-REGI $HKLM\Tmp_Software\Software\7-Zip\FM\\Viewer=notepad.exe
+REGI $HKLM\Tmp_Default\Software\7-Zip\\Lang=zh-cn
+REGI $HKLM\Tmp_Default\Software\7-Zip\FM\\Editor=notepad.exe
+REGI $HKLM\Tmp_Default\Software\7-Zip\FM\\Viewer=notepad.exe

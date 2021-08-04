@@ -1,0 +1,19 @@
+REGI $HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked\\{F81E9010-6EA4-11CE-A7FF-00AA003CA9F6}=
+REGI HKCR\Directory\shell\cmd\!
+REGI HKCR\Directory\background\shell\cmd\!
+REGI HKCR\*\shell\cmd\!
+REGI HKLM\SOFTWARE\Classes\folder\ShellEx\ContextMenuHandlers\Library Location\!
+REGI HKLM\SOFTWARE\Classes\folder\shell\pintohome\!
+REGI HKLM\SOFTWARE\Classes\folder\ShellEx\ContextMenuHandlers\PintoStartScreen\!
+REGI HKCR\*\shellex\ContextMenuHandlers\Sharing\!
+REGI HKCR\regfile\shell\edit\!
+REGI HKCR\regfile\shell\print\!
+REGI HKCR\txtfile\shell\edit\!
+REGI HKCR\txtfile\shell\print\!
+REGI HKCR\txtfile\shell\printto\!
+REGI HKCR\batfile\shell\edit\!
+REGI HKCR\batfile\shell\print\!
+REGI HKCR\cmdfile\shell\edit\!
+REGI HKCR\cmdfile\shell\print\!
+REGI HKCR\*\shellex\ContextMenuHandlers\ModernSharing\!
+REGI HKCR\exefile\ShellEx\ContextMenuHandlers\PintoStartScreen\!

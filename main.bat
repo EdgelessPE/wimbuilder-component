@@ -36,11 +36,11 @@ if "x%opt[Edgeless.main_displayHiddenFiles]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_rightClickMenu]%"=="xtrue" (
-  %append1%main_rightClickMenu.wcs%append2%
+  type .\_commands\main_rightClickMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_fixManage]%"=="xtrue" (
-  %append1%main_fixManage.wcs%append2%
+  type .\_commands\main_fixManage.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_dpi]%"=="xtrue" (
@@ -60,6 +60,8 @@ if "x%opt[Edgeless.main_cleanCursors]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_wcs]%"=="xtrue" (
+  copy /y .\_vendor\Exec_Xcmd\xcmd.exe %x%\Windows\System32\xcmd.exe
+  type .\_commands\main_wcs.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
   %append1%main_wcs.wcs%append2%
 )
 
@@ -68,18 +70,22 @@ if "x%opt[Edgeless.main_7z]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_7zf]%"=="xtrue" (
+  type .\_commands\main_7zf.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
   %append1%main_7zf.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_7zl]%"=="xtrue" (
+  type .\_commands\main_7zl.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
   %append1%main_7zl.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_eth]%"=="xtrue" (
+  type .\_commands\main_eth.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
   %append1%main_eth.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_iso]%"=="xtrue" (
+  type .\_commands\main_iso.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
   %append1%main_iso.wcs%append2%
 )
 
@@ -88,7 +94,7 @@ if "x%opt[Edgeless.main_explainPartialTypes]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" (
-  %append1%main_explainOpenWithNotepad.wcs%append2%
+  type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
 

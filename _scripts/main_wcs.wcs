@@ -1,1 +1,5 @@
-exit
+REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\\=PECMD 脚本文件
+REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\shell\open\command\\=X:\Windows\system32\xcmd.exe "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\DefaultIcon\\=X:\Users\Icon\type\wcs.ico

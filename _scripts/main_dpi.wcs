@@ -1,1 +1,2 @@
-exit
+REGI #HKLM\Tmp_Default\Control Panel\Desktop\\Win8DpiScaling=0
+REGI #HKLM\Tmp_Default\Control Panel\Desktop\\DesktopDPIOverride=0
