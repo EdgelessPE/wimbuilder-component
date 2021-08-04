@@ -1,1 +1,5 @@
-exit
+REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\\=Edgeless 插件包资源文件
+REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\plugin_loader\process7zf.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\DefaultIcon\\=X:\Users\Icon\type\plugin.ico

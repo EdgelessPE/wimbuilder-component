@@ -1,1 +1,36 @@
-exit
+//关联Edgeless Theme相关文件
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\\=Edgeless 图标资源包
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\DefaultIcon\\=X:\Users\Icon\type\eis.ico
+
+REGI $HKLM\Tmp_Software\Classes\Edgeless.els\\=Edgeless LoadScreen资源包
+REGI $HKLM\Tmp_Software\Classes\Edgeless.els\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.els\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.els\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.els\DefaultIcon\\=X:\Users\Icon\type\els.ico
+
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\\=Edgeless 鼠标样式资源包
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\DefaultIcon\\=X:\Users\Icon\type\ems.ico
+
+REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\\=Edgeless 开始菜单样式资源文件
+REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\DefaultIcon\\=X:\Users\Icon\type\esc.ico
+
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\\=Edgeless 系统图标资源包
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\DefaultIcon\\=X:\Users\Icon\type\ess.ico
+
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\\=Edgeless 主题包
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\DefaultIcon\\=X:\Users\Icon\type\eth.ico
