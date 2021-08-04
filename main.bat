@@ -4,7 +4,10 @@ call PERegPorter.bat Tmp LOAD
 ::清理
 del /f /q run.wcs
 
-::脚本运行宏
+::读取配置
+set /p workshop=<.\_config\workshop.txt
+
+::配置脚本运行宏
 set run=.\_utils\pecmd.exe load .\_scripts\
 set append1=type 
 set append2=>>run.wcs
@@ -85,6 +88,8 @@ if "x%opt[Edgeless.main_eth]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_iso]%"=="xtrue" (
+  md "%x%\Users\Imdisk"
+  xcopy /s /r /y "%workshop%\Users\Imdisk\*" "%x%\Users\Imdisk\"
   type .\_commands\main_iso.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
   %append1%main_iso.wcs%append2%
 )
@@ -103,52 +108,69 @@ if "x%opt[Edgeless.apple]%"=="xtrue" (
   %append1%apple.wcs%append2%
 )
 
+
+::File
+::xcopy /s /r /y .\core\Update\source\* .\
+md "%x%\Program Files\Edgeless\"
+
 if "x%opt[Edgeless.files_dynamic]%"=="xtrue" (
-  %append1%files_dynamic.wcs%append2%
+  md "%x%\Program Files\Edgeless\dynamic_creator"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\dynamic_creator\*" "%x%\Program Files\Edgeless\dynamic_creator\"
 )
 
 if "x%opt[Edgeless.files_easydown]%"=="xtrue" (
-  %append1%files_easydown.wcs%append2%
+  md "%x%\Program Files\Edgeless\EasyDown"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\EasyDown\*" "%x%\Program Files\Edgeless\EasyDown\"
 )
 
 if "x%opt[Edgeless.files_Imdisk]%"=="xtrue" (
-  %append1%files_Imdisk.wcs%append2%
+  md "%x%\Program Files\Edgeless\Imdisk"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\Imdisk\*" "%x%\Program Files\Edgeless\Imdisk\"
 )
 
 if "x%opt[Edgeless.files_downloader]%"=="xtrue" (
-  %append1%files_downloader.wcs%append2%
+  md "%x%\Program Files\Edgeless\plugin_downloader"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_downloader\*" "%x%\Program Files\Edgeless\plugin_downloader\"
 )
 
 if "x%opt[Edgeless.files_ept]%"=="xtrue" (
-  %append1%files_ept.wcs%append2%
+  md "%x%\Program Files\Edgeless\plugin_ept"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_ept\*" "%x%\Program Files\Edgeless\plugin_ept\"
 )
 
 if "x%opt[Edgeless.files_loader]%"=="xtrue" (
-  %append1%files_loader.wcs%append2%
+  md "%x%\Program Files\Edgeless\plugin_loader"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_loader\*" "%x%\Program Files\Edgeless\plugin_loader\"
 )
 
 if "x%opt[Edgeless.files_localboost]%"=="xtrue" (
-  %append1%files_localboost.wcs%append2%
+  md "%x%\Program Files\Edgeless\plugin_localboost"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_localboost\*" "%x%\Program Files\Edgeless\plugin_localboost\"
 )
 
 if "x%opt[Edgeless.files_addin]%"=="xtrue" (
-  %append1%files_addin.wcs%append2%
+  md "%x%\Program Files\Edgeless\system_addin"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\system_addin\*" "%x%\Program Files\Edgeless\system_addin\"
 )
 
 if "x%opt[Edgeless.files_log]%"=="xtrue" (
-  %append1%files_log.wcs%append2%
+  md "%x%\Program Files\Edgeless\system_log"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\system_log\*" "%x%\Program Files\Edgeless\system_log\"
 )
 
 if "x%opt[Edgeless.files_update]%"=="xtrue" (
-  %append1%files_update.wcs%append2%
+  md "%x%\Program Files\Edgeless\system_update"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\system_update\*" "%x%\Program Files\Edgeless\system_update\"
 )
 
 if "x%opt[Edgeless.files_theme]%"=="xtrue" (
-  %append1%files_theme.wcs%append2%
+  md "%x%\Program Files\Edgeless\theme_processer"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\theme_processer\*" "%x%\Program Files\Edgeless\theme_processer\"
 )
 
 if "x%opt[Edgeless.files_udisk]%"=="xtrue" (
-  %append1%files_udisk.wcs%append2%
+  md "%x%\Program Files\Edgeless\udisk"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\udisk\*" "%x%\Program Files\Edgeless\udisk\"
 )
 
 if "x%opt[Edgeless.files_setx]%"=="xtrue" (
@@ -171,6 +193,8 @@ if "x%opt[Edgeless.files_firsttimeaid]%"=="xtrue" (
   %append1%files_firsttimeaid.wcs%append2%
 )
 
+
+::Patch
 if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
   %append1%patch_vc.wcs%append2%
 )
@@ -179,5 +203,7 @@ if "x%opt[Edgeless.patch_mklink]%"=="xtrue" (
   %append1%patch_mklink.wcs%append2%
 )
 
+::执行run.wcs
+%finish%
 
 goto :eof
