@@ -1,0 +1,4 @@
+REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\\=作为插件包加载
+REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\\Icon=X:\Users\Icon\type\plugin.ico
+REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\Command\\=pecmd EXEC !"X:\Program Files\Edgeless\plugin_loader\process7zf.cmd" "%%1"
+REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\DefaultIcon\\=X:\Users\Icon\type\plugin.ico

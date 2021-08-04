@@ -1,3 +1,4 @@
+goto :eof
 rem 增加驱动（精简文件可能会把DISM增加驱动给精简掉）
 if "x%opt[FirPE.AddDrver]%"=="xtrue" (
   echo 正在增加驱动

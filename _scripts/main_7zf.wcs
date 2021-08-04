@@ -1,0 +1,6 @@
+REGI $HKCR\.7zf\\=Edgeless.7zf
+REGI $HKCR\Edgeless.7zf\\=Edgeless 插件包资源文件
+REGI $HKCR\Edgeless.7zf\shell\\=
+REGI $HKCR\Edgeless.7zf\shell\open\\=
+REGI $HKCR\Edgeless.7zf\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\plugin_loader\process7zf.cmd "%%1"
+REGI $HKCR\Edgeless.7zf\DefaultIcon\\=X:\Users\Icon\type\plugin.ico

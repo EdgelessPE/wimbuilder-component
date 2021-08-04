@@ -1,5 +1,6 @@
 //写入OEM信息
-READ ".\_config\version.txt",1,EL_VER
+READ "..\_config\version.txt",1,EL_VER
+
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\Manufacturer=Edgeless
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\Model=%EL_VER%
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\Logo=X:\Users\Icon\Logo.bmp
