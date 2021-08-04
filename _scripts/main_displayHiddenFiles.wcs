@@ -1,1 +1,2 @@
-exit
+REGI #HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\\Hidden=1
+REGI #HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\\ShowSuperHidden=0
