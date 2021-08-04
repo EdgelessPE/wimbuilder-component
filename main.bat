@@ -16,7 +16,13 @@ if "x%opt[Edgeless.main_oem]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_checkUpdate]%"=="xtrue" (
-  %append1%main_checkUpdate.wcs%append2%
+  del /f /q %x%\Windows\SystemResources\systemcpl.dll.mun
+  copy /y .\_vendor\Bin_Update\systemcpl.dll.mun %x%\Windows\SystemResources\systemcpl.dll.mun
+)
+
+if "x%opt[Edgeless.main_activate]%"=="xtrue" (
+  del /f /q %x%\Windows\System32\zh-CN\systemcpl.dll.mui
+  copy /y .\_vendor\Bin_Activate\systemcpl.dll.mui %x%\Windows\System32\zh-CN\systemcpl.dll.mui
 )
 
 reg add "HKLM\Tmp_Software\Microsoft\Windows\Shell\Bags\1\Desktop" /f /v "IconSize" /t REG_DWORD /d %opt[Edgeless.main_desktopIconSize]%
