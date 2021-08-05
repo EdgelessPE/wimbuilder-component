@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" ?>
+  <dpinst>
+    <search>
+      <subDirectory>*</subDirectory>
+    </search>
+   <scanHardware/>
+   <legacyMode/>
+   <enableNotListedLanguages/>
+   <suppressAddRemovePrograms/>
+  </dpinst>

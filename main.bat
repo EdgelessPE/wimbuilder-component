@@ -26,6 +26,10 @@ if "x%opt[Edgeless.main_oem]%"=="xtrue" (
   %append1%main_oem.wcs%append2%
 )
 
+if "x%opt[Edgeless.main_version]%"=="xtrue" (
+  copy /y .\_config\version.txt "%x%\Program Files\"
+)
+
 if "x%opt[Edgeless.main_checkUpdate]%"=="xtrue" (
   del /f /q %x%\Windows\SystemResources\systemcpl.dll.mun
   copy /y .\_vendor\Bin_Update\systemcpl.dll.mun %x%\Windows\SystemResources\systemcpl.dll.mun
@@ -187,23 +191,20 @@ if "x%opt[Edgeless.files_udisk]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.files_setx]%"=="xtrue" (
-  %append1%files_setx.wcs%append2%
+  copy /y .\_vendor\Files\setx.exe %x%\Windows\System32\
 )
 
 if "x%opt[Edgeless.files_dpinst]%"=="xtrue" (
-  %append1%files_dpinst.wcs%append2%
-)
-
-if "x%opt[Edgeless.files_smartctl]%"=="xtrue" (
-  %append1%files_smartctl.wcs%append2%
+  copy /y .\_vendor\Files\dpinst.exe "%x%\Program Files\Edgeless\system_addin\"
+  copy /y .\_vendor\Files\dpinst.xml "%x%\Program Files\Edgeless\system_addin\"
 )
 
 if "x%opt[Edgeless.files_input]%"=="xtrue" (
-  %append1%files_input.wcs%append2%
+  xcopy /s /r /y .\_vendor\Bin_NLS\* %x%\Windows\System32\
 )
 
 if "x%opt[Edgeless.files_firsttimeaid]%"=="xtrue" (
-  %append1%files_firsttimeaid.wcs%append2%
+  copy /y .\_vendor\Files\Ó¦¼±°ü.7z "%x%\Program Files\Edgeless\"
 )
 
 
