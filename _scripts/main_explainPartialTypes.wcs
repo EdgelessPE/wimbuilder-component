@@ -1,4 +1,0 @@
-//修改部分类型文件的解释
-REGI $HKLM\Tmp_SOFTWARE\Classes\cmdfile\\=Windows 命令脚本
-REGI $HKLM\Tmp_SOFTWARE\Classes\batfile\\=Windows 命令脚本
-REGI $HKLM\Tmp_SOFTWARE\Classes\txtfile\\=文本文档

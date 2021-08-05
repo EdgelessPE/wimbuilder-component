@@ -1,0 +1,18 @@
+<script>
+  function PESlim(checkbox) {
+    let PESlim = document.querySelector("#PESlim");
+    if (checkbox.checked == false) {
+      PESlim.style.display = "none";
+    } else {
+      PESlim.style.display = "block";
+    }
+  }
+</script>
+
+<fieldset>
+    <legend>Win10XPE优化</legend>
+    <label>
+      <input type="checkbox" name="Edgeless.opt_cn" class="opt_item" checked />
+      解决文件类型中的中文乱码
+    </label>
+</fieldset>

@@ -3,9 +3,6 @@ title Edgeless Patch Running...
 ::挂载Tmp（鲁棒需要）
 call PERegPorter.bat Tmp LOAD
 
-::清理
-del /f /q run.wcs
-
 ::读取配置
 set /p workshop=<.\_config\workshop.txt
 
@@ -135,7 +132,7 @@ if "x%opt[Edgeless.main_iso]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_explainPartialTypes]%"=="xtrue" (
-  %append1%main_explainPartialTypes.wcs%append2%
+  type .\_commands\main_explainPartialTypes.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
@@ -238,6 +235,11 @@ if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
 @REM if "x%opt[Edgeless.patch_mklink]%"=="xtrue" (
 @REM   %append1%patch_mklink.wcs%append2%
 @REM )
+
+::Optimization
+if "x%opt[Edgeless.opt_cn]%"=="xtrue" (
+  type .\_commands\opt_cn.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+)
 
 ::执行run.wcs
 ::%finish%

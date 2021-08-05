@@ -1,0 +1,4 @@
+//修改部分类型文件的解释
+REGI $HKCR\cmdfile\\=Windows 命令脚本
+REGI $HKCR\batfile\\=Windows 命令脚本
+REGI $HKCR\txtfile\\=文本文档

@@ -1,0 +1,13 @@
+REGI $HKCR\Edgeless.7zf\\=Edgeless 插件包资源文件（禁用）
+REGI $HKCR\Edgeless.7zl\\=Edgeless 插件包资源文件（LocalBoost）
+REGI $HKCR\7-Zip.7z\shell\LoadAsPlugin\\=作为插件包加载
+REGI $HKCR\Edgeless.eis\\=Edgeless 图标资源包
+REGI $HKCR\Edgeless.els\\=Edgeless LoadScreen资源包
+REGI $HKCR\Edgeless.ems\\=Edgeless 鼠标样式资源包
+REGI $HKCR\Edgeless.esc\\=Edgeless 开始菜单样式资源文件
+REGI $HKCR\Edgeless.ess\\=Edgeless 系统图标资源包
+REGI $HKCR\Edgeless.eth\\=Edgeless 主题包
+REGI $HKCR\cmdfile\\=Windows 命令脚本
+REGI $HKCR\batfile\\=Windows 命令脚本
+REGI $HKCR\txtfile\\=文本文档
+REGI $HKCR\Edgeless.wcs\\=PECMD 脚本文件
