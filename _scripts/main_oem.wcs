@@ -1,15 +1,16 @@
 //写入OEM信息
-READ ".\_config\version.txt",1,EL_VER
+READ "..\_config\version.txt",1,EL_VER
 
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\Manufacturer=Edgeless
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\Model=%EL_VER%
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\Logo=X:\Users\Icon\Logo.bmp
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\SupportPhone=https://home.edgeless.top
 REGI HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\OEMInformation\SupportURL!
-REGI $HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\\RegisteredOwner=Edgeless
 
-REGI HKLM\Tmp_System\CurrentControlSet\Control\ComputerName\ActiveComputerName\ComputerName=Edgeless
-REGI HKLM\Tmp_System\CurrentControlSet\Control\ComputerName\ComputerName\ComputerName=Edgeless
+//REGI $HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\\RegisteredOwner=Edgeless
 
-REGI HKLM\Tmp_System\CurrentControlSet\services\Tcpip\Parameters\NV Hostname=Edgeless
-REGI HKLM\Tmp_System\CurrentControlSet\services\Tcpip\Parameters\Hostname=Edgeless
+//REGI HKLM\Tmp_System\CurrentControlSet\Control\ComputerName\ActiveComputerName\ComputerName=Edgeless
+//REGI HKLM\Tmp_System\CurrentControlSet\Control\ComputerName\ComputerName\ComputerName=Edgeless
+
+//REGI HKLM\Tmp_System\CurrentControlSet\services\Tcpip\Parameters\NV Hostname=Edgeless
+//REGI HKLM\Tmp_System\CurrentControlSet\services\Tcpip\Parameters\Hostname=Edgeless

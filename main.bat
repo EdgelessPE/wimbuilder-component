@@ -1,3 +1,5 @@
+title Edgeless Patch Running...
+
 ::¹ÒÔØTmp£¨Â³°ôÐèÒª£©
 call PERegPorter.bat Tmp LOAD
 
@@ -29,6 +31,7 @@ if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
 
 if "x%opt[Edgeless.main_oem]%"=="xtrue" (
   %append1%main_oem.wcs%append2%
+  xcopy /s /r /y .\_vendor\File_OEM\* "%x%\Users\"
 )
 
 if "x%opt[Edgeless.main_version]%"=="xtrue" (
@@ -232,5 +235,5 @@ if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
 
 ::Ö´ÐÐrun.wcs
 ::%finish%
-
+title Edgeless Patch Finished
 goto :eof
