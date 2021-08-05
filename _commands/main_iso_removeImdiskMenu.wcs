@@ -1,6 +1,6 @@
-//åˆ é™¤Imdiskå…¨å±€å³é”®èœå•
+//É¾³ýImdiskÈ«¾ÖÓÒ¼ü²Ëµ¥
 REGI HKCR\*\shell\ImDiskMountFile\!
 
-//åˆ é™¤é©±åŠ¨å™¨å³é”®èœå•å¤šä½™å†…å®¹
+//É¾³ýÇý¶¯Æ÷ÓÒ¼ü²Ëµ¥¶àÓàÄÚÈÝ
 REGI HKCR\Drive\shell\cmd\!
 REGI HKCR\Drive\shell\ImDiskSaveImage\!
