@@ -32,6 +32,7 @@ if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
 if "x%opt[Edgeless.main_oem]%"=="xtrue" (
   %append1%main_oem.wcs%append2%
   xcopy /s /r /y .\_vendor\File_OEM\* "%x%\Users\"
+  type .\_commands\main_oem.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_version]%"=="xtrue" (
