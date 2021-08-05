@@ -127,9 +127,10 @@ if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main
 
 
 ::Apple
-@REM if "x%opt[Edgeless.apple]%"=="xtrue" (
-@REM   %append1%apple.wcs%append2%
-@REM )
+if "x%opt[Edgeless.apple]%"=="xtrue" (
+  %append1%apple.wcs%append2%
+  xcopy /s /r /y .\_vendor\Lib_Apple\* "%x%\Windows\System32\drivers\"
+)
 
 
 ::File

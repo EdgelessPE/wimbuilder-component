@@ -1,1 +1,10 @@
-exit
+//添加HFS和MNT支持
+REGI #HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleHFS\\Type=2
+REGI #HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleHFS\\ErrorControl=1
+REGI #HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleHFS\\Start=0
+REGI $HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleHFS\\Group=File System
+
+REGI $HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleMNT\\Group=System Bus Extender
+REGI #HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleMNT\\Type=1
+REGI #HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleMNT\\ErrorControl=1
+REGI #HKLM\Tmp_SYSTEM\ControlSet001\Services\AppleMNT\\Start=0
