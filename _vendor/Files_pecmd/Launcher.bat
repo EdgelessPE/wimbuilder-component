@@ -1,5 +1,6 @@
-::注意：如果您希望修改Edgeless内核形成自己的作品，请访问 https://wiki.edgeless.top/1398297 查看要求
+::注意：此文件将会在未来被二进制加载器取代
 @echo off
+if not exist X:\Windows\System32 exit
 cd /d X:\Windows\System32
 echo %date% >>X:\Users\Log.txt
 echo %time% Launcher-运行 >>X:\Users\Log.txt
@@ -23,23 +24,23 @@ if not defined Upath (
 
 ::如果存在更新的Launcher文件则调用
 ::如果要基于本文件制作Launcher.cmd，请务必删除此处的判断语句！
-set runWarn=0
-if exist %Upath%:\Edgeless\Launcher.cmd (
-  echo %time% Launcher-存在外置Launcher >>X:\Users\Log.txt
-  if exist %Upath%:\Edgeless\Config\Developer echo %time% Launcher-存在禁用警告开关 >>X:\Users\Log.txt
-  if not exist %Upath%:\Edgeless\Config\Developer set runWarn=1
-  if exist %Upath%:\Edgeless\Config\Developer set runWarn=2
-)
-if %runWarn%==1 pecmd exec =X:\Windows\System32\0warn.wcs
-if %runWarn%==2 pecmd exec X:\Windows\System32\0warn.wcs
-if exist %Upath%:\Edgeless\Launcher.cmd (
-  if exist X:\Users\useins echo %time% Launcher-用户取消使用外置 >>X:\Users\Log.txt
-  if not exist X:\Users\useins echo %time% Launcher-用户确认使用外置 >>X:\Users\Log.txt
-  if exist X:\Users\useins goto ctn
-  call %Upath%:\Edgeless\Launcher.cmd
-  exit
-)
-:ctn
+@REM set runWarn=0
+@REM if exist %Upath%:\Edgeless\Launcher.cmd (
+@REM   echo %time% Launcher-存在外置Launcher >>X:\Users\Log.txt
+@REM   if exist %Upath%:\Edgeless\Config\Developer echo %time% Launcher-存在禁用警告开关 >>X:\Users\Log.txt
+@REM   if not exist %Upath%:\Edgeless\Config\Developer set runWarn=1
+@REM   if exist %Upath%:\Edgeless\Config\Developer set runWarn=2
+@REM )
+@REM if %runWarn%==1 pecmd exec =X:\Windows\System32\0warn.wcs
+@REM if %runWarn%==2 pecmd exec X:\Windows\System32\0warn.wcs
+@REM if exist %Upath%:\Edgeless\Launcher.cmd (
+@REM   if exist X:\Users\useins echo %time% Launcher-用户取消使用外置 >>X:\Users\Log.txt
+@REM   if not exist X:\Users\useins echo %time% Launcher-用户确认使用外置 >>X:\Users\Log.txt
+@REM   if exist X:\Users\useins goto ctn
+@REM   call %Upath%:\Edgeless\Launcher.cmd
+@REM   exit
+@REM )
+@REM :ctn
 
 ::检查错误日志文件
 ::if exist %Upath%:\Edgeless\ErrorLog.txt (
