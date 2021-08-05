@@ -1,2 +1,3 @@
 清理右键菜单+
 pecmd.ini
+阻止hold to ...
