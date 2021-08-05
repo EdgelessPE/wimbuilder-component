@@ -1,1 +1,4 @@
-用户头像无法更换
+清理右键菜单+
+pecmd.ini
+wcs
+使用notepad打开不可用

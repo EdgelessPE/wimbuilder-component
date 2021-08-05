@@ -101,6 +101,10 @@ if "x%opt[Edgeless.main_orderdrv]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_OrderDrv\* "%x%\Windows\System32\"
 )
 
+if "x%opt[Edgeless.main_inhancedType]%"=="xtrue" (
+  type .\_commands\main_inhancedType.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+)
+
 if "x%opt[Edgeless.main_wcs]%"=="xtrue" (
   copy /y .\_vendor\Exec_Xcmd\xcmd.exe %x%\Windows\System32\xcmd.exe
   type .\_commands\main_wcs.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"

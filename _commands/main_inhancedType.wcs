@@ -1,0 +1,69 @@
+//关联7zf、7zl文件，注册7z右键加载
+REGI $HKCR\.7zf\\=Edgeless.7zf
+REGI $HKCR\Edgeless.7zf\\=Edgeless 插件包资源文件
+REGI $HKCR\Edgeless.7zf\shell\\=
+REGI $HKCR\Edgeless.7zf\shell\open\\=
+REGI $HKCR\Edgeless.7zf\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\plugin_loader\process7zf.cmd "%%1"
+REGI $HKCR\Edgeless.7zf\DefaultIcon\\=X:\Users\Icon\type\plugin.ico
+
+REGI $HKCR\.7zl\\=Edgeless.7zl
+REGI $HKCR\Edgeless.7zl\\=Edgeless 插件包资源文件
+REGI $HKCR\Edgeless.7zl\shell\\=
+REGI $HKCR\Edgeless.7zl\shell\open\\=
+REGI $HKCR\Edgeless.7zl\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\plugin_loader\process7zf.cmd "%%1"
+REGI $HKCR\Edgeless.7zl\DefaultIcon\\=X:\Users\Icon\type\plugin.ico
+
+REGI $HKCR\7-Zip.7z\shell\LoadAsPlugin\\=作为插件包加载
+REGI $HKCR\7-Zip.7z\shell\LoadAsPlugin\\Icon=X:\Users\Icon\type\plugin.ico
+REGI $HKCR\7-Zip.7z\shell\LoadAsPlugin\Command\\=pecmd EXEC !"X:\Program Files\Edgeless\plugin_loader\process7zf.cmd" "%%1"
+REGI $HKCR\7-Zip.7z\shell\LoadAsPlugin\DefaultIcon\\=X:\Users\Icon\type\plugin.ico
+
+//关联Edgeless Theme相关文件
+REGI $HKCR\.eis\\=Edgeless.eis
+REGI $HKCR\Edgeless.eis\\=Edgeless 图标资源包
+REGI $HKCR\Edgeless.eis\shell\\=
+REGI $HKCR\Edgeless.eis\shell\open\\=
+REGI $HKCR\Edgeless.eis\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKCR\Edgeless.eis\DefaultIcon\\=X:\Users\Icon\type\eis.ico
+
+REGI $HKCR\.els\\=Edgeless.els
+REGI $HKCR\Edgeless.els\\=Edgeless LoadScreen资源包
+REGI $HKCR\Edgeless.els\shell\\=
+REGI $HKCR\Edgeless.els\shell\open\\=
+REGI $HKCR\Edgeless.els\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKCR\Edgeless.els\DefaultIcon\\=X:\Users\Icon\type\els.ico
+//关联wcs文件到xcmd
+REGI $HKCR\.wcs\\=Edgeless.wcs
+REGI $HKCR\Edgeless.wcs\\=PECMD 脚本文件
+REGI $HKCR\Edgeless.wcs\shell\\=
+REGI $HKCR\Edgeless.wcs\shell\open\\=
+REGI $HKCR\Edgeless.wcs\shell\open\command\\=X:\Windows\system32\xcmd.exe "%%1"
+REGI $HKCR\Edgeless.wcs\DefaultIcon\\=X:\Users\Icon\type\wcs.ico
+
+REGI $HKCR\.ems\\=Edgeless.ems
+REGI $HKCR\Edgeless.ems\\=Edgeless 鼠标样式资源包
+REGI $HKCR\Edgeless.ems\shell\\=
+REGI $HKCR\Edgeless.ems\shell\open\\=
+REGI $HKCR\Edgeless.ems\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKCR\Edgeless.ems\DefaultIcon\\=X:\Users\Icon\type\ems.ico
+
+REGI $HKCR\.esc\\=Edgeless.esc
+REGI $HKCR\Edgeless.esc\\=Edgeless 开始菜单样式资源文件
+REGI $HKCR\Edgeless.esc\shell\\=
+REGI $HKCR\Edgeless.esc\shell\open\\=
+REGI $HKCR\Edgeless.esc\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKCR\Edgeless.esc\DefaultIcon\\=X:\Users\Icon\type\esc.ico
+
+REGI $HKCR\.ess\\=Edgeless.ess
+REGI $HKCR\Edgeless.ess\\=Edgeless 系统图标资源包
+REGI $HKCR\Edgeless.ess\shell\\=
+REGI $HKCR\Edgeless.ess\shell\open\\=
+REGI $HKCR\Edgeless.ess\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKCR\Edgeless.ess\DefaultIcon\\=X:\Users\Icon\type\ess.ico
+
+REGI $HKCR\.eth\\=Edgeless.eth
+REGI $HKCR\Edgeless.eth\\=Edgeless 主题包
+REGI $HKCR\Edgeless.eth\shell\\=
+REGI $HKCR\Edgeless.eth\shell\open\\=
+REGI $HKCR\Edgeless.eth\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
+REGI $HKCR\Edgeless.eth\DefaultIcon\\=X:\Users\Icon\type\eth.ico
