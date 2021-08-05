@@ -216,7 +216,7 @@ if "x%opt[Edgeless.files_input]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.files_firsttimeaid]%"=="xtrue" (
-  copy /y .\_vendor\Files\应急包.7z "%x%\Program Files\Edgeless\"
+  copy /y .\_vendor\Files\应急包.7z "%x%\Program Files\"
 )
 
 
