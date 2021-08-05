@@ -41,7 +41,12 @@ if "x%opt[Edgeless.main_version]%"=="xtrue" (
 
 if "x%opt[Edgeless.main_wp]%"=="xtrue" (
   copy /y .\_vendor\Files\user-200.png "%x%\ProgramData\Microsoft\User Account Pictures\"
+  del /f /q "%x%\ProgramData\Microsoft\User Account Pictures\*.accountpicture-ms"
+  reg delete HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.accountpicture-ms /va /f
+  reg delete HKLM\Tmp_Default\Software\Microsoft\Windows\CurrentVersion\AccountPicture /v SourceId /f
+
   copy /y .\_vendor\Files\img0.jpg "%x%\Windows\Web\Wallpaper\Windows\"
+  set "opt[shell.wallpaper]=%cd%\_vendor\Files\img0.jpg"
 )
 
 if "x%opt[Edgeless.main_checkUpdate]%"=="xtrue" (

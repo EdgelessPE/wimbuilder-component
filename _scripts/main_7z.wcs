@@ -1,4 +1,6 @@
-REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\\=ä½œä¸ºæ’ä»¶åŒ…åŠ è½½
+REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\\=×÷Îª²å¼ş°ü¼ÓÔØ
 REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\\Icon=X:\Users\Icon\type\plugin.ico
 REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\Command\\=pecmd EXEC !"X:\Program Files\Edgeless\plugin_loader\process7zf.cmd" "%%1"
 REGI $HKLM\Tmp_Software\Classes\7-Zip.7z\shell\LoadAsPlugin\DefaultIcon\\=X:\Users\Icon\type\plugin.ico
+
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.7z\\=7-Zip.7z

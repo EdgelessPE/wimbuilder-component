@@ -1,5 +1,7 @@
-REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\\=Edgeless æ’ä»¶åŒ…èµ„æºæ–‡ä»¶
+REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\\=Edgeless ²å¼ş°ü×ÊÔ´ÎÄ¼ş
 REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\plugin_loader\process7zf.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.7zl\DefaultIcon\\=X:\Users\Icon\type\plugin.ico
+
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.7zl\\=Edgeless.7zl

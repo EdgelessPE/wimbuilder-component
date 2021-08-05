@@ -1,6 +1,0 @@
-REGI $HKCR\.eis\\=Edgeless.eis
-REGI $HKCR\.els\\=Edgeless.els
-REGI $HKCR\.ems\\=Edgeless.ems
-REGI $HKCR\.esc\\=Edgeless.esc
-REGI $HKCR\.ess\\=Edgeless.ess
-REGI $HKCR\.eth\\=Edgeless.eth

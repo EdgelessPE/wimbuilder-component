@@ -1,5 +1,7 @@
-REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\\=PECMD è„šæœ¬æ–‡ä»¶
+REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\\=PECMD ½Å±¾ÎÄ¼þ
 REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\shell\open\command\\=X:\Windows\system32\xcmd.exe "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.wcs\DefaultIcon\\=X:\Users\Icon\type\wcs.ico
+
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.wcs\\=Edgeless.wcs

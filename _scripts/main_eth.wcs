@@ -1,36 +1,43 @@
-//å…³è”Edgeless Themeç›¸å…³æ–‡ä»¶
-REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\\=Edgeless å›¾æ ‡èµ„æºåŒ…
+//¹ØÁªEdgeless ThemeÏà¹ØÎÄ¼ş
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\\=Edgeless Í¼±ê×ÊÔ´°ü
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eis\DefaultIcon\\=X:\Users\Icon\type\eis.ico
 
-REGI $HKLM\Tmp_Software\Classes\Edgeless.els\\=Edgeless LoadScreenèµ„æºåŒ…
+REGI $HKLM\Tmp_Software\Classes\Edgeless.els\\=Edgeless LoadScreen×ÊÔ´°ü
 REGI $HKLM\Tmp_Software\Classes\Edgeless.els\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.els\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.els\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.els\DefaultIcon\\=X:\Users\Icon\type\els.ico
 
-REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\\=Edgeless é¼ æ ‡æ ·å¼èµ„æºåŒ…
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\\=Edgeless Êó±êÑùÊ½×ÊÔ´°ü
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ems\DefaultIcon\\=X:\Users\Icon\type\ems.ico
 
-REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\\=Edgeless å¼€å§‹èœå•æ ·å¼èµ„æºæ–‡ä»¶
+REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\\=Edgeless ¿ªÊ¼²Ëµ¥ÑùÊ½×ÊÔ´ÎÄ¼ş
 REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.esc\DefaultIcon\\=X:\Users\Icon\type\esc.ico
 
-REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\\=Edgeless ç³»ç»Ÿå›¾æ ‡èµ„æºåŒ…
+REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\\=Edgeless ÏµÍ³Í¼±ê×ÊÔ´°ü
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.ess\DefaultIcon\\=X:\Users\Icon\type\ess.ico
 
-REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\\=Edgeless ä¸»é¢˜åŒ…
+REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\\=Edgeless Ö÷Ìâ°ü
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKLM\Tmp_Software\Classes\Edgeless.eth\DefaultIcon\\=X:\Users\Icon\type\eth.ico
+
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.eis\\=Edgeless.eis
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.els\\=Edgeless.els
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.ems\\=Edgeless.ems
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.esc\\=Edgeless.esc
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.ess\\=Edgeless.ess
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.eth\\=Edgeless.eth

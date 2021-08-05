@@ -3,3 +3,5 @@ REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\DefaultIcon\\=%%SystemRoot%%\System32
 REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\shell\\=
 REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\shell\open\\=
 REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\shell\open\command\\=X:\Users\Imdisk\SmartISO.exe "%%1"
+
+REGI $HKLM\Tmp_Software\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.iso\\=Imdisk.iso

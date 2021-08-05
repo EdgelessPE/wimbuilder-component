@@ -1,4 +1,4 @@
-//ä¿®æ”¹éƒ¨åˆ†ç±»å‹æ–‡ä»¶çš„è§£é‡Š
-REGI $HKLM\Tmp_SOFTWARE\Classes\cmdfile\\=Windows å‘½ä»¤è„šæœ¬
-REGI $HKLM\Tmp_SOFTWARE\Classes\batfile\\=Windows å‘½ä»¤è„šæœ¬
-REGI $HKLM\Tmp_SOFTWARE\Classes\txtfile\\=æ–‡æœ¬æ–‡æ¡£
+//ĞŞ¸Ä²¿·ÖÀàĞÍÎÄ¼şµÄ½âÊÍ
+REGI $HKLM\Tmp_SOFTWARE\Classes\cmdfile\\=Windows ÃüÁî½Å±¾
+REGI $HKLM\Tmp_SOFTWARE\Classes\batfile\\=Windows ÃüÁî½Å±¾
+REGI $HKLM\Tmp_SOFTWARE\Classes\txtfile\\=ÎÄ±¾ÎÄµµ
