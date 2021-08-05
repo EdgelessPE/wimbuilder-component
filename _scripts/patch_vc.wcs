@@ -1,1 +1,23 @@
-exit
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.atl_1fc8b3b9a1e18e3b_none_a268ec259de3174d\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_a28692199dcba471\9.0\\=9.0.30729.4940
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_a28692199dcba471\9.0\\9.0.30729.4940=01
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_a28692199dcba471\9.0\\9.0.30729.6161=01
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.mfcloc_1fc8b3b9a1e18e3b_none_f0ee8071fb10f4e2\9.0\\9.0.30729.6161=01
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.mfc_1fc8b3b9a1e18e3b_none_a2f75f3b9d7989e4\9.0\\9.0.30729.6161=01
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft.vc90.openmp_1fc8b3b9a1e18e3b_none_ba5d016b21242809\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.atl_1fc8b3b9a1e18e3b_none_bb797aeb5e404097\\=9.0
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.atl_1fc8b3b9a1e18e3b_none_bb797aeb5e404097\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.atl_1fc8b3b9a1e18e3b_none_bb797aeb5e404097\9.0\\=9.0.30729.6161
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_bb22ca2f5e815913\\=9.0
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_bb22ca2f5e815913\9.0\\=9.0.30729.6161
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_bb22ca2f5e815913\9.0\\9.0.30729.4940=01
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.crt_1fc8b3b9a1e18e3b_none_bb22ca2f5e815913\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.mfcloc_1fc8b3b9a1e18e3b_none_399d052615c6abee\\=9.0
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.mfcloc_1fc8b3b9a1e18e3b_none_399d052615c6abee\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.mfcloc_1fc8b3b9a1e18e3b_none_399d052615c6abee\9.0\\=9.0.30729.6161
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.mfc_1fc8b3b9a1e18e3b_none_bbd99e435df8a088\\=9.0
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.mfc_1fc8b3b9a1e18e3b_none_bbd99e435df8a088\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.mfc_1fc8b3b9a1e18e3b_none_bbd99e435df8a088\9.0\\=9.0.30729.6161
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.openmp_1fc8b3b9a1e18e3b_none_1eef21b42ca2596f\\=9.0
+REGI --16 @HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.openmp_1fc8b3b9a1e18e3b_none_1eef21b42ca2596f\9.0\\9.0.30729.6161=01
+REGI $HKLM\Tmp_SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_policy.9.0.microsoft.vc90.openmp_1fc8b3b9a1e18e3b_none_1eef21b42ca2596f\9.0\\=9.0.30729.6161

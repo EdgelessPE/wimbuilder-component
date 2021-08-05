@@ -105,7 +105,7 @@ if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" (
 
 ::Apple
 if "x%opt[Edgeless.apple]%"=="xtrue" (
-  %append1%apple.wcs%append2%
+  ::%append1%apple.wcs%append2%
 )
 
 
@@ -197,10 +197,11 @@ if "x%opt[Edgeless.files_firsttimeaid]%"=="xtrue" (
 ::Patch
 if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
   %append1%patch_vc.wcs%append2%
+  xcopy /s /r /y .\_vendor\Lib_VC9\* "%x%\"
 )
 
 if "x%opt[Edgeless.patch_mklink]%"=="xtrue" (
-  %append1%patch_mklink.wcs%append2%
+  ::%append1%patch_mklink.wcs%append2%
 )
 
 ::Ö´ÐÐrun.wcs
