@@ -1,1 +1,3 @@
 REGI $HKCR\*\shell\Open with Notepad\\=使用记事本打开
+REGI $HKCR\*\shell\Open with Notepad\\Icon=notepad.exe
+REGI $HKCR\*\shell\Open with Notepad\command\\=notepad.exe "%1"

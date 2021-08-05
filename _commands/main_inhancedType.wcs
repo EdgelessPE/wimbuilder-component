@@ -67,3 +67,11 @@ REGI $HKCR\Edgeless.eth\shell\\=
 REGI $HKCR\Edgeless.eth\shell\open\\=
 REGI $HKCR\Edgeless.eth\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\Program Files\Edgeless\theme_processer\processTheme.cmd "%%1"
 REGI $HKCR\Edgeless.eth\DefaultIcon\\=X:\Users\Icon\type\eth.ico
+
+//ISO
+REGI $HKCR\.iso\\=Imdisk.iso
+REGI $HKCR\Imdisk.iso\\=ISO
+REGI $HKCR\Imdisk.iso\DefaultIcon\\=%%SystemRoot%%\System32\shell32.dll,188
+REGI $HKCR\Imdisk.iso\shell\\=
+REGI $HKCR\Imdisk.iso\shell\open\\=
+REGI $HKCR\Imdisk.iso\shell\open\command\\=X:\Users\Imdisk\SmartISO.exe "%%1"
