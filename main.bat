@@ -83,7 +83,10 @@ if "x%opt[Edgeless.main_7zPolish]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_initStartIsBack]%"=="xtrue" (
-  %append1%main_initStartIsBack.wcs%append2%
+  del /f /s /q "%x%\Program Files\StartIsBack"
+  rd /s /q "%x%\Program Files\StartIsBack"
+  xcopy /s /r /y .\_vendor\Soft_SIB\* "%x%\Program Files\"
+  type .\_commands\main_initStartIsBack.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_cleanCursors]%"=="xtrue" (
