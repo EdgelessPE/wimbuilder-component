@@ -7,10 +7,18 @@ del /f /q run.wcs
 ::读取配置
 set /p workshop=<.\_config\workshop.txt
 
+::创建目录
+md "%x%\Program Files\Edgeless\system_hooks\0-onDiskFound"
+md "%x%\Program Files\Edgeless\system_hooks\1-beforeLocalBoost"
+md "%x%\Program Files\Edgeless\system_hooks\2-beforePluginLoading"
+md "%x%\Program Files\Edgeless\system_hooks\3-onPluginLoaded"
+md "%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown"
+md "%x%\Program Files\Edgeless\system_hooks\5-onBootFinished"
+
 ::配置脚本运行宏
 set run=.\_utils\pecmd.exe load .\_scripts\
-set append1=type 
-set append2=>>run.wcs
+set append1=.\_utils\pecmd.exe load .\_scripts\
+set append2=
 set finish=.\_utils\pecmd.exe load run.wcs
 
 ::main配置
@@ -98,20 +106,17 @@ if "x%opt[Edgeless.main_explainPartialTypes]%"=="xtrue" (
   %append1%main_explainPartialTypes.wcs%append2%
 )
 
-if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" (
-  type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
-)
+if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 
 
 ::Apple
-if "x%opt[Edgeless.apple]%"=="xtrue" (
-  ::%append1%apple.wcs%append2%
-)
+@REM if "x%opt[Edgeless.apple]%"=="xtrue" (
+@REM   %append1%apple.wcs%append2%
+@REM )
 
 
 ::File
 ::xcopy /s /r /y .\core\Update\source\* .\
-md "%x%\Program Files\Edgeless\"
 
 if "x%opt[Edgeless.files_dynamic]%"=="xtrue" (
   md "%x%\Program Files\Edgeless\dynamic_creator"
@@ -200,11 +205,11 @@ if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\Lib_VC9\* "%x%\"
 )
 
-if "x%opt[Edgeless.patch_mklink]%"=="xtrue" (
-  ::%append1%patch_mklink.wcs%append2%
-)
+@REM if "x%opt[Edgeless.patch_mklink]%"=="xtrue" (
+@REM   %append1%patch_mklink.wcs%append2%
+@REM )
 
 ::执行run.wcs
-%finish%
+::%finish%
 
 goto :eof

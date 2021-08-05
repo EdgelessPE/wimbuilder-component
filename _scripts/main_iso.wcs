@@ -1,5 +1,5 @@
-REGI $HKCR\Imdisk.iso\\=ISO
-REGI $HKCR\Imdisk.iso\DefaultIcon\\=%%SystemRoot%%\System32\shell32.dll,188
-REGI $HKCR\Imdisk.iso\shell\\=
-REGI $HKCR\Imdisk.iso\shell\open\\=
-REGI $HKCR\Imdisk.iso\shell\open\command\\=X:\Users\Imdisk\SmartISO.exe "%%1"
+REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\\=ISO
+REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\DefaultIcon\\=%%SystemRoot%%\System32\shell32.dll,188
+REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\shell\\=
+REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\shell\open\\=
+REGI $HKLM\Tmp_Software\Classes\Imdisk.iso\shell\open\command\\=X:\Users\Imdisk\SmartISO.exe "%%1"
