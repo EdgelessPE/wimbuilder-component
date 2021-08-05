@@ -30,6 +30,11 @@ if "x%opt[Edgeless.main_version]%"=="xtrue" (
   copy /y .\_config\version.txt "%x%\Program Files\"
 )
 
+if "x%opt[Edgeless.main_wp]%"=="xtrue" (
+  copy /y .\_vendor\Files\user-200.png "%x%\ProgramData\Microsoft\User Account Pictures\"
+  copy /y .\_vendor\Files\img0.jpg "%x%\Windows\Web\Wallpaper\Windows\"
+)
+
 if "x%opt[Edgeless.main_checkUpdate]%"=="xtrue" (
   del /f /q %x%\Windows\SystemResources\systemcpl.dll.mun
   copy /y .\_vendor\Bin_Update\systemcpl.dll.mun %x%\Windows\SystemResources\systemcpl.dll.mun
