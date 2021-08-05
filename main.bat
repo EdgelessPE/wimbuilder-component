@@ -242,4 +242,5 @@ if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
 ::Ö´ÐÐrun.wcs
 ::%finish%
 title Edgeless Patch Finished
+::pause
 goto :eof
