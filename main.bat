@@ -137,7 +137,7 @@ if "x%opt[Edgeless.main_explainPartialTypes]%"=="xtrue" (
   type .\_commands\main_explainPartialTypes.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
-if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
 
 
 ::Apple

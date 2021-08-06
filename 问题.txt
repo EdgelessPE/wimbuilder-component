@@ -2,4 +2,5 @@
 汉化taskmgr \Windows\System32\ZH-CN\taskmgr.exe.mui
 微软拼音去不掉
 登入桌面时启动各种Driver
+Open With Notepad
 看FirPE

@@ -18,5 +18,5 @@ REGI HKCR\cmdfile\shell\print\!
 REGI HKCR\*\shellex\ContextMenuHandlers\ModernSharing\!
 REGI HKCR\exefile\ShellEx\ContextMenuHandlers\PintoStartScreen\!
 
-//鏂板浼樺寲閮ㄥ垎
+//新增优化部分
 REGI **HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Discardable\PostSetup\ShellNew\\Classes=0.lnk\0.txt\0Folder
