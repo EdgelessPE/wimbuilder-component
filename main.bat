@@ -129,7 +129,7 @@ if "x%opt[Edgeless.main_iso]%"=="xtrue" (
   md "%x%\Users\Imdisk"
   xcopy /s /r /y "%workshop%\Users\Imdisk\*" "%x%\Users\Imdisk\"
   type .\_commands\main_iso.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
-  type .\_commands\main_iso_removeImdiskMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+  type .\_commands\main_iso_removeImdiskMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
   %append1%main_iso.wcs%append2%
 )
 
@@ -256,7 +256,7 @@ if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
-  type .\_commands\opt_keyboard.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+  type .\_commands\opt_keyboard.wcs>>"%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost\_Preset.wcs"
 )
 
 ::Ö´ÐÐrun.wcs
