@@ -4,3 +4,4 @@ REGI HKCR\*\shell\ImDiskMountFile\!
 //删除驱动器右键菜单多余内容
 REGI HKCR\Drive\shell\cmd\!
 REGI HKCR\Drive\shell\ImDiskSaveImage\!
+REGI HKCR\Drive\shell\ImDiskUnmount\!
