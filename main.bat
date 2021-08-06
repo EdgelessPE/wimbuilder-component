@@ -23,12 +23,11 @@ set finish=.\_utils\pecmd.exe load run.wcs
 ::mainÅäÖÃ
 if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
   copy /y .\_vendor\Files_pecmd\Pecmd.ini "%x%\Windows\System32\"
-  copy /y .\_vendor\Files_pecmd\Launcher.bat "%x%\Program Files\Edgeless\"
+  copy /y .\_vendor\Files_pecmd\Launcher.bat "%x%\Program Files\"
 )
 
 if "x%opt[Edgeless.main_oem]%"=="xtrue" (
   %append1%main_oem.wcs%append2%
-  xcopy /s /r /y .\_vendor\File_OEM\* "%x%\Users\"
   type .\_commands\main_oem.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
@@ -93,10 +92,6 @@ if "x%opt[Edgeless.main_cleanCursors]%"=="xtrue" (
   %append1%main_cleanCursors.wcs%append2%
 )
 
-if "x%opt[Edgeless.main_system32]%"=="xtrue" (
-  xcopy /s /r /y .\_vendor\File_System32\* "%x%\Windows\System32\"
-)
-
 if "x%opt[Edgeless.main_orderdrv]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_OrderDrv\* "%x%\Windows\System32\"
 )
@@ -154,6 +149,14 @@ if "x%opt[Edgeless.apple]%"=="xtrue" (
 
 ::File
 ::xcopy /s /r /y .\core\Update\source\* .\
+
+if "x%opt[Edgeless.file_system32]%"=="xtrue" (
+  xcopy /s /r /y .\_vendor\File_System32\* "%x%\Windows\System32\"
+)
+
+if "x%opt[Edgeless.file_users]%"=="xtrue" (
+  xcopy /s /r /y .\_vendor\File_Users\* "%x%\Users\"
+)
 
 if "x%opt[Edgeless.files_dynamic]%"=="xtrue" (
   md "%x%\Program Files\Edgeless\dynamic_creator"
