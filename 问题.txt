@@ -1,5 +1,5 @@
 清理右键菜单+
-pecmd.ini
-阻止hold to ...：
 汉化taskmgr \Windows\System32\ZH-CN\taskmgr.exe.mui
+微软拼音去不掉
+登入桌面时启动各种Driver
 看FirPE
