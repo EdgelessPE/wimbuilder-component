@@ -7,12 +7,12 @@ call PERegPorter.bat Tmp LOAD
 set /p workshop=<.\_config\workshop.txt
 
 ::创建目录
-md "%x%\Program Files\Edgeless\system_hooks\0-onDiskFound"
-md "%x%\Program Files\Edgeless\system_hooks\1-beforeLocalBoost"
-md "%x%\Program Files\Edgeless\system_hooks\2-beforePluginLoading"
-md "%x%\Program Files\Edgeless\system_hooks\3-onPluginLoaded"
-md "%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown"
-md "%x%\Program Files\Edgeless\system_hooks\5-onBootFinished"
+md "%x%\Program Files\Edgeless\system_hooks\onDiskFound"
+md "%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost"
+md "%x%\Program Files\Edgeless\system_hooks\beforePluginLoading"
+md "%x%\Program Files\Edgeless\system_hooks\onPluginLoaded"
+md "%x%\Program Files\Edgeless\system_hooks\onDesktopShown"
+md "%x%\Program Files\Edgeless\system_hooks\onBootFinished"
 
 ::配置脚本运行宏
 set run=.\_utils\pecmd.exe load .\_scripts\
@@ -28,7 +28,7 @@ if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
 
 if "x%opt[Edgeless.main_oem]%"=="xtrue" (
   %append1%main_oem.wcs%append2%
-  type .\_commands\main_oem.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_oem.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_version]%"=="xtrue" (
@@ -66,11 +66,11 @@ if "x%opt[Edgeless.main_displayHiddenFiles]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_rightClickMenu]%"=="xtrue" (
-  type .\_commands\main_rightClickMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_rightClickMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_fixManage]%"=="xtrue" (
-  type .\_commands\main_fixManage.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_fixManage.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_dpi]%"=="xtrue" (
@@ -85,7 +85,7 @@ if "x%opt[Edgeless.main_initStartIsBack]%"=="xtrue" (
   del /f /s /q "%x%\Program Files\StartIsBack"
   rd /s /q "%x%\Program Files\StartIsBack"
   xcopy /s /r /y .\_vendor\Soft_SIB\* "%x%\Program Files\"
-  type .\_commands\main_initStartIsBack.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_initStartIsBack.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_cleanCursors]%"=="xtrue" (
@@ -97,12 +97,12 @@ if "x%opt[Edgeless.main_orderdrv]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_inhancedType]%"=="xtrue" (
-  type .\_commands\main_inhancedType.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_inhancedType.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_wcs]%"=="xtrue" (
   copy /y .\_vendor\Exec_Xcmd\xcmd.exe %x%\Windows\System32\xcmd.exe
-  type .\_commands\main_wcs.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_wcs.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDiskFound\_Preset.wcs"
   %append1%main_wcs.wcs%append2%
 )
 
@@ -111,33 +111,33 @@ if "x%opt[Edgeless.main_7z]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_7zf]%"=="xtrue" (
-  type .\_commands\main_7zf.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_7zf.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
   %append1%main_7zf.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_7zl]%"=="xtrue" (
-  type .\_commands\main_7zl.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_7zl.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
   %append1%main_7zl.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_eth]%"=="xtrue" (
-  type .\_commands\main_eth.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_eth.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
   %append1%main_eth.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_iso]%"=="xtrue" (
   md "%x%\Users\Imdisk"
   xcopy /s /r /y "%workshop%\Users\Imdisk\*" "%x%\Users\Imdisk\"
-  type .\_commands\main_iso.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
-  type .\_commands\main_iso_removeImdiskMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_iso.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+  type .\_commands\main_iso_removeImdiskMenu.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
   %append1%main_iso.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_explainPartialTypes]%"=="xtrue" (
-  type .\_commands\main_explainPartialTypes.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\main_explainPartialTypes.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
-if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 
 
 ::Apple
@@ -248,7 +248,7 @@ if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
 
 ::Optimization
 if "x%opt[Edgeless.opt_cn]%"=="xtrue" (
-  type .\_commands\opt_cn.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\opt_cn.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
@@ -256,7 +256,7 @@ if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
-  type .\_commands\opt_keyboard.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
+  type .\_commands\opt_keyboard.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 ::执行run.wcs
