@@ -1,0 +1,5 @@
+//使用简体中文-美式键盘
+REGI $HKCU\Keyboard Layout\Preload\\2=d0010804
+REGI $HKCU\Keyboard Layout\Preload\\1=00000804
+REGI $HKCU\Keyboard Layout\Substitutes\\00000804=00000409
+REGI $HKCU\Keyboard Layout\Substitutes\\d0010804=00000804
