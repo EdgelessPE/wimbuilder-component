@@ -1,4 +1,4 @@
-//ä½¿ç”¨ç®€ä½“ä¸­æ–‡-ç¾å¼é”®ç›˜
+//Ê¹ÓÃ¼òÌåÖĞÎÄ-ÃÀÊ½¼üÅÌ
 REGI $HKCU\Keyboard Layout\Preload\\2=d0010804
 REGI $HKCU\Keyboard Layout\Preload\\1=00000804
 REGI $HKCU\Keyboard Layout\Substitutes\\00000804=00000409

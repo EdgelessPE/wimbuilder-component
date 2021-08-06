@@ -9,7 +9,7 @@ echo %time% 检查更新程序-wim信息%vnw% >>X:\Users\Log.txt
 
 if %vnw:~9,4%==Alpa goto alpha
 
-if not exist version_ol.txt "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "version_ol.txt" https://pineapple.edgeless.top/api/v2/info/iso_version
+if not exist version_ol.txt "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "version_ol.txt" http://pineapple.edgeless.top/api/v2/info/iso_version
 ::if not exist version_ol.txt "X:\Program Files\Edgeless\EasyDown\EasyDown.exe" -Down("http://s.edgeless.top/?token=version","version_ol.txt","X:\Program Files\Edgeless\system_update")
 if not exist version_ol.txt goto df
 set /p vol=<version_ol.txt
@@ -126,12 +126,12 @@ exit
 
 
 :alpha
-if not exist "X:\Program Files\Edgeless\system_update\version_ola.txt" "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "version_ola.txt" https://pineapple.edgeless.top/api/v2/alpha/version?token=WDNMD
+if not exist "X:\Program Files\Edgeless\system_update\version_ola.txt" "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "version_ola.txt" http://pineapple.edgeless.top/api/v2/alpha/version?token=WDNMD
 ::if not exist "X:\Program Files\Edgeless\system_update\version_ola.txt" "X:\Program Files\Edgeless\EasyDown\EasyDown.exe" -Down("http://s.edgeless.top/?token=alpha","version_ola.txt","X:\Program Files\Edgeless\system_update")
 if not exist "X:\Program Files\Edgeless\system_update\version_ola.txt" goto df
 set /p voa=<"X:\Program Files\Edgeless\system_update\version_ola.txt"
 
-if not exist "X:\Program Files\Edgeless\system_update\version_ol.txt" "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "version_ol.txt" https://pineapple.edgeless.top/api/v2/info/iso_version
+if not exist "X:\Program Files\Edgeless\system_update\version_ol.txt" "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "version_ol.txt" http://pineapple.edgeless.top/api/v2/info/iso_version
 ::if not exist "X:\Program Files\Edgeless\system_update\version_ol.txt" "X:\Program Files\Edgeless\EasyDown\EasyDown.exe" -Down("http://s.edgeless.top/?token=version","version_ol.txt","X:\Program Files\Edgeless\system_update")
 if not exist "X:\Program Files\Edgeless\system_update\version_ol.txt" goto df
 set /p vol=<"X:\Program Files\Edgeless\system_update\version_ol.txt"

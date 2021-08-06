@@ -217,9 +217,10 @@ var $patches_opt = {
     "Edgeless.main_wp":true,
     "Edgeless.main_system32":true,
     "Edgeless.main_orderdrv":true,
-    "Edgeless.main_pecmd":false,
+    "Edgeless.main_pecmd":true,
     "Edgeless.opt_cn":true,
     "Edgeless.main_inhancedType":true,
+    "Edgeless.opt_pin":true,
     "_._._":""
 }
 

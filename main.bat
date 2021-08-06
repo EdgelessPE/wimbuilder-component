@@ -96,8 +96,8 @@ if "x%opt[Edgeless.main_orderdrv]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_OrderDrv\* "%x%\Windows\System32\"
 )
 
-if "x%opt[Edgeless.main_inhancedType]%"=="xtrue" (
-  type .\_commands\main_inhancedType.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+if "x%opt[Edgeless.main_enhancedType]%"=="xtrue" (
+  type .\_commands\main_enhancedType.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDiskFound\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_wcs]%"=="xtrue" (
@@ -248,7 +248,7 @@ if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
 
 ::Optimization
 if "x%opt[Edgeless.opt_cn]%"=="xtrue" (
-  type .\_commands\opt_cn.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+  type .\_commands\opt_cn.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDiskFound\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
