@@ -248,6 +248,10 @@ if "x%opt[Edgeless.opt_cn]%"=="xtrue" (
   type .\_commands\opt_cn.wcs>>"%x%\Program Files\Edgeless\system_hooks\4-onDesktopShown\_Preset.wcs"
 )
 
+if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
+  copy /y .\_vendor\File_PinIcons\00-InitPinIcons.lua "%x%\PEMaterial\Autoruns\Startup\"
+)
+
 ::Ö´ÐÐrun.wcs
 ::%finish%
 title Edgeless Patch Finished
