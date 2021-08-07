@@ -94,7 +94,7 @@ if "x%opt[Edgeless.main_initStartIsBack]%"=="xtrue" (
   del /f /s /q "%x%\Program Files\StartIsBack"
   rd /s /q "%x%\Program Files\StartIsBack"
   xcopy /s /r /y .\_vendor\Soft_SIB\* "%x%\Program Files\"
-  type .\_commands\main_initStartIsBack.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
+  type .\_commands\main_initStartIsBack.wcs>>"%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.main_cleanCursors]%"=="xtrue" (
