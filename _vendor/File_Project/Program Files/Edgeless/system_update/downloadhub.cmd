@@ -1,7 +1,7 @@
 echo %time% 检查更新程序-下载hub-启动 >>X:\Users\Log.txt
 set autoRetry=t
 :home
-"X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -o "hub.7z" https://pineapple.edgeless.top/api/v2/info/hub_addr
+"X:\Program Files\Edgeless\EasyDown\aria2c.exe" --check-certificate=false -x16 -c -o "hub.7z" https://pineapple.edgeless.top/api/v2/info/hub_addr
 ::"X:\Program Files\Edgeless\EasyDown\EasyDown.exe" -Down("http://s.edgeless.top/?token=burner","hub.7z","X:\Program Files\Edgeless\system_update")
 if %autoRetry%==t goto waitForRetry
 if not exist "X:\Program Files\Edgeless\system_update\hub.7z" call checknet.cmd

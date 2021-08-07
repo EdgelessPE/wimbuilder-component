@@ -221,6 +221,12 @@ var $patches_opt = {
     "Edgeless.opt_cn":true,
     "Edgeless.main_inhancedType":true,
     "Edgeless.opt_pin":true,
+    "Edgeless.file_system32":true,
+    "Edgeless.file_users":true,
+    "Edgeless.opt_keyboard":true,
+    "Edgeless.main_enhancedType":true,
+    "Edgeless.file_syswow64":true,
+    "Edgeless.opt_taskmgr":true,
     "_._._":""
 }
 
@@ -241,6 +247,7 @@ function patches_state_init() {
     check_tree_node("01-Components/Remote Desktop");
     uncheck_tree_node("01-Components/Windows Media Player");
     check_tree_node("01-Components/za-Accessories");
+    select_tree_node("01-Components");
     open_tree_node("01-Components");
     check_tree_node("01-Drivers");
     open_tree_node("01-Drivers");
@@ -253,7 +260,6 @@ function patches_state_init() {
     open_tree_node("02-Apps");
     uncheck_tree_node("02-PEMaterial");
     check_tree_node("10-Edgeless");
-    select_tree_node("10-Edgeless");
     open_tree_node("10-Edgeless");
     check_tree_node("za-Slim");
     uncheck_tree_node("za-SlimUltra");

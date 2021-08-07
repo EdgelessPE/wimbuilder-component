@@ -84,7 +84,7 @@ for %%1 in (Z Y X W V U T S R Q P O N M L K J I H G F E D C ) do (
     if exist X:\Users\ept\pack.7zf echo %time% ept-install-从本地仓库搬运："%%1:\Edgeless\Resource\%name%_%ver%_%au%.7z（f）" >>X:\Users\Log.txt
 )
 if not exist X:\Users\ept\pack.7zf echo ept-install 正在向服务器发送下载请求...
-if not exist X:\Users\ept\pack.7zf "X:\Program Files\Edgeless\EasyDown\aria2c.exe" -x16 -c -d X:\Users\ept -o pack.7zf "http://s.edgeless.top/ept.php?name=%name%&version=%ver%&author=%au%&category=%cate:~0,-1%"
+if not exist X:\Users\ept\pack.7zf "X:\Program Files\Edgeless\EasyDown\aria2c.exe" --check-certificate=false -x16 -c -d X:\Users\ept -o pack.7zf "http://s.edgeless.top/ept.php?name=%name%&version=%ver%&author=%au%&category=%cate:~0,-1%"
 if not exist X:\Users\ept\pack.7zf (
     echo ept-install 下载失败，请检查网络或联系作者
     echo %time% ept-install-下载失败 >>X:\Users\Log.txt
