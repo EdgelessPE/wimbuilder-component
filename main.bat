@@ -149,6 +149,10 @@ if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_System32\* "%x%\Windows\System32\"
 )
 
+if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
+  xcopy /s /r /y .\_vendor\Lib_SysWOW64\* "%x%\Windows\SysWOW64\"
+)
+
 if "x%opt[Edgeless.file_users]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_Users\* "%x%\Users\"
 )
@@ -252,6 +256,10 @@ if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
 
 if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
   type .\_commands\opt_keyboard.wcs>>"%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost\_Preset.wcs"
+)
+
+if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
+  copy /y .\_vendor\File_Taskmgr\Taskmgr.exe.mui "%x%\Windows\System32\ZH-CN\"
 )
 
 ::Ö´ÐÐrun.wcs
