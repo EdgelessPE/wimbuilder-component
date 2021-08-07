@@ -1859,7 +1859,7 @@ for %%f in (
   WerEnc.dll
   wfapigp.dll
   WindowManagementAPI.dll
-  Windows.FileExplorer.Common.dll
+  @REM Windows.FileExplorer.Common.dll
   Windows.Web.dll
   WMPhoto.dll
   wowreg32.exe
