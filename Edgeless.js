@@ -273,4 +273,5 @@ function patches_state_init() {
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
     open_tree_node("zz-Utils");
-   
+    select_tree_node("10-Edgeless/Optimization");
+}
