@@ -290,7 +290,6 @@ if "x%opt[Edgeless.opt_cnUser]%"=="xtrue" (
   attrib +s "%x%\Users\Default\Documents"
   attrib +s "%x%\Users\Default\Downloads"
   attrib +s "%x%\Users\Default\Pictures"
-  pause
 )
 
 if "x%opt[Edgeless.opt_autoAllPrograms]%"=="xtrue" (
