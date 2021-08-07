@@ -228,8 +228,9 @@ var $patches_opt = {
     "Edgeless.file_syswow64":true,
     "Edgeless.opt_taskmgr":true,
     "Edgeless.opt_remove_rtf":true,
-    "opt_remove_undo":true,
-    "Edgeless.Slim":"1",
+    "Edgeless.Slim":"0",
+    "Edgeless.opt_remove_undo":true,
+    "Edgeless.main_pinBrowsers":true,
     "_._._":""
 }
 
@@ -262,6 +263,7 @@ function patches_state_init() {
     open_tree_node("02-Apps");
     uncheck_tree_node("02-PEMaterial");
     check_tree_node("10-Edgeless");
+    select_tree_node("10-Edgeless");
     open_tree_node("10-Edgeless");
     check_tree_node("za-Slim");
     uncheck_tree_node("za-SlimUltra");
@@ -270,5 +272,4 @@ function patches_state_init() {
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
     open_tree_node("zz-Utils");
-    select_tree_node("10-Edgeless/Optimization");
 }
