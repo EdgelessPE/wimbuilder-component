@@ -279,6 +279,10 @@ if "x%opt[Edgeless.opt_remove_undo]%"=="xtrue" (
   %append1%opt_remove_undo.wcs%append2%
 )
 
+if "x%opt[Edgeless.opt_loadDrivers]%"=="xtrue" (
+  type .\_commands\opt_loadDrivers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
+)
+
 ::Ö´ÐÐrun.wcs
 ::%finish%
 title Edgeless Patch Finished
