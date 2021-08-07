@@ -61,6 +61,10 @@ if "x%opt[Edgeless.main_activate]%"=="xtrue" (
   copy /y .\_vendor\Bin_Activate\systemcpl.dll.mui %x%\Windows\System32\zh-CN\systemcpl.dll.mui
 )
 
+if "x%opt[Edgeless.main_pinBrowsers]%"=="xtrue" (
+  type .\_commands\main_pinBrowsers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onPluginLoaded\_Preset.wcs"
+)
+
 reg add "HKLM\Tmp_Software\Microsoft\Windows\Shell\Bags\1\Desktop" /f /v "IconSize" /t REG_DWORD /d %opt[Edgeless.main_desktopIconSize]%
 
 if "x%opt[Edgeless.main_explorerRibbon]%"=="xtrue" (

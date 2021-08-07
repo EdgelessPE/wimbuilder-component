@@ -1,2 +1,4 @@
 登入桌面时启动各种Driver
+火狐异常
+hook
 看FirPE
