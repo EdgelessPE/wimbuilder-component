@@ -20,6 +20,12 @@ set append1=.\_utils\pecmd.exe load .\_scripts\
 set append2=
 set finish=.\_utils\pecmd.exe load run.wcs
 
+::调用精简脚本
+if "x%opt[Edgeless.Slim]%" neq "x0" (
+  call .\Slim\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
+)
+
+
 ::main配置
 if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
   copy /y .\_vendor\Files_pecmd\Pecmd.ini "%x%\Windows\System32\"
@@ -260,6 +266,14 @@ if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
 
 if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
   copy /y .\_vendor\File_Taskmgr\Taskmgr.exe.mui "%x%\Windows\System32\ZH-CN\"
+)
+
+if "x%opt[Edgeless.opt_remove_rtf]%"=="xtrue" (
+  %append1%opt_remove_rtf.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_remove_undo]%"=="xtrue" (
+  %append1%opt_remove_undo.wcs%append2%
 )
 
 ::执行run.wcs

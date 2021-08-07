@@ -1,0 +1,26 @@
+<script>
+  function PESlim(checkbox) {
+    let PESlim = document.querySelector("#PESlim");
+    if (checkbox.checked == false) {
+      PESlim.style.display = "none";
+    } else {
+      PESlim.style.display = "block";
+    }
+  }
+</script>
+
+
+<label>
+  <input type="radio" class="opt_item" name="Edgeless.Slim" value="0" checked />
+  不精简
+</label>
+<br />
+<label>
+  <input type="radio" class="opt_item" name="Edgeless.Slim" value="1" />
+  安全精简
+</label>
+<br />
+<label>
+  <input type="radio" class="opt_item" name="Edgeless.Slim" value="2" />
+  普通精简
+</label>

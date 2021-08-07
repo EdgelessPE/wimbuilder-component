@@ -1,6 +1,3 @@
-清理新建菜单
-汉化taskmgr \Windows\System32\ZH-CN\taskmgr.exe.mui
 登入桌面时启动各种Driver，优化进度
-QQ补充4个dll：vcruntime140,msvcp140,
+浏览器pin工具
 看FirPE
-https
