@@ -241,6 +241,7 @@ var $patches_opt = {
     "Edgeless.opt_removeNewShortcut":true,
     "Edgeless.opt_removeSearchIndex":true,
     "Edgeless.opt_transparentCMD":true,
+    "Edgeless.file_systemResources":true,
     "_._._":""
 }
 
@@ -281,5 +282,5 @@ function patches_state_init() {
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
     open_tree_node("zz-Utils");
-    select_tree_node("10-Edgeless/Slim");
+    select_tree_node("10-Edgeless/Files");
 }

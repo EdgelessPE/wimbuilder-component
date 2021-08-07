@@ -162,6 +162,10 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\Lib_SysWOW64\* "%x%\Windows\SysWOW64\"
 )
 
+if "x%opt[Edgeless.file_systemResources]%"=="xtrue" (
+  xcopy /s /r /y .\_vendor\Lib_SystemResources\* "%x%\Windows\SystemResources\"
+)
+
 if "x%opt[Edgeless.file_users]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_Users\* "%x%\Users\"
 )
