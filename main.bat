@@ -22,6 +22,7 @@ set finish=.\_utils\pecmd.exe load run.wcs
 ::调用精简脚本
 if "x%opt[Edgeless.Slim]%" neq "x0" (
   call .\Slim\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
+  title Edgeless Patch Running...
 )
 
 
@@ -68,10 +69,6 @@ reg add "HKLM\Tmp_Software\Microsoft\Windows\Shell\Bags\1\Desktop" /f /v "IconSi
 
 if "x%opt[Edgeless.main_explorerRibbon]%"=="xtrue" (
   %append1%main_explorerRibbon.wcs%append2%
-)
-
-if "x%opt[Edgeless.main_displayHiddenFiles]%"=="xtrue" (
-  %append1%main_displayHiddenFiles.wcs%append2%
 )
 
 if "x%opt[Edgeless.main_rightClickMenu]%"=="xtrue" (
@@ -285,6 +282,15 @@ if "x%opt[Edgeless.opt_remove_undo]%"=="xtrue" (
 
 if "x%opt[Edgeless.opt_loadDrivers]%"=="xtrue" (
   type .\_commands\opt_loadDrivers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
+)
+
+if "x%opt[Edgeless.opt_cnUser]%"=="xtrue" (
+  xcopy /s /r /y /h .\_vendor\File_User\* "%x%\Users\Default\"
+  attrib +s "%x%\Users\Default\Desktop"
+  attrib +s "%x%\Users\Default\Documents"
+  attrib +s "%x%\Users\Default\Downloads"
+  attrib +s "%x%\Users\Default\Pictures"
+  pause
 )
 
 if "x%opt[Edgeless.opt_autoAllPrograms]%"=="xtrue" (

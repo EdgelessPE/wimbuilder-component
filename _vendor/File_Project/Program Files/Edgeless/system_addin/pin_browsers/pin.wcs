@@ -1,5 +1,5 @@
 file list.lua
-
+wait 5000
 forx X:\Users\Default\Desktop\*.lnk,lnkPath,0,
 {
     name lnkName=%lnkPath%

@@ -242,6 +242,7 @@ var $patches_opt = {
     "Edgeless.opt_removeSearchIndex":true,
     "Edgeless.opt_transparentCMD":true,
     "Edgeless.file_systemResources":true,
+    "Edgeless.opt_cnUser":true,
     "_._._":""
 }
 
