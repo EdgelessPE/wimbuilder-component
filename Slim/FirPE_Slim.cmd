@@ -331,8 +331,8 @@ Del /A /F /Q "%X%\Windows\System32\Magnify*"
 Del /A /F /Q "%X%\Windows\System32\zh-CN\Magnify*"
 
 rem 删除 内存诊断测试
-Del /A /F /Q "%X%\Windows\System32\MdSched*"
-Del /A /F /Q "%X%\Windows\System32\zh-CN\MdSched*"
+::Del /A /F /Q "%X%\Windows\System32\MdSched*"
+::Del /A /F /Q "%X%\Windows\System32\zh-CN\MdSched*"
 
 rem 删除系统还原
 Del /A /F /Q "%X%\Windows\System32\rstrui*"
@@ -355,8 +355,8 @@ Del /A /F /Q "%X%\Windows\System32\recdisc*"
 Del /A /F /Q "%X%\Windows\System32\zh-CN\recdisc*"
 
 rem 删除 MSI
-Del /A /F /Q "%X%\Windows\System32\msi.dll"
-Del /A /F /Q "%X%\Windows\System32\zh-CN\msi.dll.mui"
+::Del /A /F /Q "%X%\Windows\System32\msi.dll"
+::Del /A /F /Q "%X%\Windows\System32\zh-CN\msi.dll.mui"
 
 rem 精简 WMI
 rd /q /s "%X%\Windows\System32\wbem\AutoRecover"
@@ -367,16 +367,16 @@ rd /q /s "%X%\Windows\System32\wbem\tmf"
 rem 注意：安装原版Win7需要删除 wbemprox.dll，否则会报内存错误
 rem 但是，删除后系统属性CPU、内存将无法显示！！
 
-set list=cimwin32.dll esscli.dll fastprox.dll repdrvfs.dll Repository texttable.xsl wbemcore.dll wbemess.dll wbemsvc.dll WMIC.exe WmiPrvSD.dll WmiPrvSE.exe WMIsvc.dll wmiutils.dll xsl-mappings.xml wbemprox.dll
-set Folder="%X%\Windows\System32\wbem"
-for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.*^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
+@REM set list=cimwin32.dll esscli.dll fastprox.dll repdrvfs.dll Repository texttable.xsl wbemcore.dll wbemess.dll wbemsvc.dll WMIC.exe WmiPrvSD.dll WmiPrvSE.exe WMIsvc.dll wmiutils.dll xsl-mappings.xml wbemprox.dll
+@REM set Folder="%X%\Windows\System32\wbem"
+@REM for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.*^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
 
-set list=cimwin32.dll.mui wbemcore.dll.mui WMIC.exe.mui WMIsvc.dll.mui wmiutils.dll.mui
-set Folder="%X%\Windows\System32\wbem\zh-CN\"
-for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.*^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
+@REM set list=cimwin32.dll.mui wbemcore.dll.mui WMIC.exe.mui WMIsvc.dll.mui wmiutils.dll.mui
+@REM set Folder="%X%\Windows\System32\wbem\zh-CN\"
+@REM for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.*^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
 
 rem 精简PENetwork
-Move "%X%\Program Files\PENetwork_x64" "%X%\Program Files\PENetwork"
+::Move "%X%\Program Files\PENetwork_x64" "%X%\Program Files\PENetwork"
 for %%f in (
   EULA-AutoIt3.txt
   License.txt
@@ -414,8 +414,8 @@ set Folder="%X%\Program Files\7-Zip\Lang"
 for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.*^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
 
 rem 精简 StartIsBack
-rd /q /s "%X%\Program Files\StartIsBack\Orbs"
-Del /A /F /Q "%X%\Program Files\StartIsBack\StartIsBackCfg.exe"
+::rd /q /s "%X%\Program Files\StartIsBack\Orbs"
+::Del /A /F /Q "%X%\Program Files\StartIsBack\StartIsBackCfg.exe"
 Del /A /F /Q "%X%\Program Files\StartIsBack\startscreen.exe"
 Del /A /F /Q "%X%\Program Files\StartIsBack\UpdateCheck.exe"
 Del /A /F /Q "%X%\Program Files\StartIsBack\StartIsBackARM64.dll"
