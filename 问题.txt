@@ -1,3 +1,2 @@
-登入桌面时启动各种Driver，优化进度
-浏览器pin工具
+登入桌面时启动各种Driver
 看FirPE

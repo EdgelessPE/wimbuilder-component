@@ -1,0 +1,39 @@
+file list.lua
+
+forx X:\Users\Default\Desktop\*.lnk,lnkPath,0,
+{
+    name lnkName=%lnkPath%
+
+    //≈–∂œ‰Ø¿¿∆˜∫Û◊∫
+    rstr lastName=3,%lnkName%
+    ifex |%lastName%=‰Ø¿¿∆˜,call Link
+
+    //≈–∂œ÷∏∂®√˚≥∆
+    ifex |%lnkName%=Firefox,call Link
+    ifex |%lnkName%=Firefox Lite,call Link
+
+    ifex |%lnkName%=Chrome,call Link
+    ifex |%lnkName%=Google Chrome,call Link
+    
+    ifex |%lnkName%=Edge,call Link
+    ifex |%lnkName%=Microsoft Edge,call Link
+
+    ifex |%lnkName%=Opera,call Link
+    ifex |%lnkName%=Iron,call Link
+}
+file list.lua->X:\Users\list.lua
+exec =!"%ProgramFiles%\WinXShell\WinXShell.exe" -script "X:\Users\list.lua"
+file X:\Users\list.lua
+exit
+
+
+_SUB Link
+
+writ X:\Users\Log.txt,$+0,pin_browsers-¥¶¿Ì%lnkName%
+exec =!get_target.cmd "%lnkPath%"
+read target.txt,1,exePath
+
+writ X:\Users\Log.txt,$+0,pin_browsers-–¥√¸¡Ó£∫Taskbar:Pin('%exePath%')
+writ-GBK list.lua,$+0,Taskbar:Pin('%exePath%')
+
+_END
