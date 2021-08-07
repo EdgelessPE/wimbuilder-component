@@ -10,7 +10,6 @@ set /p workshop=<.\_config\workshop.txt
 md "%x%\Program Files\Edgeless\system_hooks\onDiskFound"
 md "%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost"
 md "%x%\Program Files\Edgeless\system_hooks\beforePluginLoading"
-md "%x%\Program Files\Edgeless\system_hooks\onPluginLoaded"
 md "%x%\Program Files\Edgeless\system_hooks\onDesktopShown"
 md "%x%\Program Files\Edgeless\system_hooks\onBootFinished"
 
@@ -62,7 +61,7 @@ if "x%opt[Edgeless.main_activate]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.main_pinBrowsers]%"=="xtrue" (
-  type .\_commands\main_pinBrowsers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onPluginLoaded\_Preset.wcs"
+  type .\_commands\main_pinBrowsers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
 )
 
 reg add "HKLM\Tmp_Software\Microsoft\Windows\Shell\Bags\1\Desktop" /f /v "IconSize" /t REG_DWORD /d %opt[Edgeless.main_desktopIconSize]%
