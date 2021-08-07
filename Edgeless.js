@@ -233,6 +233,14 @@ var $patches_opt = {
     "Edgeless.opt_remove_undo":true,
     "Edgeless.main_pinBrowsers":true,
     "Edgeless.opt_loadDrivers":true,
+    "Edgeless.opt_autoAllPrograms":true,
+    "Edgeless.opt_fastShutdown":true,
+    "Edgeless.opt_hideBootWindow":true,
+    "Edgeless.opt_minPENetwork":true,
+    "Edgeless.opt_netDelay":true,
+    "Edgeless.opt_removeNewShortcut":true,
+    "Edgeless.opt_removeSearchIndex":true,
+    "Edgeless.opt_transparentCMD":true,
     "_._._":""
 }
 

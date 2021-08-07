@@ -283,6 +283,38 @@ if "x%opt[Edgeless.opt_loadDrivers]%"=="xtrue" (
   type .\_commands\opt_loadDrivers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
 )
 
+if "x%opt[Edgeless.opt_autoAllPrograms]%"=="xtrue" (
+  %append1%opt_autoAllPrograms.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_fastShutdown]%"=="xtrue" (
+  %append1%opt_fastShutdown.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_hideBootWindow]%"=="xtrue" (
+  %append1%opt_hideBootWindow.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_minPENetwork]%"=="xtrue" (
+  %append1%opt_minPENetwork.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_netDelay]%"=="xtrue" (
+  %append1%opt_netDelay.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_removeNewShortcut]%"=="xtrue" (
+  %append1%opt_removeNewShortcut.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_removeSearchIndex]%"=="xtrue" (
+  %append1%opt_removeSearchIndex.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_transparentCMD]%"=="xtrue" (
+  %append1%opt_transparentCMD.wcs%append2%
+)
+
 ::Ö´ÐÐrun.wcs
 ::%finish%
 title Edgeless Patch Finished
