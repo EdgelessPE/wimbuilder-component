@@ -162,6 +162,14 @@ if "x%opt[Edgeless.file_system32]%"=="xtrue" (
 
 if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\Lib_SysWOW64\* "%x%\Windows\SysWOW64\"
+  call AddFiles \Windows\SysWOW64\msvb*.dll
+  call AddFiles \Windows\SysWOW64\msvc*.dll
+  call AddFiles @windows\SysWOW64\mfc*.dll
+  call AddFiles \Windows\SysWOW64\atl*.dll
+  call AddFiles \Windows\SysWOW64\vcruntime*.dll
+  call AddFiles \Windows\SysWOW64\vcomp*.dll
+  call AddFiles @windows\SysWOW64\msvf*.dll
+  call AddFiles @windows\SysWOW64\msvidc*.dll
 )
 
 if "x%opt[Edgeless.file_systemResources]%"=="xtrue" (
