@@ -198,7 +198,7 @@ var $patches_opt = {
     "Edgeless.files_smartctl":true,
     "Edgeless.files_input":true,
     "Edgeless.files_firsttimeaid":true,
-    "Edgeless.patch_vc":true,
+    "Edgeless.patch_vc":false,
     "Edgeless.patch_mklink":false,
     "slim.ieframedll":false,
     "slim.jscript":false,
@@ -252,6 +252,7 @@ function patches_state_init() {
     check_tree_node("00-Configures");
     open_tree_node("00-Configures");
     uncheck_tree_node("01-ADK_OCs");
+    open_tree_node("01-ADK_OCs");
     uncheck_tree_node("01-Components/00-Boot2WinRE");
     check_tree_node("01-Components/00-Shell");
     check_tree_node("01-Components/02-Network");
@@ -269,7 +270,7 @@ function patches_state_init() {
     check_tree_node("02-Apps/7-Zip");
     uncheck_tree_node("02-Apps/Explorer++");
     uncheck_tree_node("02-Apps/HotSwap");
-    check_tree_node("02-Apps/ImDisk");
+    uncheck_tree_node("02-Apps/ImDisk");
     check_tree_node("02-Apps/PENetwork");
     uncheck_tree_node("02-Apps/yong_IME");
     open_tree_node("02-Apps");
@@ -283,5 +284,5 @@ function patches_state_init() {
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
     open_tree_node("zz-Utils");
-    select_tree_node("10-Edgeless/Files");
+    select_tree_node("10-Edgeless/Apple");
 }

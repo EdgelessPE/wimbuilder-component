@@ -292,6 +292,10 @@ if "x%opt[Edgeless.opt_cnUser]%"=="xtrue" (
   attrib +s "%x%\Users\Default\Pictures"
 )
 
+if "x%opt[Edgeless.opt_firefox]%"=="xtrue" (
+  call AddFiles \Windows\System32\Windows.UI.FileExplorer.dll
+)
+
 if "x%opt[Edgeless.opt_autoAllPrograms]%"=="xtrue" (
   %append1%opt_autoAllPrograms.wcs%append2%
 )

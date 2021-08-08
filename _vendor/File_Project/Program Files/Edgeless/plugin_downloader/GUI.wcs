@@ -8,7 +8,7 @@ GROU Group4,L15T255W360H80,安全
 GROU Group5,L15T335W360H80,工具
 GROU Group5,L15T415W360H80,下载
 
-ITEM Button1,L40T40W145H40,    Chrome,TEAM envi w="Google Chrome"|call @windows2,X:\Users\Icon\down\chrome.ico
+ITEM Button1,L40T40W145H40,    Chrome,TEAM envi w="Chrome"|call @windows2,X:\Users\Icon\down\chrome.ico
 ITEM Button2,L210T40W145H40,    世界之窗,TEAM envi w=世界之窗浏览器|call @windows2,X:\Users\Icon\down\theworld.ico
 ITEM Button3,L40T120W145H40,     Anydesk,TEAM envi w=Anydesk|call @windows2,X:\Users\Icon\down\anydesk.ico
 ITEM Button4,L210T120W145H40,     向日葵,TEAM envi w=向日葵远程控制|call @windows2,X:\Users\Icon\down\XRK.ico
