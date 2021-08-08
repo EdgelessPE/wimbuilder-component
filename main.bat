@@ -153,6 +153,11 @@ if "x%opt[Edgeless.apple]%"=="xtrue" (
 
 if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_System32\* "%x%\Windows\System32\"
+  call AddFiles \Windows\System32\msvc*.dll
+  call AddFiles \Windows\System32\vcruntime*.dll
+  call AddFiles \Windows\System32\vcomp*.dll
+  call AddFiles \Windows\System32\atl*.dll
+  call AddFiles \Windows\System32\Drivers\fbwf.sys
 )
 
 if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
