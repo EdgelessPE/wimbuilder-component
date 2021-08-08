@@ -279,6 +279,7 @@ if "x%opt[Edgeless.opt_pin]%"=="xtrue" (
 
 if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
   type .\_commands\opt_keyboard.wcs>>"%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost\_Preset.wcs"
+  %append1%opt_keyboard.wcs%append2%
 )
 
 if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
