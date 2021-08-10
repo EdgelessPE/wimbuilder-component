@@ -160,6 +160,8 @@ if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   call AddFiles \Windows\System32\Drivers\fbwf.sys
   call AddFiles \Windows\System32\fontsub.dll
   call AddFiles \Windows\System32\dxva2.dll
+  call AddFiles \Windows\System32\opengl32.dll
+  call AddFiles \Windows\System32\glu32.dll
 )
 
 if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
@@ -174,6 +176,8 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   call AddFiles @windows\SysWOW64\msvidc*.dll
   call AddFiles \Windows\SysWOW64\fontsub.dll
   call AddFiles \Windows\SysWOW64\dxva2.dll
+  call AddFiles \Windows\SysWOW64\opengl32.dll
+  call AddFiles \Windows\SysWOW64\glu32.dll
 )
 
 if "x%opt[Edgeless.file_systemResources]%"=="xtrue" (
