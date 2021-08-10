@@ -163,6 +163,7 @@ if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   call AddFiles \Windows\System32\opengl32.dll
   call AddFiles \Windows\System32\glu32.dll
   call AddFiles \Windows\System32\httpapi.dll
+  call AddFiles \Windows\System32\d3d8.dll
   call AddFiles \Windows\System32\d3d8thk.dll
   call AddFiles \Windows\System32\d3d9.dll
   call AddFiles \Windows\System32\d3d10.dll
@@ -192,12 +193,19 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   call AddFiles \Windows\SysWOW64\opengl32.dll
   call AddFiles \Windows\SysWOW64\glu32.dll
   call AddFiles \Windows\SysWOW64\httpapi.dll
+  call AddFiles \windows\SysWOW64\d3d8.dll
+  call AddFiles \windows\SysWOW64\d3d8thk.dll
   call AddFiles \windows\SysWOW64\d3d9.dll
   call AddFiles \windows\SysWOW64\d3d10.dll
   call AddFiles \windows\SysWOW64\d3d10_1.dll
   call AddFiles \windows\SysWOW64\d3d10warp.dll
+  call AddFiles \windows\SysWOW64\d3d10core.dll
+  call AddFiles \windows\SysWOW64\d3d10level9.dll
+  call AddFiles \windows\SysWOW64\d3d10_1core.dll
   call AddFiles \windows\SysWOW64\d3d11.dll
   call AddFiles \windows\SysWOW64\d3d12.dll
+  call AddFiles \windows\SysWOW64\d3dcompiler_47.dll
+  call AddFiles \windows\SysWOW64\d3d11on12.dll
 )
 
 if "x%opt[Edgeless.file_systemResources]%"=="xtrue" (

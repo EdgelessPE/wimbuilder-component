@@ -10,6 +10,12 @@ if "%1"=="install" (
     call ept-install %2 %3
     goto endOfEtp
 )
+if "%1"=="install_hold" (
+    echo %time% ept-重定向至ept-install >>X:\Users\Log.txt
+    call ept-install %2 %3
+    pause
+    goto endOfEtp
+)
 
 if "%1"=="remove" (
     echo %time% ept-重定向至ept-remove >>X:\Users\Log.txt
