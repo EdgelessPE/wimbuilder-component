@@ -247,11 +247,11 @@ set list=KD.DLL KDCOM.DLL
 set Folder="%X%\Windows\System32"
 for /f "delims=" %%i in ('dir /b /a-d %Folder%\KD*.DLL^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
 
-rem set list=C_10008.NLS C_1252.NLS C_20127.NLS C_437.NLS C_936.NLS locale.nls l_intl.nls normidna.nls C_437.NLS c_950.nls C_1251.NLS C_1252.NLS C_1258.NLS C_20127.NLS
-set list=locale.nls l_intl.nls normidna.nls C_1251.NLS C_1252.NLS C_1258.NLS C_20127 C_437.NLS C_850.NLS C_936.NLS C_950.NLS C_1361.NLS C_10001.NLS C_10002.NLS C_10003.NLS C_10008.NLS C_20000.NLS C_20001.NLS C_20002.NLS C_20003.NLS C_20004.NLS C_20005.NLS C_20261.NLS C_20932.NLS C_20936.NLS C_20949.NLS C_21025.NLS C_21027.NLS
-rem set list=locale.nls l_intl.nls normidna.nls C_10008.NLS C_1250.NLS C_1251.NLS C_1252.NLS C_1253.NLS C_1254.NLS C_1255.NLS C_1256.NLS C_1257.NLS C_1258.NLS C_20127.NLS C_28591.NLS C_437.NLS C_874.NLS C_932.NLS C_936.NLS C_949.NLS C_950.NLS
-set Folder="%X%\Windows\System32"
-for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.NLS^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
+@REM rem set list=C_10008.NLS C_1252.NLS C_20127.NLS C_437.NLS C_936.NLS locale.nls l_intl.nls normidna.nls C_437.NLS c_950.nls C_1251.NLS C_1252.NLS C_1258.NLS C_20127.NLS
+@REM set list=locale.nls l_intl.nls normidna.nls C_1251.NLS C_1252.NLS C_1258.NLS C_20127 C_437.NLS C_850.NLS C_936.NLS C_950.NLS C_1361.NLS C_10001.NLS C_10002.NLS C_10003.NLS C_10008.NLS C_20000.NLS C_20001.NLS C_20002.NLS C_20003.NLS C_20004.NLS C_20005.NLS C_20261.NLS C_20932.NLS C_20936.NLS C_20949.NLS C_21025.NLS C_21027.NLS
+@REM rem set list=locale.nls l_intl.nls normidna.nls C_10008.NLS C_1250.NLS C_1251.NLS C_1252.NLS C_1253.NLS C_1254.NLS C_1255.NLS C_1256.NLS C_1257.NLS C_1258.NLS C_20127.NLS C_28591.NLS C_437.NLS C_874.NLS C_932.NLS C_936.NLS C_949.NLS C_950.NLS
+@REM set Folder="%X%\Windows\System32"
+@REM for /f "delims=" %%i in ('dir /b /a-d %Folder%\*.NLS^|findstr /i /v "%list% %~nx0"') do ( del /a /f /q "%Folder%\%%i" )
 
 Del /A /F /Q "%X%\Windows\System32\6*"
 
@@ -310,7 +310,7 @@ Del /A /F /Q "%X%\Windows\System32\zh-CN\imapi2.dll.mui"
 Del /A /F /Q "%X%\Windows\SystemResources\imapi2.dll.num"
 
 rem 精简servicing文件
-Del /A /F /Q "%X%\Windows\servicing\*.*"
+::Del /A /F /Q "%X%\Windows\servicing\*.*"
 
 rem 删除 Speeh（TTS引擎）
 rd /s /q "%X%\Windows\Speech"
