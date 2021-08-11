@@ -46,6 +46,7 @@ rem ==================================================================
 echo 安全精简（基本不影响使用）
 
 rem 删除无用目录
+
   rd /q /s "%X%\sources"
 ::  rd /q /s "%X%\PEMaterial"
   rd /q /s "%X%\Temp"
@@ -57,7 +58,6 @@ rem 删除无用目录
   rd /q /s "%X%\Users\Default\Videos"
   rd /q /s "%X%\Users\Public\Music"
   rd /q /s "%X%\Users\Public\Videos"
-
   rd /q /s "%X%\Program Files\Windows NT"
   rd /q /s "%X%\Program Files\Common Files\System\Ole DB\en-US"
   rd /q /s "%X%\Program Files\Common Files\Microsoft Shared\Triedit\en-US"
