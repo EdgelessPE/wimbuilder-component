@@ -154,6 +154,11 @@ if "x%opt[Edgeless.apple]%"=="xtrue" (
 if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_System32\* "%x%\Windows\System32\"
   call AddFiles \Windows\System32\msvc*.dll
+  call AddFiles \windows\System32\mfc40.dll
+  call AddFiles \windows\System32\mfc40u.dll
+  call AddFiles \windows\System32\mfc42.dll
+  call AddFiles \windows\System32\mfc42u.dll
+  call AddFiles \windows\System32\mfcore.dll
   call AddFiles \Windows\System32\vcruntime*.dll
   call AddFiles \Windows\System32\vcomp*.dll
   call AddFiles \Windows\System32\atl*.dll
@@ -182,7 +187,11 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\Lib_SysWOW64\* "%x%\Windows\SysWOW64\"
   call AddFiles \Windows\SysWOW64\msvb*.dll
   call AddFiles \Windows\SysWOW64\msvc*.dll
-  call AddFiles @windows\SysWOW64\mfc*.dll
+  call AddFiles \windows\SysWOW64\mfc40.dll
+  call AddFiles \windows\SysWOW64\mfc40u.dll
+  call AddFiles \windows\SysWOW64\mfc42.dll
+  call AddFiles \windows\SysWOW64\mfc42u.dll
+  call AddFiles \windows\SysWOW64\mfcore.dll
   call AddFiles \Windows\SysWOW64\atl*.dll
   call AddFiles \Windows\SysWOW64\vcruntime*.dll
   call AddFiles \Windows\SysWOW64\vcomp*.dll

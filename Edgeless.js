@@ -243,6 +243,7 @@ var $patches_opt = {
     "Edgeless.opt_transparentCMD":true,
     "Edgeless.file_systemResources":true,
     "Edgeless.opt_cnUser":true,
+    "Edgeless.opt_firefox":true,
     "_._._":""
 }
 
@@ -252,7 +253,6 @@ function patches_state_init() {
     check_tree_node("00-Configures");
     open_tree_node("00-Configures");
     uncheck_tree_node("01-ADK_OCs");
-    open_tree_node("01-ADK_OCs");
     uncheck_tree_node("01-Components/00-Boot2WinRE");
     check_tree_node("01-Components/00-Shell");
     check_tree_node("01-Components/02-Network");
@@ -284,5 +284,5 @@ function patches_state_init() {
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
     open_tree_node("zz-Utils");
-    select_tree_node("10-Edgeless/Apple");
+    select_tree_node("10-Edgeless/Slim");
 }
