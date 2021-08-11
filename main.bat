@@ -181,6 +181,12 @@ if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   call AddFiles \Windows\System32\d3d11on12.dll
   call AddFiles \Windows\System32\d3d12.dll
   call AddFiles \Windows\System32\d3dcompiler_47.dll
+  call AddFiles \Windows\System32\mfc140d.dll
+  call AddFiles \Windows\System32\mfc140ud.dll
+  call AddFiles \Windows\System32\mfc140.dll
+  call AddFiles \Windows\System32\mfc140u.dll
+  call AddFiles \Windows\System32\mfc140enu.dll
+  call AddFiles \Windows\System32\mfc140chs.dll
 )
 
 if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
@@ -215,6 +221,14 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   call AddFiles \windows\SysWOW64\d3d12.dll
   call AddFiles \windows\SysWOW64\d3dcompiler_47.dll
   call AddFiles \windows\SysWOW64\d3d11on12.dll
+  call AddFiles \windows\SysWOW64\hhctrl.dll
+  call AddFiles \Windows\SysWOW64\mfc140d.dll
+  call AddFiles \Windows\SysWOW64\mfc140ud.dll
+  call AddFiles \Windows\SysWOW64\mfc140.dll
+  call AddFiles \Windows\SysWOW64\mfc140u.dll
+  call AddFiles \Windows\SysWOW64\mfc140enu.dll
+  call AddFiles \Windows\SysWOW64\mfc140chs.dll
+  call AddFiles \Windows\SysWOW64\cryptui.dll
 )
 
 if "x%opt[Edgeless.file_systemResources]%"=="xtrue" (
