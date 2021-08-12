@@ -20,7 +20,7 @@ var $patches_opt = {
     "component.vcruntime":true,
     "component.mspaint":false,
     "component.winphotoviewer":true,
-    "IE.x64_component":"x64+x86",
+    "IE.x64_component":"x64",
     "IE.custom_settings":true,
     "IE.home_page":"about:blank",
     "network.function_discovery":true,
@@ -126,7 +126,7 @@ var $patches_opt = {
     "component.bitlocker":true,
     "component.search":true,
     "component.MSI":true,
-    "component.netfx":true,
+    "component.netfx":false,
     "component.MTP":true,
     "component.RNDIS":true,
     "component.PPPoE":true,
@@ -198,7 +198,7 @@ var $patches_opt = {
     "Edgeless.files_smartctl":true,
     "Edgeless.files_input":true,
     "Edgeless.files_firsttimeaid":true,
-    "Edgeless.patch_vc":false,
+    "Edgeless.patch_vc":true,
     "Edgeless.patch_mklink":false,
     "slim.ieframedll":false,
     "slim.jscript":false,
@@ -244,6 +244,9 @@ var $patches_opt = {
     "Edgeless.file_systemResources":true,
     "Edgeless.opt_cnUser":true,
     "Edgeless.opt_firefox":true,
+    "winxshell.ui_volume.startup":false,
+    "winxshell.ui_volume.no_beep":false,
+    "winxshell.ui_wifi.startup":false,
     "_._._":""
 }
 
@@ -255,6 +258,7 @@ function patches_state_init() {
     uncheck_tree_node("01-ADK_OCs");
     uncheck_tree_node("01-Components/00-Boot2WinRE");
     check_tree_node("01-Components/00-Shell");
+    open_tree_node("01-Components/00-Shell");
     check_tree_node("01-Components/02-Network");
     check_tree_node("01-Components/03-Audio");
     check_tree_node("01-Components/CredDialog");
@@ -276,6 +280,7 @@ function patches_state_init() {
     open_tree_node("02-Apps");
     uncheck_tree_node("02-PEMaterial");
     check_tree_node("10-Edgeless");
+    select_tree_node("10-Edgeless");
     open_tree_node("10-Edgeless");
     check_tree_node("za-Slim");
     uncheck_tree_node("za-SlimUltra");
@@ -284,5 +289,4 @@ function patches_state_init() {
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
     open_tree_node("zz-Utils");
-    select_tree_node("10-Edgeless/Slim");
 }
