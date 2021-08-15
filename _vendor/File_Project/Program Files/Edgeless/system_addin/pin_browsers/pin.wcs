@@ -1,24 +1,25 @@
 file list.lua
+call ReadHome
 forx X:\Users\Default\Desktop\*.lnk,lnkPath,0,
 {
     name lnkName=%lnkPath%
 
     //判断浏览器后缀
     rstr lastName=3,%lnkName%
-    ifex |%lastName%=浏览器,call Link
+    ifex |%lastName%=浏览器,call Process
 
     //判断指定名称
-    ifex |%lnkName%=Firefox,call Link
-    ifex |%lnkName%=Firefox Lite,call Link
+    ifex |%lnkName%=Firefox,call Process
+    ifex |%lnkName%=Firefox Lite,call Process
 
-    ifex |%lnkName%=Chrome,call Link
-    ifex |%lnkName%=Google Chrome,call Link
+    ifex |%lnkName%=Chrome,call Process
+    ifex |%lnkName%=Google Chrome,call Process
     
-    ifex |%lnkName%=Edge,call Link
-    ifex |%lnkName%=Microsoft Edge,call Link
+    ifex |%lnkName%=Edge,call Process
+    ifex |%lnkName%=Microsoft Edge,call Process
 
-    ifex |%lnkName%=Opera,call Link
-    ifex |%lnkName%=Iron,call Link
+    ifex |%lnkName%=Opera,call Process
+    ifex |%lnkName%=Iron,call Process
 }
 file list.lua->X:\Users\list.lua
 exec =!"%ProgramFiles%\WinXShell\WinXShell.exe" -script "X:\Users\list.lua"
@@ -29,13 +30,42 @@ file X:\Users\list.lua
 exit
 
 
-_SUB Link
+_SUB ReadHome
+ifex X:\Users\Config\HomePage.txt,
+{
+    READ X:\Users\Config\HomePage.txt,1,homePage
+    lpos position=2345,,%homePage%
+    ifex |%position%<>0,writ X:\Users\Config\HomePage.txt,$0,https://www.baidu.com
+}
+READ X:\Users\Config\HomePage.txt,1,homePage
+writ X:\Users\Log.txt,$+0,pin_browsers-使用主页：%homePage%
+_END
 
+
+_SUB Process
 writ X:\Users\Log.txt,$+0,pin_browsers-处理%lnkName%
+
+//获得实际exe路径
 exec =!get_target.cmd "%lnkPath%"
 read target.txt,1,exePath
+writ X:\Users\Log.txt,$+0,pin_browsers-实际路径：%exePath%
 
-writ X:\Users\Log.txt,$+0,pin_browsers-写命令：('%exePath%','%lnkName%','https://www.baidu.com')
-writ-GBK list.lua,$+0,Taskbar:Pin('%exePath%','%lnkName%','https://www.baidu.com')
+//判断是否需要固定到任务栏
+ifex X:\Users\Config\DisablePinBrowsers,!call Pin
 
+//判断是否需要替换主页
+ifex |%homePage%=Disable,!call ChangeHome
+
+_END
+
+
+_SUB Pin
+writ X:\Users\Log.txt,$+0,pin_browsers-写命令：('%exePath%','%lnkName%','%homePage%')
+writ-GBK list.lua,$+0,Taskbar:Pin('%exePath%','%lnkName%','%homePage%')
+_END
+
+_SUB ChangeHome
+file "%lnkPath%"
+writ X:\Users\Log.txt,$+0,pin_browsers-执行命令：link %lnkPath%,%exePath%,%homePage%
+link X:\Users\Default\Desktop\%lnkName%,%exePath%,%homePage%
 _END
