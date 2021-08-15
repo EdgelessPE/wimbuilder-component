@@ -1,3 +1,4 @@
+wait 3000
 //É¾³ıImdiskÈ«¾ÖÓÒ¼ü²Ëµ¥
 REGI HKCR\*\shell\ImDiskMountFile\!
 
