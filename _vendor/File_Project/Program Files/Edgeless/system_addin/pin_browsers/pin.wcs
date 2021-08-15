@@ -37,6 +37,7 @@ ifex X:\Users\Config\HomePage.txt,
     lpos position=2345,,%homePage%
     ifex |%position%<>0,writ X:\Users\Config\HomePage.txt,$0,https://www.baidu.com
 }
+ifex X:\Users\Config\HomePage.txt,!writ X:\Users\Config\HomePage.txt,$0,https://www.baidu.com
 READ X:\Users\Config\HomePage.txt,1,homePage
 writ X:\Users\Log.txt,$+0,pin_browsers-Ê¹ÓÃÖ÷Ò³£º%homePage%
 
