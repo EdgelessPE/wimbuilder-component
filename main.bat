@@ -29,7 +29,8 @@ if "x%opt[Edgeless.Slim]%" neq "x0" (
 ::main≈‰÷√
 if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
   copy /y .\_vendor\Files_pecmd\Pecmd.ini "%x%\Windows\System32\"
-  copy /y .\_vendor\Files_pecmd\Launcher.bat "%x%\Program Files\"
+  @REM copy /y .\_vendor\Files_pecmd\Launcher.bat "%x%\Program Files\"
+  copy /y .\_vendor\Files_pecmd\_Config.wcs "%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Config.wcs"
 )
 
 if "x%opt[Edgeless.main_oem]%"=="xtrue" (

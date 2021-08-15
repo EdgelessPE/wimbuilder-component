@@ -1,0 +1,76 @@
+//此文件用于取代Launcher.bat中的功能开关
+
+//读取分辨率配置信息
+ifex X:\Users\Config\分辨率.txt,
+{
+    read X:\Users\Config\分辨率.txt,1,RESOLUTION
+    writ X:\Users\Log.txt,$+0,config-读取分辨率配置：%RESOLUTION%
+    ifex |%RESOLUTION%=DisableAutoSuit,!disp %RESOLUTION%
+}
+
+//补充Windows文件夹内容
+ifex X:\Users\Config\Windows,
+{
+    writ X:\Users\Log.txt,$+0,config-补充Windows文件夹
+    file X:\Users\Config\Windows\*->X:\Windows\
+}
+
+//设置壁纸
+ifex X:\Users\WallPaper\User.jpg,wall X:\Users\WallPaper\User.jpg
+
+//响应禁用U盘管理
+ifex X:\Users\Config\DisableUSBManager,writ X:\Users\Log.txt,$+0,config-禁用U盘管理
+ifex X:\Users\Config\DisableUSBManager,!
+{
+    EXEC !%ProgramFiles%\Edgeless\udisk\EjectUSB.exe
+    EXEC !%ProgramFiles%\Edgeless\udisk\USBTools.exe
+}
+
+//响应默认按钮为重启
+ifex X:\Users\Config\RebootDefault,
+{
+    writ X:\Users\Log.txt,$+0,config-默认按钮为重启
+    REGI #HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\\Start_PowerButtonAction=4
+}
+
+//响应禁用回收站
+ifex X:\Users\Config\DisableRecycleBin,
+{
+    writ X:\Users\Log.txt,$+0,config-禁用回收站
+    RECY *:\,0
+}
+
+//响应全局自动应答
+ifex X:\Users\Config\AutoUnattend,
+{
+    writ X:\Users\Log.txt,$+0,config-全局自动应答
+    file X:\Users\Imdisk\AutoUnattend.xml=>X:\AutoUnattend.xml
+}
+
+//响应展开资源管理器功能区
+ifex X:\Users\Config\UnfoldRibbon,
+{
+    writ X:\Users\Log.txt,$+0,config-展开资源管理器功能区
+    REGI #HKCU\Software\Policies\Microsoft\Windows\Explorer\\ExplorerRibbonStartsMinimized=2
+}
+
+//响应挂载所有分区
+ifex X:\Users\Config\MountEveryPartition,
+{
+    writ X:\Users\Log.txt,$+0,config-挂载所有分区
+    SHOW =1 *
+}
+
+//Edgeless文件夹整理
+mdir "%ProgramFiles%\Edgeless\安装程序"
+file "%ProgramFiles%\Edgeless\*.wcs"->"%ProgramFiles%\Edgeless\安装程序\"
+file "%ProgramFiles%\Edgeless\*.cmd"->"%ProgramFiles%\Edgeless\安装程序\"
+file "%ProgramFiles%\Edgeless\Nes.ini"->"%ProgramFiles%\Edgeless\安装程序\"
+writ "%ProgramFiles%\Edgeless\安装程序\说明.txt",$+0,本目录存放插件包的安装程序
+writ "%ProgramFiles%\Edgeless\安装程序\说明.txt",$+0,如需使用，请将其移到上级目录后运行
+
+//删除错误日志文件
+FORX !\Edgeless\ErrorLog.txt,EF_Path,0,file %EF_Path%
+
+//退出
+writ X:\Users\Log.txt,$+0,config-程序正常退出

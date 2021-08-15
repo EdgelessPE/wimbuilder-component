@@ -69,7 +69,7 @@ REGI $HKCR\Edgeless.eth\shell\open\command\\=X:\Windows\system32\pecmd EXEC !X:\
 REGI $HKCR\Edgeless.eth\DefaultIcon\\=X:\Users\Icon\type\eth.ico
 
 //ISO
-REGI $HKCR\.iso\\=Imdisk.iso
+ifex X:\Users\Config\DisableSmartISO,!REGI $HKCR\.iso\\=Imdisk.iso
 REGI $HKCR\Imdisk.iso\\=ISO
 REGI $HKCR\Imdisk.iso\DefaultIcon\\=%%SystemRoot%%\System32\shell32.dll,188
 REGI $HKCR\Imdisk.iso\shell\\=
