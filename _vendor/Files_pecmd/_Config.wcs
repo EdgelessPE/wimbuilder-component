@@ -15,14 +15,11 @@ ifex X:\Users\Config\Windows,
     file X:\Users\Config\Windows\*->X:\Windows\
 }
 
-//设置壁纸
-ifex X:\Users\WallPaper\User.jpg,wall X:\Users\WallPaper\User.jpg
-
 //响应禁用U盘管理
 ifex X:\Users\Config\DisableUSBManager,writ X:\Users\Log.txt,$+0,config-禁用U盘管理
 ifex X:\Users\Config\DisableUSBManager,!
 {
-    EXEC !%ProgramFiles%\Edgeless\udisk\EjectUSB.exe
+    //EXEC !%ProgramFiles%\Edgeless\udisk\EjectUSB.exe
     EXEC !%ProgramFiles%\Edgeless\udisk\USBTools.exe
 }
 

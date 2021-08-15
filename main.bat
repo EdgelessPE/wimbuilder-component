@@ -370,6 +370,10 @@ if "x%opt[Edgeless.opt_firefox]%"=="xtrue" (
   call AddFiles \Windows\System32\Windows.UI.FileExplorer.dll
 )
 
+if "x%opt[Edgeless.opt_ExplorerRibbon]%"=="xtrue" (
+  %append1%opt_ExplorerRibbon.wcs%append2%
+)
+
 if "x%opt[Edgeless.opt_autoAllPrograms]%"=="xtrue" (
   %append1%opt_autoAllPrograms.wcs%append2%
 )

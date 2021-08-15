@@ -247,6 +247,9 @@ var $patches_opt = {
     "winxshell.ui_volume.startup":false,
     "winxshell.ui_volume.no_beep":false,
     "winxshell.ui_wifi.startup":false,
+    "SIB.skin":"Plain10",
+    "SIB.style.opaque":true,
+    "Edgeless.opt_ExplorerRibbon":false,
     "_._._":""
 }
 
