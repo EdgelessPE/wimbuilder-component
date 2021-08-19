@@ -12,6 +12,7 @@ md "%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost"
 md "%x%\Program Files\Edgeless\system_hooks\beforePluginLoading"
 md "%x%\Program Files\Edgeless\system_hooks\onDesktopShown"
 md "%x%\Program Files\Edgeless\system_hooks\onBootFinished"
+md "%x%\Program Files\Edgeless\system_hooks\onExit"
 
 ::≈‰÷√Ω≈±æ‘À––∫Í
 set run=.\_utils\pecmd.exe load .\_scripts\
@@ -29,6 +30,7 @@ if "x%opt[Edgeless.Slim]%" neq "x0" (
 ::main≈‰÷√
 if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
   copy /y .\_vendor\Files_pecmd\Pecmd.ini "%x%\Windows\System32\"
+  copy /y .\_vendor\Files_pecmd\OnShutdown.wcs "%x%\Windows\System32\"
   @REM copy /y .\_vendor\Files_pecmd\Launcher.bat "%x%\Program Files\"
   copy /y .\_vendor\Files_pecmd\_Config.wcs "%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Config.wcs"
 )

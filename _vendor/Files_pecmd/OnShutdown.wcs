@@ -1,0 +1,29 @@
+SET HOOK_STAGE=onExit
+SET HOOK_POLICY=sync
+ifex %ProgramFiles%\Edgeless\system_hooks\%HOOK_STAGE%\*,!exit
+exec !"X:\Program Files\Edgeless\dynamic_creator\dynamic_tip.cmd" 2000 Edgeless钩子 正在调用结束周期钩子
+CALL Edgeless_Hook
+exec !"X:\Program Files\Edgeless\dynamic_creator\dynamic_tip.cmd" 2000 Edgeless钩子 结束周期钩子执行完毕，系统即将关闭
+
+
+_SUB Edgeless_Hook
+
+writ X:\Users\Log.txt,$+0,pecmd-系统钩子模块启动，阶段：%HOOK_STAGE%，策略：%HOOK_POLICY%
+
+forx %ProgramFiles%\Edgeless\system_hooks\%HOOK_STAGE%\*.wcs,scriptPath,0,
+{
+    name -ext scriptName=%scriptPath%
+    writ X:\Users\Log.txt,$+0,pecmd-系统钩子模块 正在加载%HOOK_STAGE%阶段的：%scriptName%
+    ifex |%HOOK_POLICY%=sync,load %scriptPath%
+    ifex |%HOOK_POLICY%=async,team exec %scriptPath%|wait 10
+}
+
+forx %ProgramFiles%\Edgeless\system_hooks\%HOOK_STAGE%\*.cmd,scriptPath,0,
+{
+    name -ext scriptName=%scriptPath%
+    writ X:\Users\Log.txt,$+0,pecmd-系统钩子模块 正在运行%HOOK_STAGE%阶段的：%scriptName%
+    ifex |%HOOK_POLICY%=sync,exec =!%scriptPath%
+    ifex |%HOOK_POLICY%=async,team exec !%scriptPath%|wait 10
+}
+
+_END

@@ -6,7 +6,7 @@ color 3f
 cls
 echo.
 echo 在本地系统上安装Edgeless之后，您可以在无U盘情况下进入Edgeless
-echo 目前仅支持Win8/8.1/10系统安装
+echo 目前仅支持Win8/8.1/低版本10系统安装
 echo.
 echo 按任意键开始扫描本地系统
 pause >nul
