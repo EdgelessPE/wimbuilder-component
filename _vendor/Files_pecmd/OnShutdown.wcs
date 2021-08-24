@@ -1,6 +1,6 @@
 SET HOOK_STAGE=onExit
 SET HOOK_POLICY=sync
-ifex %ProgramFiles%\Edgeless\system_hooks\%HOOK_STAGE%\*,!exit
+ifex [ ! %ProgramFiles%\Edgeless\system_hooks\%HOOK_STAGE%\*.wcs & ! %ProgramFiles%\Edgeless\system_hooks\%HOOK_STAGE%\*.cmd ],exit
 exec !"X:\Program Files\Edgeless\dynamic_creator\dynamic_tip.cmd" 2000 Edgeless钩子 正在调用结束周期钩子
 CALL Edgeless_Hook
 exec !"X:\Program Files\Edgeless\dynamic_creator\dynamic_tip.cmd" 2000 Edgeless钩子 结束周期钩子执行完毕，系统即将关闭
