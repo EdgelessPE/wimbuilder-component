@@ -28,7 +28,7 @@ writ X:\Users\Plugins_info\List_Hotload.txt,$+0,%fileName%
 
 //准备工作
 mdir "%ProgramFiles%\Edgeless\plugin_release\%fileName%"
-ifex '%HideTip%'='TRUE',!exec !"X:\Program Files\Edgeless\dynamic_creator\dynamic_tip.cmd" 4000 Edgeless插件包热加载程序 正在加载插件包"%fileName%"
+ifex '%HideTip%'='TRUE',!exec !"X:\Program Files\Edgeless\dynamic_creator\dynamic_tip.cmd" 2500 Edgeless插件包热加载程序 正在加载插件包"%fileName%"
 writ X:\Users\Log.txt,$+0,load.wcs-正在解压%fileName%，来源：%filePath%
 
 //解压压缩包
