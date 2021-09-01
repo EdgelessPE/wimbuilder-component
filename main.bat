@@ -232,6 +232,8 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   call AddFiles \Windows\SysWOW64\mfc140enu.dll
   call AddFiles \Windows\SysWOW64\mfc140chs.dll
   call AddFiles \Windows\SysWOW64\cryptui.dll
+  call AddFiles \Windows\SysWOW64\sfc.dll
+  call AddFiles \Windows\SysWOW64\sfc_os.dll
 )
 
 if "x%opt[Edgeless.file_systemResources]%"=="xtrue" (
