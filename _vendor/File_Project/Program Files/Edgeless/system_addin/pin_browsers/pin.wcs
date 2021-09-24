@@ -13,6 +13,8 @@ forx X:\Users\Default\Desktop\*.lnk,lnkPath,0,
     ifex |%lnkName%=Firefox Lite,call Process
 
     ifex |%lnkName%=Chrome,call Process
+    ifex |%lnkName%=ChromeBeta,call Process
+    ifex |%lnkName%=ChromeDev,call Process
     ifex |%lnkName%=Google Chrome,call Process
     
     ifex |%lnkName%=Edge,call Process
