@@ -1,7 +1,1 @@
-REGI $HKLM\Tmp_Software\Microsoft\Windows NT\CurrentVersion\\RegisteredOwner=Edgeless
-
-REGI HKLM\Tmp_System\CurrentControlSet\Control\ComputerName\ActiveComputerName\ComputerName=Edgeless
-REGI HKLM\Tmp_System\CurrentControlSet\Control\ComputerName\ComputerName\ComputerName=Edgeless
-
-REGI HKLM\Tmp_System\CurrentControlSet\services\Tcpip\Parameters\NV Hostname=Edgeless
-REGI HKLM\Tmp_System\CurrentControlSet\services\Tcpip\Parameters\Hostname=Edgeless
+USER Edgeless,Edgeless
