@@ -22,6 +22,8 @@ forx X:\Users\Default\Desktop\*.lnk,lnkPath,0,
 
     ifex |%lnkName%=Opera,call Process
     ifex |%lnkName%=Iron,call Process
+    
+    ifex |%lnkName%=360¼«ËÙä¯ÀÀÆ÷X,call Process
 }
 file list.lua->X:\Users\list.lua
 exec =!"%ProgramFiles%\WinXShell\WinXShell.exe" -script "X:\Users\list.lua"
