@@ -105,6 +105,10 @@ if "x%opt[Edgeless.main_orderdrv]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_OrderDrv\* "%x%\Windows\System32\"
 )
 
+if "x%opt[Edgeless.main_emoji]%"=="xtrue" (
+    call AddFiles \Windows\fonts\seguiemj.ttf
+)
+
 if "x%opt[Edgeless.main_enhancedType]%"=="xtrue" (
   type .\_commands\main_enhancedType.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDiskFound\_Preset.wcs"
 )
