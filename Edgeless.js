@@ -126,7 +126,7 @@ var $patches_opt = {
     "component.bitlocker":true,
     "component.search":true,
     "component.MSI":true,
-    "component.netfx":false,
+    "component.netfx":true,
     "component.MTP":true,
     "component.RNDIS":true,
     "component.PPPoE":true,
@@ -272,6 +272,7 @@ function patches_state_init() {
     check_tree_node("01-Components/Remote Desktop");
     uncheck_tree_node("01-Components/Windows Media Player");
     check_tree_node("01-Components/za-Accessories");
+    select_tree_node("01-Components");
     open_tree_node("01-Components");
     check_tree_node("01-Drivers");
     open_tree_node("01-Drivers");
@@ -284,7 +285,6 @@ function patches_state_init() {
     open_tree_node("02-Apps");
     uncheck_tree_node("02-PEMaterial");
     check_tree_node("10-Edgeless");
-    select_tree_node("10-Edgeless");
     open_tree_node("10-Edgeless");
     check_tree_node("za-Slim");
     uncheck_tree_node("za-SlimUltra");
