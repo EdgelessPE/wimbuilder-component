@@ -200,6 +200,7 @@ if "x%opt[Edgeless.file_syswow64]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\Lib_SysWOW64\* "%x%\Windows\SysWOW64\"
   call AddFiles \Windows\SysWOW64\msvb*.dll
   call AddFiles \Windows\SysWOW64\msvc*.dll
+  call AddFiles \Windows\SysWOW64\msvcp140_1.dll
   call AddFiles \windows\SysWOW64\mfc40.dll
   call AddFiles \windows\SysWOW64\mfc40u.dll
   call AddFiles \windows\SysWOW64\mfc42.dll
