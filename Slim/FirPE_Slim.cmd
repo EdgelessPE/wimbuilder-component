@@ -1007,7 +1007,6 @@ for %%f in (
   RMapi.dll 
   serwvdrv.dll 
   setbcdlocale.dll 
-  sfc_os.dll 
   simauth.dll 
   simcfg.dll 
   smartcardcredentialprovider.dll 
@@ -1414,7 +1413,6 @@ for %%f in (
   userinitext.dll
   swprv.dll
   svsvc.dll
-  sfc.dll
   sacsvr.dll
   sacsess.exe
   printui.dll
@@ -1835,7 +1833,6 @@ for %%f in (
   scrrun.dll
   sdhcinst.dll
   setx.exe
-  sfc.exe
   shimgvw.dll
   SlideToShutDown.exe
   spaceutil.exe
