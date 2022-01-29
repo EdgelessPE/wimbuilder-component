@@ -7,7 +7,7 @@ set /p vnw=<"X:\Program Files\version.txt"
 echo %time% 检查更新程序-wim信息%vnw% >>X:\Users\Log.txt
 
 
-if %vnw:~9,4%==Alpa goto alpha
+if %vnw:~9,4%==Alph goto alpha
 
 if not exist version_ol.txt "X:\Program Files\Edgeless\EasyDown\aria2c.exe" --check-certificate=false -x16 -c -o "version_ol.txt" http://pineapple.edgeless.top/api/v2/info/iso_version
 ::if not exist version_ol.txt "X:\Program Files\Edgeless\EasyDown\EasyDown.exe" -Down("http://s.edgeless.top/?token=version","version_ol.txt","X:\Program Files\Edgeless\system_update")
