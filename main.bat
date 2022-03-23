@@ -272,6 +272,7 @@ if "x%opt[Edgeless.files_downloader]%"=="xtrue" (
 if "x%opt[Edgeless.files_ept]%"=="xtrue" (
   md "%x%\Program Files\Edgeless\plugin_ept"
   xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_ept\*" "%x%\Program Files\Edgeless\plugin_ept\"
+  type .\_commands\files_ept.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
 if "x%opt[Edgeless.files_loader]%"=="xtrue" (
