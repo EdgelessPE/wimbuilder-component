@@ -721,7 +721,6 @@ for %%f in (
   SyncHost.exe
   srdelayed.exe
   shrpubw.exe
-  setx.exe
   setupugc.exe
   setupSNK.exe
   setup16.exe
@@ -1832,7 +1831,6 @@ for %%f in (
   schedcli.dll
   scrrun.dll
   sdhcinst.dll
-  setx.exe
   shimgvw.dll
   SlideToShutDown.exe
   spaceutil.exe
