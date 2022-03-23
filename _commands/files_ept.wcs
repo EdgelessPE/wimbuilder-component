@@ -1,0 +1,2 @@
+//增加ept支持
+EXEC !setx.exe PATH "X:\Program Files\Edgeless\plugin_ept"
