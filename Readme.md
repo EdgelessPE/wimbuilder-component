@@ -1,4 +1,4 @@
-# Edgeless Wimbuilder2 Component
+# Edgeless Wimbuilder2 Component for WIN10XPE
 此仓库为 Edgeless 4.x 版本使用的 [Wimbuilder2](https://github.com/slorelee/wimbuilder2) 组件，你可以使用此仓库的内容直接构建一个开源版本的 Edgeless
 
 ## 使用方法
