@@ -1,3 +1,5 @@
+@echo off
+if exist test cd test
 set ultraiso="D:\CnoRPS\UltraISO\UltraISO.exe"
 set freshwim="..\_Factory_\target\WIN10XPE\build\boot.wim"
 set templateiso=".\Edgeless_Boot.iso"
@@ -9,9 +11,8 @@ if not exist %ultraiso% (
 	exit
 )
 if not exist %freshwim% (
-	echo No fresh build found : %freshwim%
+	echo No fresh build found : %freshwim%, press any key to remake a new ISO file
 	pause > nul
-	exit
 )
 if not exist %templateiso% (
 	echo Specify a valid iso template : %templateiso%
@@ -26,8 +27,10 @@ if not exist %templateiso% (
 )
 
 if not exist %workshop%\sources md %workshop%\sources
-del /f /q %workshop%\sources\boot.wim
-move %freshwim% %workshop%\sources\boot.wim
+if exist %freshwim% (
+	del /f /q %workshop%\sources\boot.wim
+	move %freshwim% %workshop%\sources\boot.wim
+)
 
 %ultraiso% -input %templateiso% -directory %workshop%
 
