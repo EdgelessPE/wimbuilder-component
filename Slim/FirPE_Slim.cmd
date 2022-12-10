@@ -1,5 +1,6 @@
 @echo off
 title Running FirPE Slim...
+REM 此文件由 @杉 提供并同样遵循 MPL-2.0 协议开源
 REM 提示：
 REM     在 for %%f in () do () 语句中，在文件列表内使用rem注释无效！
 setlocal enabledelayedexpansion
