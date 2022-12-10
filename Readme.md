@@ -10,12 +10,12 @@
     ```batch
     set EWC_DIR=%cd%\wimbuilder-component
     cd Wimbuilder2
-    mklink /d .\Projects\WIN10XPE\10-Edgeless %EWC_DIR%\ 
-    mklink .\Projects\WIN10XPE\_Assets_\preset\Edgeless.js %EWC_DIR%\Edgeless.js
+    mklink /d .\Projects\WIN10XPE\10-Edgeless "%EWC_DIR%\"
+    mklink .\Projects\WIN10XPE\_Assets_\preset\Edgeless.js "%EWC_DIR%\Edgeless.js"
     ```
     若需要生成 ISO 脚本则继续执行以下命令
     ```batch
-    mklink .\test\Make_ISO.cmd %EWC_DIR%\build\Make_ISO.cmd
+    mklink .\test\Make_ISO.cmd "%EWC_DIR%\build\Make_ISO.cmd"
     ```
 * 运行 `WimBuilder.cmd`，在 `准备` 页面中选择挂载的系统镜像，并选择一个合适的映像版本；在 `定制` 页面中选择 `Edgeless` 预设，然后在 `构建` 页面中开始构建
 * 修改 `.\test\Make_ISO.cmd`，编辑开头处的环境变量值然后运行此脚本生成 ISO 镜像；或是手动编辑 Edgeless 镜像，替换 `source\boot.wim` 文件为 `.\_Factory_\target\WIN10XPE\build\boot.wim`
