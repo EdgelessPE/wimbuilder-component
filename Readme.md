@@ -2,9 +2,9 @@
 此仓库为 Edgeless 4.x 版本使用的 [Wimbuilder2](https://github.com/slorelee/wimbuilder2) 组件，你可以使用此仓库的内容自行构建一个半开源版本的 Edgeless
 
 ## 使用方法
-* 下载 Windows 10/11 系统镜像
 * 下载最新版本的 Edgeless 镜像
-* 下载最新版本的 [Wimbuilder2](https://slore.lanzoux.com/b00z5zy6b)
+* 下载 Windows 10/11 系统镜像并挂载
+* 下载最新[稳定版](https://slore.lanzoux.com/b00z5zy6b)或[开发版](https://github.com/slorelee/wimbuilder2)的 Wimbuilder2
 * 克隆本仓库：`git clone https://github.com/EdgelessPE/wimbuilder-component.git`
 * 解压 Wimbuilder2至 `Wimbuilder2` 目录，以管理员身份运行 cmd 并执行以下命令，注意替换变量 `EWC_DIR` 为实际的 `wimbuilder-component` 所在目录
     ```batch
@@ -19,6 +19,9 @@
     ```
 * 运行 `WimBuilder.cmd`，在 `准备` 页面中选择挂载的系统镜像，并选择一个合适的映像版本；在 `定制` 页面中选择 `Edgeless` 预设，然后在 `构建` 页面中开始构建
 * 修改 `.\test\Make_ISO.cmd`，编辑开头处的环境变量值然后运行此脚本生成 ISO 镜像；或是手动编辑 Edgeless 镜像，替换 `source\boot.wim` 文件为 `.\_Factory_\target\WIN10XPE\build\boot.wim`
+
+## 一键构建脚本
+（WIP）等待添加
 
 ## 致谢
 本仓库的诞生离不开：
