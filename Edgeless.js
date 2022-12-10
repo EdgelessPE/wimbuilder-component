@@ -46,9 +46,9 @@ var $patches_opt = {
     "component.dsmsvc":true,
     "MTP.mtphelper":"mtpHelper.sys",
     "IME.indicator":true,
-    "IME.system_ime":true,
-    "IME.ms_pinyin":true,
-    "IME.ms_Phonetic":true,
+    "IME.system_ime":false,
+    "IME.ms_pinyin":false,
+    "IME.ms_Phonetic":false,
     "component.notepad":true,
     "7-zip.selected_assoc_exts":"7z,zip,rar",
     "material.location":"X:",
@@ -81,7 +81,7 @@ var $patches_opt = {
     "component.taskmgr":false,
     "component.bitlocker":false,
     "component.search":false,
-    "patch.drvinst":false,
+    "patch.drvinst":true,
     "build.registry.system":false,
     "build.full_catalog":false,
     "loader.name":"pecmd",
@@ -214,6 +214,14 @@ var $patches_opt = {
     "Edgeless.opt_transparentCMD":true,
     "Edgeless.Slim":"0",
     "Edgeless.patch_vc":true,
+    "IME.ms_wubi":false,
+    "IME.ms_Quick":false,
+    "IME.ms_Cangjie":false,
+    "IME.cht_DaYi":false,
+    "IME.cht_Array":false,
+    "imdisk.ramdisk":false,
+    "imdisk.drive_letter":"B:",
+    "imdisk.disk_size":"2048",
     "_._._":""
 }
 
@@ -244,17 +252,18 @@ function patches_state_init() {
     uncheck_tree_node("02-Apps/Defraggler");
     uncheck_tree_node("02-Apps/Explorer++");
     uncheck_tree_node("02-Apps/HotSwap");
-    check_tree_node("02-Apps/ImDisk");
+    uncheck_tree_node("02-Apps/ImDisk");
     check_tree_node("02-Apps/PENetwork");
     uncheck_tree_node("02-Apps/yong_IME");
     open_tree_node("02-Apps");
     uncheck_tree_node("02-PEMaterial");
+    open_tree_node("02-PEMaterial");
     check_tree_node("10-Edgeless");
     open_tree_node("10-Edgeless");
     check_tree_node("10-MyCustom.LINK");
+    select_tree_node("10-MyCustom.LINK");
     check_tree_node("za-Slim");
     uncheck_tree_node("zy-Test");
     check_tree_node("zz-ISO");
     check_tree_node("zz-Utils");
-    select_tree_node("10-Edgeless/Optimization");
 }
