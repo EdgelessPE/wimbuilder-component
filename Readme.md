@@ -18,3 +18,10 @@
     ```
 * 运行 `WimBuilder.cmd`，在 `准备` 页面中选择挂载的系统镜像，并选择一个合适的映像版本；在 `定制` 页面中选择 `Edgeless` 预设，然后在 `构建` 页面中开始构建
 * 编辑 Edgeless 镜像，替换 `source\boot.wim` 文件为 `.\_Factory_\target\WIN10XPE\build\boot.wim`
+
+## 致谢
+本仓库的诞生离不开：
+* [杉](https://github.com/834772509)
+* [Hydration](https://github.com/hydrati)
+* [slqwqxd](https://github.com/slqwqxd)
+* [undefined](https://github.com/undefined-ux)
