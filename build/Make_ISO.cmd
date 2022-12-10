@@ -31,4 +31,6 @@ if exist %freshwim% (
 
 if exist %workshop%\Edgeless\Nes_Inport.7z del /f /q %workshop%\Edgeless\Nes_Inport.7z
 
+::启动虚拟机进行测试，如不需要请将下一行 goto EOF 开头的两个冒号去除
+::goto EOF
 "C:\Program Files (x86)\VMware\VMware Workstation\vmware" -x "C:\Users\dsyou\Documents\Virtual Machines\Edgeless Boot Test\Edgeless Boot Test.vmx"
