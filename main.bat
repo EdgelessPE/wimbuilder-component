@@ -1,12 +1,12 @@
 title Edgeless Patch Running...
 
-::¹ÒÔØTmp£¨Â³°ôĞèÒª£©
+::æŒ‚è½½Tmpï¼ˆé²æ£’éœ€è¦ï¼‰
 call PERegPorter.bat Tmp LOAD
 
-::¶ÁÈ¡ÅäÖÃ
+::è¯»å–é…ç½®
 set /p workshop=<.\_config\workshop.txt
 
-::´´½¨Ä¿Â¼
+::åˆ›å»ºç›®å½•
 md "%x%\Program Files\Edgeless\system_hooks\onDiskFound"
 md "%x%\Program Files\Edgeless\system_hooks\beforeLocalBoost"
 md "%x%\Program Files\Edgeless\system_hooks\beforePluginLoading"
@@ -14,20 +14,20 @@ md "%x%\Program Files\Edgeless\system_hooks\onDesktopShown"
 md "%x%\Program Files\Edgeless\system_hooks\onBootFinished"
 md "%x%\Program Files\Edgeless\system_hooks\onExit"
 
-::ÅäÖÃ½Å±¾ÔËĞĞºê
+::é…ç½®è„šæœ¬è¿è¡Œå®
 set run=.\_utils\pecmd.exe load .\_scripts\
 set append1=.\_utils\pecmd.exe load .\_scripts\
 set append2=
 set finish=.\_utils\pecmd.exe load run.wcs
 
-::µ÷ÓÃ¾«¼ò½Å±¾
+::è°ƒç”¨ç²¾ç®€è„šæœ¬
 if "x%opt[Edgeless.Slim]%" neq "x0" (
   call .\Slim\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
   title Edgeless Patch Running...
 )
 
 
-::mainÅäÖÃ
+::mainé…ç½®
 if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (
   copy /y .\_vendor\Files_pecmd\Pecmd.ini "%x%\Windows\System32\"
   copy /y .\_vendor\Files_pecmd\OnShutdown.wcs "%x%\Windows\System32\"
@@ -324,7 +324,7 @@ if "x%opt[Edgeless.files_input]%"=="xtrue" (
 )
 
 if "x%opt[Edgeless.files_firsttimeaid]%"=="xtrue" (
-  copy /y .\_vendor\Files\Ó¦¼±°ü.7z "%x%\Program Files\"
+  copy /y .\_vendor\Files\åº”æ€¥åŒ….7z "%x%\Program Files\"
 )
 
 
@@ -352,9 +352,11 @@ if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
   %append1%opt_keyboard.wcs%append2%
 )
 
-if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
-  copy /y .\_vendor\File_Taskmgr\Taskmgr.exe.mui "%x%\Windows\System32\ZH-CN\"
-)
+rem wimbuilder2 å·²ç»å¤åˆ¶æ­¤æ–‡ä»¶
+rem æ­¤å¤„å†æ¬¡æ›¿æ¢ä¸åŒç‰ˆæœ¬ä¼šå¯¼è‡´ä»»åŠ¡ç®¡ç†å™¨æ˜¾ç¤ºç©ºç™½çª—å£
+rem if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
+rem   copy /y .\_vendor\File_Taskmgr\Taskmgr.exe.mui "%x%\Windows\System32\ZH-CN\"
+rem )
 
 if "x%opt[Edgeless.opt_remove_rtf]%"=="xtrue" (
   %append1%opt_remove_rtf.wcs%append2%
@@ -416,7 +418,7 @@ if "x%opt[Edgeless.opt_transparentCMD]%"=="xtrue" (
   %append1%opt_transparentCMD.wcs%append2%
 )
 
-::Ö´ĞĞrun.wcs
+::æ‰§è¡Œrun.wcs
 ::%finish%
 title Edgeless Patch Finished
 ::pause
