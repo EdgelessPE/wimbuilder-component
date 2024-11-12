@@ -11,7 +11,6 @@
     set EWC_DIR=%cd%\wimbuilder-component
     cd Wimbuilder2
     mklink /d .\Projects\WIN10XPE\10-Edgeless "%EWC_DIR%\"
-    mklink /d .\AppData\Projects\WIN10XPE\10-MyCustom\01-MyDrivers\Drivers_x64\Drv_Disk "%EWC_DIR%\_vendor\Drv_Disk"
     mklink .\Projects\WIN10XPE\_Assets_\preset\Edgeless.js "%EWC_DIR%\Edgeless.js"
     ```
     若需要生成 ISO 脚本则继续执行以下命令

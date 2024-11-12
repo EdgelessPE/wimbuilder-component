@@ -26,6 +26,11 @@ if "x%opt[Edgeless.Slim]%" neq "x0" (
   title Edgeless Patch Running...
 )
 
+::安装驱动
+if "x%opt[Edgeless.drv_disk]%"=="xtrue" (
+  echo Installing Disk Drivers...
+  dism /image:"%X%" /Add-Driver /Driver:.\_vendor\Drv_Disk /Recurse
+)
 
 ::main配置
 if "x%opt[Edgeless.main_pecmd]%"=="xtrue" (

@@ -214,6 +214,7 @@ var $patches_opt = {
     "Edgeless.opt_transparentCMD":true,
     "Edgeless.Slim":"0",
     "Edgeless.patch_vc":true,
+    "Edgeless.drv_disk":true,
     "IME.ms_wubi":false,
     "IME.ms_Quick":false,
     "IME.ms_Cangjie":false,
