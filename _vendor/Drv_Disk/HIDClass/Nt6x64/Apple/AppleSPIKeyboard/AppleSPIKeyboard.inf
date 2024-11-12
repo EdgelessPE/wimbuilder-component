@@ -1,0 +1,112 @@
+;
+; AppleSPIKeyboard.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%APPLE%
+CatalogFile=AppleSPIKeyboard.cat
+DriverVer=10/19/2016,6.1.6700.0
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+AppleSPIKeyboard.sys  = 1,,
+hidkmdf.sys = 1
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%APPLE%=APPLE,NTamd64
+
+[APPLE.NTamd64]
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0272&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0273&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0275&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0276&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0277&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0278&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0279&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0290&MI_01
+%AppleSPIKeyboard.DeviceDesc%=AppleSPIKeyboard_Device, SPI\VID_05ac&PID_0291&MI_01
+
+[AppleSPIKeyboard_Device.NT]
+CopyFiles=Drivers_Dir
+
+[AppleSPIKeyboard_Device.NT.HW]
+AddReg = AppleSPIKeyboard_Device.AddReg 
+
+[AppleSPIKeyboard_Device.AddReg]
+HKR,,"LowerFilters",0x00010000,"AppleSPIKeyboard"
+
+[Drivers_Dir]
+AppleSPIKeyboard.sys
+
+;-------------- Service installation
+[AppleSPIKeyboard_Device.NT.Services]
+AddService = AppleSPIKeyboard,, AppleSPIKeyboard_Service_Inst
+AddService = mshidkmdf, 0x000001fa, mshidkmdf.AddService ;flag 0x2 sets this as the service for the device
+
+[mshidkmdf.AddService]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\mshidkmdf.sys
+
+; -------------- AppleSPIKeyboard driver install sections
+[AppleSPIKeyboard_Service_Inst]
+DisplayName    = %AppleSPIKeyboard.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AppleSPIKeyboard.sys
+LoadOrderGroup = Extended Base
+AddReg         = AppleSPIKeyboard_Service_AddReg
+
+[AppleSPIKeyboard_Service_AddReg]
+HKR,,"Keymap", 0x00000001, 0x69,0x46,0x6a,0x47,0x6b,0x48,0x91,0x8b,0x90,0x88
+HKR,,"KeymapFn", 0x00000001, 0x0c,0x22,0x0d,0x1e,0x0e,0x1f,0x0f,0x20,0x10,0x27,0x12,0x23,0x13,0x55,0x18,0x21,0x27,0x54,0x2d,0x67,0x33,0x56,0x38,0x57
+HKR,,"KeymapNumlock", 0x00000001, 0x0c,0x5d,0x0d,0x59,0x0e,0x5a,0x0f,0x5b,0x10,0x62,0x12,0x5e,0x13,0x55,0x18,0x5c,0x24,0x5f,0x25,0x60,0x26,0x61,0x27,0x54,0x2d,0x67,0x33,0x56,0x37,0x63,0x38,0x57
+HKR,,"enable", 0x00000001, 0x01
+HKR,,"OSXFnBehavior", 0x00000001, 0x01
+
+;
+;--- AppleSPIKeyboard_Device Coinstaller installation ------
+;
+
+[DestinationDirs]
+AppleSPIKeyboard_Device_CoInstaller_CopyFiles = 11
+
+[AppleSPIKeyboard_Device.NT.CoInstallers]
+AddReg=AppleSPIKeyboard_Device_CoInstaller_AddReg
+CopyFiles=AppleSPIKeyboard_Device_CoInstaller_CopyFiles
+
+[AppleSPIKeyboard_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01011.dll,WdfCoInstaller"
+
+[AppleSPIKeyboard_Device_CoInstaller_CopyFiles]
+WdfCoInstaller01011.dll
+
+[SourceDisksFiles]
+WdfCoInstaller01011.dll=1 ; make sure the number matches with SourceDisksNames
+
+[AppleSPIKeyboard_Device.NT.Wdf]
+KmdfService =  AppleSPIKeyboard, AppleSPIKeyboard_wdfsect
+[AppleSPIKeyboard_wdfsect]
+KmdfLibraryVersion = 1.11
+
+[Strings]
+APPLE = "Apple Inc."
+ClassName="AppleSPIKeyboard"
+DiskName = "AppleSPIKeyboard Installation Disk"
+AppleSPIKeyboard.DeviceDesc = "Apple SPI Keyboard"
+AppleSPIKeyboard.SVCDESC = "AppleSPIKeyboard Service"
+BOOTCAMP_KEY = "SOFTWARE\Apple Inc.\Boot Camp\Versions"

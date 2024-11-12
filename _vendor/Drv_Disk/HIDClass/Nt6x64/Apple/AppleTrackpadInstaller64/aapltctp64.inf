@@ -1,0 +1,108 @@
+; Installation inf for the Apple Trackpad Filter driver
+;
+; Copyright © 2006-2009 Apple Inc. All Rights Reserved.
+;
+
+[Version]
+Signature="$Windows NT$"
+Class=Mouse
+ClassGuid={4D36E96F-E325-11CE-BFC1-08002BE10318}
+Provider=%AAPL%
+CatalogFile=aapltctp64.cat
+DriverPackageDisplayName="Apple Trackpad Enabler"
+DriverPackageType=PlugAndPlay
+DriverVer=07/13/2009,3.0.0.1
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[Manufacturer]
+%MfgName%=Apple, NTamd64
+
+[Apple.NTamd64]
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_0217&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_0218&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_0219&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_021A&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_021B&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_021C&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_0229&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_022A&MI_01&COL01
+%aapltctp%    = aapltctp_Inst,, HID\VID_05AC&PID_022B&MI_01&COL01
+
+[ControlFlags]
+; We don't want our device to be installable via the non-PnP hardware dialogs
+ExcludeFromSelect  = *
+
+;===============================================================
+;   aapltctp  install section
+;===============================================================
+
+[aapltctp_Inst.NT]
+Include = MSMOUSE.INF
+Needs = HID_Mouse_Inst.NT
+CopyFiles = aapltctp_Inst_CopyFiles.NT
+
+[aapltctp_Inst.NT.HW]
+Include = MSMOUSE.INF
+Needs = HID_Mouse_Inst.NT
+AddReg = aapltctp_Inst_HWAddReg.NT 
+
+[aapltctp_Inst_HWAddReg.NT]
+HKR,,"UpperFilters",0x00010000,"aapltctp"
+
+[aapltctp_Inst_CopyFiles.NT]
+aapltctp.sys
+
+[aapltctp_Inst.NT.Services]
+Include = MSMOUSE.INF
+Needs = HID_Mouse_Inst.NT.Services
+AddService = aapltctp, , aapltctp_Service_Inst
+
+[aapltctp_Service_Inst]
+DisplayName    = %aapltctp%
+ServiceType    = %SERVICE_KERNEL_DRIVER% 
+StartType      = %SERVICE_DEMAND_START% 
+ErrorControl   = %SERVICE_ERROR_IGNORE% 
+ServiceBinary  = %12%\aapltctp.sys 
+LoadOrderGroup = Pointer Port
+
+
+; Source Media Section
+; ---------------------------------------------------------
+
+[SourceDisksFiles]
+aapltctp.sys = 1
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,
+
+;================================================================
+
+[Strings] 
+;  *******Localizable Strings******* 
+
+AAPL           = "Apple Inc." 
+MfgName        = "Apple Inc." 
+aapltctp       = "Apple Trackpad Enabler" 
+DISK_NAME      = "Apple Trackpad Install Disk"
+
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START     = 0x0 
+SERVICE_SYSTEM_START   = 0x1 
+SERVICE_AUTO_START     = 0x2 
+SERVICE_DEMAND_START   = 0x3 
+SERVICE_DISABLED       = 0x4 
+
+SERVICE_KERNEL_DRIVER  = 0x1 
+SERVICE_ERROR_IGNORE   = 0x0 
+SERVICE_ERROR_NORMAL   = 0x1 
+SERVICE_ERROR_SEVERE   = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ          = 0x00020000 
+REG_DWORD              = 0x00010001 
+REG_MULTI_SZ           = 0x00010000
+REG_BINARY             = 0x00000001
+REG_SZ                 = 0x00000000

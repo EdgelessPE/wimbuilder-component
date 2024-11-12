@@ -1,0 +1,85 @@
+; amdusbhubfilter.inf
+;
+; Copyright (c) 2022 Advanced Micro Devices Inc.
+;
+
+[Version]
+Signature = "$Windows NT$"
+Class     = USB
+ClassGUID = {36FC9E60-C465-11CF-8056-444553540000}
+Provider  = %ProviderString%
+DriverPackageType=ClassFilter
+DriverVer = 03/29/2022,1.0.0.6
+CatalogFile=amdusbhubfilter.cat
+PnpLockdown=1
+
+[Manufacturer]
+%ManufacturerString%=amd,NTamd64
+
+[amd.NTamd64]
+; DisplayName           Section           DeviceId
+; -----------           -------           --------
+%AMDUSBFILTER.DRVDESC%=      amdusbhubfilter_Inst,    USB\ROOT_HUB30&VID1022&PID15D7&REV0000
+%AMDUSBFILTER.DRVDESC%=      amdusbhubfilter_Inst,    USB\ROOT_HUB30&VID1022&PID15D6&REV0000
+
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,""
+
+[SourceDisksFiles]
+amdusbhubfilter.sys = 1,,
+
+[Drivers_Dir]
+amdusbhubfilter.sys
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[amdusbhubfilter_Inst.NT]
+CopyFiles=Drivers_Dir
+FeatureScore=0x80
+
+
+;;;;; registry ;;;;;;
+[amdusbhubfilter_Inst.NT.HW]
+AddReg = amdusbhubfilter_AddReg
+
+[amdusbhubfilter_AddReg]
+HKR,, UpperFilters, 0x00010008, usbfilter
+
+;;;;; install pcifilter service ;;;;;;
+[amdusbhubfilter_Inst.NT.Services]
+AddService = USBHUB3, %SPSVCINST_ASSOCSERVICE%, usb_ServiceInst
+AddService = usbfilter,,amdusbhubfilter_ServiceInst
+
+;[amdusbhubfilter_Inst.CoInstallers]
+[usb_ServiceInst]
+DisplayName    = "USB Bus Driver"
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\USBHUB3.sys
+LoadOrderGroup = "Boot Bus Extender"
+
+[amdusbhubfilter_ServiceInst]
+DisplayName    = %amdusbhubfilter_svcdesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\amdusbhubfilter.sys
+LoadOrderGroup = "Usb Filter"
+
+;;;;; string definition ;;;;;;;;
+[Strings]
+ProviderString     = "Advanced Micro Devices Inc."
+ManufacturerString = "Advanced Micro Devices Inc."
+AMDUSBFILTER.DRVDESC = "USB Root Hub (USB 3.0)"
+SystemClassName = "System devices"
+amdusbhubfilter_svcdesc = "AMD USB HUB Filter Driver"
+DISK_NAME = "AMD USB HUB Filter Driver Install Disk"
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_DEMAND_START   = 3
+SERVICE_ERROR_NORMAL   = 1
+

@@ -1,0 +1,172 @@
+;----------------------------------------------------------------------------
+; SmbDrv.inf
+;
+; Installs the driver in the SYSTEM class for STANDARD PCI enumerated device
+; Copyright (c) 1996-2011, Synaptics Incorporated
+;----------------------------------------------------------------------------
+
+
+[Version]
+Signature="$Windows NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%Provider%
+CatalogFile=SynTP.cat
+DriverVer=08/08/2013, 16.3.7.0
+
+
+[SourceDisksNames]
+1=%DiskName%,,
+
+[SourceDisksFiles]
+Smb_driver_AMDASF.sys = 1
+Smb_driver_Intel.sys = 1
+SmbDrv.ini = 1
+WdfCoInstaller01009.dll = 1
+
+;----------------------------------------------------------------------------
+; Manufacturer Sections
+;----------------------------------------------------------------------------
+
+
+[Manufacturer]
+
+
+%SynMfg% = SynMfg, NTamd64;
+[SynMfg.NTamd64]
+%SynDeviceDesc% = SynapticsInstallAMDASF, ACPI\SMB0001
+%SynDeviceDesc% = SynapticsInstallIntel, PCI\VEN_8086&DEV_1C22&CC_0C05
+%SynDeviceDesc% = SynapticsInstallIntel, PCI\VEN_8086&DEV_1E22&CC_0C05
+%SynDeviceDesc% = SynapticsInstallIntel, PCI\VEN_8086&DEV_2930&CC_0C05
+%SynDeviceDesc% = SynapticsInstallIntel, PCI\VEN_8086&DEV_3B30&CC_0C05
+%SynDeviceDesc% = SynapticsInstallIntel, PCI\VEN_8086&DEV_8C22&CC_0C05
+%SynDeviceDesc% = SynapticsInstallIntel, PCI\VEN_8086&DEV_9C22&CC_0C05
+
+;----------------------------------------------------------------------------
+; Install Sections
+;----------------------------------------------------------------------------
+[DestinationDirs]
+CopyFiles_Drivers_AMDASF    = 12 ; Drivers directory
+CopyFiles_Drivers_Intel     = 12 ; Drivers directory
+CopyFiles_ProgFiles         = 16422, %targetdir%  ; Program files
+CopyFiles_CoInstaller       = 11 ; System directory
+
+[SynapticsInstallAMDASF]
+CopyFiles = CopyFiles_Drivers_AMDASF,CopyFiles_ProgFiles
+AddReg= SynaSmb_Addreg
+
+[CopyFiles_Drivers_AMDASF]
+Smb_driver_AMDASF.sys,,,0x00000001
+
+[SynapticsInstallIntel]
+CopyFiles = CopyFiles_Drivers_Intel,CopyFiles_ProgFiles
+AddReg= SynaSmb_Addreg
+
+[CopyFiles_Drivers_Intel]
+Smb_driver_Intel.sys,,,0x00000001
+
+[CopyFiles_ProgFiles]
+SmbDrv.ini,,,0x00000001
+
+[SynaSmb_Addreg]
+HKLM,Software\Synaptics\SmbDrv,InstallDir,0x00000000,"%1%"
+HKLM,Software\Synaptics\SmbDrv,DriverVersion,0x00000000,"16.3.7"
+
+;----------------------------------------------------------------------------
+; Services Sections
+;----------------------------------------------------------------------------
+[SynapticsInstallAMDASF.Services]
+AddService = SmbDrv,%SPSVCINST_ASSOCSERVICE%,SynaSmb_Service_Inst_AMDASF
+
+[SynaSmb_Service_Inst_AMDASF]
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_DEMAND_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+LoadOrderGroup = "Base"
+ServiceBinary = %12%\Smb_driver_AMDASF.sys 
+
+[SynapticsInstallIntel.Services]
+AddService = SmbDrvI,%SPSVCINST_ASSOCSERVICE%,SynaSmb_Service_Inst_Intel
+
+[SynaSmb_Service_Inst_Intel]
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_DEMAND_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+LoadOrderGroup = "Base"
+ServiceBinary = %12%\Smb_driver_Intel.sys 
+
+;----------------------------------------------------------------------------
+; CoInstallers Sections
+;----------------------------------------------------------------------------
+[SynapticsInstallAMDASF.CoInstallers]
+AddReg=SynapticsInstall.CoInstaller_AddReg
+CopyFiles=CopyFiles_CoInstaller
+
+[SynapticsInstallAMDASF.Wdf]
+KmdfService = SmbDrv, KMDF_wdfsect
+
+[SynapticsInstallIntel.CoInstallers]
+AddReg=SynapticsInstall.CoInstaller_AddReg
+CopyFiles=CopyFiles_CoInstaller
+
+[SynapticsInstallIntel.Wdf]
+KmdfService = SmbDrvI, KMDF_wdfsect
+
+[KMDF_wdfsect]
+KmdfLibraryVersion = 1.9
+
+[SynapticsInstall.CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01009.dll,WdfCoInstaller"
+
+[CopyFiles_CoInstaller]
+WdfCoInstaller01009.dll
+
+;----------------------------------------------------------------------------
+; User visible strings
+;----------------------------------------------------------------------------
+[Strings]
+Provider = "Synaptics"
+SynMfg = "Synaptics"
+DiskName = "Synaptics SMBus Driver Installation Disk"
+TargetDir = "Synaptics\SynTP"
+
+SynDeviceDesc = "Synaptics SMBus Driver"
+
+
+;
+; The "standard" defines
+;
+SPSVCINST_TAGTOFRONT               = 0x00000001
+SPSVCINST_ASSOCSERVICE             = 0x00000002
+SPSVCINST_DELETEEVENTLOGENTRY      = 0x00000004
+SPSVCINST_NOCLOBBER_DISPLAYNAME    = 0x00000008
+SPSVCINST_NOCLOBBER_STARTTYPE      = 0x00000010
+SPSVCINST_NOCLOBBER_ERRORCONTROL   = 0x00000020
+SPSVCINST_NOCLOBBER_LOADORDERGROUP = 0x00000040
+SPSVCINST_NOCLOBBER_DEPENDENCIES   = 0x00000080
+SPSVCINST_NOCLOBBER_DESCRIPTION    = 0x00000100
+
+COPYFLG_WARN_IF_SKIP         = 0x00000001
+COPYFLG_NOSKIP               = 0x00000002
+COPYFLG_NOVERSIONCHECK       = 0x00000004
+COPYFLG_FORCE_FILE_IN_USE    = 0x00000008
+COPYFLG_NO_OVERWRITE         = 0x00000010
+COPYFLG_NO_VERSION_DIALOG    = 0x00000020
+COPYFLG_OVERWRITE_OLDER_ONLY = 0x00000040
+COPYFLG_REPLACEONLY          = 0x00000400
+COPYFLG_REPLACE_BOOT_FILE    = 0x00001000
+COPYFLG_NOPRUNE              = 0x00002000
+
+SERVICE_KERNEL_DRIVER      = 0x00000001
+SERVICE_FILE_SYSTEM_DRIVER = 0x00000002
+
+SERVICE_BOOT_START   = 0x00000000
+SERVICE_SYSTEM_START = 0x00000001
+SERVICE_AUTO_START   = 0x00000002
+SERVICE_DEMAND_START = 0x00000003
+SERVICE_DISABLED     = 0x00000004
+
+SERVICE_ERROR_IGNORE   = 0x00000000
+SERVICE_ERROR_NORMAL   = 0x00000001
+SERVICE_ERROR_SEVERE   = 0x00000002
+SERVICE_ERROR_CRITICAL = 0x00000003

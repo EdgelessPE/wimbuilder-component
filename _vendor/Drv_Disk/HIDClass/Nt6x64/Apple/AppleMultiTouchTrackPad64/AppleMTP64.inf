@@ -1,0 +1,204 @@
+;*****************************************************************************
+; INF for Apple Multi-Touch
+; Copyright © 2007 Apple Inc. All Rights Reserved.
+;*****************************************************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGUID={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%AAPL%
+DriverPackageDisplayName="Apple Multi-Touch"
+DriverPackageType=PlugAndPlay
+DriverVer = 11/07/2019,6.1.7800.0
+CatalogFile=applemtp64.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+;*****************************************************************************
+; Multitouch Device Filter Install Section
+;*****************************************************************************
+
+
+[Manufacturer]
+%MfgName%=Apple, NTamd64
+
+
+;=============================================================================
+;Windows XP (AMD64 architecture)
+[Apple.NTamd64]
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0223&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0224&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0225&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0230&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0231&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0232&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0236&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0237&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0238&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_023F&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0240&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0241&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0242&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0243&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0244&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0245&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0246&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0247&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0249&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_024A&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_024B&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_024C&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_024D&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_024E&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0252&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0253&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0254&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0259&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_025A&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_025B&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0262&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0263&MI_01
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0264&MI_01
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0273&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0274&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0277&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_027A&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_027B&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_027C&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_027D&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_027E&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_027F&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0280&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0290&MI_02
+%Multitouch.DeviceDesc%=Multitouch,   USB\Vid_05ac&Pid_0291&MI_02
+
+%Multitouch.DeviceDesc%=Multitouch,   USB\VID_05AC&PID_0340&MI_02
+
+;*****************************************************************************
+; Multitouch Filter Section
+;*****************************************************************************
+[Multitouch.NT]  
+Include=input.inf
+Needs=HID_Inst.NT
+CopyFiles=Multitouch.NT.Copy
+
+[Multitouch.NT.Copy]
+applemtp.sys
+
+[Multitouch.NT.HW]
+;================ Add our own stuff
+AddReg = Multitouch.NT.HW.AddReg
+
+;================ Add in the standard stuff provided by HID
+Include = input.inf
+Needs = HID_Inst.NT.HW
+
+[Multitouch.NT.HW.AddReg]  
+HKR,,"LowerFilters",0x00010000,"applemtp"
+
+
+;*****************************************************************************
+; Multitouch Device Filter Service Section
+;*****************************************************************************
+;
+; This will add applemtp as the service and make sure that applemtp.sys has
+; been installed.
+;
+; Do not specify SPSVCINST_ASSOCSERVICE on filter drivers. 
+;
+[Multitouch.NT.Services]
+Include=Input.inf
+Needs=HID_Inst.NT.Services
+AddService = applemtp,, Multitouch_Service_Inst 
+
+[Multitouch_Service_Inst]
+DisplayName    = %Multitouch.SvcDesc%                            
+ServiceType    = %SERVICE_KERNEL_DRIVER% 
+StartType      = %SERVICE_DEMAND_START% 
+ErrorControl   = %SERVICE_ERROR_IGNORE% 
+ServiceBinary  = %12%\applemtp.sys                            
+AddReg         = HotspringTracks_AddReg
+
+[HotspringTracks_AddReg]
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0273"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0274"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0277"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_027A"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_027B"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_027C"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_027D"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_027E"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_027F"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0280"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0290"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0291"
+HKR,,"HotspringTrackpads", 0x00010008, "VID_05AC&PID_0340"
+
+[Multitouch.NT.Wdf]
+KmdfService = applemtp, Multitouch_wdfsect
+
+[Multitouch_wdfsect]
+KmdfLibraryVersion = 1.15
+
+
+;*****************************************************************************
+; Source file information
+;*****************************************************************************
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+applemtp.sys  = 1,,
+
+
+;*****************************************************************************
+; String Secion
+;*****************************************************************************
+[Strings]
+;
+; Strings or constants that can be localized
+;
+AAPL    = "Apple Inc."
+MfgName = "Apple Inc."
+
+DiskId1               = "Apple Drivers Disk"
+Multitouch.DeviceDesc = "Apple Multi-Touch"
+
+Multitouch.SvcDesc    = "Apple Multi-Touch"
+BOOTCAMP_KEY          = "SOFTWARE\Apple Inc.\Boot Camp\Versions"
+
+;
+; Strings or constants that can NOT be localized
+;
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_BOOT_START     = 0x0 
+SERVICE_SYSTEM_START   = 0x1 
+SERVICE_AUTO_START     = 0x2 
+SERVICE_DEMAND_START   = 0x3 
+SERVICE_DISABLED       = 0x4 
+
+SERVICE_KERNEL_DRIVER  = 0x1 
+SERVICE_ERROR_IGNORE   = 0x0 
+SERVICE_ERROR_NORMAL   = 0x1 
+SERVICE_ERROR_SEVERE   = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ          = 0x00020000 
+REG_DWORD              = 0x00010001 
+REG_MULTI_SZ           = 0x00010000
+REG_BINARY             = 0x00000001
+REG_SZ                 = 0x00000000

@@ -1,0 +1,82 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; File:          SurfaceSerialHubDriver.inf
+;
+; Description:   Driver Installation file.
+;
+; Copyright (C) 2015 Microsoft Corporation.  All Rights Reserved.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%ManufacturerName%
+CatalogFile=SurfaceSerialHubDriver.cat
+DriverVer = 05/23/2021,9.73.139.0
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+; ================= Class section =====================
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+SurfaceSerialHubDriver.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%SurfaceSerialHubDriver.DeviceDesc%=SurfaceSerialHubDriver_Device, ACPI\MSHW0084
+
+[SurfaceSerialHubDriver_Device.NT]
+CopyFiles=Drivers_Dir
+
+[SurfaceSerialHubDriver_Device.NT.Events]
+AddEventProvider = {8DDB06D0-A54B-4014-B119-5A09FB550D18},EventProviderInstall
+
+[EventProviderInstall]
+ProviderName=Microsoft-Surface-SurfaceSerialHubDriver
+ResourceFile=%13%\SurfaceSerialHubDriver.sys
+MessageFile=%13%\SurfaceSerialHubDriver.sys
+AddChannel= Microsoft-Surface-SurfaceSerialHubDriver/Operational,0x2,Channel_Install
+
+[Channel_Install]
+Isolation         = 2
+Enabled           = 1
+
+[Drivers_Dir]
+SurfaceSerialHubDriver.sys
+
+[SurfaceSerialHubDriver_Device.NT.HW]
+
+
+
+;-------------- Service installation
+[SurfaceSerialHubDriver_Device.NT.Services]
+;
+; %SPSVCINST_ASSOCSERVICE% should only be specificed if this is a function driver.
+;
+AddService = SurfaceSerialHubDriver,%SPSVCINST_ASSOCSERVICE%, SurfaceSerialHubDriver_Service_Inst
+
+; -------------- SurfaceSerialHubDriver driver install sections
+[SurfaceSerialHubDriver_Service_Inst]
+DisplayName    = %SurfaceSerialHubDriver.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\SurfaceSerialHubDriver.sys
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="Surface"
+DiskName = "Surface Serial Hub Driver Installation Disk"
+SurfaceSerialHubDriver.DeviceDesc = "Surface Serial Hub Driver"
+SurfaceSerialHubDriver.SVCDESC = "Surface Serial Hub Driver Service"

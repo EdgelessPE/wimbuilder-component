@@ -1,0 +1,219 @@
+;
+; Asmedia SATA (AHCI) Driver
+;
+; Installation File For Microsoft Windows
+;
+; Version 1.0
+;
+; Copyright (c) Asmedia Incorporated
+;
+; Edited 04/12/2013
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%ASMT%
+DriverVer=08/21/2017, 3.2.3.0000
+CatalogFile=asstahci64.cat
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+asstahci64.sys=1,,
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+;*****************************************
+; Install Section
+;*****************************************
+[Manufacturer]
+%ASMT%=ASMT, NTamd64
+
+[ASMT]
+
+[ASMT.NTamd64]
+
+%PCI\VEN_1B21&DEV_0601.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0601
+%PCI\VEN_1B21&DEV_0602.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0602
+%PCI\VEN_1B21&DEV_0611.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0611
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612
+%PCI\VEN_1B21&DEV_0614.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0614
+%PCI\VEN_1B21&DEV_0615.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0615
+%PCI\VEN_1B21&DEV_0620.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0620
+%PCI\VEN_1B21&DEV_0621.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0621
+%PCI\VEN_1B21&DEV_0622.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0622
+%PCI\VEN_1B21&DEV_0624.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0624
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625
+
+%PCI\VEN_1B21&DEV_0601.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0601&SUBSYS_10601B21
+%PCI\VEN_1B21&DEV_0602.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0602&SUBSYS_10601B21
+%PCI\VEN_1B21&DEV_0611.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0611&SUBSYS_10601B21
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_10601B21
+%PCI\VEN_1B21&DEV_0614.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0614&SUBSYS_10601B21
+%PCI\VEN_1B21&DEV_0615.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0615&SUBSYS_10601B21
+%PCI\VEN_1B21&DEV_0620.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0620&SUBSYS_10611B21
+%PCI\VEN_1B21&DEV_0621.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0621&SUBSYS_10611B21
+%PCI\VEN_1B21&DEV_0622.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0622&SUBSYS_10611B21
+%PCI\VEN_1B21&DEV_0624.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0624&SUBSYS_10611B21
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_10611B21
+
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_84B71043&REV_02
+
+%PCI\VEN_1B21&DEV_0601.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0601&SUBSYS_79161462
+%PCI\VEN_1B21&DEV_0602.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0602&SUBSYS_79161462
+%PCI\VEN_1B21&DEV_0611.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0611&SUBSYS_79161462
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_79161462
+%PCI\VEN_1B21&DEV_0614.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0614&SUBSYS_79161462
+%PCI\VEN_1B21&DEV_0615.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0615&SUBSYS_79161462
+
+%PCI\VEN_1B21&DEV_0601.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0601&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0602.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0602&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0611.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0611&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0614.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0614&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0615.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0615&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0620.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0620&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0621.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0621&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0622.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0622&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0624.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0624&SUBSYS_84B71043
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_84B71043
+
+%PCI\VEN_1B21&DEV_0601.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0601&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0602.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0602&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0611.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0611&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0614.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0614&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0615.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0615&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0620.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0620&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0621.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0621&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0622.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0622&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0624.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0624&SUBSYS_858D1043
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_858D1043
+
+%PCI\VEN_1B21&DEV_0601.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0601&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0602.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0602&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0611.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0611&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0614.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0614&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0615.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0615&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0620.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0620&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0621.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0621&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0622.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0622&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0624.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0624&SUBSYS_858E1043
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_858E1043
+
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_06121458
+
+;Gigabytes
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_35571458
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_35591458
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_355B1458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_376A1458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_376B1458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_37691458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_37641458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_37661458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_376C1458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_299B1458
+%PCI\VEN_1B21&DEV_0612.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0612&SUBSYS_299C1458
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_D5571458
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_16511458
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_16501458
+%PCI\VEN_1B21&DEV_0625.DeviceDesc%= Asmt_Inst, PCI\VEN_1B21&DEV_0625&SUBSYS_15601458
+
+[Asmt_Inst.NT]
+CopyFiles = DriverCopyFiles
+[DriverCopyFiles]
+asstahci64.sys
+
+[Asmt_Inst.NT.HW]
+Include            = machine.inf
+Needs              = PciIoSpaceNotRequired.HW
+AddReg	= DDInstall_AddReg_HW_Removal_Policy
+
+[DDInstall_AddReg_HW_Removal_Policy]
+HKR,,"RemovalPolicy",0x00010001,3
+;AddReg = InterruptMgmtValues
+;[InterruptMgmtValues]
+;HKR,"Interrupt Management",0x00000010
+;HKR,"Interrupt Management\MessageSignaledInterruptProperties",0x00000010
+;HKR,"Interrupt Management\MessageSignaledInterruptProperties",MSISupported,0x00010001,1
+
+;-------------- Service installation
+[Asmt_Inst.NT.Services]
+AddService = asstahci64,%SPSVCINST_ASSOCSERVICE%,Asmt_Service_Inst, Asmt_EventLog_Inst 
+
+[Asmt_Service_Inst] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_NORMAL% 
+ServiceBinary = %12%\asstahci64.sys 
+LoadOrderGroup = "SCSI Storport"
+AddReg = pnpsafe_pci_addreg
+
+;------------------Uninstall section----------------
+[DefaultUninstall]
+DelFiles = asstahci64.DelFiles
+
+[DefaultUninstall.Services]
+DelService = asstahci64
+
+[asstahci64.DelFiles]
+asstahci64.sys,,,
+;--------------------------------------------------
+
+[Asmt_EventLog_Inst] 
+AddReg = Asmt_EventLog_Inst.AddReg 
+ 
+[Asmt_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001 
+HKLM,"SYSTEM\CurrentControlSet\Services\asstahci64\Parameters\Device","NumberOfRequests",0x00010001,1024 
+HKR, "Parameters", "BusType", 0x00010001, 0x0000000B
+
+[Strings]
+;Localizable Strings
+ASMT="Asmedia Technology"
+DiskName="Asmedia 106x SATA Controller"
+Desc= "Asmedia 106x SATA Controller"
+PCI\VEN_1B21&DEV_0611.DeviceDesc ="Asmedia 106x SATA Controller"
+PCI\VEN_1B21&DEV_0612.DeviceDesc ="Asmedia 106x SATA Controller"
+PCI\VEN_1B21&DEV_0601.DeviceDesc ="Asmedia 106x SATA Controller"
+PCI\VEN_1B21&DEV_0602.DeviceDesc ="Asmedia 106x SATA Controller"
+PCI\VEN_1B21&DEV_0614.DeviceDesc ="Asmedia SATA Express Controller"
+PCI\VEN_1B21&DEV_0615.DeviceDesc ="Asmedia SATA Express Controller"
+PCI\VEN_1B21&DEV_0620.DeviceDesc ="Asmedia 106x SATA Controller"
+PCI\VEN_1B21&DEV_0621.DeviceDesc ="Asmedia 106x SATA/RAID Controller"
+PCI\VEN_1B21&DEV_0622.DeviceDesc ="Asmedia 106x SATA/RAID Controller"
+PCI\VEN_1B21&DEV_0624.DeviceDesc ="Asmedia 106x SATA/RAID Controller"
+PCI\VEN_1B21&DEV_0625.DeviceDesc ="Asmedia 106x SATA/RAID Controller"
+
+
+;Non Localizable Strings 
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
+
+SPSVCINST_ASSOCSERVICE=0x00000002

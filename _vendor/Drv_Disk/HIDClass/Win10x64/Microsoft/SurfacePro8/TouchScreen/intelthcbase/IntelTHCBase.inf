@@ -1,0 +1,188 @@
+;*******************************************************************************
+;*                                                                            **
+;*                     I N T E L   P R O P R I E T A R Y                      **
+;*                                                                            **
+;*   COPYRIGHT (c) 2017-2019 BY INTEL CORPORATION. ALL RIGHTS RESERVED.  NO   **
+;*   PART  OF  THIS  PROGRAM OR PUBLICATION MAY BE REPRODUCED, TRANSMITTED,   **
+;*   TRANSCRIBED, STORED IN A RETRIEVAL  SYSTEM,  OR  TRANSLATED  INTO  ANY   **
+;*   LANGUAGE OR COMPUTER LANGUAGE IN ANY FORM OR BY ANY MEANS, ELECTRONIC,   **
+;*   MECHANICAL, MAGNETIC, OPTICAL, CHEMICAL, MANUAL, OR OTHERWISE, WITHOUT   **
+;*   THE PRIOR WRITTEN PERMISSION OF :                                        **
+;*                                                                            **
+;*                             INTEL CORPORATION                              **
+;*                                                                            **
+;*                          2200 MISSION COLLEGE BLVD                         **
+;*                                                                            **
+;*                     SANTA CLARA, CALIFORNIA 95052-8119                     **
+;*                                                                            **
+;*******************************************************************************
+;
+;
+;
+; IntelTHCBase.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%INTEL%
+DriverVer = 03/03/2021,3.0.101.251
+CatalogFile=IntelTHCBase.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+IntelTHCBase.sys  = 1,,
+
+;*****************************************
+; IntelTHCBaseBus  Install Section
+;*****************************************
+
+[Manufacturer]
+%StdMfg%=Standard, NTamd64.10.0...18327, NTamd64.10.0...21311
+
+
+;---Separate section to setup filter filters on 19H1 and later OS builds
+[Standard.NTamd64.10.0...18327]
+%IntelTHCBaseBus.DeviceDescP1%=IntelTHCBaseBus_Device_TGL, PCI\VEN_8086&DEV_A0D0	; TGL-LP Port #1
+%IntelTHCBaseBus.DeviceDescP1%=IntelTHCBaseBus_Device_TGL, PCI\VEN_8086&DEV_43D0	; TGL-H  Port #1
+%IntelTHCBaseBus.DeviceDescP2%=IntelTHCBaseBus_Device_TGL, PCI\VEN_8086&DEV_A0D1	; TGL-LP Port #2
+%IntelTHCBaseBus.DeviceDescP2%=IntelTHCBaseBus_Device_TGL, PCI\VEN_8086&DEV_43D1	; TGL-H  Port #2
+
+;---Separate section to setup filter filters on Cobalt and later OS builds
+[Standard.NTamd64.10.0...21311]
+%IntelTHCBaseBus.DeviceDescP1%=IntelTHCBaseBus_Device_TGL_Cobalt, PCI\VEN_8086&DEV_A0D0	; TGL-LP Port #1
+%IntelTHCBaseBus.DeviceDescP1%=IntelTHCBaseBus_Device_TGL_Cobalt, PCI\VEN_8086&DEV_43D0	; TGL-H  Port #1
+%IntelTHCBaseBus.DeviceDescP2%=IntelTHCBaseBus_Device_TGL_Cobalt, PCI\VEN_8086&DEV_A0D1	; TGL-LP Port #2
+%IntelTHCBaseBus.DeviceDescP2%=IntelTHCBaseBus_Device_TGL_Cobalt, PCI\VEN_8086&DEV_43D1	; TGL-H  Port #2
+
+;================ 19H1 and above (TGL Only) ======================
+[IntelTHCBaseBus_Device_TGL.NT]
+CopyFiles=Drivers_Dir
+
+[IntelTHCBaseBus_Device_TGL.NT.Filters]  
+AddFilter = mshidkmdf, 0, HidLevelSection_TGL
+
+[HidLevelSection_TGL]
+FilterLevel="HidLevel"
+[IntelTHCBaseBus_Device_TGL.NT.HW]
+AddReg=IntelTHCBaseBus_Device_TGL.NT.AddReg
+AddReg=IntelTHCBaseBus_Device_Filters_TGL.AddReg
+;Include=pci.inf
+;Needs=PciD3ColdSupported
+
+[IntelTHCBaseBus_Device_Filters_TGL.AddReg]
+HKR,,UpperFilterLevels,%REG_MULTI_SZ%,"WakeLevel","GpuLevel","HidLevel"
+HKR,,UpperFilterDefaultLevel,,"HidLevel" 
+
+[IntelTHCBaseBus_Device_TGL.NT.AddReg]   
+HKR,,"EnhancedPowerManagementEnabled",    %REG_DWORD%, 1
+HKR,,"DeviceResetNotificationEnabled", %REG_DWORD%,1
+HKR, Interrupt Management,, 0x00000010
+
+;-------------- Service installation
+[IntelTHCBaseBus_Device_TGL.NT.Services]
+AddService = IntelTHCBase,%SPSVCINST_ASSOCSERVICE%, IntelTHCBase_Service_Inst_TGL, IntelTHCBase_Logging
+
+; =========================================================================
+
+;================ Cobalt and later (TGL Only) ======================
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT]
+CopyFiles=Drivers_Dir
+
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT.Filters]
+AddFilter = mshidkmdf, 0, HidLevelSection_TGL_Cobalt
+
+[HidLevelSection_TGL_Cobalt]
+FilterLevel="HidLevel"
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT.HW]
+AddReg=IntelTHCBaseBus_Device_TGL_Cobalt.NT.AddReg
+AddReg=IntelTHCBaseBus_Device_Filters_TGL_Cobalt.AddReg
+Include = input.inf
+Needs = WakeScreenOnTouch.HW
+
+[IntelTHCBaseBus_Device_Filters_TGL_Cobalt.AddReg]
+HKR,,UpperFilterLevels,%REG_MULTI_SZ%,"WakeLevel","GpuLevel","HidLevel"
+HKR,,UpperFilterDefaultLevel,,"HidLevel"
+
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT.AddReg]
+HKR,,"DeviceResetNotificationEnabled", %REG_DWORD%,1
+HKR, Interrupt Management,, 0x00000010
+
+;-------------- Service installation
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT.Services]
+AddService = IntelTHCBase,%SPSVCINST_ASSOCSERVICE%, IntelTHCBase_Service_Inst_TGL, IntelTHCBase_Logging
+
+; =========================================================================
+
+[Drivers_Dir]
+IntelTHCBase.sys
+
+
+; -------------- IntelTHCBase driver install sections TGL
+[IntelTHCBase_Service_Inst_TGL]
+DisplayName    = %IntelTHCBase.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %13%\IntelTHCBase.sys
+LoadOrderGroup = Extended Base
+AddReg=IntelTHCBase_Service_Inst_TGL.AddReg
+
+[IntelTHCBase_Service_Inst_TGL.AddReg]
+HKR,Parameters,LogPages,%REG_DWORD%,0x10
+HKR,Parameters,VerboseOn,%REG_DWORD%,0x1
+HKR,Parameters,UseTICReportDescriptorOnly,%REG_DWORD%,0x01
+HKR,Parameters,LowPowerLTRValue,%REG_DWORD%,0x3FF
+
+[IntelTHCBase_Logging]
+AddReg = IntelTHCBase.EventLog.addreg
+
+[IntelTHCBase.EventLog.addreg]
+HKR, , EventMessageFile, 0x00020000, "%13%\IntelTHCBase.sys"
+HKR, , TypesSupported,   %REG_DWORD%, 7
+
+[IntelTHCBaseBus_Device_TGL.NT.Events]
+AddEventProvider={937AD94E-CA8D-4B8E-8143-3FCE4ACCB8CB},IntelTHCBase_ETW
+
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT.Events]
+AddEventProvider={937AD94E-CA8D-4B8E-8143-3FCE4ACCB8CB},IntelTHCBase_ETW
+
+[IntelTHCBase_ETW]
+ProviderName  = IntelTHCBase
+ResourceFile  = %13%\IntelTHCBase.sys
+MessageFile   = %13%\IntelTHCBase.sys
+
+;
+;--- IntelTHCBaseBus_Device WDF Coinstaller installation ------
+;
+[IntelTHCBaseBus_Device_TGL.NT.Wdf]
+KmdfService = IntelTHCBase, IntelTHCBase_wdfsect
+
+[IntelTHCBaseBus_Device_TGL_Cobalt.NT.Wdf]
+KmdfService = IntelTHCBase, IntelTHCBase_wdfsect
+
+[IntelTHCBase_wdfsect]
+KmdfLibraryVersion = 1.11
+
+
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+INTEL = "Intel"
+StdMfg = "(Standard system devices)"
+DiskId1 = "IntelTHCBase Installation Disk #1"
+IntelTHCBaseBus.DeviceDescP1 = "Intel(R) Precise Touch and Stylus (Intel(R) PTS) - Base Driver - Port #1"
+IntelTHCBaseBus.DeviceDescP2 = "Intel(R) Precise Touch and Stylus (Intel(R) PTS) - Base Driver - Port #2"
+IntelTHCBase.SVCDESC = "Intel(R) Precise Touch and Stylus (Intel(R) PTS) - Base Driver"
+
+
+REG_BINARY          = 0x00000001
+REG_MULTI_SZ		= 0x00010000
+REG_DWORD           = 0x00010001

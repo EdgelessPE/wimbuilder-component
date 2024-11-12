@@ -1,0 +1,106 @@
+;
+; LSI_SCSI.INF - version VLH.0 (Windows Vista/Longhorn)
+;
+; This is the INF file for Windows Vista/Longhorn for the LSI_SCSI
+; based PCI MPT environment (U320 SCSI devices)
+;
+; ********************************************************************
+;                                                                    *
+;   Copyright 2007 LSI Corporation, Inc. All rights reserved.        *
+;                                                                    *
+;   This file is property of LSI Corporation, Inc. and is licensed   *
+;   for use as is.  The receipt of or possession of this file does   *
+;   convey any rights to modify its contents, in whole, or in part,  *
+;   without the specific written consent of LSI Corporation.         *
+;                                                                    *
+; ********************************************************************
+
+[version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%LSI%
+DriverVer=06/03/2008,1.28.03.00
+CatalogFile.ntamd64=pvlhx64.cat
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[SourceDisksFiles.amd64]
+lsi_scsi.sys = 1
+
+[SourceDisksNames]
+1 = %DiskDesc%,,
+
+[Manufacturer]
+%LSI%=LSI, NTamd64
+
+[LSI.NTamd64]
+%DevDesc6% = LSI_SCSI_Inst, PCI\VEN_1000&DEV_0030
+%DevDesc7% = LSI_SCSI_Inst, PCI\VEN_1000&DEV_0032
+
+[ControlFlags]
+ExcludeFromSelect = PCI\VEN_1000&DEV_0030
+ExcludeFromSelect = PCI\VEN_1000&DEV_0032
+
+[LSI_SCSI_Inst]
+CopyFiles = LSI_SCSI_CopyFiles
+AddReg = LSI_SCSI_AddReg
+
+[LSI_SCSI_Inst.HW]
+AddReg = Shutdown_addreg
+DelReg = LegacyScsiportValues
+
+[LSI_SCSI_Inst.Services]
+AddService = LSI_SCSI, %SPSVCINST_ASSOCSERVICE%, LSI_SCSI_Service_Inst, Miniport_EventLog_Inst
+
+[LSI_SCSI_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\lsi_scsi.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+AddReg         = bus_type_scsi
+
+[LSI_SCSI_CopyFiles]
+lsi_scsi.sys,,,1
+
+[LSI_SCSI_AddReg]
+HKLM,SYSTEM\CurrentControlSet\Services\Lsi_scsi\Parameters\Device,DriverParameter,0x00000002,"PlaceHolder=0;"
+
+[Shutdown_addreg]
+HKR,"ScsiPort","NeedsSystemShutdownNotification",0x00010001,1
+
+[LegacyScsiportValues]
+HKR,Scsiport,BusNumber
+HKR,Scsiport,LegacyInterfaceType
+HKR,Scsiport,SlotNumber
+
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+
+[bus_type_scsi]
+HKR, "Parameters", "BusType", 0x00010001, 0x00000001
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[Strings]
+LSI = "LSI Corporation"
+DiskDesc = "LSI PCI Fusion-MPT U320 Driver Install Disk (StorPort)"
+DevDesc6 = "LSI Adapter, Ultra320 SCSI 2000 series, (w/1020/1030)(StorPort)"
+DevDesc7 = "LSI Adapter, Ultra320 SCSI RAID series, (w/1035)(StorPort)"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

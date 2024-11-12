@@ -1,0 +1,43 @@
+;=============================================================================
+; Copyright (c) 2006. Marvell International Ltd.
+; 
+; INF for Windows 2K, Windows XP, Windows server 2003 and Windows Vista
+;
+;============================================================================= 
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Marvell% 
+CatalogFile=mv61xx.cat
+DriverVer=05/24/2012,1.2.0.8400
+[SourceDisksFiles]
+
+[SourceDisksNames]
+
+;[ControlFlags]
+;ExcludeFromSelect = *
+
+[Manufacturer]
+%Marvell%=Marvell,NTamd64
+
+[Marvell]
+%Virtual.DeviceDesc% = NODRV,SCSI\ArrayMARVELL_Virtual_Device__
+
+[Marvell.NTamd64]
+%Virtual.DeviceDesc% = NODRV,SCSI\ArrayMARVELL_Virtual_Device__
+
+[NODRV]
+
+[NODRV.Services]
+AddService = , %SPSVCINST_ASSOCSERVICE%
+
+[Strings]
+Marvell= "Marvell Inc."
+Virtual.DeviceDesc= "Marvell Virtual Device"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+

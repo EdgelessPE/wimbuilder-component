@@ -1,0 +1,87 @@
+;*******************************************
+; amdsfhkmdfi2c.inf
+; AMD SFH KMDF I2C Driver
+; (C) Copyright 2017-18  AMD, Inc.
+;*******************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%ProviderString%
+DriverVer=05/17/2018,1.0.0.73
+CatalogFile = amdsfhkmdfi2c.cat
+
+; ================= Class section =====================
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+;*****************************************
+; amdsfhkmdf  Install Section
+;*****************************************
+
+[Manufacturer]
+%StdMfg%=Standard,NTamd64
+
+; Decorated model section take precedence over undecorated 
+; ones on XP and later.
+[Standard.NTamd64]
+%amdsfhkmdf.DeviceDesc%=amdsfhkmdf_Device, PCI\VEN_1022&DEV_15E6
+
+[amdsfhkmdf_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+amdsfhkmdfi2c.sys
+
+
+;-------------- Service installation
+[amdsfhkmdf_Device.NT.Services]
+AddService = amdsfhkmdf,%SPSVCINST_ASSOCSERVICE%, amdsfhkmdf_Service_Inst
+
+; -------------- amdsfhkmdf driver install sections
+[amdsfhkmdf_Service_Inst]
+DisplayName    = %amdsfhkmdf.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 1               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\amdsfhkmdfi2c.sys
+Dependencies   = SpbCx
+
+[DestinationDirs]
+DefaultDestDir = 12
+amdsfhkmdf_Device_CoInstaller_CopyFiles = 11
+
+[amdsfhkmdf_Device.NT.CoInstallers]
+AddReg=amdsfhkmdf_Device_CoInstaller_AddReg
+CopyFiles=amdsfhkmdf_Device_CoInstaller_CopyFiles
+
+[amdsfhkmdf_Device_CoInstaller_AddReg]
+;
+
+
+[amdsfhkmdf_Device_CoInstaller_CopyFiles]
+;
+
+
+[SourceDisksfiles]
+amdsfhkmdfi2c.sys  = 1,,
+;
+
+
+[amdsfhkmdf_Device.NT.Wdf]
+KmdfService =  amdsfhkmdf, amdsfhkmdf_wdfsect
+[amdsfhkmdf_wdfsect]
+KmdfLibraryVersion = 1.15
+
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ProviderString = "Advanced Micro Devices Inc."
+StdMfg = "Advanced Micro Devices Inc."
+DiskId1 = "AMD SFH KMDF I2C Installation Disk #1"
+amdsfhkmdf.DeviceDesc = "AMD SFH KMDF I2C"
+amdsfhkmdf.SVCDESC = "AMD SFH KMDF I2C Service"
+ClassName       = "AMD SFH KMDF I2C Device"
+

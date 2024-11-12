@@ -1,0 +1,1 @@
+pnputil.exe -i -a *.inf /force

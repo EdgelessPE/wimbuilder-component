@@ -1,0 +1,242 @@
+; ADP80XX.INF
+; $Revision: $
+; $Date: $
+; $State: Exp $
+;
+; The installation file for the PMC-Sierra SPC driver.
+; Copyright (c) PMC-Sierra, Inc. 2006-2015. All rights reserved. 
+;
+; This software contains the valuable trade secrets of Adaptec by PMC or its licensors.
+; The software is protected under international copyright laws and treaties.
+; This software may only be used in accordance with the terms of its accompanying license agreement.
+;
+
+[version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%AG%
+CatalogFile="adp80xx.cat"
+DriverVer=08/05/2015,1.4.0.11068
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksFiles]
+ADP80XX.SYS=1
+;pmcppage.dll=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Specify different paths for different processor architectures.
+;Note that these paths are relative to the root of the physical media,
+; e.g. the location where the INF is located.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[SourceDisksNames.x86]
+1   = %PMC_STRING%,,,"I386"
+
+[SourceDisksNames.amd64]
+1   = %PMC_STRING%,,,"Amd64"
+
+; ===============================================================
+; =================== Table of contents =========================
+; ===============================================================
+
+[Manufacturer]
+%AG%= AG, NTx86.6.2, NTamd64.6.2
+
+;PMC-Sierra Manufacturer device section
+;----------------------;
+; Windows 2012 & above ;
+;----------------------;
+[AG.NTx86.6.2]
+%PCI\VEN_9005&DEV_8081&SUBSYS_08009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8081&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8081&SUBSYS_04009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8081&SUBSYS_04009005
+%PCI\VEN_9005&DEV_8089&SUBSYS_00089005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8089&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8089&SUBSYS_08009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8089&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8089&SUBSYS_00169005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8089&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8089&SUBSYS_16009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8089&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8088&SUBSYS_00089005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8088&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8088&SUBSYS_08009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8088&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8088&SUBSYS_00169005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8088&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8088&SUBSYS_16009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8088&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8074&SUBSYS_08009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8074&SUBSYS_00089005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8077&SUBSYS_16009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8077&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8074&SUBSYS_00089005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8076&SUBSYS_00169005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8076&SUBSYS_16009005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8077&SUBSYS_00169005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8077&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8076&SUBSYS_08089005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_08089005
+%PCI\VEN_9005&DEV_8077&SUBSYS_08089005.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8077&SUBSYS_08089005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_00009005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_08089005
+%PCI\VEN_9005&DEV_8076&SUBSYS_160015D9.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_160015D9
+%PCI\VEN_9005&DEV_8076&SUBSYS_001615D9.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_001615D9
+%PCI\VEN_9005&DEV_8076&SUBSYS_080815D9.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_080815D9
+%PCI\VEN_9005&DEV_8076&SUBSYS_08081028.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_08081028
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_000011F8
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_080011F8
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_000811F8
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8074&SUBSYS_040411F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_000011F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_160011F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_001611F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8076&SUBSYS_080811F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_000011F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_160011F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_001611F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall, PCI\VEN_9005&DEV_8006&SUBSYS_080811F8
+;----------------------;
+; Windows 2012 & above ;
+;----------------------;
+[AG.NTamd64.6.2]
+%PCI\VEN_9005&DEV_8081&SUBSYS_08009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8081&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8081&SUBSYS_04009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8081&SUBSYS_04009005
+%PCI\VEN_9005&DEV_8089&SUBSYS_00089005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8089&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8089&SUBSYS_08009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8089&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8089&SUBSYS_00169005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8089&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8089&SUBSYS_16009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8089&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8088&SUBSYS_00089005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8088&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8088&SUBSYS_08009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8088&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8088&SUBSYS_00169005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8088&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8088&SUBSYS_16009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8088&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8074&SUBSYS_08009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8074&SUBSYS_08009005
+%PCI\VEN_9005&DEV_8076&SUBSYS_16009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8077&SUBSYS_16009005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8077&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8074&SUBSYS_00089005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8074&SUBSYS_00089005
+%PCI\VEN_9005&DEV_8076&SUBSYS_00169005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8077&SUBSYS_00169005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8077&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8076&SUBSYS_08089005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_08089005
+%PCI\VEN_9005&DEV_8077&SUBSYS_08089005.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8077&SUBSYS_08089005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_00009005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_16009005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_00169005
+%PCI\VEN_9005&DEV_8006.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_08089005
+%PCI\VEN_9005&DEV_8076&SUBSYS_160015D9.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_160015D9
+%PCI\VEN_9005&DEV_8076&SUBSYS_001615D9.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_001615D9
+%PCI\VEN_9005&DEV_8076&SUBSYS_080815D9.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_080815D9
+%PCI\VEN_9005&DEV_8076&SUBSYS_08081028.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_08081028
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8074&SUBSYS_000011F8
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8074&SUBSYS_080011F8
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8074&SUBSYS_000811F8
+%PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8074&SUBSYS_040411F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_000011F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_160011F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_001611F8
+%PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8076&SUBSYS_080811F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_000011F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_160011F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_001611F8
+%PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc% = DriverInstall.ntamd64, PCI\VEN_9005&DEV_8006&SUBSYS_080811F8
+
+; ==============================================================
+; =================== Install Sections =========================
+; ==============================================================
+
+;-------------------------------------------;
+; Install section for the Storport miniport ;
+;-------------------------------------------;
+
+[DriverInstall.ntx86]
+CopyFiles = @ADP80XX.SYS
+
+[DriverInstall.ntx86.Services]
+AddService = ADP80XX, %SPSVCINST_ASSOCSERVICE%, Driver_Service_Inst, Miniport_EventLog_Inst
+
+[DriverInstall.ntx86.HW]
+AddReg = Driver_MSI_support
+
+[DriverInstall.ntamd64]
+CopyFiles = @ADP80XX.SYS
+
+[DriverInstall.ntamd64.Services]
+AddService = ADP80XX, %SPSVCINST_ASSOCSERVICE%, Driver_Service_Inst, Miniport_EventLog_Inst
+
+[DriverInstall.ntamd64.HW]
+AddReg = Driver_MSI_support
+
+; ==============================================================
+; ================== Service install sections ==================
+; ==============================================================
+
+[Driver_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\ADP80XX.SYS
+LoadOrderGroup = SCSI Miniport
+AddReg = Driver_Service_AddReg
+
+; =======================================================
+; ================== Registry sections ==================
+; =======================================================
+
+;----------------------------------------------------------------;
+; Hardware-specific registry additions (under Parameters subkey) ;
+;----------------------------------------------------------------;
+[Driver_Service_AddReg]
+HKR,, Tag, %REG_DWORD%, 210
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+HKR, "Parameters", "BusType", 0x00010001, 0x0000000A
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\drivers\ADP80XX.sys"
+HKR,,TypesSupported,0x00010001,7
+
+;                                                                                                                      
+; Software Installation (special reg key settings)                                                                                               
+;-------------------------;
+; MSIX registry sections ;
+;-------------------------;
+[Driver_MSI_support]
+HKR, "Interrupt Management", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001,64
+HKR, "Interrupt Management\Affinity Policy", 0x00000010
+HKR, "Interrupt Management\Affinity Policy", DevicePolicy, 0x00010001, 0x05
+
+[Strings]
+AG = "PMC-Sierra"
+PCI\VEN_9005&DEV_8081&SUBSYS_08009005.DeviceDesc = "Adaptec SAS Adapter 6805H"
+PCI\VEN_9005&DEV_8081&SUBSYS_04009005.DeviceDesc = "Adaptec SAS Adapter 6405H"
+PCI\VEN_9005&DEV_8089&SUBSYS_00089005.DeviceDesc = "Adaptec SAS Adapter 7085HE"
+PCI\VEN_9005&DEV_8089&SUBSYS_08009005.DeviceDesc = "Adaptec SAS Adapter 7805HE"
+PCI\VEN_9005&DEV_8089&SUBSYS_00169005.DeviceDesc = "Adaptec SAS Adapter 70165HE"
+PCI\VEN_9005&DEV_8089&SUBSYS_16009005.DeviceDesc = "Adaptec SAS Adapter 71605HE"
+PCI\VEN_9005&DEV_8088&SUBSYS_00089005.DeviceDesc = "Adaptec SAS Adapter 7085H"
+PCI\VEN_9005&DEV_8088&SUBSYS_08009005.DeviceDesc = "Adaptec SAS Adapter 7805H"
+PCI\VEN_9005&DEV_8088&SUBSYS_00169005.DeviceDesc = "Adaptec SAS Adapter 70165H"
+PCI\VEN_9005&DEV_8088&SUBSYS_16009005.DeviceDesc = "Adaptec SAS Adapter 71605H"
+PCI\VEN_9005&DEV_8074&SUBSYS_08009005.DeviceDesc = "Adaptec SAS Adapter 8805H"
+PCI\VEN_9005&DEV_8074&SUBSYS_00089005.DeviceDesc = "Adaptec SAS Adapter 8085H"
+PCI\VEN_9005&DEV_8076&SUBSYS_16009005.DeviceDesc = "Adaptec SAS Adapter 81605H"
+PCI\VEN_9005&DEV_8076&SUBSYS_00169005.DeviceDesc = "Adaptec SAS Adapter 80165H"
+PCI\VEN_9005&DEV_8076&SUBSYS_08089005.DeviceDesc = "Adaptec SAS Adapter 8885H"
+PCI\VEN_9005&DEV_8077&SUBSYS_16009005.DeviceDesc = "Adaptec SAS Adapter 81605HE"
+PCI\VEN_9005&DEV_8077&SUBSYS_00169005.DeviceDesc = "Adaptec SAS Adapter 80165HE" 
+PCI\VEN_9005&DEV_8077&SUBSYS_08089005.DeviceDesc = "Adaptec SAS Adapter 8885HE"
+PCI\VEN_9005&DEV_8006.DeviceDesc = "Adaptec SATA Adapter"
+PCI\VEN_9005&DEV_8076&SUBSYS_160015D9.DeviceDesc = "Adaptec SAS Adapter 81605H"
+PCI\VEN_9005&DEV_8076&SUBSYS_001615D9.DeviceDesc = "Adaptec SAS Adapter 80165H"
+PCI\VEN_9005&DEV_8076&SUBSYS_080815D9.DeviceDesc = "Adaptec SAS Adapter 8885H" 
+PCI\VEN_9005&DEV_8076&SUBSYS_08081028.DeviceDesc = "Adaptec SAS Adapter 8880H"
+PCI\VEN_9005&DEV_8074&SUBSYS_XXXX11F8.DeviceDesc = "PM8074"
+PCI\VEN_9005&DEV_8076&SUBSYS_XXXX11F8.DeviceDesc = "PM8076"
+PCI\VEN_9005&DEV_8006&SUBSYS_XXXX11F8.DeviceDesc = "PM8006" 
+PMC_STRING                       = "PMC-Sierra SAS/SATA Driver Set"
+
+;Macros (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0
+BASE_SERVICE           = "SYSTEM\CurrentControlSet\Services\ADP80XX\Parameters\Device"

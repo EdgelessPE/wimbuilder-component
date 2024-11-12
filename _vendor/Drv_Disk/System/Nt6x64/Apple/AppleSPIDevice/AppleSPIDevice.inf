@@ -1,0 +1,79 @@
+;*****************************************************************************
+; INF for AppleSPIDevice
+; Copyright © 2016 Apple Inc. All Rights Reserved.
+;*****************************************************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%APPLE%
+CatalogFile=AppleSPIDevice.cat
+DriverVer=05/26/2016,6.1.6500.0
+
+[DestinationDirs]
+DefaultDestDir = 12
+AppleSPIDevice_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+AppleSPIDevice.sys  = 1,,
+WdfCoInstaller01011.dll=1
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%APPLE%=APPLE,NTamd64
+
+[APPLE.NTamd64]
+%AppleSPIDevice.DeviceDesc%=AppleSPIDevice_Device, ACPI\APP000D
+
+[AppleSPIDevice_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+AppleSPIDevice.sys
+
+;-------------- Service installation
+[AppleSPIDevice_Device.NT.Services]
+AddService = AppleSPIDevice,%SPSVCINST_ASSOCSERVICE%, AppleSPIDevice_Service_Inst
+
+; -------------- AppleSPIDevice driver install sections
+[AppleSPIDevice_Service_Inst]
+DisplayName    = %AppleSPIDevice.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AppleSPIDevice.sys
+LoadOrderGroup = Extended Base
+
+;
+;--- AppleSPIDevice_Device Coinstaller installation ------
+;
+
+[AppleSPIDevice_Device.NT.CoInstallers]
+AddReg=AppleSPIDevice_Device_CoInstaller_AddReg
+CopyFiles=AppleSPIDevice_Device_CoInstaller_CopyFiles
+
+[AppleSPIDevice_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01011.dll,WdfCoInstaller"
+
+[AppleSPIDevice_Device_CoInstaller_CopyFiles]
+WdfCoInstaller01011.dll
+
+[AppleSPIDevice_Device.NT.Wdf]
+KmdfService =  AppleSPIDevice, AppleSPIDevice_wdfsect
+[AppleSPIDevice_wdfsect]
+KmdfLibraryVersion = 1.11
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+APPLE = "Apple Inc."
+ClassName="AppleSPIDevice"
+DiskName = "AppleSPIDevice Installation Disk"
+AppleSPIDevice.DeviceDesc = "Apple SPI Device"
+AppleSPIDevice.SVCDESC = "AppleSPIDevice Service"

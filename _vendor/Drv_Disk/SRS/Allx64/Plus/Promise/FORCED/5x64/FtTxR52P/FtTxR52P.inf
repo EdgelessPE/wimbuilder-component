@@ -1,0 +1,162 @@
+
+;  Copyright (C) 1998-2003 Promise Technology,Inc
+
+[Version]
+Signature="$Chicago$"
+Class=SCSIAdapter
+ClassGuid={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%PROMISE%
+CatalogFile=fttxr52P.cat
+DriverVer=11/08/2005, 2.06.0.311
+
+[SourceDisksNames]
+1 = %DISKNAME1%,,,,
+2 = %DISKNAME2%,,,,
+
+[SourceDisksFiles]
+fttxr52P.sys = 1
+bb-run.sys = 1
+;;;dontgo.sys = 1
+; ftutil2.dll = 1
+
+[DestinationDirs]
+DefaultDestDir	= 12
+CacheDll = 11;
+
+;[DriverFiles_9X]
+
+[DriverFiles_NT_2K]
+fttxr52P.sys,,,0x20
+
+[DriverFiles_XP]
+fttxr52P.sys,,,0x20
+
+[FilterDriverFiles]
+bb-run.sys,,,0x20
+;;;dontgo.sys,,,0x20
+
+[CacheDll]
+;ftutil2.dll,,,0x20
+
+[Manufacturer]
+%Promise%=Promise,NTamd64
+[Promise.NTamd64]
+%PCI\VEN_105A&DEV_3571.DeviceDesc% = FasttrakPCI_Oii , PCI\VEN_105A&DEV_3571
+%PCI\VEN_105A&DEV_3570.DeviceDesc% = FasttrakPCI_Oii , PCI\VEN_105A&DEV_3570
+%Promise_Raid_ControllerDesc%=NODRV,SCSI\ProcessorPromise_RAID_Console____
+ 
+[NODRV]
+AddReg=NODRV_AddReg
+;
+
+[NODRV.Services]
+;
+; this is blank to just allow the install to succeed
+;
+AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+;; Win9x install sections
+;;
+;[FasttrakPCI_Oii]
+
+;; Windows NT4.0 and Windows 2000 install sections
+;;
+[FasttrakPCI_Oii]
+Copyfiles=DriverFiles_NT_2K, FilterDriverFiles	;;;, CacheDll
+;;;AddReg   = DontGo.AddReg 
+Reboot
+
+[FasttrakPCI_Oii.Services]
+AddService = fttxr52P, 2, FasttrakPCI_Service_Inst, Miniport_EventLog_Inst
+AddService = bb-run,,FilterService_Install
+;;;AddService = dontgo,,DontGo.Service.Install
+
+;; Windows XP install sections
+;;
+[FasttrakPCI_Oii_XP]
+Copyfiles=DriverFiles_XP, FilterDriverFiles	;;;, CacheDll
+;;;AddReg   = DontGo.AddReg 
+Reboot
+
+[FasttrakPCI_Oii_XP.Services]
+AddService = fttxr52P, 2, FasttrakPCI_Service_Inst, Miniport_EventLog_Inst
+AddService = bb-run,,FilterService_Install
+;;;AddService = dontgo,,DontGo.Service.Install
+
+[FasttrakPCI_Service_Inst]
+ServiceType    = 1      ; SERVICE_KERNEL_DRIVER
+StartType      = 0      ; SERVICE_BOOT_START
+ErrorControl   = 1      ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\fttxr52P.sys
+LoadOrderGroup = "SCSI Miniport"
+AddReg         = pnpsafe_pci_addreg, ftsata_Device_addreg 
+;;;;AddReg         = pnpsafe_pci_addreg, ftsata_cache_addreg, ftsata_Device_addreg 
+
+[FilterService_Install]
+DisplayName	= Promise driver accelerator
+ServiceType	= 1
+StartType	= 0
+ErrorControl	= 0
+ServiceBinary	= %12%\bb-run.sys
+LoadOrderGroup  = "Filter"
+
+;;;[DontGo.Service.Install]
+;;;DisplayName    = %DontGo_Service_Desc%
+;;;ServiceType    = 1
+;;;StartType      = 0
+;;;ErrorControl   = 1
+;;;ServiceBinary  = %12%\DontGo.sys
+;;;LoadOrderGroup = "PnP Filter"
+
+; supporting P&P on the PCI(5) bus.
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+
+;*************************************************************
+;;;;[ftsata_cache_addreg]
+;;;;HKR, "Parameters\Cache", "LongBurstDisable",0x00010001, 0x00000000
+;;;;HKR, "Parameters\Cache", "NCQTCQEnable",0x00010001, 0x00000000
+
+[ftsata_Device_addreg]
+HKR, "Parameters\Device", "NumberOfRequests",0x00010001, 0x00000020
+;;;;HKLM,System\CurrentControlSet\Services\Disk,TimeOutValue,%REG_DWORD%,0x0000003c
+
+;;;[DontGo.AddReg]
+;;;HKLM, System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00010008, DontGo
+
+;;;[DontGo.DelReg]
+;;;HKLM, System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}, UpperFilters, 0x00018002, DontGo
+
+[NODRV_AddReg]
+
+;*************************************************************
+;The NT EventLog entries are the same for all SCSI miniports.
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\Drivers\fttxr52P.sys"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+;[IOS]
+;HKR,,DevLoader,,*IOS
+;HKR,,DontLoadIfConflict,,"Y"
+
+;[WIN98.REG]
+;HKR,,PortDriver,,98DriverName.mpd
+
+[strings]
+DISKNAME1="Promise FastTrak 519/579/719/779 Software Raid5 Driver Diskette"
+DISKNAME2="Windows system"
+Promise="Promise Technology"
+
+PCI\VEN_105A&DEV_3571.DeviceDesc="Windows Promise FastTrak TX2200 (tm) Controller (x86_64)"
+PCI\VEN_105A&DEV_3570.DeviceDesc="Windows Promise FastTrak TX2300 (tm) Controller (x86_64)"
+Promise_Raid_ControllerDesc= "Windows Promise RAID Console SCSI Processor Device" 
+
+;;;DontGo_Service_Desc = "Promise Removable Disk Control Driver"
+
+REG_EXPAND_SZ=0x00020000
+REG_DWORD=0x00010001
+
+SPSVCINST_ASSOCSERVICE = 0x00000002

@@ -1,0 +1,116 @@
+;============================================================================ 
+; Installation file (.inf) for Windows XP/Vista/7.
+;
+; Copyright (c) ASUS Tek
+;============================================================================
+
+[Version]
+Signature="$Windows NT$"
+Provider=%VenderName%
+ClassGUID={4D36E96F-E325-11CE-BFC1-08002BE10318}
+Class=Mouse
+CatalogFile=AsusTP.cat
+DriverVer=03/17/2014,2.0.0.31
+
+[SourceDisksNames]
+1=%DiskName%,,
+
+[SourceDisksFiles]
+AsusTP.sys = 1
+;----------------------------------------------------------------------------
+; Manufacturer Sections
+;----------------------------------------------------------------------------
+
+[Manufacturer]
+%VenderName%   = ASUS.Mfg, NTamd64, NTx86
+
+[ASUS.Mfg.NTx86]
+%PS2.ELANDeviceDesc% 		= ATP0105_Inst, ACPI\SYN0A19								; Image Sensor
+%PS2.ELANDeviceDesc% 		= ATP0105_Inst, ACPI\SYN0A2D								; Image Sensor
+
+
+
+
+[ASUS.Mfg.NTamd64]
+%PS2.ELANDeviceDesc% 		= ATP0105_Inst, ACPI\SYN0A19								; Image Sensor
+%PS2.ELANDeviceDesc% 		= ATP0105_Inst, ACPI\SYN0A2D								; Image Sensor
+
+
+
+;----------------------------------------------------------------------------
+; Install Sections
+;----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir 		= 12			; Driver directory
+ATPSys.CopyFiles 	= 12			; Driver directory
+
+
+[ATP_Service_Inst]
+DisplayName    = %PS2.DeviceDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 0                  ; SERVICE_ERROR_IGNORE
+ServiceBinary  = %12%\AsusTP.sys
+LoadOrderGroup = Pointer Port
+
+
+;----------------------------------------------------------------------------
+; Common File Copy and Registry Operations
+;----------------------------------------------------------------------------
+
+[ATPSys.CopyFiles]
+AsusTP.sys,,,0x00000001
+
+;----------------------------------------------------------------------------
+; PS/2 SmartPad
+;----------------------------------------------------------------------------
+[ATP0105_Inst]
+Include=msmouse.inf
+Needs=PS2_Inst
+CopyFiles=ATPSys.CopyFiles
+
+[ATP0105_Inst.Services]
+Include=msmouse.inf
+Needs=PS2_Inst.Services
+AddService = ATP,0x00000000, ATP_Service_Inst
+
+[ATP0105_Inst.HW]
+AddReg = ATP_AddReg.HW
+
+;----------------------------------------------------------------------------
+
+[ATP_AddReg.HW]
+HKR,,"UpperFilters",0x00010000,"ATP"
+
+;----------------------------------------------------------------------------
+; Entry point for Uninstallation.
+; This section is executed as part of Uninstallation.
+;----------------------------------------------------------------------------
+
+[Uninstall]
+CopyFiles = No_Files
+DelFiles = No_Files
+DelReg = Uninstall_DelReg
+
+[No_Files]
+
+;----------------------------------------------------------------------------
+; Uninstall Section
+;----------------------------------------------------------------------------
+
+[Uninstall_DelReg]
+;----------------------------------------------------------------------------
+; String Table
+;----------------------------------------------------------------------------
+
+[Strings]
+Publisher 				= "ASUS Tek. Corporation"
+PS2.DeviceDesc 			= "ASUS Input Device"
+PS2.ELANDeviceDesc 		= "ASUS Touchpad"
+DiskName  				= "ASUSWare Driver Disk"
+VenderName				= "ASUS"
+
+; Driver Information Entries
+DriverProduct			= "ASUS Input Device Driver"
+DriverVersion			= "2.0.0.31"

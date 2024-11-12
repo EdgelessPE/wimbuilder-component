@@ -1,0 +1,192 @@
+;-----------------------------------------------------------------------------
+
+;
+; bcraid.inf = Installation for Dell PERC S110 device driver
+;
+
+; Copyright (c) 2002-2008 Ciprico Inc.  All rights reserved.
+
+; Copyright (c) 2008-2011 Dot Hill Systems Corp.  All rights reserved.
+
+; Copyright (c) 2012-2016 Dell Inc.  All rights reserved.
+
+;
+;-----------------------------------------------------------------------------
+
+; - Class and ClassGUID specify the type of driver and must match
+
+;     (see $DDKPATH/inc/api/devguid.h).
+
+; - Driver provided by Dell Inc. for PERC S110 3.2 software.
+
+;   (3.2.0-0014)
+
+;-----------------------------------------------------------------------------
+
+
+
+;-----------------------------------------------------------------------------
+
+[Version]
+
+Signature = "$Windows NT$"
+
+Class = SCSIAdapter
+
+ClassGUID = {4D36E97B-E325-11CE-BFC1-08002BE10318}
+
+Provider = %DELL%
+
+CatalogFile.ntamd64 = bcraid3.cat
+
+DriverVer = 07/29/2016,3.2.0.0014
+
+PnpLockDown = 1
+
+DriverPackageDisplayName = %bcraid_Desc%
+
+DriverPackageType = PlugAndPlay
+
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames]
+
+1 = %bcraid_Desc%
+
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksFiles]
+
+bcraid3.sys = 1
+
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+
+DefaultDestDir = 12   ;%WinDir%\System32\Drivers directory on NT-based systems
+
+
+;-----------------------------------------------------------------------------
+
+[ControlFlags]
+
+ExcludeFromSelect = *
+
+
+;-----------------------------------------------------------------------------
+
+[Manufacturer]
+
+%DELL% = DELL,ntamd64
+
+
+;-----------------------------------------------------------------------------
+
+[DELL.ntamd64]
+
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04DC1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04F71028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04CF1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04FA1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04CE1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04DB1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_048C1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04E71028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04F61028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04F81028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_04F91028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_1D04&subsys_05EF1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8C04&subsys_05E51028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_2823&subsys_05F11028
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst]
+
+CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst_VST]
+
+CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+[DefaultDestDir]
+
+bcraid3.sys,,,0x00002004
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst.Services]
+
+AddService = bcraid3,0x00000002,bcraid_Service_Inst
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst_VST.Services]
+
+AddService = bcraid3,0x00000002,bcraid_Service_Inst_VST
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Service_Inst]
+
+ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+StartType     = 0                    ; SERVICE_BOOT_START
+
+ErrorControl  = 2                    ; SERVICE_ERROR_SEVERE
+
+ServiceBinary = %12%\bcraid3.sys
+
+AddReg = bcraid_Inst_AddReg
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Service_Inst_VST]
+
+ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+StartType     = 0                    ; SERVICE_BOOT_START
+
+ErrorControl  = 2                    ; SERVICE_ERROR_SEVERE
+
+ServiceBinary = %12%\bcraid3.sys
+AddReg = bcraid_Inst_AddReg,bcraid_Inst_VST_AddReg
+
+
+;-----------------------------------------------------------------------------
+[bcraid_Inst_AddReg]
+
+HKR, "Parameters\PnpInterface", 5, 0x00010001, 0x00000001
+
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 254
+
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+
+;-----------------------------------------------------------------------------
+[bcraid_Inst_VST_AddReg]
+
+HKR, "Parameters\Device", "DriverParameter", 0, "VST"
+
+
+;-----------------------------------------------------------------------------
+
+
+[Strings]
+DELL = "Dell Inc."
+
+bcraid_Desc = "Dell PERC S110 Controller [storport]"
+
+

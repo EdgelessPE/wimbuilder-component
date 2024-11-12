@@ -1,0 +1,187 @@
+; stexstpt.INF
+; Copyright (c) 2011-2016 Promise Technology, Inc.
+;
+[Version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+CatalogFile=stexstpt.cat
+Provider=%Provider%
+DriverVer=02/21/2017, 6.2.0.6
+;
+
+[DestinationDirs]
+stex.Files.amd64_12 = 12
+
+[SourceDisksNames.amd64]
+0=%Desc_amd640%
+
+[SourceDisksFiles.amd64]
+stexstpt.sys=0,
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%Promise%=Promise, ntamd64
+%SymplyStor%=SymplyStor, ntamd64
+%GSPD%=GSPD, ntamd64
+
+[GSPD.ntamd64]
+;0x105A/0x8760/1C58/0x42D9 (G-SPEED Studio R/G-SPEED StudioXL)
+%stexGSPDDesc%=stex_Inst,PCI\VEN_105A&DEV_8760&SUBSYS_42D91C58
+;0x105A/0x8870/1C58/0x4330 (G-SPEED TB3 Shuttle XL)
+%stexGSPDDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8870&SUBSYS_43301C58
+
+[SymplyStor.ntamd64]
+;0x105A/0x8871/105A/0x4311 (SymplyStor4 E)
+%stexSymplyStorDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8871&SUBSYS_4311105A
+;0x105A/0x8871/105A/0x4312 (SymplyStor8 E)
+%stexSymplyStorDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8871&SUBSYS_4312105A
+;0x105A/0x8871/105A/0x4321 (SymplyStor4)
+%stexSymplyStorDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8871&SUBSYS_4321105A
+;0x105A/0x8871/105A/0x4322 (SymplyStor8)
+%stexSymplyStorDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8871&SUBSYS_4322105A
+
+[Promise.ntamd64]
+; Pluto Series
+%stexYellowstoneDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8870&SUBSYS_8870105A
+; P3 Series
+%stexYellowstoneDesc%=stex_Instmsi,PCI\VEN_105A&DEV_8870&SUBSYS_4300105A
+; P1R6 and P2 Series
+%stexYellowstoneDesc%=stex_Inst,PCI\VEN_105A&DEV_8760&SUBSYS_42D1105A
+; P1R4
+%stexYellowstoneDesc%=stex_Inst,PCI\VEN_105A&DEV_8760&SUBSYS_42D2105A
+;%Promise_Raid_ConsoleDesc%=NODRV,SCSI\ProcessorPromise_
+
+;[NODRV]
+;CopyFiles=MoveNODRV
+
+;[MoveNODRV]
+
+;[NODRV.Services]
+;
+; this is blank to just allow the install to succeed
+;
+;AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+
+
+[stex_Instmsi.ntamd64]
+CopyFiles = stex.Files.amd64_12
+
+[stex_Instmsi.ntamd64.HW]
+;Include=machine.inf
+;Needs=PciIoSpaceNotRequired.HW
+AddReg=msi_addreg
+AddReg=IoSpaceNotRequired
+
+[stex_Instmsi.ntamd64.Services]
+AddService = stexstpt,0x00000002,stex_Service_Instamd64, stex_EventLog_Inst
+
+
+[stex_Inst.ntamd64]
+CopyFiles = stex.Files.amd64_12
+
+[stex_Inst.ntamd64.HW]
+;Include=machine.inf
+;Needs=PciIoSpaceNotRequired.HW
+AddReg=IoSpaceNotRequired
+
+[stex_Inst.ntamd64.Services]
+AddService = stexstpt,0x00000002,stex_Service_Instamd64, stex_EventLog_Inst
+
+[stex_Service_Instamd64]
+ServiceType = %SERVICE_KERNEL_DRIVER%
+StartType =   %SERVICE_BOOT_START%
+ErrorControl =     %SERVICE_ERROR_NORMAL%
+ServiceBinary =  %12%\stexstpt.sys
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+AddReg = bus_type_raid
+AddReg = console_remove_override
+AddReg = debug_event_option
+
+[stex.Files.amd64_12]
+stexstpt.sys
+
+[stex_EventLog_Inst]
+AddReg = stex_EventLog_Inst.AddReg
+
+[stex_EventLog_Inst.AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\stexstpt.sys"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg]
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001
+HKR, Parameters\Device,"RESET",0x00010001,1
+HKLM,"SYSTEM\CurrentControlSet\Services\stexstpt\Parameters\Device","NumberOfRequests",0x00010001,1024
+HKLM,"SYSTEM\CurrentControlSet\Services\disk","TimeoutValue",0x00010001,90
+
+[IoSpaceNotRequired]
+HKR,e5b3b5ac-9725-4f78-963f-03dfb1d828c7,IoNotRequired,0x10001,1
+
+[msi_addreg]
+HKR, Interrupt Management,,0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, 0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, MSISupported, 0x00010001, 1   
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 64
+HKR, "Interrupt Management\Affinity Policy", 0x00000010
+HKR, "Interrupt Management\Affinity Policy", DevicePolicy, 0x00010001, 0x05
+
+[bus_type_raid]
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+
+[console_remove_override]
+HKLM,"SYSTEM\CurrentControlSet\Control\DeviceOverrides\SCSI#ProcessorPromise_RAID_Console____1.00\LocationPaths\*","Removable",0x00010001,0
+HKLM,"SYSTEM\CurrentControlSet\Control\DeviceOverrides\SCSI#ProcessorPromise___Pegasus2_V-LUN0504\LocationPaths\*","Removable",0x00010001,0
+HKLM,"SYSTEM\CurrentControlSet\Control\DeviceOverrides\SCSI#ProcessorGSPD____RAID_Console____1.00\LocationPaths\*","Removable",0x00010001,0
+HKLM,"SYSTEM\CurrentControlSet\Control\DeviceOverrides\SCSI#ProcessorHGST_______G-SPEED_V-LUN0504\LocationPaths\*","Removable",0x00010001,0
+
+[debug_event_option]
+HKR, "Parameters", "DebugEventOption", 0x00010001, 0x00000000
+
+;[pnpsafe_isa_addreg]
+;HKR, Parameters\PnpInterface, 1, 0x00010001, 0x00000001
+
+;[pnpsafe_eisa_addreg]
+;HKR, Parameters\PnpInterface, 2, 0x00010001, 0x00000001
+
+
+[Strings]
+
+;  *******Localizable Strings*******
+Provider= "Promise Technology, Inc."
+Desc_amd640= "Promise Pegasus SATA/SAS RAID Controller Driver - 64bits platform"
+
+Promise= "Promise Technology, Inc."
+stexYellowstoneDesc = "Promise Pegasus RAID Controller"
+Promise_Raid_ConsoleDesc= "Promise RAID Console"
+
+SymplyStor = "Symply Inc."
+stexSymplyStorDesc = "Symply RAID Controller"
+SymplyStor_Raid_ConsoleDesc= "Symply RAID Console"
+
+GSPD= "G-Technology, Inc."
+stexGSPDDesc = "G-Technology G-SPEED RAID Controller"
+G-Technology_Raid_ConsoleDesc= "G-Technology RAID Console"
+
+;  *******Non Localizable Strings*******
+
+SERVICE_BOOT_START = 0x0
+SERVICE_SYSTEM_START = 0x1
+SERVICE_AUTO_START = 0x2
+SERVICE_DEMAND_START = 0x3
+SERVICE_DISABLED = 0x4
+
+SERVICE_KERNEL_DRIVER = 0x1
+SERVICE_ERROR_IGNORE = 0x0
+SERVICE_ERROR_NORMAL = 0x1
+SERVICE_ERROR_SEVERE = 0x2
+SERVICE_ERROR_CRITICAL = 0x3
+
+REG_EXPAND_SZ = 0x00020000
+REG_DWORD = 0x00010001
+
+SPSVCINST_ASSOCSERVICE=0x00000002

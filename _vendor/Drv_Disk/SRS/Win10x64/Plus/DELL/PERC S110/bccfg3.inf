@@ -1,0 +1,210 @@
+;-----------------------------------------------------------------------------
+
+;
+; bccfg3.inf = Installation for Dell PERC S110 device driver
+;
+
+; Copyright (c) 2002-2008 Ciprico Inc.  All rights reserved.
+
+; Copyright (c) 2008-2011 Dot Hill Systems Corp.  All rights reserved.
+
+; Copyright (c) 2012-2016 Dell Inc.  All rights reserved.
+
+;
+;-----------------------------------------------------------------------------
+
+;- This version supports Windows XP and later operating systems.
+
+; - Class and ClassGUID specify the type of driver and must match
+
+;     (see $DDKPATH/inc/api/devguid.h).
+
+; - Driver provided by Dell Inc. for PERC S110 3.2 software.
+
+;   (3.2.0-0014)
+
+;-----------------------------------------------------------------------------
+
+
+
+;-----------------------------------------------------------------------------
+
+[Version]
+
+Signature = "$Windows NT$"
+
+Class = System
+
+ClassGUID   = {4D36E97D-E325-11CE-BFC1-08002BE10318}
+
+Provider = %DELL%
+
+CatalogFile.ntamd64 = bcraid3.cat
+
+DriverVer = 07/29/2016,3.2.0.0014
+
+PnpLockDown = 1
+
+;DriverPackageDisplayName = %bccfg_Desc%
+
+;DriverPackageType = PlugAndPlay
+
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames]
+1 = %bccfg_Desc%
+
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksFiles]
+bccfg3.sys = 1
+
+
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+
+DefaultDestDir = 12   ;%WinDir%\System32\Drivers directory on NT-based systems
+
+
+;-----------------------------------------------------------------------------
+
+[ControlFlags]
+
+ExcludeFromSelect = *
+
+
+;-----------------------------------------------------------------------------
+
+[Manufacturer]
+
+%DELL% = DELL,ntamd64
+
+
+;-----------------------------------------------------------------------------
+
+[DELL.ntamd64]
+
+%bccfg_Desc% = bccfg_Inst, SCSI\ProcessorRAIDCOREConfiguration___V1.1
+
+
+;-----------------------------------------------------------------------------
+
+[bccfg_Inst]
+
+CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+;[bcraid_Inst_VST]
+
+;CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+[DefaultDestDir]
+
+bccfg3.sys,,,0x00002004
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst.Services]
+
+AddService = bccfg3,0x00000002,bcraid_Service_Inst
+
+
+;-----------------------------------------------------------------------------
+
+;[bcraid_Inst_VST.Services]
+
+;AddService = bccfg3,0x00000002,bcraid_Service_Inst_VST
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Service_Inst]
+
+ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+StartType     = 3                    ; SERVICE_DEMAND_START
+
+ErrorControl  = 2                    ; SERVICE_ERROR_SEVERE
+
+ServiceBinary = %12%\bccfg3.sys
+
+AddReg = bcraid_Inst_AddReg
+
+
+;-----------------------------------------------------------------------------
+
+;[bcraid_Service_Inst_VST]
+
+;ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+;StartType     = 0                    ; SERVICE_BOOT_START
+
+;ErrorControl  = 2                    ; SERVICE_ERROR_SEVERE
+
+;ServiceBinary = %12%\bcraid3.sys
+;AddReg = bcraid_Inst_AddReg,bcraid_Inst_VST_AddReg
+
+
+;-----------------------------------------------------------------------------
+;[bcraid_Inst_AddReg]
+
+;HKR, "Parameters\PnpInterface", 5, 0x00010001, 0x00000001
+
+;HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 254
+
+;HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+;HKLM,"System\CurrentControlSet\Services\Disk","TimeOutValue",0x00010001,0x0000003C
+
+
+;-----------------------------------------------------------------------------
+;[bcraid_Inst_VST_AddReg]
+
+;HKR, "Parameters\Device", "DriverParameter", 0, "VST"
+
+
+;-----------------------------------------------------------------------------
+
+[bccfg_Inst]
+
+CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+[bccfg_Inst.Services]
+
+AddService = bccfg3,0x00000002,bccfg_Service_Inst
+
+
+;-----------------------------------------------------------------------------
+
+[bccfg_Service_Inst]
+
+ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+StartType     = 3                    ; SERVICE_DEMAND_START
+
+ErrorControl  = 1                    ; SERVICE_ERROR_NORMAL
+
+ServiceBinary = %12%\bccfg3.sys
+
+DisplayName   = %bccfg_Desc%
+
+
+;-----------------------------------------------------------------------------
+
+[Strings]
+DELL = "Dell Inc."
+
+bccfg_Desc = "Dell PERC S110 Configuration Device"
+

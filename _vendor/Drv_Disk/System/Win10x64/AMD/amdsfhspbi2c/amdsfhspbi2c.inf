@@ -1,0 +1,66 @@
+;*******************************************
+; amdsfhspbi2c.inf
+; AMD SFH SPB I2C Driver
+; (C) Copyright 2017-18  AMD, Inc.
+;*******************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%AMD%
+DriverVer=05/17/2018,1.0.0.73
+CatalogFile=amdsfhspbi2c.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+amdsfhspbi2c.sys  = 1,,
+
+;========================================================================
+;                64-Bit NT Driver
+;========================================================================
+
+[Manufacturer]
+%AMD_MFG%=Standard,NTamd64
+
+; Decorated model section take precedence over undecorated 
+; ones on XP and later.
+[Standard.NTamd64]
+%amdsfhspbi2c.DeviceDesc%=amdsfhspbi2c_Device, ACPI\AMDI0011
+
+[amdsfhspbi2c_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+amdsfhspbi2c.sys
+
+
+;-------------- Service installation
+[amdsfhspbi2c_Device.NT.Services]
+AddService = amdsfhspbi2c,%SPSVCINST_ASSOCSERVICE%, amdsfhspbi2c_Service_Inst
+
+; -------------- amdsfhspbi2c driver install sections
+[amdsfhspbi2c_Service_Inst]
+DisplayName    = %amdsfhspbi2c.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\amdsfhspbi2c.sys
+Dependencies   = SpbCx
+
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+AMD = "Advanced Micro Devices"
+AMD_MFG = "Advanced Micro Devices"
+AMDCIR.SvcDesc = "AMD SFH I2C Controller Service"
+AMDCIR.DrvDesc = "AMD SFH I2C Controller"
+DISK_NAME = "AMD SFH I2C Controller Install Disk"
+DiskId1 = "AMD SFH I2C Controller Installation Disk #1"
+amdsfhspbi2c.DeviceDesc = "AMD SFH I2C Controller"
+amdsfhspbi2c.SVCDESC = "AMD SFH I2C Controller Service"

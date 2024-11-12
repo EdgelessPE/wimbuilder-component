@@ -1,0 +1,376 @@
+
+; 
+; Installation INF for the QLogic BR-series Fibre Channel Adapter 
+; (c) COPYRIGHT 2005-2013 Brocade Communications Inc, ALL RIGHTS RESERVED. 
+; (c) COPYRIGHT 2014 QLogic Corporation, ALL RIGHTS RESERVED. 
+; 
+ 
+[Version] 
+Signature="$Windows NT$" 
+Provider=%MfgName% 
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318} 
+Class=SCSIAdapter 
+DriverVer=09/29/2014,3.2.5.0
+CatalogFile=bfad.cat 
+DriverPackageType=PlugAndPlay 
+DriverPackageDisplayName=%PkgName% 
+ 
+; 
+; Source file information 
+; 
+ 
+[SourceDisksNames] 
+1 = %DiskDesc%,,,"" 
+ 
+[SourceDisksFiles] 
+bfad.sys = 1,, 
+bfad_up.sys  = 1,, 
+bfad.dll = 1,, 
+libdbfaj.dll = 1,, 
+ 
+[SourceDisksFiles.amd64] 
+bfad.sys = 1,, 
+bfad_up.sys  = 1,, 
+bfad.dll = 1,, 
+libdbfaj.dll = 1,, 
+libdbfaj32.dll = 1,, 
+ 
+[DestinationDirs] 
+; 
+;[file-list-section=dirid[,subdir]] 
+; 
+DefaultDestDir   = 12	; %windir%\system32\drivers directory on NT-based systems 
+bfadcocopy = 11 
+bfaj32_CopyFiles = 10,"SysWow64" 
+ 
+; 
+; Driver information 
+; 
+ 
+[Manufacturer] 
+; 
+; The manufacturer-identifier for the HBA device. 
+; 
+%MfgName%   = BrcdModelsSection, NTx86.6.0, NTamd64.6.0, NTamd64.6.1,NTamd64.6.2 
+ 
+[BrcdModelsSection.NTx86.6.0] 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%CLASS_CODE% 
+%Ct2FC.DeviceDesc% = BrcdCatapultInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC%&%CT2_FC_SUBSYS_ID% 
+%Ct2FC4PORT.DeviceDesc% = BrcdCatapultInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC_4PORT%&%CT2_FC_SUBSYS_ID% 
+%CatapultFC.DeviceDesc% = BrcdCatapultInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CT_FC%&%CLASS_CODE% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%CLASS_CODE% 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%SUBSYSTEM_ID% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTx86.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%SUBSYSTEM_ID% 
+ 
+[BrcdModelsSection.NTamd64.6.0] 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%CLASS_CODE% 
+%Ct2FC.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC%&%CT2_FC_SUBSYS_ID% 
+%Ct2FC4PORT.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC_4PORT%&%CT2_FC_SUBSYS_ID% 
+%CatapultFC.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CT_FC%&%CLASS_CODE% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%CLASS_CODE% 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%SUBSYSTEM_ID% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.0, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%SUBSYSTEM_ID% 
+ 
+[BrcdModelsSection.NTamd64.6.1] 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%CLASS_CODE% 
+%Ct2FC.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC%&%CT2_FC_SUBSYS_ID% 
+%Ct2FC4PORT.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC_4PORT%&%CT2_FC_SUBSYS_ID% 
+%CatapultFC.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CT_FC%&%CLASS_CODE% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%CLASS_CODE% 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%SUBSYSTEM_ID% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.1, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%SUBSYSTEM_ID% 
+ 
+[BrcdModelsSection.NTamd64.6.2] 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%CLASS_CODE% 
+%Ct2FC.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC%&%CT2_FC_SUBSYS_ID% 
+%Ct2FC4PORT.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC_4PORT%&%CT2_FC_SUBSYS_ID% 
+%CatapultFC.DeviceDesc% = BrcdCatapultInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CT_FC%&%CLASS_CODE% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%CLASS_CODE% 
+%CrossbowFC.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%SUBSYSTEM_ID% 
+%CrossbowFCfilter.DeviceDesc% = BrcdUpperFilterInstallSection.NTamd64.6.2, PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%SUBSYSTEM_ID% 
+ 
+[ControlFlags] 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%CLASS_CODE% 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%CLASS_CODE% 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC%&%CT2_FC_SUBSYS_ID% 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CT2_FC_4PORT%&%CT2_FC_SUBSYS_ID% 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CT_FC%&%CLASS_CODE% 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CBW_2PORT%&%SUBSYSTEM_ID% 
+ExcludeFromSelect = PCI\%VENDOR_ID%&%DEVICE_ID_CBW_1PORT%&%SUBSYSTEM_ID% 
+ 
+; 
+; Upper Filter 
+; 
+[BrcdUpperFilterInstallSection.NTx86.6.0.HW] 
+AddReg = BrcdUpperFilterAddReg 
+Needs = BrcdInstallSection_2k8.HW 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.0.HW] 
+AddReg = BrcdUpperFilterAddReg 
+Needs = BrcdInstallSection_2k8.HW 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.1.HW] 
+AddReg = BrcdUpperFilterAddReg 
+Needs = BrcdInstallSection_2k8.HW 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.2.HW] 
+AddReg = BrcdUpperFilterAddReg 
+Needs = BrcdInstallSection_2k8.HW 
+ 
+[BrcdUpperFilterAddReg]   
+HKR,,"UpperFilters",0x00010000,"bfad_up" 
+ 
+[BrcdCatapultCopyfiles] 
+bfad.sys 
+ 
+[BrcdCbwCopyfiles] 
+bfad.sys 
+bfad_up.sys 
+ 
+[bfaj32_CopyFiles] 
+libdbfaj.dll,libdbfaj32.dll,,0x00000004 
+ 
+[BrcdUpperFilterInstallSection.NTx86.6.0] 
+Needs=BrcdInstallSection_2k8 
+CopyFiles=BrcdCbwCopyfiles 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.0] 
+Needs=BrcdInstallSection_2k8 
+CopyFiles=BrcdCbwCopyfiles, bfaj32_CopyFiles 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.1] 
+Needs=BrcdInstallSection_2k8 
+CopyFiles=BrcdCbwCopyfiles, bfaj32_CopyFiles 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.2] 
+Needs=BrcdInstallSection_2k12 
+CopyFiles=BrcdCbwCopyfiles, bfaj32_CopyFiles 
+ 
+[BrcdUpperFilterInstallSection.NTx86.6.0.Services] 
+Needs=BrcdInstallSection_2k8.Services 
+AddService = bfad_up,, BrcdUpperFilterServiceInstallSection 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.0.Services] 
+Needs=BrcdInstallSection_2k8.Services 
+AddService = bfad_up,, BrcdUpperFilterServiceInstallSection 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.1.Services] 
+Needs=BrcdInstallSection_2k8.Services 
+AddService = bfad_up,, BrcdUpperFilterServiceInstallSection 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.2.Services] 
+Needs=BrcdInstallSection_2k8.Services 
+AddService = bfad_up,, BrcdUpperFilterServiceInstallSection 
+ 
+[bfacoAddReg] 
+HKR,,CoInstallers32,%REG_MULTI_SZ%,"bfco3374.dll,bfad_coinstaller" 
+ 
+[bfadcocopy] 
+bfco3374.dll,bfad.dll,,0x00000004 
+libdbfaj.dll,,,0x00000004 
+ 
+[BrcdUpperFilterInstallSection.NTx86.6.0.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.0.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.1.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdUpperFilterInstallSection.NTamd64.6.2.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdUpperFilterServiceInstallSection] 
+DisplayName    = %CrossbowFCfilter.SvcDesc%                             
+ServiceType    = %SERVICE_KERNEL_DRIVER% 
+StartType      = %SERVICE_BOOT_START% 
+ErrorControl   = %SERVICE_ERROR_NORMAL% 
+ServiceBinary  = %12%\bfad_up.sys                             
+ 
+; 
+; Device installation section 
+ 
+[BrcdInstallSection_2k8] 
+AddReg=BrcdAddRegSection_Common, BrcdAddRegSection_2k8 
+ 
+[BrcdInstallSection_2k8.HW] 
+Include = machine.inf 
+Needs   = PciIoSpaceNotRequired 
+AddReg=BrcdHwAddRegSection 
+ 
+[BrcdInstallSection_2k8.Services] 
+AddService = bfad, %SPSVCINST_ASSOCSERVICE%, BrcdServiceInstallSection, BrcdEventLogInstallSection 
+ 
+[BrcdInstallSection_2k12] 
+AddReg=BrcdAddRegSection_Common, BrcdAddRegSection_2k12 
+ 
+[BrcdCatapultInstallSection.NTx86.6.0] 
+AddReg=BrcdAddRegSection_Common, BrcdAddRegSection_2k8 
+CopyFiles=BrcdCatapultCopyfiles 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.0] 
+AddReg=BrcdAddRegSection_Common, BrcdAddRegSection_2k8 
+CopyFiles=BrcdCatapultCopyfiles, bfaj32_CopyFiles 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.1] 
+AddReg=BrcdAddRegSection_Common, BrcdAddRegSection_2k8 
+CopyFiles=BrcdCatapultCopyfiles, bfaj32_CopyFiles 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.2] 
+AddReg=BrcdAddRegSection_Common, BrcdAddRegSection_2k12 
+CopyFiles=BrcdCatapultCopyfiles, bfaj32_CopyFiles 
+ 
+[BrcdCatapultInstallSection.NTx86.6.0.HW] 
+AddReg=BrcdHwAddRegSection, BrcdCtFcHwAddRegSection 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.0.HW] 
+AddReg=BrcdHwAddRegSection, BrcdCtFcHwAddRegSection 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.1.HW] 
+AddReg=BrcdHwAddRegSection, BrcdCtFcHwAddRegSection 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.2.HW] 
+AddReg=BrcdHwAddRegSection, BrcdCtFcHwAddRegSection 
+ 
+[BrcdCatapultInstallSection.NTx86.6.0.Services] 
+AddService = bfad, %SPSVCINST_ASSOCSERVICE%, BrcdServiceInstallSection, BrcdEventLogInstallSection 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.0.Services] 
+AddService = bfad, %SPSVCINST_ASSOCSERVICE%, BrcdServiceInstallSection, BrcdEventLogInstallSection 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.1.Services] 
+AddService = bfad, %SPSVCINST_ASSOCSERVICE%, BrcdServiceInstallSection, BrcdEventLogInstallSection 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.2.Services] 
+AddService = bfad, %SPSVCINST_ASSOCSERVICE%, BrcdServiceInstallSection, BrcdEventLogInstallSection 
+ 
+[BrcdCatapultInstallSection.NTx86.6.0.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.0.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.1.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdCatapultInstallSection.NTamd64.6.2.CoInstallers] 
+CopyFiles=bfadcocopy 
+AddReg=bfacoAddReg 
+ 
+[BrcdServiceInstallSection] 
+DisplayName    = %Brocade.SvcDesc% 
+ServiceType    = %SERVICE_KERNEL_DRIVER% 
+StartType      = %SERVICE_BOOT_START% 
+ErrorControl   = %SERVICE_ERROR_NORMAL% 
+ServiceBinary  = %12%\bfad.sys			; %windir%\system32\Drivers\<DriverName>.sys 
+LoadOrderGroup = SCSI miniport 
+AddReg         = pnpsafe_pci_addreg 
+AddReg         = bustype_addreg 
+ 
+[BrcdEventLogInstallSection] 
+AddReg = Brocade_EventLog_AddReg 
+ 
+[Brocade_EventLog_AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\drivers\bfad.sys;%%SystemRoot%%\System32\IoLogMsg.dll" 
+HKR,,TypesSupported,%REG_DWORD%,7 
+ 
+[pnpsafe_pci_addreg] 
+HKR, "Parameters\PnpInterface", "5", %REG_DWORD%, 0x00000001 
+ 
+[bustype_addreg] 
+HKR, "Parameters", "BusType", %REG_DWORD%, 0x00000006 
+ 
+[BrcdAddRegSection_Common] 
+; 
+; Driver specific parameters 
+; 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,BusType,%REG_DWORD%,0x00000006                       ; BusType is FC 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,DriverParameter,%REG_SZ_NO_CLOBBER%," " 
+;HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,bfa_ioc_queue_depth,%REG_DWORD_NO_CLOBBER%,1024 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,bfa_lun_queue_depth,%REG_DWORD_NO_CLOBBER%,0x20 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,bfa_max_xfer_len,%REG_DWORD_NO_CLOBBER%,2048 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,ioc_auto_recover,%REG_DWORD_NO_CLOBBER%,0x1 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,reqq_size,%REG_DWORD_NO_CLOBBER%,%BRCD_REQQ_SIZE% 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,rspq_size,%REG_DWORD_NO_CLOBBER%,%BRCD_RSPQ_SIZE% 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,rport_del_timeout,%REG_DWORD_NO_CLOBBER%,90 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,pbind_enable,%REG_DWORD_NO_CLOBBER%,0x1 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,fdmi_enable,%REG_DWORD_NO_CLOBBER%,0x1 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,msix_disable,%REG_DWORD%,0 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters\Device,perf_opts,%REG_DWORD%,0x5	; DPC and InterruptRedirection 
+ 
+[BrcdAddRegSection_2k8] 
+HKLM,SYSTEM\CurrentControlSet\Services\Disk, TimeOutValue, %REG_DWORD%, 0x3C	; the default disk timeout value? 
+ 
+[BrcdAddRegSection_2k12] 
+HKLM,SYSTEM\CurrentControlSet\Services\bfad\Parameters, IoTimeoutValue, %REG_DWORD%, 0x3C	; the adapter specific disk I/O timeout value 
+ 
+[BrcdHwAddRegSection] 
+HKR,"Interrupt Management", , 0x00000010 
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", , 0x00000010 
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MSISupported, %REG_DWORD%, 1 
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, %REG_DWORD%, 22 
+HKR,"Interrupt Management\Affinity Policy", , 0x00000010 
+HKR,"Interrupt Management\Affinity Policy", DevicePolicy, %REG_DWORD%, 5 
+ 
+[BrcdCtFcHwAddRegSection] 
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, %REG_DWORD%, 9 
+ 
+[Strings] 
+; 
+; Localizable Strings 
+; 
+DiskDesc = "QLogic BR-series 4G/8G/16G FC HBA Driver Installation Disk" 
+Brocade.SvcDesc = "QLogic BR-series FC HBA driver" 
+CatapultFC.DeviceDesc = "QLogic BR-804 8G Mezzanine FC HBA" 
+Ct2FC.DeviceDesc = "QLogic BR-series 16G FC HBA" 
+Ct2FC4PORT.DeviceDesc = "QLogic BR-series 16G FC HBA" 
+CrossbowFC.DeviceDesc = "QLogic BR-425/825 4G/8G FC HBA" 
+CrossbowFCfilter.DeviceDesc = "QLogic BR-415/815 4G/8G FC HBA" 
+CrossbowFCfilter.SvcDesc = "QLogic BR-415/815 4G/8G FC HBA filter driver" 
+MfgName = "QLogic Corporation" 
+PkgName = "QLogic BR-series 4G/8G/16G FC HBA" 
+ 
+; 
+; Non-Localizable Strings 
+; 
+REG_SZ                  = 0x00000000		; Default flag 
+REG_SZ_NO_CLOBBER       = 0x00000002 
+REG_DWORD               = 0x00010001 
+REG_DWORD_NO_CLOBBER    = 0x00010003 
+REG_MULTI_SZ            = 0x00010000 
+REG_EXPAND_SZ           = 0x00020000 
+ 
+SERVICE_KERNEL_DRIVER   = 1 
+SPSVCINST_ASSOCSERVICE  = 0x00000002 
+SERVICE_BOOT_START      = 0 
+SERVICE_SYSTEM_START    = 1 
+SERVICE_DEMAND_START    = 3 
+SERVICE_ERROR_NORMAL    = 1 
+SERVICE_ERROR_CRITICAL  = 3 
+ 
+VENDOR_ID               = "VEN_1657" 
+DEVICE_ID_CBW_2PORT     = "DEV_0013" 
+DEVICE_ID_CBW_1PORT     = "DEV_0017" 
+DEVICE_ID_CT_FC         = "DEV_0021" 
+DEVICE_ID_CT2_FC        = "DEV_0022" 
+DEVICE_ID_CT2_FC_4PORT  = "DEV_0023" 
+CLASS_CODE              = "CC_0C0400" 
+SUBSYSTEM_ID            = "SUBSYS_00141657" 
+CT2_FC_SUBSYS_ID        = "SUBSYS_00241657" 
+ 
+BRCD_DEVICE_QUEUE_DEPTH         = 64 
+BRCD_REQQ_SIZE                  = 512 
+BRCD_RSPQ_SIZE               	= 512 
+;BRCD_MAX_SGPG                  = 2048 
+;BRCD_MAX_TARGETS               = 256       ; Windows allows an IOC to support up to 1024 targets (8 buses, 128 targets on each) 
+;BRCD_MAX_LUNS                  = 255 
+;BRCD_MAX_OUTSTANDING_COMMANDS  = 2048 
+ 

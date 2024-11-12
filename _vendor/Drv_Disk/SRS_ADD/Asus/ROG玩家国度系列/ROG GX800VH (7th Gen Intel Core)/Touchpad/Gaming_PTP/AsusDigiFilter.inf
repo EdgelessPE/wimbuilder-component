@@ -1,0 +1,150 @@
+;============================================================================ 
+; Installation file (.inf) for Windows 8.
+;
+; Copyright (c) ASUS Tek
+;============================================================================
+
+[Version]
+Signature   = "$Windows NT$"
+Class		= HIDClass
+ClassGuid	= {745a17a0-74d3-11d0-b6fe-00a0c90f57da};HIDClassGuid
+Provider    = %VenderName%
+DriverVer=07/19/2017,12.0.0.8
+CatalogFile = AsusDigiFilter.cat
+
+
+[DestinationDirs]
+DefaultDestDir					= 12    ; DIRID_DRIVERS
+AsusDigi_Inst.CopyFiles.NT		= 12    ; Driver directory
+
+ 
+;----------------------------------------------------------------------------
+; Common File Copy and Registry Operations
+;----------------------------------------------------------------------------
+[AsusDigi_Inst.CopyFiles.NT]
+AsusDigiFilter.sys
+
+
+;----------------------------------------------------------------------------
+; Manufacturer Section
+;----------------------------------------------------------------------------
+[Manufacturer]
+%VenderName%=ASUSMfg, NTamd64, NTx86
+
+
+[ASUSMfg.NTx86]
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\ELAN1404&Col02						;Elan PTP with NumberPad
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\ELAN1200&Col02						;Elan PTP 15'(Test)
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\Vid_0B05&Pid_182F&MI_02&Col02			;EC USB Docking (T302CHI)
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\FTE1200&Col02						;Focal PTP 15'(Test)
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID_DEVICE_UP:000D_U:0005				;PTP Devices
+
+
+[ASUSMfg.NTamd64]
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\ELAN1404&Col02						;Elan PTP with NumberPad
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\ELAN1200&Col02						;Elan PTP 15'(Test)
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\Vid_0B05&Pid_182F&MI_02&Col02			;EC USB Docking (T302CHI)
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\FTE1200&Col02						;Focal PTP 15'(Test)
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID_DEVICE_UP:000D_U:0005				;PTP Devices
+
+
+[AsusDigi_Inst.NT]
+FeatureScore=00
+CopyFiles= AsusDigi_Inst.CopyFiles.NT
+
+
+;-------------- Service installation
+[AsusDigi_Inst.NT.Services]
+AddService = AsusNumpadPTP,%SPSVCINST_ASSOCSERVICE%, AsusDigi_Service_Inst
+
+
+;-------------- PTPFilter driver install sections
+[AsusDigi_Service_Inst]
+DisplayName    = %AsusPTP.SvcDesc%
+ServiceType    = 1  ;SERVICE_KERNEL_DRIVER
+StartType      = 3  ;SERVICE_DEMAND_START
+ErrorControl   = 1  ;SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AsusDigiFilter.sys
+LoadOrderGroup = Extended Base
+AddReg	       = AsusDigi_Service_ALGO_AddReg
+DelReg	       = AsusDigi_Service_ALGO_DelReg
+
+
+[AsusDigi_Service_ALGO_AddReg]
+;DWORD Example (REG_MULTI_SZ: 0x00010000, REG_DWORD: 0x00010001, REG_BINARY: 0x00000001)
+; Speed up Flag // Fin3SpeedUpFlag, ScorllsSeedUpFlag
+HKR,Parameters\AlgoParameters,"FLAG_0",0x00010001,1 
+HKR,Parameters\AlgoParameters,"FLAG_1",0x00010001,1
+HKR,Parameters\AlgoParameters,"FLAG_2",0x00010001,1
+HKR,Parameters\AlgoParameters,"FLAG_3",0x00010001,1
+HKR,Parameters\AlgoParameters,"FLAG_4",0x00010001,1
+HKR,Parameters\AlgoParameters,"FLAG_5",0x00010001,0
+; Ratio value // SPEEDUP_RATIO, FIN3_SPEEDUP_RATIO, SPPEDUPAREA_SHIFT_L_RATIO, SPPEDUPAREA_SHIFT_R_RATIO, SPPEDUPAREA_SHIFT_B_RATIO, SPPEDUPAREA_SHIFT_T_RATIO
+; Ratio value // TAPPING_DEFLATE_L_RATIO, TAPPING_DEFLATE_R_RATIO, TAPPING_DEFLATE_B_RATIO, TAPPING_DEFLATE_T_RATIO
+HKR,Parameters\AlgoParameters,"RATIO_0",0x00010001,4
+HKR,Parameters\AlgoParameters,"RATIO_1",0x00010001,3
+HKR,Parameters\AlgoParameters,"RATIO_2",0x00010001,5
+HKR,Parameters\AlgoParameters,"RATIO_3",0x00010001,5
+HKR,Parameters\AlgoParameters,"RATIO_4",0x00010001,12
+HKR,Parameters\AlgoParameters,"RATIO_5",0x00010001,0
+HKR,Parameters\AlgoParameters,"RATIO_6",0x00010001,10
+HKR,Parameters\AlgoParameters,"RATIO_7",0x00010001,10
+HKR,Parameters\AlgoParameters,"RATIO_8",0x00010001,10
+HKR,Parameters\AlgoParameters,"RATIO_9",0x00010001,0
+HKR,Parameters\AlgoParameters,"RATIO_10",0x00010001,10
+HKR,Parameters\AlgoParameters,"RATIO_11",0x00010001,10
+HKR,Parameters\AlgoParameters,"RATIO_12",0x00010001,16
+HKR,Parameters\AlgoParameters,"RATIO_13",0x00010001,0
+HKR,Parameters\AlgoParameters,"RATIO_14",0x00010001,300
+HKR,Parameters\AlgoParameters,"RATIO_15",0x00010001,100
+HKR,Parameters\AlgoParameters,"RATIO_16",0x00010001,450
+
+; Minimeter value // MOVING_THRESHOLD_MM, MAX_SPEEDUP_THRESHOLD_MM, TAPPING_THRESHOLD_MM
+HKR,Parameters\AlgoParameters,"MINIMETER_0",0x00010001,15
+HKR,Parameters\AlgoParameters,"MINIMETER_1",0x00010001,100
+HKR,Parameters\AlgoParameters,"MINIMETER_2",0x00010001,6
+HKR,Parameters\AlgoParameters,"MINIMETER_3",0x00010001,50
+HKR,Parameters\AlgoParameters,"MINIMETER_4",0x00010001,4
+HKR,Parameters\AlgoParameters,"MINIMETER_5",0x00010001,4
+HKR,Parameters\AlgoParameters,"MINIMETER_6",0x00010001,6
+HKR,Parameters\AlgoParameters,"MINIMETER_7",0x00010001,28
+HKR,Parameters\AlgoParameters,"MINIMETER_8",0x00010001,10
+HKR,Parameters\AlgoParameters,"MINIMETER_9",0x00010001,4
+HKR,Parameters\AlgoParameters,"MINIMETER_10",0x00010001,10
+HKR,Parameters\AlgoParameters,"MINIMETER_11",0x00010001,15
+HKR,Parameters\AlgoParameters,"MINIMETER_12",0x00010001,20
+HKR,Parameters\AlgoParameters,"MINIMETER_13",0x00010001,24
+HKR,Parameters\AlgoParameters,"MINIMETER_14",0x00010001,5			; 0.1mm offset 
+
+; Set Logical Size and Physical Size
+HKR,Parameters\AlgoParameters,"PHYSICAL_0",0x00010001,0		;Physical X Size
+HKR,Parameters\AlgoParameters,"PHYSICAL_1",0x00010001,0		;Physical Y Size
+
+
+[AsusDigi_Service_ALGO_DelReg]
+HKR,Parameters
+
+
+; ---------------------------------------------------------
+; Source Media Section
+; ---------------------------------------------------------
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+AsusDigiFilter.sys = 1
+
+
+; Strings Section
+; ---------------------------------------------------------
+[Strings]
+SPSVCINST_ASSOCSERVICE			= 0x00000002
+VenderName						= "ASUSTek COMPUTER INC."
+AsusPTP.SvcDesc					= "ASUS Numberpad PTP Service"
+DiskName						= "ASUSWare Driver Disk"
+ASUS_INPUT_DEVICE.DeviceDesc	= "ASUS Precision Touchpad"
+
+
+; Driver Information Entries
+DriverProduct   = "ASUS Touchpad Device Driver"
+

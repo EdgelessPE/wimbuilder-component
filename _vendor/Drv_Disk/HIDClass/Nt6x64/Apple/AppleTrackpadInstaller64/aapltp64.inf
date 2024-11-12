@@ -1,0 +1,159 @@
+;*****************************************************************************
+; INF for Apple Trackpad
+; Copyright © 2006-2009 Apple Inc. All Rights Reserved.
+;*****************************************************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGUID={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%AAPL%
+DriverPackageDisplayName="Apple Trackpad"
+DriverPackageType=PlugAndPlay
+DriverVer=07/13/2009,3.0.0.1
+;*****************************************
+; Catalog files need to be unique names
+;*****************************************
+CatalogFile=aapltp64.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+trackpad_CoInstaller_CopyFiles = 11
+
+
+[Manufacturer]
+%MfgName%=Apple, NTamd64
+
+
+;=============================================================================
+;Windows XP (AMD64 architecture)
+[Apple.NTamd64]
+%trackpad.Device0217Desc%=trackpad,   USB\VID_05AC&PID_0217&MI_01
+%trackpad.Device0218Desc%=trackpad,   USB\VID_05AC&PID_0218&MI_01
+%trackpad.Device0219Desc%=trackpad,   USB\VID_05AC&PID_0219&MI_01
+%trackpad.Device021ADesc%=trackpad,   USB\VID_05AC&PID_021A&MI_01
+%trackpad.Device021BDesc%=trackpad,   USB\VID_05AC&PID_021B&MI_01
+%trackpad.Device021CDesc%=trackpad,   USB\VID_05AC&PID_021C&MI_01
+%trackpad.Device021ADesc%=trackpad,   USB\VID_05AC&PID_0229&MI_01
+%trackpad.Device021BDesc%=trackpad,   USB\VID_05AC&PID_022A&MI_01
+%trackpad.Device021CDesc%=trackpad,   USB\VID_05AC&PID_022B&MI_01
+
+
+;*****************************************************************************
+; Trackpad Filter Section
+;*****************************************************************************
+[trackpad.NT]  
+Include=input.inf
+Needs=HID_Inst.NT
+CopyFiles=trackpad.NT.Copy
+AddReg=trackpad.NT.AddReg
+
+[trackpad.NT.Copy]
+aapltp.sys
+
+[trackpad.NT.AddReg]                            
+HKLM,%BOOTCAMP_KEY%,"Trackpad",,"3.0.0.1"
+
+[trackpad.NT.HW]
+;================ Add our own stuff
+AddReg = trackpad.NT.HW.AddReg
+
+;================ Add in the standard stuff provided by HID
+Include = input.inf
+Needs = HID_Inst.NT.HW
+
+[trackpad.NT.HW.AddReg]  
+HKR,,"LowerFilters",0x00010000,"aapltp"
+
+
+;*****************************************************************************
+; Trackpad Device Filter Service Section
+;*****************************************************************************
+;
+; This will add aapltp as the service and make sure that aapltp.sys has
+; been installed.
+;
+; Do not specify SPSVCINST_ASSOCSERVICE on filter drivers. 
+;
+[trackpad.NT.Services]
+Include=Input.inf
+Needs=HID_Inst.NT.Services
+AddService = aapltp,, trackpad_Service_Inst 
+
+[trackpad_Service_Inst]
+DisplayName    = %trackpad.SvcDesc%                            
+ServiceType    = %SERVICE_KERNEL_DRIVER% 
+StartType      = %SERVICE_DEMAND_START% 
+ErrorControl   = %SERVICE_ERROR_IGNORE% 
+ServiceBinary  = %12%\aapltp.sys                            
+
+[trackpad.NT.CoInstallers]
+AddReg=trackpad_CoInstaller_AddReg
+CopyFiles=trackpad_CoInstaller_CopyFiles
+
+[trackpad_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000,"WdfCoInstaller01005.dll,WdfCoInstaller"
+
+[trackpad_CoInstaller_CopyFiles]
+WdfCoInstaller01005.dll
+
+[trackpad.NT.Wdf]
+KmdfService = trackpadFilter, trackpad_wdfsect
+
+[trackpad_wdfsect]
+KmdfLibraryVersion = 1.5
+
+;*****************************************************************************
+; Source file information
+;*****************************************************************************
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+aapltp.sys  = 1,,
+wdfcoinstaller01005.dll=1 ; make sure the number matches with SourceDisksNames
+
+
+;*****************************************************************************
+; String Secion
+;*****************************************************************************
+[Strings]
+;
+; Strings or constants that can be localized
+;
+AAPL    = "Apple Inc."
+MfgName = "Apple Inc."
+
+DiskId1                  = "Apple Drivers Disk"
+trackpad.DeviceDesc      = "Apple Trackpad"
+trackpad.Device0217Desc  = "Apple Trackpad"
+trackpad.Device0218Desc  = "Apple Trackpad"
+trackpad.Device0219Desc  = "Apple Trackpad"
+trackpad.Device021ADesc  = "Apple Trackpad"
+trackpad.Device021BDesc  = "Apple Trackpad"
+trackpad.Device021CDesc  = "Apple Trackpad"
+trackpad.SvcDesc         = "Apple Trackpad"
+BOOTCAMP_KEY             = "SOFTWARE\Apple Inc.\Boot Camp\Versions"
+
+;
+; Strings or constants that can NOT be localized
+;
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_BOOT_START     = 0x0 
+SERVICE_SYSTEM_START   = 0x1 
+SERVICE_AUTO_START     = 0x2 
+SERVICE_DEMAND_START   = 0x3 
+SERVICE_DISABLED       = 0x4 
+
+SERVICE_KERNEL_DRIVER  = 0x1 
+SERVICE_ERROR_IGNORE   = 0x0 
+SERVICE_ERROR_NORMAL   = 0x1 
+SERVICE_ERROR_SEVERE   = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ          = 0x00020000 
+REG_DWORD              = 0x00010001 
+REG_MULTI_SZ           = 0x00010000
+REG_BINARY             = 0x00000001
+REG_SZ                 = 0x00000000

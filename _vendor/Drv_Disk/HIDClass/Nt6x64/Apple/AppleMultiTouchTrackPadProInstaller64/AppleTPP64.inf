@@ -1,0 +1,135 @@
+;*****************************************************************************
+; INF for Apple Multi-Touch Pro
+; Copyright © 2015 Apple Inc. All Rights Reserved.
+;*****************************************************************************
+ 
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%Provider%
+CatalogFile=appletpp64.cat
+DriverPackageDisplayName="Apple Multi-Touch Pro"
+DriverPackageType=PlugAndPlay
+DriverVer=02/28/2017,6.1.6700.2
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+MultitouchPro.CopyList = 12
+MultitouchPro_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1=%KBDiskName%
+
+[SourceDisksFiles]
+WdfCoInstaller01011.dll=1 ; make sure the number matches with SourceDisksNames
+appletpp.sys = 1,
+
+[Manufacturer]
+%Manufacturer%=MultitouchPro,NTamd64
+
+[MultitouchPro.NTamd64]
+%MultitouchPro.DevDesc%=Dri_HID_Inst,USB\Vid_05ac&Pid_0265&MI_01
+%MultitouchPro.DevDesc%=Dri_BTH_Inst,BTHENUM\{00001124-0000-1000-8000-00805f9b34fb}_VID&0001004c_PID&0265
+
+;*****************************************************************************
+; USB device Section
+;*****************************************************************************
+[Dri_HID_Inst.NT]
+Include=Input.inf
+Needs=HID_Inst.NT
+Copyfiles = MultitouchPro.CopyList
+
+[MultitouchPro.CopyList]
+appletpp.sys
+
+[Dri_HID_Inst.NT.HW]
+Include=Input.inf
+Needs=HID_Inst.NT.HW
+AddReg = USBHIDKeyPadDevice.AddReg.NT
+
+[Dri_HID_Inst.NT.Services]
+Include=Input.inf
+Needs=HID_Inst.NT.Services
+AddService = appletpp, ,HIDKbFlt_Service_Inst
+
+[USBHIDKeyPadDevice.AddReg.NT]
+HKR,,"LowerFilters",0x00010000,"appletpp"
+
+[HIDKbFlt_Service_Inst]
+DisplayName    = %HIDKbFlt.SvcDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\appletpp.sys
+
+[Dri_HID_Inst.NT.CoInstallers]
+AddReg=MultitouchPro_CoInstaller_AddReg
+CopyFiles=MultitouchPro_CoInstaller_CopyFiles
+
+[MultitouchPro_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01011.dll,WdfCoInstaller"
+
+[MultitouchPro_CoInstaller_CopyFiles]
+WdfCoInstaller01011.dll
+
+[Dri_HID_Inst.NT.Wdf]
+KmdfService = appletpp, MultitouchPro_wdfsect
+
+[MultitouchPro_wdfsect]
+KmdfLibraryVersion = 1.11
+
+;*****************************************************************************
+; Bluetooth device Section
+;*****************************************************************************
+[Dri_BTH_Inst.NT]
+Include=hidbth.inf
+Needs=HIDBTH_Inst.NT
+Copyfiles = MultitouchPro.CopyList
+
+[Dri_BTH_Inst.NT.HW.AddReg]
+HKR,,"LowerFilters",0x00010000,"appletpp"
+
+[Dri_BTH_Inst.NT.Services]
+Include = hidbth.inf
+Needs	= HIDBTH_Inst.NT.Services
+AddService = appletpp,,HIDKbFlt_Service_Inst
+
+
+[Dri_BTH_Inst.NT.HW]
+Include = input.inf
+Needs = HID_Inst.NT.HW
+AddReg  = Dri_BTH_Inst.NT.HW.AddReg
+
+
+[Dri_BTH_Inst.NT.CoInstallers]
+CopyFiles = MultitouchPro_CoInstaller_CopyFiles
+AddReg = MultitouchPro_CoInstaller_AddReg
+
+[Dri_BTH_Inst.NT.Wdf]
+KmdfService = appletpp, MultitouchPro_wdfsect
+
+;*****************************************************************************
+; String Section
+;*****************************************************************************
+
+[strings]
+HID.ClassName="Human Interface Devices"
+
+SERVICE_KERNEL_DRIVER	= 1
+SERVICE_BOOT_START	= 0
+SERVICE_SYSTEM_START	= 1
+SERVICE_AUTO_START	= 2
+SERVICE_DEMAND_START	= 3
+SERVICE_ERROR_NORMAL	= 1
+SERVICE_ERROR_IGNORE	= 0
+
+Provider="Apple Inc."
+Manufacturer="Apple Inc."
+MultitouchPro.DevDesc="Apple Multi-Touch Pro"
+HIDKbFlt.SvcDesc="Apple HID Filter"
+KBDiskName = "Apple Install Disk"

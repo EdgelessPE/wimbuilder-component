@@ -1,0 +1,358 @@
+;/*++
+;
+;Copyright (c) 2010-2021, Intel Corporation
+;
+;Abstract:
+;    INF file for installing Thunderbolt Bus driver
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class       = System
+ClassGuid   = {4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider    = %Intel%
+CatalogFile = TbtHostController.cat
+DriverVer = 07/13/2021,1.41.1193.0
+
+[DestinationDirs]
+DefaultDestDir = 12
+UMDriverCopy = 12,UMDF
+ShortcutServiceCopy = 10
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+TbtBusDrv.sys  = 1,,
+TbtFilterDrv.dll = 1,,
+TbtP2pShortcutService.exe = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%Intel% = Thunderbolt, NTamd64.10.0...16299, NTamd64.10.0...19041
+
+[Thunderbolt.NTamd64.10.0...16299]
+; DisplayName                Section            Device Id
+; -----------                -------            ---------
+%TbtBusDrv_DeviceDesc1575% = TbtBusDrv_Device, PCI\VEN_8086&DEV_1575&CC_0880
+%TbtBusDrv_DeviceDesc1577% = TbtBusDrv_Device, PCI\VEN_8086&DEV_1577&CC_0880
+%TbtBusDrv_DeviceDesc15BF% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15BF&CC_0880
+%TbtBusDrv_DeviceDesc15D2% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15D2&CC_0880
+%TbtBusDrv_DeviceDesc15D9% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15D9&CC_0880
+%TbtBusDrv_DeviceDesc15E8% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15E8&CC_0880
+%TbtBusDrv_DeviceDesc15EB% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15EB&CC_0880
+%TbtBusDrv_DeviceDesc1137% = TbtBusDrv_Device, PCI\VEN_8086&DEV_1137
+%TbtBusDrv_DeviceDesc1134% = TbtBusDrv_Device, PCI\VEN_8086&DEV_1134
+%TbtBusDrv_DeviceDesc15DC% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15DC&CC_0880
+%TbtBusDrv_DeviceDesc15DD% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15DD&CC_0880
+%TbtBusDrv_DeviceDesc15DE% = TbtBusDrv_Device, PCI\VEN_8086&DEV_15DE&CC_0880
+%TbtBusDrv_DeviceDesc8A17% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_8A17&CC_0880
+%TbtBusDrv_DeviceDesc8A0D% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_8A0D&CC_0880
+%TbtBusDrv_DeviceDesc8AA3% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_8AA3&CC_0880
+%TbtBusDrv_DeviceDesc8AA0% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_8AA0&CC_0880
+%TbtBusDrv_DeviceDesc8AB3% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_8AB3&CC_0880
+%TbtBusDrv_DeviceDesc8AB0% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_8AB0&CC_0880
+%TbtBusDrv_DeviceDesc9A1B% = TbtBusDrv_TigerLakeA0Device, PCI\VEN_8086&DEV_9A1B&CC_0880
+%TbtBusDrv_DeviceDesc9A1D% = TbtBusDrv_TigerLakeA0Device, PCI\VEN_8086&DEV_9A1D&CC_0880
+%TbtBusDrv_DeviceDesc9A1F% = TbtBusDrv_TigerLakeA0Device, PCI\VEN_8086&DEV_9A1F&CC_0880
+%TbtBusDrv_DeviceDesc9A21% = TbtBusDrv_TigerLakeA0Device, PCI\VEN_8086&DEV_9A21&CC_0880
+%TbtBusDrv_DeviceDesc9A1B% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_9A1B&CC_0C03
+%TbtBusDrv_DeviceDesc9A1D% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_9A1D&CC_0C03
+%TbtBusDrv_DeviceDesc9A1F% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_9A1F&CC_0C03
+%TbtBusDrv_DeviceDesc9A21% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_9A21&CC_0C03
+%TbtBusDrv_DeviceDesc463E% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_463E&CC_0C03
+%TbtBusDrv_DeviceDesc466D% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_466D&CC_0C03
+%TbtBusDrv_DeviceDesc7EB2% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_7EB2&CC_0C03
+%TbtBusDrv_DeviceDesc7EC2% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_7EC2&CC_0C03
+%TbtBusDrv_DeviceDesc7EC3% = TbtBusDrv_YflDevice, PCI\VEN_8086&DEV_7EC3&CC_0C03
+
+
+[Thunderbolt.NTamd64.10.0...19041]
+; DisplayName                Section            Device Id
+; -----------                -------            ---------
+%TbtBusDrv_DeviceDesc1575% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_1575&CC_0880
+%TbtBusDrv_DeviceDesc1577% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_1577&CC_0880
+%TbtBusDrv_DeviceDesc15BF% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15BF&CC_0880
+%TbtBusDrv_DeviceDesc15D2% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15D2&CC_0880
+%TbtBusDrv_DeviceDesc15D9% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15D9&CC_0880
+%TbtBusDrv_DeviceDesc15E8% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15E8&CC_0880
+%TbtBusDrv_DeviceDesc15EB% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15EB&CC_0880
+%TbtBusDrv_DeviceDesc1137% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_1137
+%TbtBusDrv_DeviceDesc1134% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_1134
+%TbtBusDrv_DeviceDesc15DC% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15DC&CC_0880
+%TbtBusDrv_DeviceDesc15DD% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15DD&CC_0880
+%TbtBusDrv_DeviceDesc15DE% = TbtBusDrv_Device_19041, PCI\VEN_8086&DEV_15DE&CC_0880
+%TbtBusDrv_DeviceDesc8A17% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_8A17&CC_0880
+%TbtBusDrv_DeviceDesc8A0D% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_8A0D&CC_0880
+%TbtBusDrv_DeviceDesc8AA3% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_8AA3&CC_0880
+%TbtBusDrv_DeviceDesc8AA0% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_8AA0&CC_0880
+%TbtBusDrv_DeviceDesc8AB3% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_8AB3&CC_0880
+%TbtBusDrv_DeviceDesc8AB0% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_8AB0&CC_0880
+%TbtBusDrv_DeviceDesc9A1B% = TbtBusDrv_TigerLakeA0Device_19041, PCI\VEN_8086&DEV_9A1B&CC_0880
+%TbtBusDrv_DeviceDesc9A1D% = TbtBusDrv_TigerLakeA0Device_19041, PCI\VEN_8086&DEV_9A1D&CC_0880
+%TbtBusDrv_DeviceDesc9A1F% = TbtBusDrv_TigerLakeA0Device_19041, PCI\VEN_8086&DEV_9A1F&CC_0880
+%TbtBusDrv_DeviceDesc9A21% = TbtBusDrv_TigerLakeA0Device_19041, PCI\VEN_8086&DEV_9A21&CC_0880
+%TbtBusDrv_DeviceDesc9A1B% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_9A1B&CC_0C03
+%TbtBusDrv_DeviceDesc9A1D% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_9A1D&CC_0C03
+%TbtBusDrv_DeviceDesc9A1F% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_9A1F&CC_0C03
+%TbtBusDrv_DeviceDesc9A21% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_9A21&CC_0C03
+%TbtBusDrv_DeviceDesc463E% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_463E&CC_0C03
+%TbtBusDrv_DeviceDesc466D% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_466D&CC_0C03
+%TbtBusDrv_DeviceDesc7EB2% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_7EB2&CC_0C03
+%TbtBusDrv_DeviceDesc7EC2% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_7EC2&CC_0C03
+%TbtBusDrv_DeviceDesc7EC3% = TbtBusDrv_YflDevice_19041, PCI\VEN_8086&DEV_7EC3&CC_0C03
+
+[TbtBusDrv_Device.NT]
+CopyFiles = Drivers_Dir, UMDriverCopy, ShortcutServiceCopy
+CopyINF = TbtP2pNdisDrv.inf, TbtHostControllerHsaComponent.inf, TbtHostControllerToastComponent.inf
+
+[TbtBusDrv_Device_19041.NT]
+Needs = TbtBusDrv_Device.NT
+
+[TbtBusDrv_YflDevice.NT]
+CopyFiles = Drivers_Dir, ShortcutServiceCopy
+CopyINF = TbtP2pNdisDrv.inf, TbtHostControllerHsaComponent.inf
+
+[TbtBusDrv_YflDevice_19041.NT]
+Needs = TbtBusDrv_YflDevice.NT
+
+[TbtBusDrv_TigerLakeA0Device.NT]
+Needs = TbtBusDrv_YflDevice.NT
+
+[TbtBusDrv_TigerLakeA0Device_19041.NT]
+Needs = TbtBusDrv_TigerLakeA0Device.NT
+
+[Drivers_Dir]
+TbtBusDrv.sys
+
+[UMDriverCopy]
+TbtFilterDrv.dll
+
+[ShortcutServiceCopy]
+TbtP2pShortcutService.exe
+
+;-------------- Service installation
+[TbtBusDrv_Device.NT.Services]
+AddService = nhi, 0x000001fa, TbtBusDrv_Service_Inst, win10.EventLog
+AddService = WUDFRd, 0x000001f8, WUDFRD_ServiceInstall
+AddService = TbtP2pShortcutService, 0x00000800, TbtP2pShortcutService_ServiceInstall
+
+[TbtBusDrv_Device_19041.NT.Services]
+Needs = TbtBusDrv_Device.NT.Services
+
+[TbtBusDrv_YflDevice.NT.Services]
+AddService = nhi, 0x000001fa, TbtBusDrv_Service_Inst_Yfl, win10.EventLog
+AddService = TbtP2pShortcutService, 0x00000800, TbtP2pShortcutService_ServiceInstall
+
+[TbtBusDrv_YflDevice_19041.NT.Services]
+Needs = TbtBusDrv_YflDevice.NT.Services
+
+[TbtBusDrv_TigerLakeA0Device.NT.Services]
+AddService = nhi, 0x000001fa, TbtBusDrv_Service_Inst_TigerLakeA0
+AddService = TbtP2pShortcutService, 0x00000800, TbtP2pShortcutService_ServiceInstall
+
+[TbtBusDrv_TigerLakeA0Device_19041.NT.Services]
+Needs = TbtBusDrv_TigerLakeA0Device.NT.Services
+
+[TbtBusDrv_Device.NT.HW]
+AddReg = MSI.reg
+AddReg = Filter.reg
+AddReg = Security.reg
+
+[TbtBusDrv_Device_19041.NT.HW]
+Needs = TbtBusDrv_Device.NT.HW
+AddReg = Dfx.reg
+
+[TbtBusDrv_YflDevice.NT.HW]
+AddReg = MSI.reg
+AddReg = Security.reg
+
+[TbtBusDrv_YflDevice_19041.NT.HW]
+Needs = TbtBusDrv_YflDevice.NT.HW
+AddReg = Dfx.reg
+
+[TbtBusDrv_TigerLakeA0Device.NT.HW]
+;AddReg = MSI.reg
+AddReg = Security.reg
+
+[TbtBusDrv_TigerLakeA0Device_19041.NT.HW]
+Needs = TbtBusDrv_TigerLakeA0Device.NT.HW
+AddReg = Dfx.reg
+
+[win10.EventLog]
+AddReg = win10.AddEventLog.reg
+
+[Security.reg]
+HKR,,DeviceCharacteristics,0x10001,0x100
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GA;;;WD)"
+
+[MSI.reg]
+HKR, "Interrupt Management",                                      0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties",   0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties",   MSISupported,        0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties",   MessageNumberLimit,  0x00010001, 16
+
+[Filter.reg]
+HKR,,"UpperFilters",0x00010008,"WUDFRd" ; FLG_ADDREG_TYPE_MULTI_SZ | FLG_ADDREG_APPEND
+
+[Dfx.reg]
+HKR,"WDF","WdfDirectedPowerTransitionEnable",0x00010001,1
+HKR,"WDF","WdfDirectedPowerTransitionChildrenOptional", 0x00010001,1
+
+[win10.AddEventLog.reg]
+HKR, , EventMessageFile, 0x00020000, %EventLogMessageDllPath%
+HKR, , TypesSupported,   0x00010001, 7
+
+; -------------- TbtBusDrv driver install sections
+[TbtBusDrv_Service_Inst]
+DisplayName    = %TbtBusDrv_SVCDESC%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = "%12%\TbtBusDrv.sys"
+LoadOrderGroup = Extended Base
+AddReg         = TbtBusDrv_Service_Events_AddReg
+
+[TbtBusDrv_Service_Inst_Yfl]
+DisplayName    = %TbtBusDrv_SVCDESC%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = "%12%\TbtBusDrv.sys"
+LoadOrderGroup = Extended Base
+AddReg         = TbtBusDrv_Service_Events_AddReg
+
+[TbtBusDrv_Service_Inst_TigerLakeA0]
+DisplayName    = %TbtBusDrv_SVCDESC%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = "%12%\TbtBusDrv.sys"
+LoadOrderGroup = Extended Base
+AddReg         = TbtBusDrv_Service_Events_AddReg_TigerLakeA0
+
+[TbtP2pShortcutService_ServiceInstall]
+DisplayName = %TbtP2pShortcutServiceName.SrvName%
+Description = %TbtP2pShortcutServiceName.SvcDesc%
+ServiceType    = 0x00000010
+StartType      = 2; SERVICE_AUTO_START
+ErrorControl   = 1
+ServiceBinary  = "%10%\TbtP2pShortcutService.exe"
+
+[TbtBusDrv_Service_Events_AddReg]
+HKR, Parameters, DmaRemappingCompatible, 0x00010001, 1
+HKR,, Universal, 0x00010001, 0
+HKR, Parameters, PowerPolicyIdleTimeoutType, 0x00010001, 2
+HKR, Parameters, InterDomainConnectionShortcutEnabled, 0x00010001, 0
+
+[TbtBusDrv_Service_Events_AddReg_TigerLakeA0]
+HKR, Parameters, DmaRemappingCompatible, 0x00010001, 0
+HKR,, Universal, 0x00010001, 0
+HKR, Parameters, PowerPolicyIdleTimeoutType, 0x00010001, 2
+HKR, Parameters, InterDomainConnectionShortcutEnabled, 0x00010001, 0
+HKR, Parameters, TglA0, 0x00010001, 1
+HKR, Parameters, TglA0VtdWorkaroundEnabled, 0x00010001, 1
+
+[TbtBusDrv_Device.NT.Wdf]
+KmdfService =  nhi, TbtBusDrv_wdfsect
+UmdfService = TbtFilterDrv,TbtFilterDrv_Install
+UmdfServiceOrder = TbtFilterDrv
+UmdfFileObjectPolicy = AllowNullAndUnknownFileObjects
+
+[TbtBusDrv_Device_19041.NT.Wdf]
+Needs = TbtBusDrv_Device.NT.Wdf
+
+[TbtBusDrv_YflDevice.NT.Wdf]
+KmdfService =  nhi, TbtBusDrv_wdfsect
+
+[TbtBusDrv_YflDevice_19041.NT.Wdf]
+Needs = TbtBusDrv_YflDevice.NT.Wdf
+
+[TbtBusDrv_TigerLakeA0Device.NT.Wdf]
+KmdfService =  nhi, TbtBusDrv_wdfsect
+
+[TbtBusDrv_TigerLakeA0Device_19041.NT.Wdf]
+Needs = TbtBusDrv_TigerLakeA0Device.NT.Wdf
+
+[TbtBusDrv_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[TbtFilterDrv_Install]
+UmdfLibraryVersion = 2.15.0
+ServiceBinary = "%12%\UMDF\TbtFilterDrv.dll"
+
+[WUDFRD_ServiceInstall]
+DisplayName    = %WudfRdDisplayName%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = "%12%\WUDFRd.sys"
+
+[TbtBusDrv_Device.NT.Components]
+AddComponent = ThunderboltHostControllerHSA,,ThunderboltHostController_Component_Install
+
+[TbtBusDrv_Device_19041.NT.Components]
+Needs = TbtBusDrv_Device.NT.Components
+
+[TbtBusDrv_YflDevice.NT.Components]
+Needs = TbtBusDrv_Device.NT.Components
+
+[TbtBusDrv_YflDevice_19041.NT.Components]
+Needs = TbtBusDrv_Device.NT.Components
+
+[TbtBusDrv_TigerLakeA0Device.NT.Components]
+Needs = TbtBusDrv_Device.NT.Components
+
+[TbtBusDrv_TigerLakeA0Device_19041.NT.Components]
+Needs = TbtBusDrv_Device.NT.Components
+
+[ThunderboltHostController_Component_Install]
+ComponentIDs = PROVIDER_Intel&&COMPONENT_ThunderboltHSA
+DisplayName = "Thunderbolt Support Application"
+
+[Strings]
+Intel = "Intel(R) Corporation"
+DiskName = "Thunderbolt(TM) Controller Installation Disk"
+TbtBusDrv_DeviceDesc1575 = "Thunderbolt(TM) Controller - 1575"
+TbtBusDrv_DeviceDesc1577 = "Thunderbolt(TM) Controller - 1577"
+TbtBusDrv_DeviceDesc15BF = "Thunderbolt(TM) Controller - 15BF"
+TbtBusDrv_DeviceDesc15D2 = "Thunderbolt(TM) Controller - 15D2"
+TbtBusDrv_DeviceDesc15D9 = "Thunderbolt(TM) Controller - 15D9"
+TbtBusDrv_DeviceDesc15E8 = "Thunderbolt(TM) Controller - 15E8"
+TbtBusDrv_DeviceDesc15EB = "Thunderbolt(TM) Controller - 15EB"
+TbtBusDrv_DeviceDesc1137 = "Thunderbolt(TM) Controller - 1137"
+TbtBusDrv_DeviceDesc1134 = "Thunderbolt(TM) Controller - 1134"
+TbtBusDrv_DeviceDesc15DC = "Intel(R) Controller - 15DC"
+TbtBusDrv_DeviceDesc15DD = "Intel(R) Controller - 15DD"
+TbtBusDrv_DeviceDesc15DE = "Intel(R) Controller - 15DE"
+TbtBusDrv_DeviceDesc8A17 = "Thunderbolt(TM) Controller - 8A17"
+TbtBusDrv_DeviceDesc8A0D = "Thunderbolt(TM) Controller - 8A0D"
+TbtBusDrv_DeviceDesc8AA3 = "Thunderbolt(TM) Controller - 8AA3"
+TbtBusDrv_DeviceDesc8AA0 = "Thunderbolt(TM) Controller - 8AA0"
+TbtBusDrv_DeviceDesc8AB3 = "Thunderbolt(TM) Controller - 8AB3"
+TbtBusDrv_DeviceDesc8AB0 = "Thunderbolt(TM) Controller - 8AB0"
+TbtBusDrv_DeviceDesc9A1B = "Thunderbolt(TM) Controller - 9A1B"
+TbtBusDrv_DeviceDesc9A1D = "Thunderbolt(TM) Controller - 9A1D"
+TbtBusDrv_DeviceDesc9A1F = "Thunderbolt(TM) Controller - 9A1F"
+TbtBusDrv_DeviceDesc9A21 = "Thunderbolt(TM) Controller - 9A21"
+TbtBusDrv_DeviceDesc463E = "Thunderbolt(TM) Controller - 463E"
+TbtBusDrv_DeviceDesc466D = "Thunderbolt(TM) Controller - 466D"
+TbtBusDrv_DeviceDesc7EB2 = "Thunderbolt(TM) Controller - 7EB2"
+TbtBusDrv_DeviceDesc7EC2 = "Thunderbolt(TM) Controller - 7EC2"
+TbtBusDrv_DeviceDesc7EC3 = "Thunderbolt(TM) Controller - 7EC3"
+
+TbtBusDrv_SVCDESC = "Thunderbolt(TM) Controller"
+WudfRdDisplayName="Windows Driver Foundation - User-mode Driver Framework Reflector"
+SERVICE_KERNEL_DRIVER = 1
+SERVICE_DEMAND_START = 3
+SERVICE_ERROR_NORMAL = 1
+REG_DWORD=0x00010001
+REG_SZ=0x00000000
+FLG_ADDREG_KEYONLY = 0x00000010
+TbtP2pShortcutServiceName.SrvName = "Thunderbolt(TM) Peer to Peer Shortcut"
+TbtP2pShortcutServiceName.SvcDesc = "Thunderbolt(TM) Peer to Peer Shortcut"
+EventLogMessageDllPath = "%SystemRoot%\System32\drivers\TbtBusDrv.sys"

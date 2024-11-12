@@ -1,0 +1,99 @@
+; 
+; rr640l.INF
+; 
+
+[Version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%HIGHPOINT%
+CatalogFile= rr640l.CAT
+DriverVer=06/18/2014, 1.3.14.0
+
+[DestinationDirs]
+DefaultDestDir  = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+; ExcludeFromSelect = *
+
+[Manufacturer]
+%HIGHPOINT%=HighPoint, NTamd64
+
+[HighPoint.NTamd64]
+%rr640l.DeviceDesc%=rr640lPCI,PCI\VEN_1103&DEV_0641
+%rr642l.DeviceDesc%=rr640lPCI,PCI\VEN_1103&DEV_0642
+%rr644l.DeviceDesc%=rr640lPCI,PCI\VEN_1103&DEV_0645
+%rr644ls.DeviceDesc%=rr640lPCI,PCI\VEN_1103&DEV_0646
+%SCSI\ProcessorHPT_____RCM_DEVICE______.DeviceDesc% = NODRV, SCSI\ProcessorHPT_____RCM_DEVICE______
+
+[NODRV]
+AddReg=NODRV_AddReg
+
+[NODRV.Services]
+AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[rr640lPCI.NTamd64]
+CopyFiles=@rr640l.sys
+Reboot
+
+[rr640lPCI.NTamd64.HW]
+AddReg = rr640lPCI_AddReg_HW
+
+[rr640lPCI.NTamd64.Services]
+AddService = rr640l, %SPSVCINST_ASSOCSERVICE%, rr640lPCI_Service_Inst, Miniport_EventLog_Inst
+
+[rr640lPCI_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\rr640l.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+
+[Hptpro_Service_Inst]
+ServiceType    = 1
+StartType      = 0
+ErrorControl   = 1
+LoadOrderGroup = Filter
+
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 0x3c
+
+; [rr640lPCI_AddReg_HW]
+; HKR, "ScsiPort", "NeedsSystemShutdownNotification", 0x00010001, 0x00000001
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[SourceDisksNames]
+1 = %InstallDisk%,,,,
+
+[SourceDisksFiles]
+rr640l.sys = 1,,
+
+
+[NODRV_AddReg]
+;Dummy AddReg section 
+
+[strings]
+HighPoint="HighPoint"
+rr640l.DeviceDesc="RocketRAID 640L SATA Controller"
+rr642l.DeviceDesc="RocketRAID 642L SATA Controller"
+rr644l.DeviceDesc="RocketRAID 644L SATA Controller"
+rr644ls.DeviceDesc="RocketRAID 644LS SATA Controller"
+SCSI\ProcessorHPT_____RCM_DEVICE______.DeviceDesc = "HighPoint RCM Device"
+InstallDisk = "RocketRAID 640L/642L/644L/644LS SATA Controller Driver Diskette"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

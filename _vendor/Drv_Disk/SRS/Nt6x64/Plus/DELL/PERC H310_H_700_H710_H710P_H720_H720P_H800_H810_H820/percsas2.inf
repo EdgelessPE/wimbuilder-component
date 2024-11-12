@@ -1,0 +1,202 @@
+; INF file for MegaRaid family of RAID controllers.
+;********************************************************************
+;                                                                    *
+;   Copyright 2011 LSI Corp., Inc. All rights reserved.              *
+;                                                                    *
+;   This file is property of LSI Corp., Inc. and is licensed for     *
+;   use as is.  The receipt of or possession of this file does not   *
+;   convey any rights to modify its contents, in whole, or in part,  *
+;   without the specific written consent of LSI Corp., Inc.          *
+;                                                                    *
+;********************************************************************
+
+[version]
+Signature   ="$Windows NT$"
+Class       = SCSIAdapter
+ClassGUID   = {4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider    = %DELL%
+CatalogFile = percsas2.cat
+DriverVer   = 06/18/2012,5.2.220.64
+
+[Manufacturer]
+%DELL% = DELL, NTx86, NTamd64
+
+[SourceDisksNames]
+1 = %DISK%
+
+[SourceDisksFiles]
+percsas2.sys = 1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Install_MSI.NT]
+CopyFiles = @percsas2.sys
+
+[Install_MSI.NT.HW]
+Include = machine.inf
+Needs   = PciIoSpaceNotRequired
+AddReg  = Install_AddReg_HW
+
+[Install_AddReg_HW]
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, %REG_DWORD%, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, %REG_DWORD%, 16
+HKR, "Interrupt Management\Affinity Policy", DevicePriority, %REG_DWORD%, 3
+HKR, "Interrupt Management\Affinity Policy", DevicePolicy, %REG_DWORD%, 5
+HKR, "Interrupt Management\Affinity Policy", GroupPolicy, %REG_DWORD%, 1
+
+[Install_MSI.NT.Services]
+AddService = percsas2, %SPSVCINST_ASSOCSERVICE%, Driver_Install, EventLog_Install
+
+[Driver_Install]
+ServiceType    = %SERVICE_KERNEL_DRIVER% 
+StartType      = %SERVICE_BOOT_START% 
+ErrorControl   = %SERVICE_ERROR_NORMAL% 
+ServiceBinary  = %12%\percsas2.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = Parms_AddReg
+
+[Parms_AddReg]
+HKR, "Parameters", "BusType", %REG_DWORD%, 8
+HKR, "Parameters\PnpInterface", "5", %REG_DWORD%, 1
+HKR, "Parameters\Device", DriverParameter, 0x00000000, "nobusywait=1;nonuma=1"
+HKLM,"System\CurrentControlSet\Services\Disk", "TimeOutValue", %REG_DWORD%, 60
+
+[EventLog_Install]
+AddReg = EventLog_AddReg
+     
+[EventLog_AddReg]
+HKR,,EventMessageFile, %REG_EXPAND_SZ%, %%SystemRoot%%\System32\IoLogMsg.dll
+HKR,,TypesSupported, %REG_DWORD%, 7
+
+[DELL.NTx86]
+; Dell
+;PERC7 Controller Family
+%PERCH700.DeviceDesc%               = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F191028
+%PERCH700Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F161028
+%PERCH700Int.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F171028
+%PERCH700Mod.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F181028
+%PERCH800.DeviceDesc%               = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F1B1028
+%PERCH800Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F151028
+%PERCH800PAdp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F1A1028
+
+;PERC8 iMR Controller Family
+%PERCH310Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F4E1028
+%PERCH310Int.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F4F1028
+%PERCH310Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F501028
+%PERCH310Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F511028
+%PERCH310Embd.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F521028
+%PERCH310Embd.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F531028
+%PERCH310.DeviceDesc%               = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F541028
+
+;PERC8 Controller Family
+%PERCH710Embd.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F301028
+%PERCH710PAdp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F311028
+%PERCH710PInt.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F321028
+%PERCH710PMini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F331028
+%PERCH710PMini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F341028
+%PERCH710Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F351028
+%PERCH710Int.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F361028
+%PERCH710Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F371028
+%PERCH710Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F381028
+%PERCH810Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F2D1028
+
+;PERC9 Controller Family
+%PERCH820Adp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F551028
+%PERCH820Adp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F561028
+%PERCH720PEmbd.DeviceDesc%         = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F571028
+%PERCH720PAdp.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F581028
+%PERCH720PMini.DeviceDesc%         = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F591028
+%PERCH720PMini.DeviceDesc%         = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F601028
+%PERCH720Adp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F611028
+%PERCH720Mini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F621028
+%PERCH720Mini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F631028
+[DELL.NTamd64]
+; Dell
+;PERC7 Controller Family
+%PERCH700.DeviceDesc%               = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F191028
+%PERCH700Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F161028
+%PERCH700Int.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F171028
+%PERCH700Mod.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F181028
+%PERCH800.DeviceDesc%               = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F1B1028
+%PERCH800Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F151028
+%PERCH800PAdp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0079&SUBSYS_1F1A1028
+
+;PERC8 iMR Controller Family
+%PERCH310Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F4E1028
+%PERCH310Int.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F4F1028
+%PERCH310Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F501028
+%PERCH310Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F511028
+%PERCH310Embd.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F521028
+%PERCH310Embd.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F531028
+%PERCH310.DeviceDesc%               = Install_MSI, PCI\VEN_1000&DEV_0073&SUBSYS_1F541028
+
+;PERC8 Controller Family
+%PERCH710Embd.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F301028
+%PERCH710PAdp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F311028
+%PERCH710PInt.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F321028
+%PERCH710PMini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F331028
+%PERCH710PMini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F341028
+%PERCH710Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F351028
+%PERCH710Int.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F361028
+%PERCH710Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F371028
+%PERCH710Mini.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F381028
+%PERCH810Adp.DeviceDesc%            = Install_MSI, PCI\VEN_1000&DEV_005B&SUBSYS_1F2D1028
+
+;PERC9 Controller Family
+%PERCH820Adp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F551028
+%PERCH820Adp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F561028
+%PERCH720PEmbd.DeviceDesc%         = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F571028
+%PERCH720PAdp.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F581028
+%PERCH720PMini.DeviceDesc%         = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F591028
+%PERCH720PMini.DeviceDesc%         = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F601028
+%PERCH720Adp.DeviceDesc%           = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F611028
+%PERCH720Mini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F621028
+%PERCH720Mini.DeviceDesc%          = Install_MSI, PCI\VEN_1000&DEV_005D&SUBSYS_1F631028
+
+[Strings]
+;Localizable Strings needed for HBA naming in Windows UI
+
+DELL = "DELL"
+DISK = "DELL PERC RAID Driver"
+
+PERCH310.DeviceDesc                 = "PERC H310"
+PERCH310Adp.DeviceDesc              = "PERC H310 Adapter"
+PERCH310Int.DeviceDesc              = "PERC H310 Integrated"
+PERCH310Mini.DeviceDesc             = "PERC H310 Mini"
+PERCH310Embd.DeviceDesc             = "PERC H310 Embedded"
+PERCH700.DeviceDesc                 = "PERC H700"
+PERCH700Adp.DeviceDesc              = "PERC H700 Adapter"
+PERCH700Int.DeviceDesc              = "PERC H700 Integrated"
+PERCH700Mod.DeviceDesc              = "PERC H700 Modular"
+PERCH710Adp.DeviceDesc              = "PERC H710 Adapter"
+PERCH710Int.DeviceDesc              = "PERC H710 Integrated"
+PERCH710Mini.DeviceDesc             = "PERC H710 Mini"
+PERCH710Embd.DeviceDesc             = "PERC H710 Embedded"
+PERCH710PAdp.DeviceDesc             = "PERC H710P Adapter"
+PERCH710PInt.DeviceDesc             = "PERC H710P Integrated"
+PERCH710PMini.DeviceDesc            = "PERC H710P Mini"
+PERCH720PEmbd.DeviceDesc            = "PERC H720P Embedded"
+PERCH720PAdp.DeviceDesc             = "PERC H720P Adapter"
+PERCH720PMini.DeviceDesc            = "PERC H720P Mini"
+PERCH720Adp.DeviceDesc              = "PERC H720 Adapter"
+PERCH720Mini.DeviceDesc             = "PERC H720 Mini"
+PERCH800.DeviceDesc                 = "PERC H800"
+PERCH800Adp.DeviceDesc              = "PERC H800 Adapter"
+PERCH800PAdp.DeviceDesc             = "PERC H800 Proto Adapter"
+PERCH810Adp.DeviceDesc              = "PERC H810 Adapter"
+PERCH820Adp.DeviceDesc              = "PERC H820 Adapter"
+
+
+;******************************************* 
+;Non-Localizable strings
+
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

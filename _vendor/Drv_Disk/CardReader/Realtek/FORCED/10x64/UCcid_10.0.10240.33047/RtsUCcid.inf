@@ -1,0 +1,124 @@
+; RtsUCcid.INF
+; Copyright (c) Realtek Corporation.  All rights reserved.
+
+[Version]
+Signature="$Windows NT$"
+Class=SmartCardReader
+ClassGuid={50DD5230-BA8A-11D1-BF5D-0000F805F530}
+Provider=%Rts%
+CatalogFile=RtsUCcid64.cat
+DriverVer=11/23/2015,10.0.10240.33047
+
+; ================= Class section =====================
+
+[SourceDisksNames]
+1=%Disk_Description%
+
+[SourceDisksFiles]
+RtsUCcid.sys=1
+RtsUCcid.dll = 1
+
+
+
+;dbb comment begin
+
+;[ClassInstall32]
+;Addreg=SmartCardReaderClassReg
+
+;[ClassInstall]
+;Addreg=SmartCardReaderClassReg
+
+;[SmartCardReaderClassReg]
+;HKR,,,0,%ClassName%
+;HKR,,Icon,,-25
+;HKR,,NoInstallClass,,1
+;HKR,,Installer32,,"winscard.dll,ClassInstall32"
+
+
+;dbb comment end
+
+[Manufacturer]
+%CCID%=CCID.NTx86,Ntamd64
+
+; ============ Add reg for all readers ===============
+
+[Reader.Install.AddReg]
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+HKLM, System\CurrentControlSet\Services\SCardSvr,Start,0x00010001,2
+HKLM, System\CurrentControlSet\Services\CertPropSvc,Start,0x00010001,2
+
+; **************************
+; RTS5161 USB CCID Compliant Readers
+; **************************
+[CCID.NTx86.Ntamd64]
+%USB\VID_0BDA&PID_0169.DeviceDesc%=USBCCID.Install, USB\VID_0BDA&PID_0169&MI_00
+%USB\VID_0BDA&PID_0168.DeviceDesc%=USBCCID.Install, USB\VID_0BDA&PID_0168&MI_00
+%USB\VID_0BDA&PID_0161.DeviceDesc%=USBCCID.Install, USB\VID_0BDA&PID_0161&MI_00
+%USB\VID_0BDA&PID_0166.DeviceDesc%=USBCCID.Install, USB\VID_0BDA&PID_0166&MI_00
+%USB\VID_0BDA&PID_0165.DeviceDesc%=USBCCID.Install, USB\VID_0BDA&PID_0165
+%USB\VID_2001&PID_B300.DeviceDesc%=USBCCID.Install, USB\VID_2001&PID_B300&MI_00
+
+[USBCCID.Install.ntamd64]
+AddReg          = Reader.Install.AddReg
+CopyFiles       = USBCCID.Install.CopyFiles
+[DefaultInstall]
+CopyFiles = USBCCID.Install.CopyFiles, RtsCopyFilesSection
+
+[USBCCID.Install.ntamd64.HW]
+AddReg          = USBCCID.Install.AddReg.HW
+
+[USBCCID.Install.AddReg.HW]
+HKR,,"VendorName",,"Generic"
+HKR,,"IfdType",,"USB Smartcard"
+
+[USBCCID.Install.CopyFiles]
+RtsUCcid.sys,,,2
+
+[USBCCID.Install.ntamd64.CoInstallers]
+CopyFiles=RtsCopyFilesSection
+AddReg=Rts.ntamd64.CoInstallers_AddReg
+
+[RtsCopyFilesSection]
+RtsUCcid.dll
+
+[Rts.ntamd64.CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"RtsUCcid.dll, Rts5161CCIDCoInstaller"
+
+[USBCCID.Install.ntamd64.Services]
+AddService = RSUSBCCID, 2, USBCCID.Service
+
+[DefaultInstall.Services]
+AddService = RSUSBCCID, 2, USBCCID.Service
+[USBCCID.Service]
+DisplayName     = %USBCCID.DeviceDesc%
+ServiceType     = 1 ;%SERVICE_KERNEL_DRIVER%
+StartType       = 3 ;%SERVICE_AUTO_START%
+ErrorControl    = 1 ;%SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\RtsUCcid.sys
+AddReg         = RSCCID.AddReg
+
+
+[RSCCID.AddReg]
+;HKR,"Parameters","UsingEmv",0x10001,0
+;HKR,"Parameters","ModifyGX",0x10001,0
+HKR,"Parameters","AutoPowerCard",0x10001,1
+HKR,"Parameters","Panel",0x10001,0
+
+
+[DestinationDirs]
+USBCCID.Install.CopyFiles = 12
+RtsCopyFilesSection = 11
+
+
+[Strings]
+USBCCID.DeviceDesc = "Realtek Smartcard Reader Driver"
+Disk_Description="Realtek 5161 Driver Disk"
+Rts                     = "Realtek"
+CCID                    = "Realtek USB CCID Compliant"
+USB\VID_0BDA&PID_0161.DeviceDesc      = "Realtek USB Smart Card reader(61)"
+USB\VID_0BDA&PID_0168.DeviceDesc      = "Realtek USB Smart Card reader(68)"
+USB\VID_0BDA&PID_0169.DeviceDesc      = "Realtek USB Smart Card reader(69)"
+USB\VID_0BDA&PID_0166.DeviceDesc      = "Realtek USB Smart Card reader(66)"
+USB\VID_0BDA&PID_0165.DeviceDesc      = "Realtek USB Smart Card reader(65)"
+ClassName               = "Smart card readers"
+USB\VID_2001&PID_B300.DeviceDesc      = "D-Link DUB-1342 Smartcard Reader"

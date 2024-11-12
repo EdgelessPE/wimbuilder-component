@@ -1,0 +1,332 @@
+; FLxHCIc.inf
+; (c)Copyright 2009-2016, Fresco Logic, Incorporated.
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class = USB
+ClassGuid = {36fc9e60-c465-11cf-8056-444553540000}
+
+Provider=%FRESCO%
+DriverVer = 03/19/2019,3.8.35514.0
+CatalogFile=FLxHCIc.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+FLxHCIm.CopyFiles = 11      ; System32
+CoInstaller_CopyFiles = 11
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%FRESCO%=FRESCO,NTamd64
+
+[FRESCO.NTamd64]
+; Generic Bus
+;
+%FLxHCIc.DRVDESC1000%=      FLxHCIc,        PCI\VEN_1B73&DEV_1000
+%FLxHCIc.DRVDESC%=          FLxHCIc,        PCI\VEN_1B73&DEV_1400
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009
+%FLxHCIc.DRVDESC1100_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1100
+; For distribution to 103C (HP).
+;
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_1656103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_3388103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_1657103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_1658103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_3581103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_3582103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_3583103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_1659103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_165A103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_3389103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_165B103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_17F8103C
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_1899103C
+; For distribution to 1025 (Acer).
+;
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_06451025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_06471025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_06491025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_064B1025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_064D1025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_064F1025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_06511025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_06531025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_05041025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_05111025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_050E1025
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_05131025
+; For distribution to 1179 (Toshiba).
+;
+%FLxHCIc.DRVDESC1009_00%=   FLxHCIc_MSI,    PCI\VEN_1B73&DEV_1009&SUBSYS_FC401179
+
+[FLxHCIc.NT]
+CopyFiles=FLxHCIc.CopyFiles,FLxHCIm.CopyFiles
+CopyINF=FLxHCIh.inf
+FeatureScore=0x80
+
+[FLxHCIc_MSI.NT]
+CopyFiles=FLxHCIc_MSI.CopyFiles,FLxHCIm.CopyFiles
+CopyINF=FLxHCIh.inf
+FeatureScore=0x80
+
+[FLxHCIc.NT.HW]
+AddReg=FLxHCIc.AddReg
+
+[FLxHCIc_MSI.NT.HW]
+AddReg=FLxHCIc_MSI.AddReg
+
+[FLxHCIc.CopyFiles]
+FLxHCIc.sys
+
+[FLxHCIc_MSI.CopyFiles]
+FLxHCIc.sys
+
+[FLxHCIm.CopyFiles]
+FLxHCIm.exe
+
+[FLxHCIc.AddReg]
+
+[FLxHCIc_MSI.AddReg]
+HKR,Interrupt Management,,0x00000010
+HKR,Interrupt Management\MessageSignaledInterruptProperties,,0x00000010
+HKR,Interrupt Management\MessageSignaledInterruptProperties,MSISupported,0x00010001,1
+HKR,Interrupt Management\MessageSignaledInterruptProperties,MessageNumberLimit,0x00010001,8
+
+[FLxHCIc.NT.Services]
+AddService=FLxHCIc,0x00000002,FLxHCIc_Service
+
+[FLxHCIc_MSI.NT.Services]
+AddService=FLxHCIc,0x00000002,FLxHCIc_Service
+
+[FLxHCIc_Service]
+DisplayName    = %FLxHCIc.SVCDESC%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\FLxHCIc.sys
+AddReg         = FLxHCIx_Parameters_AddReg
+LoadOrderGroup = Base
+
+[FLxHCIx_Parameters_AddReg]
+; Class A
+HKR, Parameters, SGRD_15D9_0A4C,      0x00010001, 0
+HKR, Parameters, STIC_07CA,           0x00010001, 0
+HKR, Parameters, STIC_15A4_1003,      0x00010001, 0
+HKR, Parameters, STIC_1B80_E39B,      0x00010001, 0
+HKR, Parameters, STIC_2040_7200,      0x00010001, 0
+HKR, Parameters, STIC_185B_2850,      0x00010001, 0
+HKR, Parameters, NIOC_185B_2850,      0x00010001, 0
+HKR, Parameters, SNIC_07CA_2830,      0x00010001, 0
+HKR, Parameters, DDOS_045E_063E,      0x00010001, 0
+HKR, Parameters, DDOS_12D1_1001,      0x00010001, 0
+HKR, Parameters, DDOS_12D1_1003,      0x00010001, 0
+HKR, Parameters, DDOS_0408_EA03,      0x00010001, 0
+HKR, Parameters, DDOS_17E9_028F,      0x00010001, 0
+HKR, Parameters, DDOS_0A5C_2046,      0x00010001, 0
+HKR, Parameters, DDOS_19D2_0031,      0x00010001, 0
+HKR, Parameters, DDOS_1A8D,           0x00010001, 0
+HKR, Parameters, DDOS_0915_2000,      0x00010001, 0
+HKR, Parameters, DDOS_07B8_4002,      0x00010001, 0
+HKR, Parameters, DDOS_17E9_01D4,      0x00010001, 0
+HKR, Parameters, ABIG_03F0_5817,      0x00010001, 0
+HKR, Parameters, CCSD_13FE_1E00,      0x00010001, 0
+HKR, Parameters, DDIP_13FE_1E00,      0x00010001, 0
+HKR, Parameters, PBIN_12D1_1035,      0x00010001, 0
+HKR, Parameters, U1U2_1CA1,           0x00010001, 0
+HKR, Parameters, U1U2_152D_0539,      0x00010001, 0
+HKR, Parameters, U1U2_152D_2509,      0x00010001, 0
+HKR, Parameters, U1U2_1058_0740,      0x00010001, 0
+HKR, Parameters, U1U2_1058_1123,      0x00010001, 0
+HKR, Parameters, U1U2_1058_1140,      0x00010001, 0
+HKR, Parameters, U1U2_1D5C_8347,      0x00010001, 0
+HKR, Parameters, U1U2_04C5_201D,      0x00010001, 0
+HKR, Parameters, U1U2_067B_2771,      0x00010001, 0
+HKR, Parameters, U1U2_1759_9000,      0x00010001, 0
+HKR, Parameters, U1U2_1759_5002,      0x00010001, 0
+HKR, Parameters, U1U2_1759_5000,      0x00010001, 0
+HKR, Parameters, U1U2_0411_0180,      0x00010001, 0
+HKR, Parameters, U1U2_21E6_0001,      0x00010001, 0
+HKR, Parameters, U1U2_1EDB_BD3B,      0x00010001, 0
+HKR, Parameters, U1U2_0A6B_0101,      0x00010001, 0
+HKR, Parameters, U1U2_04E8_60C6,      0x00010001, 0
+HKR, Parameters, U1U2_1058_1042,      0x00010001, 0
+HKR, Parameters, FAHS_0951_1652,      0x00010001, 0
+HKR, Parameters, FAHS_05E3_0731,      0x00010001, 0
+HKR, Parameters, ECSD_199E_8207,      0x00010001, 0
+HKR, Parameters, NSEL_152D_0539,      0x00010001, 0
+HKR, Parameters, NSEL_1F75_0902,      0x00010001, 0
+HKR, Parameters, NSEL_1005_B128,      0x00010001, 0
+HKR, Parameters, NHLP_2297_0321,      0x00010001, 0
+HKR, Parameters, NOSD_1F75_0902,      0x00010001, 0
+HKR, Parameters, NOSD_125F_312A,      0x00010001, 0
+HKR, Parameters, NOSD_3538_0901,      0x00010001, 0
+HKR, Parameters, NMEL_1EDB_BD3B,      0x00010001, 0
+HKR, Parameters, NSSR_0951_1652,      0x00010001, 0
+HKR, Parameters, NSSR_1759_5000,      0x00010001, 0
+HKR, Parameters, NSSR_1759_5002,      0x00010001, 0
+HKR, Parameters, NSSR_152D_0539,      0x00010001, 0
+HKR, Parameters, NSSR_152D_2509,      0x00010001, 0
+HKR, Parameters, NSSR_152D_0551,      0x00010001, 0
+HKR, Parameters, NSSR_0BC2_2300,      0x00010001, 0
+HKR, Parameters, NSSR_0BC2_3300,      0x00010001, 0
+HKR, Parameters, NSSR_059F_1016,      0x00010001, 0
+HKR, Parameters, NSSR_1058_0740,      0x00010001, 0
+HKR, Parameters, NSSR_059F_100C,      0x00010001, 0
+HKR, Parameters, NSSR_0411_01D8,      0x00010001, 0
+HKR, Parameters, DPDE_0951_1652,      0x00010001, 0
+HKR, Parameters, DPDE_1759_5000,      0x00010001, 0
+HKR, Parameters, DPDE_1759_5002,      0x00010001, 0
+HKR, Parameters, DPDE_152D_0539,      0x00010001, 0
+HKR, Parameters, DPDE_152D_2509,      0x00010001, 0
+HKR, Parameters, DPDE_152D_0551,      0x00010001, 0
+HKR, Parameters, DPDE_0411_01D8,      0x00010001, 0
+HKR, Parameters, WRDP_152D_0539,      0x00010001, 0
+HKR, Parameters, WRDP_152D_2509,      0x00010001, 0
+HKR, Parameters, ROSR_045E_063E,      0x00010001, 0
+HKR, Parameters, ROSR_045E_0710,      0x00010001, 0
+HKR, Parameters, ROSR_058F_9520,      0x00010001, 0
+HKR, Parameters, ROSR_05AC_1294,      0x00010001, 0
+HKR, Parameters, ROSR_05AC_129A,      0x00010001, 0
+HKR, Parameters, ROSR_05AC_129F,      0x00010001, 0
+HKR, Parameters, ROSR_0BC2_2300,      0x00010001, 0
+HKR, Parameters, ROSR_0BC2_3300,      0x00010001, 0
+HKR, Parameters, ROSR_059F_1016,      0x00010001, 0
+HKR, Parameters, ROSR_1058_0740,      0x00010001, 0
+HKR, Parameters, ROSR_059F_100C,      0x00010001, 0
+HKR, Parameters, SMSZ_0DD8_1D04,      0x00010001, 0
+HKR, Parameters, SMSZ_04B8_083F,      0x00010001, 0
+HKR, Parameters, SMSZ_1759_5000,      0x00010001, 0
+HKR, Parameters, SMSZ_1759_5002,      0x00010001, 0
+HKR, Parameters, SMSZ_1058_1042,      0x00010001, 0
+HKR, Parameters, GSOR_1390_0001,      0x00010001, 0
+HKR, Parameters, OEHD_045E_001C,      0x00010001, 0
+HKR, Parameters, OEHD_045E_002F,      0x00010001, 0
+HKR, Parameters, OEHD_8086_9303,      0x00010001, 0
+HKR, Parameters, OEHD_042B_9316,      0x00010001, 0
+HKR, Parameters, OEHD_050F_0001,      0x00010001, 0
+HKR, Parameters, OEHD_046A_0003,      0x00010001, 0
+HKR, Parameters, OEHD_04E1_0201,      0x00010001, 0
+HKR, Parameters, OEHD_0419_8001,      0x00010001, 0
+HKR, Parameters, OEHD_055D_8001,      0x00010001, 0
+HKR, Parameters, OEHD_0968_9999,      0x00010001, 0
+HKR, Parameters, OEHD_04CA_9304,      0x00010001, 0
+HKR, Parameters, OEHD_0416_0101,      0x00010001, 0
+HKR, Parameters, OEHD_04A8_0101,      0x00010001, 0
+HKR, Parameters, OEHD_0405_0000,      0x00010001, 0
+HKR, Parameters, OEHD_0451_1446,      0x00010001, 0
+HKR, Parameters, OEHD_0423_1237,      0x00010001, 0
+HKR, Parameters, OEHD_0430_36BA,      0x00010001, 0
+HKR, Parameters, OEHD_0471_0201,      0x00010001, 0
+HKR, Parameters, OEHD_0471_0700,      0x00010001, 0
+HKR, Parameters, OEHD_0409_55AA,      0x00010001, 0
+HKR, Parameters, OEHD_0409_8010,      0x00010001, 0
+HKR, Parameters, OEHD_0409_8011,      0x00010001, 0
+HKR, Parameters, OEHD_0400_1237,      0x00010001, 0
+HKR, Parameters, OEHD_054C_0001,      0x00010001, 0
+HKR, Parameters, OEHD_054C_0002,      0x00010001, 0
+HKR, Parameters, OEHD_056D_0000,      0x00010001, 0
+HKR, Parameters, OEHD_04A6_0180,      0x00010001, 0
+HKR, Parameters, OEHD_0654_0006,      0x00010001, 0
+HKR, Parameters, OEHD_0654_0016,      0x00010001, 0
+HKR, Parameters, STRZ_1759_5000,      0x00010001, 0
+HKR, Parameters, NGU3_2109_3431,      0x00010001, 0
+HKR, Parameters, NP2P_052E_1028,      0x00010001, 0
+HKR, Parameters, NSND_174C_5106,      0x00010001, 0
+HKR, Parameters, ABCP_05AC,           0x00010001, 0
+HKR, Parameters, NFRW_0B95_772B,      0x00010001, 0
+HKR, Parameters, NFRW_0424_EC00,      0x00010001, 0
+HKR, Parameters, FSCD_04C5_132B,      0x00010001, 0
+HKR, Parameters, ZDSI_0B6A_5347,      0x00010001, 0
+HKR, Parameters, ZDSI_070A_000D,      0x00010001, 0
+HKR, Parameters, DERE_0525_A4A2,      0x00010001, 0
+HKR, Parameters, DERE_043E_9A46,      0x00010001, 0
+HKR, Parameters, DERE_043E_9A02,      0x00010001, 0
+HKR, Parameters, RSBI_0403_FF0B,      0x00010001, 0x100
+HKR, Parameters, RSBO_0403_FF0B,      0x00010001, 0x100
+HKR, Parameters, RSBI_164C_5533,      0x00010001, 0x200
+HKR, Parameters, RSBI_1E10_3300,      0x00010001, 0x200
+; Class B
+; (HP)
+HKR, Parameters, 1656103C,            0x00010001, 0
+HKR, Parameters, 3388103C,            0x00010001, 0
+HKR, Parameters, 1657103C,            0x00010001, 0
+HKR, Parameters, 1658103C,            0x00010001, 0
+HKR, Parameters, 3581103C,            0x00010001, 0
+HKR, Parameters, 3582103C,            0x00010001, 0
+HKR, Parameters, 3583103C,            0x00010001, 0
+HKR, Parameters, 1659103C,            0x00010001, 0
+HKR, Parameters, 165A103C,            0x00010001, 0
+HKR, Parameters, 3389103C,            0x00010001, 0
+HKR, Parameters, 165B103C,            0x00010001, 0
+HKR, Parameters, 17F8103C,            0x00010001, 0
+HKR, Parameters, 1899103C,            0x00010001, 0
+; (Acer)
+HKR, Parameters, 06451025,            0x00010001, 0
+HKR, Parameters, 06471025,            0x00010001, 0
+HKR, Parameters, 06491025,            0x00010001, 0
+HKR, Parameters, 064B1025,            0x00010001, 0
+HKR, Parameters, 064D1025,            0x00010001, 0
+HKR, Parameters, 064F1025,            0x00010001, 0
+HKR, Parameters, 06511025,            0x00010001, 0
+HKR, Parameters, 06531025,            0x00010001, 0
+HKR, Parameters, 05041025,            0x00010001, 0
+HKR, Parameters, 05111025,            0x00010001, 0
+HKR, Parameters, 050E1025,            0x00010001, 0
+HKR, Parameters, 05131025,            0x00010001, 0
+; (Toshiba)
+HKR, Parameters, FC401179,            0x00010001, 0
+
+[FLxHCIc.NT.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[FLxHCIc_MSI.NT.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+WdfCoInstaller01011.dll
+FLxHCIco.dll
+
+[SourceDisksFiles]
+FLxHCIc.sys=1
+WdfCoInstaller01011.dll=1
+FLxHCIco.dll = 1
+FLxHCIm.exe = 1
+
+[SourceDisksNames]
+1=%DISK_NAME%,
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01011.dll,WdfCoInstaller"
+HKR,,CoInstallers32,0x00010000, "FLxHCIco.dll,FL_CoInstall"
+
+[FLxHCIcoInfo]
+; Used by the co-installer to figure out where the original media is
+; located.
+OriginalInfSourcePath = %1%
+
+[FLxHCIc.NT.Wdf]
+KmdfService = FLxHCIc, FLxHCIc_wdfsect
+
+[FLxHCIc_MSI.NT.Wdf]
+KmdfService = FLxHCIc, FLxHCIc_wdfsect
+
+[FLxHCIc_wdfsect]
+KmdfLibraryVersion = 1.11
+
+[Strings]
+FRESCO =                    "Fresco Logic"
+DISK_NAME=                  "Fresco Logic xHCI Install Disk (Bus)"
+FLxHCIc.SVCDESC=            "Fresco Logic xHCI (USB3) Device Driver"
+FLxHCIc.DRVDESC=            "Fresco Logic xHCI (USB3) Controller"
+FLxHCIc.DRVDESC1000=        "Fresco Logic xHCI (USB3) Controller FL1000 Series"
+FLxHCIc.DRVDESC1009_00=     "Fresco Logic xHCI (USB3) Controller FL1009 Series"
+FLxHCIc.DRVDESC1100_00=     "Fresco Logic xHCI (USB3) Controller FL1100 Series"
+
+;; eof: FLxHCIc.inf
+;;
+

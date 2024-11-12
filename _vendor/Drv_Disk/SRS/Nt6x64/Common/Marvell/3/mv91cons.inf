@@ -1,0 +1,64 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Marvell%
+DriverVer=05/05/2015,1.2.0.1047
+CatalogFile=mvs91xx.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+;*****************************************
+; 91xx Config Device Install Section
+;*****************************************
+
+[Manufacturer]
+%Marvell%=Marvell,NTamd64
+
+[Marvell.NTamd64]
+; DisplayName       		Section           DeviceId
+; -----------       		-------           --------
+%Mv91Console.DeviceDesc%    = Mv91Console_Device,Marvell_91xx_Config_____________________1.01____
+%Mv91Console.DeviceDesc%    = Mv91Console_Device,Marvell_91xx_Config_____1
+%Mv91Console.DeviceDesc%    = Mv91Console_Device,Marvell_91xx_Config
+
+%Mv92Console.DeviceDesc%    = Mv91Console_Device,Marvell_9143_Config_____1
+
+%Mv92Console.DeviceDesc%    = Mv91Console_Device,Marvell_Console_________1
+%Mv92Console.DeviceDesc%    = Mv91Console_Device,Marvell_Console_________________________1.01____
+%Mv92Console.DeviceDesc%    = Mv91Console_Device,Marvell_Console
+
+[Mv91Console_Device.NT]
+CopyFiles=Mv91Console_Device.NT.Copy
+
+[Mv91Console_Device.NT.Copy]
+mv91cons.sys
+
+;-------------- Service installation
+
+[Mv91Console_Device.NT.Services]
+AddService = mv91cons, %SPSVCINST_ASSOCSERVICE%, mv91cons_Service_Inst
+
+[mv91cons_Service_Inst]
+DisplayName    = %mv91cons.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\mv91cons.sys
+LoadOrderGroup = System Bus Extender
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+mv91cons.sys  = 1,,
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+Marvell= "Marvell Semiconductor Inc."
+DiskId1 = "91xx Config Device Installation Disk #1"
+Mv91Console.DeviceDesc    = "Marvell 91xx Config Device"
+mv91cons.SVCDESC = "Marvell 91xx Config Device Driver"
+
+Mv92Console.DeviceDesc    = "Marvell Unify Configuration"

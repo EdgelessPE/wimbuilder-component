@@ -1,0 +1,112 @@
+;============================================================================ 
+; Installation file (.inf) for Windows 8.
+;
+; Copyright (c) ASUS Tek
+;============================================================================
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = Mouse
+ClassGUID   = {4D36E96F-E325-11CE-BFC1-08002BE10318}
+Provider    = %VenderName%
+DriverVer=03/26/2015,8.2.0.9
+CatalogFile = AsusPTPMouse.cat
+
+
+[DestinationDirs]
+DefaultDestDir					= 12    ; DIRID_DRIVERS
+AsusSGDrv_Inst.CopyFiles.NT		= 12    ; Driver directory
+
+ 
+;----------------------------------------------------------------------------
+; Common File Copy and Registry Operations
+;----------------------------------------------------------------------------
+[AsusSGDrv_Inst.CopyFiles.NT]
+AsusSGDrv.sys
+
+;----------------------------------------------------------------------------
+; Manufacturer Section
+;----------------------------------------------------------------------------
+[Manufacturer]
+%VenderName%=ASUSMfg, NTamd64, NTx86
+
+[ASUSMfg.NTx86]
+;Interface : I2C
+;NB platform
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE2000&Col01						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN2000&Col03						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17E0&MI_02&Col01		;PTP Devices
+
+
+[ASUSMfg.NTamd64]
+;NB platform
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE2000&Col01						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN2000&Col03						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17E0&MI_02&Col01		;PTP Devices
+
+
+
+[AsusSGDrv_Inst.NT]
+Include = msmouse.inf
+Needs = HID_Mouse_Inst.NT
+CopyFiles = AsusSGDrv_Inst.CopyFiles.NT
+
+[AsusSGDrv_Inst.NT.HW]
+Include = msmouse.inf
+Needs = HID_Mouse_Inst.NT.HW
+AddReg = AsusSGDrv_Inst.AddReg.NT
+
+[AsusSGDrv_Inst.AddReg.NT]
+HKR,,"UpperFilters",0x00010000,"AsusPTPSGDrv"
+
+[AsusSGDrv_Inst.NT.Services]
+Include = msmouse.inf
+Needs = HID_Mouse_Inst.NT.Services
+AddService = AsusSGDrv, , AsusSGDrv_Service_Inst
+
+
+[AsusSGDrv_Service_Inst]
+DisplayName    = %AsusSGDrv.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AsusSGDrv.sys
+LoadOrderGroup = Pointer Port
+AddReg	       = AsusSGDrv_Service_Protocol_AddReg
+DelReg	       = AsusSGDrv_Service_Protocol_DelReg
+
+
+[AsusSGDrv_Service_Protocol_AddReg]
+HKR,Parameters\ProtocolList,"I2C_0",0x00010000,"FTE2000&Col01"
+HKR,Parameters\ProtocolList,"I2C_1",0x00010000,"ELAN2000&Col03"
+HKR,Parameters\ProtocolList,"I2C_2",0x00010000,"ELAN0200&Col03"
+HKR,Parameters\ProtocolList,"I2C_3",0x00010000,"VID_0B05&PID_17E0&MI_02&Col01"
+
+
+[AsusSGDrv_Service_Protocol_DelReg]
+HKLM,"Parameters\ProtocolList"
+
+
+
+; ---------------------------------------------------------
+; Source Media Section
+; ---------------------------------------------------------
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+AsusSGDrv.sys = 1
+
+
+; Strings Section
+; ---------------------------------------------------------
+[Strings]
+VenderName                  = "ASUS"
+AsusSGDrv.SvcDesc           = "ASUS MOUSE Service"
+DiskName                    = "ASUSWare Driver Disk"
+ASUS_INPUT_DEVICE.DeviceDesc = "ASUS Touchpad"
+
+
+; Driver Information Entries
+DriverProduct   = "ASUS Touchpad Device Driver"
+

@@ -1,0 +1,47 @@
+﻿BaseBoardManufacturer：
+BaseBoardManufacturerOnlySupport：
+BaseBoardManufacturerNonSupport：
+BaseBoardProduct：
+BaseBoardProductOnlySupport：
+BaseBoardProductNonSupport：
+SystemManufacturer：
+SystemManufacturerOnlySupport：
+SystemManufacturerNonSupport：
+SystemProductName：
+SystemProductNameOnlySupport：
+SystemProductNameNonSupport：
+SystemSKU：
+SystemSKUOnlySupport：
+SystemSKUNonSupport：
+ChassisType：
+ChassisTypeOnlySupport：
+ChassisTypeNonSupport：
+ProcessorManufacturer：
+ProcessorManufacturerOnlySupport：
+ProcessorManufacturerNonSupport：
+ProcessorVersion：AMD Ryzen Threadripper 2990WX 32-Core Processor、AMD Ryzen Threadripper 2970WX 24-Core Processor、AMD Ryzen Threadripper 2950X 16-Core Processor、AMD Ryzen Threadripper 2920X 12-Core Processor、AMD Ryzen Threadripper 1950X 16-Core Processor、AMD Ryzen Threadripper 1920X 12-Core Processor、AMD Ryzen Threadripper 1900X 8-Core Processor、AMD Ryzen 9 3950X 16-Core Processor、AMD Ryzen 9 3900X 12-Core Processor、AMD Ryzen 7 3800X 8-Core Processor、AMD Ryzen 7 3700X 8-Core Processor、AMD Ryzen 7 2700X 8-Core Processor、AMD Ryzen 7 2700 8-Core Processor、AMD Ryzen 7 2700E 8-Core Processor、AMD Ryzen 7 1800X 8-Core Processor、AMD Ryzen 7 1700X 8-Core Processor、AMD Ryzen 7 1700 8-Core Processor、AMD Ryzen 5 3600X 6-Core Processor、AMD Ryzen 5 3600 6-Core Processor、AMD Ryzen 5 2600X 6-Core Processor、AMD Ryzen 5 2600 6-Core Processor、AMD Ryzen 5 2600E 6-Core Processor、AMD Ryzen 5 2500X 4-Core Processor、AMD Ryzen 5 1600X 6-Core Processor、AMD Ryzen 5 1600 6-Core Processor、AMD Ryzen 5 1500X 4-Core Processor、AMD Ryzen 5 1400 4-Core Processor、AMD Ryzen 5 3400G with Radeon Vega Graphics、AMD Ryzen 5 2400G with Radeon Vega Graphics、AMD Ryzen 5 2400GE with Radeon Vega Graphics、AMD Ryzen 3 2300X 4-Core Processor、AMD Ryzen 3 1300X 4-Core Processor、AMD Ryzen 3 1200 4-Core Processor、AMD Ryzen 3 3200G with Radeon Vega Graphics、AMD Ryzen 3 2200G with Radeon Vega Graphics、AMD Ryzen 3 2200GE with Radeon Vega Graphics
+ProcessorVersionOnlySupport：AMD Ryzen Threadripper 2990WX 32-Core Processor、AMD Ryzen Threadripper 2970WX 24-Core Processor、AMD Ryzen Threadripper 2950X 16-Core Processor、AMD Ryzen Threadripper 2920X 12-Core Processor、AMD Ryzen Threadripper 1950X 16-Core Processor、AMD Ryzen Threadripper 1920X 12-Core Processor、AMD Ryzen Threadripper 1900X 8-Core Processor、AMD Ryzen 9 3950X 16-Core Processor、AMD Ryzen 9 3900X 12-Core Processor、AMD Ryzen 7 3800X 8-Core Processor、AMD Ryzen 7 3700X 8-Core Processor、AMD Ryzen 7 2700X 8-Core Processor、AMD Ryzen 7 2700 8-Core Processor、AMD Ryzen 7 2700E 8-Core Processor、AMD Ryzen 7 1800X 8-Core Processor、AMD Ryzen 7 1700X 8-Core Processor、AMD Ryzen 7 1700 8-Core Processor、AMD Ryzen 5 3600X 6-Core Processor、AMD Ryzen 5 3600 6-Core Processor、AMD Ryzen 5 2600X 6-Core Processor、AMD Ryzen 5 2600 6-Core Processor、AMD Ryzen 5 2600E 6-Core Processor、AMD Ryzen 5 2500X 4-Core Processor、AMD Ryzen 5 1600X 6-Core Processor、AMD Ryzen 5 1600 6-Core Processor、AMD Ryzen 5 1500X 4-Core Processor、AMD Ryzen 5 1400 4-Core Processor、AMD Ryzen 5 3400G with Radeon Vega Graphics、AMD Ryzen 5 2400G with Radeon Vega Graphics、AMD Ryzen 5 2400GE with Radeon Vega Graphics、AMD Ryzen 3 2300X 4-Core Processor、AMD Ryzen 3 1300X 4-Core Processor、AMD Ryzen 3 1200 4-Core Processor、AMD Ryzen 3 3200G with Radeon Vega Graphics、AMD Ryzen 3 2200G with Radeon Vega Graphics、AMD Ryzen 3 2200GE with Radeon Vega Graphics
+ProcessorVersionNonSupport：
+WindowsMajorVersion：
+WindowsMajorVersionOnlySupport：
+WindowsMajorVersionNonSupport：
+WindowsMajorVersionMinSupport：
+WindowsMajorVersionMaxSupport：
+WindowsMinorVersion：
+WindowsMinorVersionOnlySupport：
+WindowsMinorVersionNonSupport：
+WindowsMinorVersionMinSupport：
+WindowsMinorVersionMaxSupport：
+WindowsReleaseVersion：
+WindowsReleaseVersionOnlySupport：
+WindowsReleaseVersionNonSupport：
+WindowsReleaseVersionMinSupport：17763
+WindowsReleaseVersionMaxSupport：
+WindowsBuildVersion：
+WindowsBuildVersionOnlySupport：
+WindowsBuildVersionNonSupport：
+WindowsBuildVersionMinSupport：
+WindowsBuildVersionMaxSupport：
+ExistId："PCI\VEN_1022&DEV_7905&CC_0104" "PCI\VEN_1022&DEV_43BD&CC_0104" "PCI\VEN_1022&DEV_7916&CC_0104" "PCI\VEN_1022&DEV_7917&CC_0104"
+ExistIdOnlySupport："PCI\VEN_1022&DEV_7905&CC_0104" "PCI\VEN_1022&DEV_43BD&CC_0104" "PCI\VEN_1022&DEV_7916&CC_0104" "PCI\VEN_1022&DEV_7917&CC_0104"
+ExistIdNonSupport：

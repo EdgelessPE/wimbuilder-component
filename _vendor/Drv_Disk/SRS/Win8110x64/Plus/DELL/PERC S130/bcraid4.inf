@@ -1,0 +1,215 @@
+;-----------------------------------------------------------------------------
+
+;
+; bcraid4.inf = Installation for Dell PERC S130 device driver
+;
+
+; Copyright (c) 2002-2008 Ciprico Inc.  All rights reserved.
+
+; Copyright (c) 2008-2011 Dot Hill Systems Corp.  All rights reserved.
+
+; Copyright (c) 2012-2015 Dell Inc.  All rights reserved.
+
+;
+;-----------------------------------------------------------------------------
+
+;- This version supports Windows XP and later operating systems.
+
+; - Class and ClassGUID specify the type of driver and must match
+
+;     (see $DDKPATH/inc/api/devguid.h).
+
+; - Driver provided by Dell Inc. for PERC S130 4.2 software.
+
+;   (4.2.0.0009)
+
+;-----------------------------------------------------------------------------
+
+
+
+;-----------------------------------------------------------------------------
+
+[Version]
+
+Signature = "$Windows NT$"
+
+Class = SCSIAdapter
+
+ClassGUID = {4D36E97B-E325-11CE-BFC1-08002BE10318}
+
+Provider = %DELL%
+
+CatalogFile.ntamd64 = bcraid4.cat
+
+DriverVer = 12/24/2015,4.2.0.0009
+
+PnpLockDown = 1
+
+DriverPackageDisplayName = %bcraid_Desc%
+
+DriverPackageType = PlugAndPlay
+
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames]
+
+1 = %bcraid_Desc%
+
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksFiles]
+
+bcraid4.sys = 1
+
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+
+DefaultDestDir = 12   ;%WinDir%\System32\Drivers directory on NT-based systems
+
+
+;-----------------------------------------------------------------------------
+
+[ControlFlags]
+
+ExcludeFromSelect = *
+
+
+;-----------------------------------------------------------------------------
+
+[Manufacturer]
+
+%DELL% = DELL,ntamd64
+
+
+;-----------------------------------------------------------------------------
+
+[DELL.ntamd64]
+;SATA Controller 
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_A106&subsys_06A71028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_A106&subsys_06AA1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_A106&subsys_06A51028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_A106&subsys_06A61028
+
+;First SATA Controller 
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06001028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06011028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06021028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_060E1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_061B1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06271028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_063A1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06391028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_063B1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06361028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_063C1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06701028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06711028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06721028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D66&subsys_06931028
+;Second SATA Controller
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06001028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06011028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06021028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_060E1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_061B1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06271028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_063A1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06391028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_063B1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06361028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_063C1028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06701028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06711028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06721028
+%bcraid_Desc%=bcraid_Inst_VST,PCI\VEN_8086&DEV_8D06&subsys_06931028
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst]
+
+CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst_VST]
+
+CopyFiles = DefaultDestDir
+
+
+;-----------------------------------------------------------------------------
+
+[DefaultDestDir]
+
+bcraid4.sys,,,0x00002004
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst.Services]
+
+AddService = bcraid4,0x00000002,bcraid_Service_Inst
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst_VST.Services]
+
+AddService = bcraid4,0x00000002,bcraid_Service_Inst_VST
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Service_Inst]
+
+ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+StartType     = 0                    ; SERVICE_BOOT_START
+
+ErrorControl  = 2                    ; SERVICE_ERROR_SEVERE
+
+ServiceBinary = %12%\bcraid4.sys
+
+AddReg = bcraid_Inst_AddReg
+
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Service_Inst_VST]
+
+ServiceType   = 1                    ; SERVICE_KERNEL_DRIVER
+
+StartType     = 0                    ; SERVICE_BOOT_START
+
+ErrorControl  = 2                    ; SERVICE_ERROR_SEVERE
+
+ServiceBinary = %12%\bcraid4.sys
+AddReg = bcraid_Inst_AddReg,bcraid_Inst_VST_AddReg
+
+
+;-----------------------------------------------------------------------------
+[bcraid_Inst_AddReg]
+
+HKR, "Parameters\PnpInterface", 5, 0x00010001, 0x00000001
+
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 254
+
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+
+;-----------------------------------------------------------------------------
+[bcraid_Inst_VST_AddReg]
+
+HKR, "Parameters\Device", "DriverParameter", 0, "VST"
+
+
+;-----------------------------------------------------------------------------
+
+
+[Strings]
+DELL = "Dell Inc."
+
+bcraid_Desc = "Dell PERC S130 Controller [storport]"
+
+

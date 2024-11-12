@@ -1,0 +1,96 @@
+;============================================================================ 
+; Installation file (.inf) for Windows 8.
+;
+; Copyright (c) ASUS Tek
+;============================================================================
+
+[Version]
+Signature   	= "$Windows NT$"
+Class			= Keyboard
+ClassGuid		= {4d36e96b-e325-11ce-bfc1-08002be10318};Keyboard ClassGuid
+Provider    	= %VenderName%
+DriverVer=07/19/2017,12.1.0.8
+CatalogFile 	= AsusKbdDigiFilter.cat
+
+
+[DestinationDirs]
+DefaultDestDir					= 12    ; DIRID_DRIVERS
+AsusDigi_Inst.CopyFiles.NT		= 12    ; Driver directory
+
+ 
+;----------------------------------------------------------------------------
+; Common File Copy and Registry Operations
+;----------------------------------------------------------------------------
+[AsusDigi_Inst.CopyFiles.NT]
+AsusDigiFilter.sys
+
+
+;----------------------------------------------------------------------------
+; Manufacturer Section
+;----------------------------------------------------------------------------
+[Manufacturer]
+%VenderName%=ASUSMfg, NTamd64, NTx86
+
+
+[ASUSMfg.NTx86]
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\VID_0B05&PID_1837&MI_00					;EC USB Keyboard 
+
+
+[ASUSMfg.NTamd64]
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusDigi_Inst, HID\VID_0B05&PID_1837&MI_00					;EC USB Keyboard 
+
+
+[AsusDigi_Inst.NT]
+FeatureScore=00
+Include=keyboard.inf
+Needs=HID_Keyboard_Inst.NT
+CopyFiles= AsusDigi_Inst.CopyFiles.NT
+
+[AsusDigi_Inst.NT.HW]
+Include=keyboard.inf
+Needs=HID_Keyboard_Inst.HW
+AddReg = AsusDigi_Inst.AddReg.NT
+
+[AsusDigi_Inst.AddReg.NT]
+HKR,,"LowerFilters",0x00010000,"AsusNumpadPTP"
+
+
+;-------------- Service installation
+[AsusDigi_Inst.NT.Services]
+Include=keyboard.inf
+Needs=HID_Keyboard_Inst.NT.Services
+AddService = AsusNumpadKbd, , AsusDigi_Service_Inst
+
+
+;-------------- PTPFilter driver install sections
+[AsusDigi_Service_Inst]
+DisplayName    = %AsusPTP.SvcDesc%
+ServiceType    = 1  ;SERVICE_KERNEL_DRIVER
+StartType      = 3  ;SERVICE_DEMAND_START
+ErrorControl   = 1  ;SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AsusDigiFilter.sys
+LoadOrderGroup = Extended Base
+
+; ---------------------------------------------------------
+; Source Media Section
+; ---------------------------------------------------------
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+AsusDigiFilter.sys = 1
+
+
+; Strings Section
+; ---------------------------------------------------------
+[Strings]
+SPSVCINST_ASSOCSERVICE			= 0x00000002
+VenderName						= "ASUSTek COMPUTER INC."
+AsusPTP.SvcDesc					= "ASUS Numberpad Keyboardd Service"
+DiskName						= "ASUSWare Driver Disk"
+ASUS_INPUT_DEVICE.DeviceDesc	= "ASUS Number Pad"
+
+
+; Driver Information Entries
+DriverProduct   = "ASUS Touchpad Device Driver"
+

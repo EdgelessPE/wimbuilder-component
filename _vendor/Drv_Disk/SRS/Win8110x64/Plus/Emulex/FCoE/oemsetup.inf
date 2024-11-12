@@ -1,0 +1,446 @@
+*****************************************************************************
+;*
+;*   Copyright (c) 2003-2016 Emulex. All rights reserved. EMULEX CONFIDENTIAL. Unpublished
+;*   work. Copying, access, use or distribution requires an applicable license approved by Emulex.
+;*
+;*
+;*       OEMSETUP.INF - This file is used by Setup to install the Emulex STORPORT 
+;*                Miniport driver elxcna.sys 
+;*
+;*                (for Emulex FCoE Host Bus Adapters)
+;*
+;*******************************************************************************
+
+[version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%EMULEX%
+Catalogfile=elxcna.cat
+DriverVer=01/25/2016,11.0.247.0
+
+[DestinationDirs]
+elxcna_CopyFiles      = 12 
+CoInstaller.CopyFiles = 11
+
+[Manufacturer]
+%EMULEX%=EMULEX, NTamd64
+
+;**********************************
+; Emulex Manufacturer device list
+;**********************************
+[EMULEX.NTamd64]
+
+;Tomcat
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72410DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72610DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72910DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E79E10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3340103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3341103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11A31734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11A41734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11A51734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_03D01014
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_03D11014
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E74010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E74210DF
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E74610DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E74810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E75010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E75210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E75810DF
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E7A210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E7AE10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3342103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3343103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11A01734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11A11734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11A21734
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70410DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70610DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71410DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71610DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E78010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E78210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E78E10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3344103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3345103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3315103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_119D1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_119E1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_119F1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_006F1137
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E75110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_DF0719E5
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_DF0A19E5
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3376103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_337B103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_337C103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3391103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_3392103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11C11734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11C21734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_11C91734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70A10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70B10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70C10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70D10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70E10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70F10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71B10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71C10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71D10DF
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E74310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71A10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_177B103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_304B1054
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71510DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71E10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71F10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73510DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_17A3103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_17A6103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_304C1054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_304D1054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_304E1054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_304F1054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_30541054
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_30571054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_30581054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71710DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E71910DF
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_184E103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_2151103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72A10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E73210DF
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E70110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E74110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E72710DF
+
+;Tomcat FCoE - Sugon
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E76210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714&SUBSYS_E76310DF
+
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_19A2&DEV_0714
+
+;Lancer FCoE
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E26010DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E26210DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E22010DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_04101014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_04411014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_043E1014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_04341014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_04371014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_043A1014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E20C10DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E20E10DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E27010DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E27210DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E27410DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E26610DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_04521014
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_045F1014
+
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E26410DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E27510DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E27610DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E27710DF
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_E21710DF
+ 
+;Lancer FCoE Huawei
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_DF1019E5
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_DF1F19E5
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_DF1C19E5
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_DF0219E5
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260&SUBSYS_DF1419E5
+
+%elxcna.DeviceDesc% = elxcna_Lancer_MSI, PCI\VEN_10DF&DEV_E260
+
+;Skyhawk
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E80010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E80110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E80610DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E80710DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E80810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E80C10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E86710DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E86810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E86910DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E86A10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E86B10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E86C10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E88010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E88110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E88210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E88310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E89010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E89110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E89210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E89310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8D010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8D110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8D210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8D310DF
+
+;Skyhawk - Cisco
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E85910DF
+
+;Skyhawk - IBM-X
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81410DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81510DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81610DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81710DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81810DF
+
+;Skyhawk - Lenovo
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81910DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81A10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81B10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81C10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81D10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81E10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E81F10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E87010DF
+
+;Skyhawk - DELL
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E82010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E82110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E82210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E82310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E82410DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E82510DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E83010DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E83110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E83210DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E83310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E83410DF
+
+;Skyhawk - Huawei MZ
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E85310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_DF1619E5
+;Skyhawk - Emulex Test Config
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8F110DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8F310DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8F710DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8F810DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8F910DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8FC10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8FD10DF
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E8FE10DF
+
+;Skyhawk - FTS
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_11F91734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_11FA1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_11FB1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_120A1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_120E1734
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_122C1734
+
+;Skyhawk - Fujitsu
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_E85810DF
+
+;Skyhawk - U-HI
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_306A1054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_308C1054
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_30821054
+
+;Skyhawk - HP FLEX Fabric 
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_1934103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_1935103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_220A103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_21D4103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_2343103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_8106103C
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_8144103C
+
+
+;Skyhawk - HP Boxster V 
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_81531590
+
+;Skyhawk - HP Emu BLOM
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_00E91590
+
+;Skyhawk - UX-D
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_1F801028
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_1F831028
+
+;Skyhawk - Lenovo UX-L
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_105617AA
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724&SUBSYS_105717AA
+
+;Skyhawk
+%elxcna.DeviceDesc% = elxcna_BE_MSI, PCI\VEN_10DF&DEV_0724
+
+;
+; The Install Section
+;
+
+[elxcna_MSI]
+CopyFiles = elxcna_CopyFiles
+AddReg    = elxcna_Registry_Update
+
+[elxcna_MSI.HW]
+Include = machine.inf
+Needs   = PciIoSpaceNotRequired
+AddReg  = elxcna_Registry_Update_MSI
+
+[elxcna_BE_MSI]
+CopyFiles = elxcna_CopyFiles
+AddReg    = elxcna_Registry_Update
+
+[elxcna_BE_MSI.HW]
+Include = machine.inf
+Needs   = PciIoSpaceNotRequired
+AddReg  = elxcna_Registry_Update_BE_MSI
+
+[elxcna_Lancer_MSI]
+CopyFiles = elxcna_CopyFiles
+AddReg    = elxcna_Registry_Update
+
+[elxcna_Lancer_MSI.HW]
+Include = machine.inf
+Needs   = PciIoSpaceNotRequired
+AddReg  = elxcna_Registry_Update_Lancer_MSI
+
+;
+; diskid = description,tagfile,unused,subdir
+;
+[SourceDisksNames]
+1 = %elxcna.DeviceDesc%,lpscsi,,
+
+;
+; filename_on_source = diskid,subdir,size
+;
+[SourceDisksFiles]
+elxcna.sys  = 1
+elxcna.dll  = 1
+
+[elxcna_CopyFiles]
+elxcna.sys
+
+[elxcna_Registry_Update]
+HKLM,SYSTEM\CurrentControlSet\Services\disk,TimeOutValue,0x00010001,0x3c
+HKLM,SYSTEM\CurrentControlSet\Services\elxcna\Parameters\PnPInterface,"5",0x00010001, 0x00000001
+HKLM,SYSTEM\CurrentControlSet\Services\elxcna\Parameters,BusType,0x00010001,0x0000006
+HKLM,SYSTEM\CurrentControlSet\Services\elxcna\Parameters,Supports64BitAddressing,0x00010001,0x0000001
+
+[elxcna_Registry_Update_MSI]
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MSISupported,       0x00010001, 1
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 8
+
+[elxcna_Registry_Update_BE_MSI]
+HKR,"Interrupt Management\Affinity Policy", GroupPolicy, 0x00010001, 1
+
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MSISupported,       0x00010001, 1
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 32
+
+HKR,"Interrupt Management\MessageSignaledInterruptProperties\Range\0", DevicePolicy,    0x00010001, 5
+HKR,"Interrupt Management\MessageSignaledInterruptProperties\Range\0", StartingMessage, 0x00010001, 0
+HKR,"Interrupt Management\MessageSignaledInterruptProperties\Range\0", EndingMessage,   0x00010001, 31
+
+[elxcna_Registry_Update_Lancer_MSI]
+HKR,"Interrupt Management\Affinity Policy", GroupPolicy, 0x00010001, 1
+
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MSISupported,       0x00010001, 1
+HKR,"Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 32
+
+HKR,"Interrupt Management\MessageSignaledInterruptProperties\Range\0", DevicePolicy,    0x00010001, 5
+HKR,"Interrupt Management\MessageSignaledInterruptProperties\Range\0", StartingMessage, 0x00010001, 0
+HKR,"Interrupt Management\MessageSignaledInterruptProperties\Range\0", EndingMessage,   0x00010001, 31
+
+[elxcna_MSI.Services]
+AddService = elxcna, %SPSVCINST_ASSOCSERVICE%, elxcna_Service_Inst, Miniport_EventLog_Inst
+
+[elxcna_BE_MSI.Services]
+AddService = elxcna, %SPSVCINST_ASSOCSERVICE%, elxcna_Service_Inst, Miniport_EventLog_Inst
+
+[elxcna_Lancer_MSI.Services]
+AddService = elxcna, %SPSVCINST_ASSOCSERVICE%, elxcna_Service_Inst, Miniport_EventLog_Inst
+
+[elxcna_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\elxcna.sys
+LoadOrderGroup = SCSI Miniport
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+;*******************************************************************************
+;
+; Co-Installer Section
+;
+;*******************************************************************************
+
+[elxcna_MSI.CoInstallers]   
+CopyFiles = CoInstaller.CopyFiles
+AddReg    = CoInstaller.AddReg
+
+[elxcna_BE_MSI.CoInstallers]   
+CopyFiles = CoInstaller.CopyFiles
+AddReg    = CoInstaller.AddReg
+
+[elxcna_Lancer_MSI.CoInstallers]   
+CopyFiles = CoInstaller.CopyFiles
+AddReg    = CoInstaller.AddReg
+
+[CoInstaller.AddReg]
+HKR,,CoInstallers32,0x00010000,"elxcna.dll,elxcna";
+
+[CoInstaller.CopyFiles]
+;0x00000020 - do not copy if target is newer
+;0x00000040 - leave target alone if version is same as source
+elxcna.dll,,,0x00000060
+
+[Strings]
+;Localizable strings
+Msft               = "Microsoft"
+EMULEX             = "Emulex"
+elxcna.DeviceDesc = "Emulex FCoE HBA - Storport Miniport Driver"
+
+;Non-Localizable strings
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000

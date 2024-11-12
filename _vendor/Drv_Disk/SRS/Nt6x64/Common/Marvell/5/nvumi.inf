@@ -1,0 +1,114 @@
+;=============================================================================
+; Copyright (c) 2006. Marvell International Ltd.
+; 
+; INF for Windows 2K, Windows XP, Windows server 2003 and Windows Vista
+;
+;============================================================================= 
+
+[Version]
+signature= "$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+CatalogFile=nvumi.cat
+Provider=%Marvell%
+DriverVer=01/11/2013,1.0.0.1039
+
+[DestinationDirs] 
+nvumi.Files.amd64_12 = 12 
+
+[SourceDisksNames.amd64]
+0=%Desc_amd640%
+
+[SourceDisksFiles.amd64]
+nvumi.sys=0,,
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer] 
+%Marvell%=Marvell,ntamd64
+
+[Marvell.ntamd64]
+%nvumiDesc%=nvumi_Inst,PCI\VEN_11AB&DEV_8110
+%nvumiDesc%=nvumi_Inst,PCI\VEN_11AB&DEV_8120
+%nvumiDesc%=nvumi_Inst,PCI\VEN_1B4B&DEV_9142
+%nvumiDesc%=nvumi_Inst,PCI\VEN_1B4B&DEV_9143
+%nvumiDesc%=nvumi_Inst,PCI\VEN_1B4B&DEV_9145
+
+[nvumi_Inst.ntamd64] 
+CopyFiles = nvumi.Files.amd64_12,
+CopyINF = mvturbo.inf,
+CopyINF = mvdummy.inf,
+AddReg = nvumi_Registry_Update,
+
+
+;  ******** Change disk time out value from default 10s to 60s ********
+[nvumi_Registry_Update]
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x3C
+
+[nvumi_Inst.ntamd64.Services] 
+AddService = nvumi,0x00000002,nvumi_Service_Instamd64, nvumi_EventLog_Inst 
+
+[nvumi_Service_Instamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_NORMAL% 
+ServiceBinary = %12%\nvumi.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+AddReg = bus_type_raid_addreg
+
+; ******** Uninstall section ********
+[DefaultUninstall]
+DelFiles = nvumi.DelFiles
+
+[DefaultUninstall.Services]
+DelService = nvumi
+
+[nvumi.DelFiles]
+nvumi.sys,,,
+;  **********************************
+
+[nvumi.Files.amd64_12] 
+nvumi.sys
+
+[nvumi_EventLog_Inst] 
+AddReg = nvumi_EventLog_Inst.AddReg 
+ 
+[nvumi_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\Drivers\nvumi.sys" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001 
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 0x000000FF
+HKR, "Parameters\Device", "MaximumSGList", 0x00010001, 0x000000FF
+
+[bus_type_raid_addreg]
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+Marvell= "Marvell Inc." 
+Desc_amd640= "Marvell Flash Controller Driver" 
+nvumiDesc= "Marvell Flash Controller" 
+
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
+
+SPSVCINST_ASSOCSERVICE=0x00000002

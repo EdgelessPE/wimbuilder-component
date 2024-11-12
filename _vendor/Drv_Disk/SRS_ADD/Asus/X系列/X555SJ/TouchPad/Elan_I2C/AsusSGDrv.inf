@@ -1,0 +1,242 @@
+;============================================================================ 
+; Installation file (.inf) for Windows 8.
+;
+; Copyright (c) ASUS Tek
+;============================================================================
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = Mouse
+ClassGUID   = {4D36E96F-E325-11CE-BFC1-08002BE10318}
+Provider    = %VenderName%
+DriverVer=08/06/2015,8.0.0.19
+CatalogFile = AsusSGDrv.cat
+
+
+[DestinationDirs]
+DefaultDestDir					= 12    ; DIRID_DRIVERS
+AsusSGDrv_Inst.CopyFiles.NT		= 12    ; Driver directory
+
+ 
+;----------------------------------------------------------------------------
+; Common File Copy and Registry Operations
+;----------------------------------------------------------------------------
+[AsusSGDrv_Inst.CopyFiles.NT]
+AsusSGDrv.sys
+
+;----------------------------------------------------------------------------
+; Manufacturer Section
+;----------------------------------------------------------------------------
+[Manufacturer]
+%VenderName%=ASUSMfg, NTamd64, NTx86
+
+[ASUSMfg.NTx86]
+;Interface : I2C
+;NB platform
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE1000&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE1001&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE1002&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN1000&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN1005&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN0100&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN0101&Col01
+;wireless docking
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_1823&MI_01&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_81C9&MI_01&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_1807&MI_02&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17E0&MI_02&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17EE&MI_02&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&00020b05_PID&8502&Col07
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_572B&Col01
+
+;Interface : PS2
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0105
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0107
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0108
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0109
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010A
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010B
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010D
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010E
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0110
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0111
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD1000
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0116
+
+[ASUSMfg.NTamd64]
+;NB platform
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE1000&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE1001&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE1002&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN1000&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN1005&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN0100&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN0101&Col01
+;wireless docking
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_1823&MI_01&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_81C9&MI_01&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_1807&MI_02&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17E0&MI_02&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17EE&MI_02&Col01
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\{00001124-0000-1000-8000-00805f9b34fb}_VID&00020b05_PID&8502&Col07
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_572B&Col01
+
+;Interface : PS2
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0105
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0107
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0108
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0109
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010A
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010B
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010D
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD010E
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0110
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0111
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD1000
+;%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_PS2_Inst, ACPI\ETD0116
+
+
+
+[AsusSGDrv_Inst.NT]
+Include = msmouse.inf
+Needs = HID_Mouse_Inst.NT
+CopyFiles = AsusSGDrv_Inst.CopyFiles.NT
+
+[AsusSGDrv_Inst.NT.HW]
+Include = msmouse.inf
+Needs = HID_Mouse_Inst.NT.HW
+AddReg = AsusSGDrv_Inst.AddReg.NT
+
+[AsusSGDrv_Inst.AddReg.NT]
+HKR,,"UpperFilters",0x00010000,"AsusSGDrv"
+
+[AsusSGDrv_Inst.NT.Services]
+Include = msmouse.inf
+Needs = HID_Mouse_Inst.NT.Services
+AddService = AsusSGDrv, , AsusSGDrv_Service_Inst
+
+
+[AsusSGDrv_PS2_Inst.NT]
+Include=msmouse.inf
+Needs=PS2_Inst
+CopyFiles = AsusSGDrv_Inst.CopyFiles.NT
+
+[AsusSGDrv_PS2_Inst.NT.HW]
+AddReg = AsusSGDrv_Inst.AddReg.NT
+
+[AsusSGDrv_PS2_Inst.NT.Services]
+Include=msmouse.inf
+Needs=PS2_Inst.Services
+AddService = AsusSGDrv, , AsusSGDrv_Service_Inst
+
+
+
+[AsusSGDrv_Service_Inst]
+DisplayName    = %AsusSGDrv.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AsusSGDrv.sys
+LoadOrderGroup = Pointer Port
+AddReg	       = AsusSGDrv_Service_AddReg, AsusSGDrv_Service_REG_Lid_AddReg, AsusSGDrv_Service_Protocol_AddReg
+DelReg	       = AsusSGDrv_Service_REG_Lid_DelReg, AsusSGDrv_Service_Protocol_DelReg, AsusSGDrv_Service_DelReg
+
+
+
+
+
+[AsusSGDrv_Service_AddReg]
+HKR,Parameters\SupportList,"WIRED_TP_0",0x00010000,"FTE1000&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_1",0x00010000,"FTE1001&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_2",0x00010000,"FTE1002&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_3",0x00010000,"ELAN1000&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_4",0x00010000,"ELAN1005&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_5",0x00010000,"ELAN0100&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_6",0x00010000,"ELAN0101&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_7",0x00010000,"VID_0B05&PID_1807&MI_02&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_8",0x00010000,"VID_0B05&PID_17E0&MI_02&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_9",0x00010000,"VID_0B05&PID_17EE&MI_02&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_10",0x00010000,"VID_0B05&PID_81C9&MI_01&Col02"
+HKR,Parameters\SupportList,"WIRED_TP_11",0x00010000,"{00001124-0000-1000-8000-00805f9b34fb}_VID&00020b05_PID&8502&Col08"
+HKR,Parameters\SupportList,"WIRED_TP_12",0x00010000,"VID_0B05&PID_572B&Col02"
+HKR,Parameters\SupportList,"WIRELESS_TP_CMD_0",0x00010000,"VID_0B05&PID_1823&MI_01&Col02"
+HKR,Parameters\SupportList,"WIRELESS_TP_ABS_0",0x00010000,"VID_0B05&PID_1823&MI_02"
+HKR,Parameters\SupportList,"VIRTUAL_PTP_0",0x00010000,"AsusVTouchDev&Col05"
+HKR,Parameters\SupportList,"VIRTUAL_PTP_1",0x00010000,"ASUSVTOUCHDEV&Col05"
+
+
+[AsusSGDrv_Service_Protocol_AddReg]
+HKR,Parameters\ProtocolList,"I2C_0",0x00010000,"FTE1000&Col01"
+HKR,Parameters\ProtocolList,"I2C_1",0x00010000,"FTE1001&Col01"
+HKR,Parameters\ProtocolList,"I2C_2",0x00010000,"FTE1002&Col01"
+HKR,Parameters\ProtocolList,"I2C_3",0x00010000,"ELAN1000&Col01"
+HKR,Parameters\ProtocolList,"I2C_4",0x00010000,"ELAN1005&Col01"
+HKR,Parameters\ProtocolList,"I2C_5",0x00010000,"ELAN0100&Col01"
+HKR,Parameters\ProtocolList,"I2C_6",0x00010000,"ELAN0101&Col01"
+HKR,Parameters\ProtocolList,"USB_0",0x00010000,"VID_0B05&PID_17E0&MI_02&Col01"
+HKR,Parameters\ProtocolList,"USB_1",0x00010000,"VID_0B05&PID_17EE&MI_02&Col01"
+HKR,Parameters\ProtocolList,"USB_2",0x00010000,"VID_0B05&PID_1823&MI_01&Col01"
+HKR,Parameters\ProtocolList,"USB_3",0x00010000,"VID_0B05&PID_1807&MI_02&Col01"
+HKR,Parameters\ProtocolList,"USB_4",0x00010000,"VID_0B05&PID_81C9&MI_01&Col01"
+HKR,Parameters\ProtocolList,"USB_5",0x00010000,"VID_0B05&PID_572B&Col01"
+HKR,Parameters\ProtocolList,"BT_0",0x00010000,"{00001124-0000-1000-8000-00805f9b34fb}_VID&00020b05_PID&8502&Col07"
+HKR,Parameters\ProtocolList,"PS2_0",0x00010000,"ETD0105"
+HKR,Parameters\ProtocolList,"PS2_1",0x00010000,"ETD0107"
+HKR,Parameters\ProtocolList,"PS2_2",0x00010000,"ETD0108"
+HKR,Parameters\ProtocolList,"PS2_3",0x00010000,"ETD0109"
+HKR,Parameters\ProtocolList,"PS2_4",0x00010000,"ETD010A"
+HKR,Parameters\ProtocolList,"PS2_5",0x00010000,"ETD010B"
+HKR,Parameters\ProtocolList,"PS2_6",0x00010000,"ETD010D"
+HKR,Parameters\ProtocolList,"PS2_7",0x00010000,"ETD010E"
+HKR,Parameters\ProtocolList,"PS2_8",0x00010000,"ETD0110"
+HKR,Parameters\ProtocolList,"PS2_9",0x00010000,"ETD0111"
+HKR,Parameters\ProtocolList,"PS2_10",0x00010000,"ETD1000"
+
+
+[AsusSGDrv_Service_REG_Lid_AddReg]
+HKR,Parameters\RegisterLidList,"REG_LID_0",0x00010000,"FTE1000&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_1",0x00010000,"FTE1001&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_2",0x00010000,"FTE1002&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_3",0x00010000,"ELAN1000&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_4",0x00010000,"ELAN1005&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_5",0x00010000,"ELAN0100&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_6",0x00010000,"ELAN0101&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_7",0x00010000,"VID_0B05&PID_17E0&MI_02&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_8",0x00010000,"VID_0B05&PID_17EE&MI_02&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_9",0x00010000,"VID_0B05&PID_1807&MI_02&Col02"
+HKR,Parameters\RegisterLidList,"REG_LID_10",0x00010000,"{00001124-0000-1000-8000-00805f9b34fb}_VID&00020b05_PID&8502&Col08"
+
+[AsusSGDrv_Service_DelReg]
+HKR,Parameters
+
+[AsusSGDrv_Service_DelReg]
+HKLM,"Parameters\SupportList"
+
+[AsusSGDrv_Service_Protocol_DelReg]
+HKLM,"Parameters\ProtocolList"
+
+[AsusSGDrv_Service_REG_Lid_DelReg]
+HKLM,"Parameters\RegisterLidList"
+
+; ---------------------------------------------------------
+; Source Media Section
+; ---------------------------------------------------------
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+AsusSGDrv.sys = 1
+
+
+; Strings Section
+; ---------------------------------------------------------
+[Strings]
+VenderName                  = "ASUS"
+AsusSGDrv.SvcDesc           = "ASUS Touch Service"
+DiskName                    = "ASUSWare Driver Disk"
+ASUS_INPUT_DEVICE.DeviceDesc = "ASUS Touchpad"
+
+
+; Driver Information Entries
+DriverProduct   = "ASUS Touchpad Device Driver"
+

@@ -1,0 +1,181 @@
+;=============================================================================
+; Copyright (c) 2006. Marvell International Ltd.
+; 
+; INF for Windows 2K, Windows XP, Windows server 2003 and Windows Vista
+;
+;============================================================================= 
+ 
+[Version] 
+Signature = "$Windows NT$" 
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318} 
+Provider=%Marvell% 
+CatalogFile=mv61xx.cat
+DriverVer=05/24/2012,1.2.0.8400
+
+[DestinationDirs] 
+mv61xx.Files.amd64_12 = 12
+DefaultDestDir = 12
+CoInstaller_CopyFiles = 11
+
+[SourceDisksNames.amd64]
+0=%Desc_x860%
+
+[SourceDisksFiles.amd64]
+mv61xx.sys=0,,
+mvcoinst.dll=0,,
+mv61xxmm.sys=0,,
+
+[Manufacturer] 
+%Marvell%=Marvell,NTamd64
+
+[Marvell.NTamd64]
+%genmv61xxDesc%=mv61xx_Inst,PCI\VEN_11AB&DEV_6101
+%genmv61xxDesc%=mv61xx_Inst,PCI\VEN_11AB&DEV_6111
+%mv61xxDesc%=mv6111_Inst,PCI\VEN_11AB&DEV_6121&SUBSYS_01831025
+%mv61xxDesc%=mv6111_Inst,PCI\VEN_11AB&DEV_6121&SUBSYS_82A21043
+%mv61xxDesc%=mv6111_Inst,PCI\VEN_11AB&DEV_6121&SUBSYS_61118086
+%mv61xxDesc%=mv61xx_Inst,PCI\VEN_11AB&DEV_6121&SUBSYS_834B1043
+%genmv61xxDesc%=mv61xx_Inst,PCI\VEN_11AB&DEV_6121
+%mv61xxDesc%=mv6122_Inst,PCI\VEN_11AB&DEV_6121&SUBSYS_82121043
+%mv61xxDesc%=mv6121_Inst,PCI\VEN_11AB&DEV_6121&SUBSYS_834C1043
+%genmv61xxDesc%=mv61xx_Inst,PCI\VEN_11AB&DEV_6122
+%genmv61xxDesc%=mv61xx_Inst,PCI\VEN_11AB&DEV_6145
+
+[mv61xx_Inst.NTamd64] 
+CopyFiles = mv61xx.Files.amd64_12,
+CopyINF = mvnodrv.inf,
+AddReg = mv61xx_Registry_Update,
+
+[mv6111_Inst.NTamd64]
+CopyFiles = mv61xx.Files.amd64_12,
+CopyINF = mvnodrv.inf,
+AddReg = mv61xx_Registry_Update,mv6111_eSATAport_update
+
+[mv6111_eSATAport_update]
+HKR,,"eSATAport",,"0"
+HKR,,"eSATAportCount",,"1"
+
+[mv6122_Inst.NTamd64]
+CopyFiles = mv61xx.Files.amd64_12,
+CopyINF = mvnodrv.inf,
+AddReg = mv61xx_Registry_Update,mv6122_eSATAport_update
+
+[mv6122_eSATAport_update]
+HKR,,"eSATAport",,"0,1"
+
+[mv6121_Inst.NTamd64]
+CopyFiles = mv61xx.Files.amd64_12,
+CopyINF = mvnodrv.inf,
+AddReg = mv61xx_Registry_Update,mv6121_eSATAport_update
+
+[mv6121_eSATAport_update]
+HKR,,"eSATAport",,"1"
+
+;  ******** Change disk time out value from default 10s to 60s ********
+[mv61xx_Registry_Update]
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x3C
+
+[mv61xx_Inst.NTamd64.Services] 
+AddService = mv61xx,0x00000002,mv61xx_Service_Instamd64, mv61xx_EventLog_Inst 
+
+[mv6122_Inst.NTamd64.Services] 
+AddService = mv61xx,0x00000002,mv61xx_Service_Instamd64, mv61xx_EventLog_Inst 
+
+[mv6121_Inst.NTamd64.Services] 
+AddService = mv61xx,0x00000002,mv61xx_Service_Instamd64, mv61xx_EventLog_Inst 
+
+[mv6111_Inst.NTamd64.Services] 
+AddService = mv61xx,0x00000002,mv61xx_Service_Instamd64, mv61xx_EventLog_Inst 
+
+[mv61xx_Service_Instamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_NORMAL% 
+ServiceBinary = %12%\mv61xx.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+AddReg = bus_type_raid_addreg
+
+[mv61xx_Inst.NTamd64.CoInstallers]
+AddReg = mv61xx_Inst.NTamd64.CoInstallers_AddReg    
+CopyFiles=CoInstaller_CopyFiles
+
+[mv6122_Inst.NTamd64.CoInstallers]
+AddReg = mv61xx_Inst.NTamd64.CoInstallers_AddReg    
+CopyFiles=CoInstaller_CopyFiles
+
+[mv6121_Inst.NTamd64.CoInstallers]
+AddReg = mv61xx_Inst.NTamd64.CoInstallers_AddReg    
+CopyFiles=CoInstaller_CopyFiles
+
+[mv6111_Inst.NTamd64.CoInstallers]
+AddReg = mv61xx_Inst.NTamd64.CoInstallers_AddReg    
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+mvcoinst.dll
+
+[mv61xx_Inst.NTamd64.CoInstallers_AddReg]
+HKR,,EnumPropPages32,,"mvcoinst.dll,ESATAPortPropPageProvider"
+
+; ******** Uninstall section ********
+[DefaultUninstall]
+DelFiles = mv61xx.DelFiles
+
+[DefaultUninstall.Services]
+DelService = mv61xx
+
+[mv61xx.DelFiles]
+mv61xx.sys,,,
+;  **********************************
+
+[mv61xx.Files.amd64_12] 
+mv61xx.sys
+mv61xxmm.sys
+
+[mv61xx_EventLog_Inst] 
+AddReg = mv61xx_EventLog_Inst.AddReg 
+ 
+[mv61xx_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\Drivers\mv61xx.sys" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001 
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 0x00000020
+HKR, Parameters, PerformanceMode, 0x00010001, 0x00000000 
+
+[bus_type_raid_addreg]
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+Marvell= "Marvell Inc." 
+Desc_x860= "Marvell Inc. RAID driver" 
+;mv61xxDescQ= "Marvell 61xx RAID Controller for common" 
+;mv61xxDescW= "Marvell 61xx RAID Controller for subsys6121" 
+;mv61xxDescE= "Marvell 61xx RAID Controller for subsys8212" 
+;mv61xxDescR= "Marvell 61xx RAID Controller for subsys834c" 
+mv61xxDesc= "Marvell 61xx RAID Controller" 
+genmv61xxDesc= "Generic Marvell 61xx RAID Controller"
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
+
+SPSVCINST_ASSOCSERVICE=0x00000002

@@ -1,0 +1,120 @@
+; QL40XSCS.INF - This file is used by Setup to install
+; the QL40XX Windows Stor Miniport Driver
+; Copyright 1996-2013 QLogic Corporation 
+
+[version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%QLOGIC%
+CatalogFile=ql40xx.cat
+DriverVer=01/28/2013,2.1.5.37
+
+[SourceDisksNames]
+1=%Floppy_Desc%,,,
+
+[SourceDisksFiles]
+ql40xx.sys=1
+ql4x00pp.dll=1
+qlis.exe=1
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+ql4x00pp_File_Copy = 11
+qlis_File_Copy = 11
+
+[Manufacturer]
+%QLOGIC%=QLOGIC,NTamd64, NTamd64.6.0
+
+;*******************************
+;QLogic Manufacturer device list
+[QLOGIC.NTamd64]
+%qlp3pGen.DeviceDesc% = ql40p3_Inst, PCI\VEN_1077&DEV_8022
+%qlhilda.DeviceDesc% = ql40p3_Inst, PCI\VEN_1077&DEV_8032
+
+[QLOGIC.NTamd64.6.0]
+%qlp3pGen.DeviceDesc% = ql40p3_LM_Inst, PCI\VEN_1077&DEV_8022
+%qlhilda.DeviceDesc% = ql40p3_LM_Inst, PCI\VEN_1077&DEV_8032
+
+[ControlFlags]
+ExcludeFromSelect =  PCI\VEN_1077&DEV_8032
+ExcludeFromSelect =  PCI\VEN_1077&DEV_8022
+
+[ql40p3_Inst]
+CopyFiles = ql40xx_File_Copy, ql4x00pp_File_Copy, qlis_File_Copy
+AddReg = ql40xx_Registry_Update
+
+[ql40p3_LM_Inst]
+CopyFiles = ql40xx_File_Copy, ql4x00pp_File_Copy, qlis_File_Copy
+AddReg = ql40xx_LM_Registry_Update
+
+[ql40xx_File_Copy]
+ql40xx.sys
+
+[ql4x00pp_File_Copy]
+ql4x00pp.dll
+
+[qlis_File_Copy]
+qlis.exe
+
+[ql40xx_Registry_Update]
+HKR,,EnumPropPages32,,"ql4x00pp.dll,QLPropPageProvider"
+HKLM,SYSTEM\CurrentControlSet\Services\ql40xx\Parameters\Device,DriverParameter,0x00000000,"disablereset=0;"
+HKLM,SYSTEM\CurrentControlSet\Services\ql40xx\Parameters,BusType,0x00010001,0x9
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x4B
+
+[ql40xx_LM_Registry_Update]
+HKR,,EnumPropPages32,,"ql4x00pp.dll,QLPropPageProvider"
+HKLM,SYSTEM\CurrentControlSet\Services\ql40xx\Parameters\Device,DriverParameter,0x00000000,"disablereset=0;"
+HKLM,SYSTEM\CurrentControlSet\Services\ql40xx\Parameters,BusType,0x00010001,0x9
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x4B
+HKLM,SYSTEM\CurrentControlSet\Control\Session Manager\Debug Print Filter, STORPORT, 0x00010001, 0x0000ffff
+HKLM,SYSTEM\CurrentControlSet\Control\Session Manager\Debug Print Filter, STORMINIPORT, 0x00010001, 0x0000ffff
+
+[ql40p3_Inst.Services]
+AddService = ql40xx, %SPSVCINST_ASSOCSERVICE%, ql40xx_Service_Inst, Miniport_EventLog_Inst
+
+[ql40p3_LM_Inst.Services]
+AddService = ql40xx, %SPSVCINST_ASSOCSERVICE%, ql40xx_Service_Inst, Miniport_EventLog_Inst
+
+[ql40xx_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\ql40xx.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,%%SystemRoot%%\System32\IoLogMsg.dll
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[ql40p3_LM_Inst.HW]
+AddReg = ql40p3_LM_Registry_Update
+
+[ql40p3_LM_Registry_Update]
+HKR, "Interrupt Management", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties",	MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 1
+
+[Strings]
+QLOGIC = "QLogic"
+qlp3pGen.DeviceDesc = "QLogic iSCSI Adapter"
+qlhilda.DeviceDesc = "QLogic iSCSI Adapter"
+Floppy_Desc = "QLogic Software Diskette"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

@@ -1,0 +1,68 @@
+;/*++
+;
+;(C) Copyright 2014-2022 Advanced Micro Devices, Inc.
+;
+;Module Name:
+;    amdi2c.inf
+;
+;Abstract:
+;    INF file for installing the amdi2c Driver
+;
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%AMD%
+DriverVer = 06/03/2022,1.2.0.119
+CatalogFile = amdi2c.cat
+PnpLockDown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskId1%
+
+[SourceDisksFiles.amd64]
+amdi2c.sys = 1,
+
+[Manufacturer]
+%AMD%=AMD,NTamd64
+
+[AMD.NTamd64]
+%amdi2c.DeviceDesc%=amdi2c_Device, ACPI\AMD0010
+%amdi2c.DeviceDesc%=amdi2c_Device, ACPI\AMDI0010
+
+[amdi2c_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+amdi2c.sys
+
+[amdi2c_Device.NT.Services]
+AddService = amdi2c,%SPSVCINST_ASSOCSERVICE%, amdi2c_Service_Inst
+
+[amdi2c_Device.NT.HW]
+AddReg             = amdi2c_dfx_Support_AddReg
+
+[amdi2c_dfx_Support_AddReg]
+HKR,"WDF","WdfDirectedPowerTransitionEnable",0x00010001,1
+
+[amdi2c_Service_Inst]
+DisplayName    = %amdi2c.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\amdi2c.sys
+LoadOrderGroup = Base
+Dependencies   = SpbCx
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+AMD = "Advanced Micro Devices, Inc."
+DiskId1 = "AMD I2C Controller Installation Disk"
+amdi2c.DeviceDesc = "AMD I2C Controller"
+amdi2c.SVCDESC = "AMD I2C Controller Service"

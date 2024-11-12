@@ -1,0 +1,620 @@
+;Copyright ﾂｩ 2015-2019 Microsemi Corporation. All rights reserved.
+;
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%MICROSEMI%
+PnpLockdown = 1
+CatalogFile=SmartPqi.cat
+DriverVer=06/24/2019,106.100.0.1014
+
+[SourceDisksNames.amd64]
+1 = %DISK%,,,
+
+[SourceDisksFiles.amd64]
+SmartPqi.sys = 1
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%MICROSEMI%=MI_HDC,ntamd64,ntamd64.6.2,ntamd64.6.3,ntamd64.10.0
+
+[MI_HDC.ntamd64] ;Default Architecture
+;Prevents installation on 2008 and 2008R2
+
+[MI_HDC.ntamd64.6.2] ;Server2012 and Windows 8 64-bit
+%smart_SOP_PQI.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_15B7&DEV_2100&SUBSYS_000015B7
+%smart_LUXOR.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_2208103C
+%smart_LUXOR_REVB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_323C&SUBSYS_05809005
+%smart_LUXOR_FVB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_01119005
+%smart_QS4i4ePQI.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028D&SUBSYS_05659005
+%smart_P408i-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0600103C
+%smart_P408e-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0601103C
+%smart_P408i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0602103C
+%smart_P408i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0603103C
+%smart_E208i-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0650103C
+%smart_E208e-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0651103C
+%smart_E208i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0652103C
+%smart_H250i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0653103C
+%smart_E208i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0654103C
+%smart_P408e-m.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0655103C
+%smart_P204i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0700103C
+%smart_P204i-b.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0701103C
+%smart_P416ie-m.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1101103C
+%smart_P816i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1100103C
+%smart_P408i-sb.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0609103C
+%smart_3154-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08009005
+%smart_3152-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08019005
+%smart_3151-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08029005
+%smart_3101-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08039005
+%smart_3154-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08049005
+%smart_3102-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08059005
+%smart_3100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08069005
+%smart_2100-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09009005
+%smart_2100-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09019005
+%smart_1100-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09029005
+%smart_1100-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09039005
+%smart_2100-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09049005
+%smart_1100-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09059005
+%smart_2100-4i4e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09069005
+%smart_1100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09079005
+%smart_2100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09089005
+%smart_QS-8204-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A22152D
+%smart_QS-8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A24152D
+%smart_QS-8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A23152D
+%smart_QS-8240-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A36152D
+%smart_QS-8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A37152D
+%smart_1100-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12809005
+%smart_1100-16e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12819005
+%smart_1100-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13009005
+%smart_1100-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13019005
+%smart_3154-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13809005
+%smart_3154-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12009005
+%smart_3154-8i16e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12019005
+%smart_3154-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12029005
+%smart_3162-8i/e/d.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1FE01028
+%smart_3162-8i/e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_06089005
+%smart_3162-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08079005
+%smart_2100A-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_090A9005
+%smart_2100-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13029005
+%smart_2100-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13039005
+%smart_2100-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12829005
+%smart_FiberhomeAIS-8204-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08001D8D
+%smart_FiberhomeAIS-8222-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09081D8D
+%smart_FiberhomeAIS-8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08061D8D
+%smart_FiberhomeAIS-8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09161D8D
+%smart_FOXCONN8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1321105B
+%smart_P460-M4.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_F460193D
+%smart_P460-B4.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_F461193D
+%smart_P460-M2.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_C460193D
+%smart_P460-B2.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_C461193D
+%smart_H460-M1.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8460193D
+%smart_H460-B1.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8461193D
+%smart_P2404-Mf-4i-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1104193D
+%smart_P2404-Mf-4i-1GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1106193D
+%smart_P4408-Mf-8i-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1105193D
+%smart_P4408-Mf-8i-4GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1107193D
+%smart_INSPUR8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00461BD4
+%smart_INSPUR8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00481BD4
+%smart_INSPUR8240-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00471BD4
+%smart_INSPUR8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00451BD4
+%smart_ADVANTECHMIC-8312BridgeB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_831213FE
+%smart_INSPURPM8222-SHBA.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004A1BD4
+%smart_INSPURPM8204-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004B1BD4
+%smart_INSPURPM8204-4GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004C1BD4
+%smart_INSPURPM8222-HBA.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004F1BD4
+%smart_HUAWEISR465C-M4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22719E5
+%smart_HUAWEISR455C-M2G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22819E5
+%smart_HUAWEISR155-M.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22919E5
+%smart_HUAWEISR765-M.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22A19E5
+%smart_HUAWEISR455C-ME4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22B19E5
+%smart_HUAWEISR455C-M4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22C19E5
+%smart_SmartStorage.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F
+
+[MI_HDC.ntamd64.6.3] ;Server2012 R2 and Windows 8.1 64-bit
+%smart_SOP_PQI.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_15B7&DEV_2100&SUBSYS_000015B7
+%smart_LUXOR.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_2208103C
+%smart_LUXOR_REVB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_323C&SUBSYS_05809005
+%smart_LUXOR_FVB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_01119005
+%smart_QS4i4ePQI.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028D&SUBSYS_05659005
+%smart_P408i-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0600103C
+%smart_P408e-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0601103C
+%smart_P408i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0602103C
+%smart_P408i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0603103C
+%smart_E208i-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0650103C
+%smart_E208e-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0651103C
+%smart_E208i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0652103C
+%smart_H250i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0653103C
+%smart_E208i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0654103C
+%smart_P408e-m.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0655103C
+%smart_P204i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0700103C
+%smart_P204i-b.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0701103C
+%smart_P416ie-m.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1101103C
+%smart_P816i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1100103C
+%smart_P408i-sb.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0609103C
+%smart_3154-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08009005
+%smart_3152-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08019005
+%smart_3151-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08029005
+%smart_3101-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08039005
+%smart_3154-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08049005
+%smart_3102-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08059005
+%smart_3100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08069005
+%smart_2100-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09009005
+%smart_2100-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09019005
+%smart_1100-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09029005
+%smart_1100-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09039005
+%smart_2100-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09049005
+%smart_1100-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09059005
+%smart_2100-4i4e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09069005
+%smart_1100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09079005
+%smart_2100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09089005
+%smart_QS-8204-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A22152D
+%smart_QS-8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A24152D
+%smart_QS-8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A23152D
+%smart_QS-8240-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A36152D
+%smart_QS-8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A37152D
+%smart_1100-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12809005
+%smart_1100-16e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12819005
+%smart_1100-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13009005
+%smart_1100-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13019005
+%smart_3154-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13809005
+%smart_3154-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12009005
+%smart_3154-8i16e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12019005
+%smart_3154-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12029005
+%smart_3162-8i/e/d.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1FE01028
+%smart_3162-8i/e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_06089005
+%smart_3162-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08079005
+%smart_2100A-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_090A9005
+%smart_2100-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13029005
+%smart_2100-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13039005
+%smart_2100-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12829005
+%smart_FiberhomeAIS-8204-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08001D8D
+%smart_FiberhomeAIS-8222-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09081D8D
+%smart_FiberhomeAIS-8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08061D8D
+%smart_FiberhomeAIS-8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09161D8D
+%smart_FOXCONN8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1321105B
+%smart_P460-M4.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_F460193D
+%smart_P460-B4.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_F461193D
+%smart_P460-M2.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_C460193D
+%smart_P460-B2.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_C461193D
+%smart_H460-M1.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8460193D
+%smart_H460-B1.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8461193D
+%smart_P2404-Mf-4i-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1104193D
+%smart_P2404-Mf-4i-1GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1106193D
+%smart_P4408-Mf-8i-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1105193D
+%smart_P4408-Mf-8i-4GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1107193D
+%smart_INSPUR8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00461BD4
+%smart_INSPUR8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00481BD4
+%smart_INSPUR8240-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00471BD4
+%smart_INSPUR8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00451BD4
+%smart_ADVANTECHMIC-8312BridgeB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_831213FE
+%smart_INSPURPM8222-SHBA.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004A1BD4
+%smart_INSPURPM8204-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004B1BD4
+%smart_INSPURPM8204-4GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004C1BD4
+%smart_INSPURPM8222-HBA.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004F1BD4
+%smart_HUAWEISR465C-M4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22719E5
+%smart_HUAWEISR455C-M2G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22819E5
+%smart_HUAWEISR155-M.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22919E5
+%smart_HUAWEISR765-M.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22A19E5
+%smart_HUAWEISR455C-ME4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22B19E5
+%smart_HUAWEISR455C-M4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22C19E5
+%smart_SmartStorage.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F
+
+[MI_HDC.ntamd64.10.0] ;Server2016 and Windows 10.0 64-bit
+%smart_SOP_PQI.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_15B7&DEV_2100&SUBSYS_000015B7
+%smart_LUXOR.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_2208103C
+%smart_LUXOR_REVB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_323C&SUBSYS_05809005
+%smart_LUXOR_FVB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_01119005
+%smart_QS4i4ePQI.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028D&SUBSYS_05659005
+%smart_P408i-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0600103C
+%smart_P408e-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0601103C
+%smart_P408i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0602103C
+%smart_P408i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0603103C
+%smart_E208i-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0650103C
+%smart_E208e-p.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0651103C
+%smart_E208i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0652103C
+%smart_H250i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0653103C
+%smart_E208i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0654103C
+%smart_P408e-m.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0655103C
+%smart_P204i-c.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0700103C
+%smart_P204i-b.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0701103C
+%smart_P416ie-m.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1101103C
+%smart_P816i-a.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1100103C
+%smart_P408i-sb.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_0609103C
+%smart_3154-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08009005
+%smart_3152-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08019005
+%smart_3151-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08029005
+%smart_3101-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08039005
+%smart_3154-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08049005
+%smart_3102-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08059005
+%smart_3100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08069005
+%smart_2100-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09009005
+%smart_2100-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09019005
+%smart_1100-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09029005
+%smart_1100-4i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09039005
+%smart_2100-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09049005
+%smart_1100-8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09059005
+%smart_2100-4i4e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09069005
+%smart_1100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09079005
+%smart_2100.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09089005
+%smart_QS-8204-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A22152D
+%smart_QS-8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A24152D
+%smart_QS-8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A23152D
+%smart_QS-8240-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A36152D
+%smart_QS-8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8A37152D
+%smart_1100-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12809005
+%smart_1100-16e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12819005
+%smart_1100-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13009005
+%smart_1100-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13019005
+%smart_3154-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13809005
+%smart_3154-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12009005
+%smart_3154-8i16e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12019005
+%smart_3154-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12029005
+%smart_3162-8i/e/d.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1FE01028
+%smart_3162-8i/e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_06089005
+%smart_3162-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08079005
+%smart_2100A-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_090A9005
+%smart_2100-8i8e.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13029005
+%smart_2100-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_13039005
+%smart_2100-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_12829005
+%smart_FiberhomeAIS-8204-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08001D8D
+%smart_FiberhomeAIS-8222-8i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09081D8D
+%smart_FiberhomeAIS-8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_08061D8D
+%smart_FiberhomeAIS-8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_09161D8D
+%smart_FOXCONN8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1321105B
+%smart_P460-M4.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_F460193D
+%smart_P460-B4.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_F461193D
+%smart_P460-M2.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_C460193D
+%smart_P460-B2.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_C461193D
+%smart_H460-M1.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8460193D
+%smart_H460-B1.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_8461193D
+%smart_P2404-Mf-4i-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1104193D
+%smart_P2404-Mf-4i-1GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1106193D
+%smart_P4408-Mf-8i-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1105193D
+%smart_P4408-Mf-8i-4GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_1107193D
+%smart_INSPUR8236-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00461BD4
+%smart_INSPUR8238-16i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00481BD4
+%smart_INSPUR8240-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00471BD4
+%smart_INSPUR8242-24i.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_00451BD4
+%smart_ADVANTECHMIC-8312BridgeB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_831213FE
+%smart_INSPURPM8222-SHBA.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004A1BD4
+%smart_INSPURPM8204-2GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004B1BD4
+%smart_INSPURPM8204-4GB.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004C1BD4
+%smart_INSPURPM8222-HBA.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_004F1BD4
+%smart_HUAWEISR465C-M4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22719E5
+%smart_HUAWEISR455C-M2G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22819E5
+%smart_HUAWEISR155-M.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22919E5
+%smart_HUAWEISR765-M.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22A19E5
+%smart_HUAWEISR455C-ME4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22B19E5
+%smart_HUAWEISR455C-M4G.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F&SUBSYS_D22C19E5
+%smart_SmartStorage.DeviceDesc% = SmartPqi_Inst_V64, PCI\VEN_9005&DEV_028F
+%smart_SmartStorageDDA.DeviceDesc% = SmartPqi_Proxy_Install, PCIP\VEN_9005&DEV_028F&cc_0107
+
+
+[SmartPqi_Inst_V64.ntamd64]
+CopyFiles = @SmartPqi.sys
+
+[SmartPqi_Inst_V64.ntamd64.Services]
+AddService = SmartPqi, %SPSVCINST_ASSOCSERVICE%, SmartPqi_Service_Inst, SmartPqi_EventLog_Inst
+
+[SmartPqi_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\SmartPqi.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+AddReg         = IO_timeout_addreg
+
+[SmartPqi_EventLog_Inst]
+AddReg = SmartPqi_EventLog_AddReg
+
+[SmartPqi_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\SmartPqi.sys"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg]
+HKR, ,                          "Tag",                        %REG_DWORD%,  0x103
+HKR, "Parameters\PnpInterface", "5",                          %REG_DWORD%,  0x00000001
+HKR, "Parameters",              "BusType",                    %REG_NOCLOBBER_DWORD%,  0x0000000A
+HKR, "Parameters\Drive",        "EnableQueryAccessAlignment", %REG_DWORD%,  0x00000001
+
+[IO_timeout_addreg]
+HKR, "Parameters", "IoTimeoutValue", %REG_DWORD%, 0x0000003C
+
+[SmartPqi_Inst_V64.ntamd64.HW]
+AddReg=Msi64Support_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired.HW, PciASPMOptOut.HW
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+AddReg=EnableExtSrbs_addreg
+AddReg=MaxDeviceQueueDepth_addreg
+AddReg=EnableSataUniqueWWN_addreg
+
+[Msi64Support_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000040
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[SupportStorportIPM_addreg]
+; Enables Storport IPM for this adapter
+HKR, "StorPort", "EnableIdlePowerManagement", %REG_DWORD%, 0x01
+
+[AdditionalSenseData_addreg]
+; Sense data size Between 18 and 255
+HKR, "StorPort", "TotalSenseDataBytes", %REG_DWORD%, 0xFF
+
+[EnableFull64Bit_addreg]
+; Instruct driver to use 64 bit addressing through storport if supported on this machine.
+HKLM, "System\CurrentControlSet\Services\SmartPqi\Parameters\Device", "EnableFull64Bit", %REG_BINARY%,  0x1
+
+[EnableExtSrbs_addreg]
+; Set storport to provide Extended SRBs to the miniport.
+HKLM, "System\CurrentControlSet\Services\SmartPqi\Parameters\Device", "EnableExtSrbs", %REG_BINARY%,  0x1
+
+[MaxDeviceQueueDepth_addreg]
+; Set  max I/O per device queue depth
+HKLM, "System\CurrentControlSet\Services\SmartPqi\Parameters\Device", "MaxDeviceQueueDepth", %REG_DWORD%, 0x00003E8
+
+[EnableSataUniqueWWN_addreg]
+; Enable  Firmware Feature to uniquely identify SATA WWN
+HKLM, "System\CurrentControlSet\Services\SmartPqi\Parameters\Device", "EnableSataUniqueWWN", %REG_BINARY%,  0x0
+
+
+;*****************************************
+; pcip device Install Section
+;*****************************************
+[SmartPqi_Proxy_Install.ntamd64]
+Include=wpcip.inf
+Needs=pcip_Device.ntamd64
+
+[SmartPqi_Proxy_Install.ntamd64.HW]
+Include=wpcip.inf
+Needs=pcip_Device.ntamd64.HW
+AddReg=Supported_Device.ntamd64.AddReg
+
+[SmartPqi_Proxy_Install.ntamd64.Services]
+Include=wpcip.inf
+Needs=pcip_Device.ntamd64.Services
+AddService = pcip, %SPSVCINST_ASSOCSERVICE%, SmartPqi_Proxy_Service_Install
+
+[SmartPqi_Proxy_Service_Install]
+DisplayName    = %pcip.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\pcip.sys
+LoadOrderGroup = Extended Base
+
+[SmartPqi_Proxy_Install.ntamd64.Interfaces]
+Include=wpcip.inf
+Needs=pcip_Device.ntamd64.Interfaces
+
+[Supported_Device.ntamd64.AddReg]
+HKR,,SupportedDevice, 0x00010001, 0x1
+
+;**English**********************************
+[Strings]
+MICROSEMI = "Microsemi Corporation."
+DISK = "PQI Controller Support"
+smart_SOP_PQI.DeviceDesc = "SmartRAID SOP_PQI Controller"
+smart_LUXOR.DeviceDesc = "SmartRAID LUXOR Controller"
+smart_LUXOR_REVB.DeviceDesc = "SmartRAID LUXOR_REVB Controller"
+smart_LUXOR_FVB.DeviceDesc = "SmartRAID LUXOR_FVB Controller"
+smart_QS4i4ePQI.DeviceDesc = "QS4i4ePQI Controller"
+smart_P408i-p.DeviceDesc = "HPE Smart Array P408i-p SR Gen10"
+smart_P408e-p.DeviceDesc = "HPE Smart Array P408e-p SR Gen10"
+smart_P408i-a.DeviceDesc = "HPE Smart Array P408i-a SR Gen10"
+smart_P408i-c.DeviceDesc = "HPE Smart Array P408i-c SR Gen10"
+smart_E208i-p.DeviceDesc = "HPE Smart Array E208i-p SR Gen10"
+smart_E208e-p.DeviceDesc = "HPE Smart Array E208e-p SR Gen10"
+smart_E208i-c.DeviceDesc = "HPE Smart Array E208i-c SR Gen10"
+smart_H250i.DeviceDesc = "SmartHBA H250i Controller"
+smart_E208i-a.DeviceDesc = "HPE Smart Array E208i-a SR Gen10"
+smart_P408e-m.DeviceDesc = "HPE Smart Array P408e-m SR Gen10"
+smart_P204i-c.DeviceDesc = "HPE Smart Array P204i-c SR Gen10"
+smart_P204i-b.DeviceDesc = "HPE Smart Array P204i-b SR Gen10"
+smart_P416ie-m.DeviceDesc = "HPE Smart Array P416ie-m SR G10"
+smart_P816i-a.DeviceDesc = "HPE Smart Array P816i-a SR Gen10"
+smart_P408i-sb.DeviceDesc = "HPE Smart Array P408i-sb SR G10"
+smart_3154-8i.DeviceDesc = "SmartRAID 3154-8i Controller"
+smart_3152-8i.DeviceDesc = "SmartRAID 3152-8i Controller"
+smart_3151-4i.DeviceDesc = "SmartRAID 3151-4i Controller"
+smart_3101-4i.DeviceDesc = "SmartRAID 3101-4i Controller"
+smart_3154-8e.DeviceDesc = "SmartRAID 3154-8e Controller"
+smart_3102-8i.DeviceDesc = "SmartRAID 3102-8i Controller"
+smart_3100.DeviceDesc = "SmartRAID 3100 Controller"
+smart_2100-8i.DeviceDesc = "SmartHBA 2100-8i Controller"
+smart_2100-4i.DeviceDesc = "SmartHBA 2100-4i Controller"
+smart_1100-8i.DeviceDesc = "HBA 1100-8i Controller"
+smart_1100-4i.DeviceDesc = "HBA 1100-4i Controller"
+smart_2100-8e.DeviceDesc = "SmartHBA 2100-8e Controller"
+smart_1100-8e.DeviceDesc = "HBA 1100-8e Controller"
+smart_2100-4i4e.DeviceDesc = "SmartHBA 2100-4i4e Controller"
+smart_1100.DeviceDesc = "HBA 1100 Controller"
+smart_2100.DeviceDesc = "SmartHBA 2100 Controller"
+smart_QS-8204-8i.DeviceDesc = "QS-8204-8i Controller"
+smart_QS-8236-16i.DeviceDesc = "QS-8236-16i Controller"
+smart_QS-8238-16i.DeviceDesc = "QS-8238-16i Controller"
+smart_QS-8240-24i.DeviceDesc = "QS-8240-24i Controller"
+smart_QS-8242-24i.DeviceDesc = "QS-8242-24i Controller"
+smart_1100-16i.DeviceDesc = "HBA 1100-16i Controller"
+smart_1100-16e.DeviceDesc = "HBA 1100-16e Controller"
+smart_1100-8i8e.DeviceDesc = "HBA 1100-8i8e Controller"
+smart_1100-24i.DeviceDesc = "HBA 1100-24i Controller"
+smart_3154-16i.DeviceDesc = "SmartRAID 3154-16i Controller"
+smart_3154-24i.DeviceDesc = "SmartRAID 3154-24i Controller"
+smart_3154-8i16e.DeviceDesc = "SmartRAID 3154-8i16e Controller"
+smart_3154-8i8e.DeviceDesc = "SmartRAID 3154-8i8e Controller"
+smart_3162-8i/e/d.DeviceDesc = "SmartRAID 3162-8i /e /d Controller"
+smart_3162-8i/e.DeviceDesc = "SmartRAID 3162-8i /e Controller"
+smart_3162-8i.DeviceDesc = "SmartRAID 3162-8i Controller"
+smart_2100A-8i.DeviceDesc = "SmartHBA 2100A-8i Controller"
+smart_2100-8i8e.DeviceDesc = "SmartHBA 2100-8i8e Controller"
+smart_2100-24i.DeviceDesc = "SmartHBA 2100-24i Controller"
+smart_2100-16i.DeviceDesc = "SmartHBA 2100-16i Controller"
+smart_FiberhomeAIS-8204-8i.DeviceDesc = "Fiberhome SmartRAID AIS-8204-8i Controller"
+smart_FiberhomeAIS-8222-8i.DeviceDesc = "Fiberhome SmartHBA AIS-8222-8i Controller"
+smart_FiberhomeAIS-8236-16i.DeviceDesc = "Fiberhome SmartRAID AIS-8236-16i Controller"
+smart_FiberhomeAIS-8238-16i.DeviceDesc = "Fiberhome SmartHBA AIS-8238-16i Controller"
+smart_FOXCONN8242-24i.DeviceDesc = "HBA 8242-24i Controller"
+smart_P460-M4.DeviceDesc = "UN RAID P460-M4 Controller"
+smart_P460-B4.DeviceDesc = "UN RAID P460-B4 Controller"
+smart_P460-M2.DeviceDesc = "UN RAID P460-M2 Controller"
+smart_P460-B2.DeviceDesc = "UN RAID P460-B2 Controller"
+smart_H460-M1.DeviceDesc = "UN HBA H460-M1 Controller"
+smart_H460-B1.DeviceDesc = "UN HBA H460-B1 Controller"
+smart_P2404-Mf-4i-2GB.DeviceDesc = "UN RAID P2404-Mf-4i-2GB Controller"
+smart_P2404-Mf-4i-1GB.DeviceDesc = "UN RAID P2404-Mf-4i-1GB Controller"
+smart_P4408-Mf-8i-2GB.DeviceDesc = "UN RAID P4408-Mf-8i-2GB Controller"
+smart_P4408-Mf-8i-4GB.DeviceDesc = "UN RAID P4408-Mf-8i-4GB Controller"
+smart_INSPUR8236-16i.DeviceDesc = "INSPUR RAID 8236-16i Controller"
+smart_INSPUR8238-16i.DeviceDesc = "INSPUR SMART-HBA 8238-16i Controller"
+smart_INSPUR8240-24i.DeviceDesc = "INSPUR RAID 8240-24i Controller"
+smart_INSPUR8242-24i.DeviceDesc = "INSPUR SMART-HBA 8242-24i Controller"
+smart_ADVANTECHMIC-8312BridgeB.DeviceDesc = "ADVANTECH SKY-9200 MIC-8312BridgeB Controller"
+smart_INSPURPM8222-SHBA.DeviceDesc = "INSPUR  PM8222-SHBA Controller"
+smart_INSPURPM8204-2GB.DeviceDesc = "INSPUR  PM8204-2GB Controller"
+smart_INSPURPM8204-4GB.DeviceDesc = "INSPUR  PM8204-4GB Controller"
+smart_INSPURPM8222-HBA.DeviceDesc = "INSPUR  PM8222-HBA Controller"
+smart_HUAWEISR465C-M4G.DeviceDesc = "HUAWEI SmartROC-HD SR465C-M 4G Controller"
+smart_HUAWEISR455C-M2G.DeviceDesc = "HUAWEI SmartROC SR455C-M 2G Controller"
+smart_HUAWEISR155-M.DeviceDesc = "HUAWEI SmartIOC SR155-M  Controller"
+smart_HUAWEISR765-M.DeviceDesc = "HUAWEI SmartIOC-HD SR765-M  Controller"
+smart_HUAWEISR455C-ME4G.DeviceDesc = "HUAWEI SmartROC-e SR455C-ME 4G Controller"
+smart_HUAWEISR455C-M4G.DeviceDesc = "HUAWEI SmartROC SR455C-M 4G Controller"
+smart_SmartStorage.DeviceDesc = "SmartStorage Controller"
+smart_SmartStorageDDA.DeviceDesc = "SmartStorage Controller (DDA)"
+pcip.SVCDESC = "PCI Proxy Driver"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+REG_BINARY             = 0x00030003
+CREATE_KEYONLY         = 0x00000010
+
+;**Japanese**********************************
+[Strings.0411]
+MICROSEMI = "Microsemi Corporation."
+DISK = "PQI コントローラ Support"
+smart_SOP_PQI.DeviceDesc = "SmartRAID SOP_PQI コントローラ"
+smart_LUXOR.DeviceDesc = "SmartRAID LUXOR コントローラ"
+smart_LUXOR_REVB.DeviceDesc = "SmartRAID LUXOR_REVB コントローラ"
+smart_LUXOR_FVB.DeviceDesc = "SmartRAID LUXOR_FVB コントローラ"
+smart_QS4i4ePQI.DeviceDesc = "QS4i4ePQI コントローラ"
+smart_P408i-p.DeviceDesc = "HPE Smart アレイ P408i-p SR Gen10"
+smart_P408e-p.DeviceDesc = "HPE Smart アレイ P408e-p SR Gen10"
+smart_P408i-a.DeviceDesc = "HPE Smart アレイ P408i-a SR Gen10"
+smart_P408i-c.DeviceDesc = "HPE Smart アレイ P408i-c SR Gen10"
+smart_E208i-p.DeviceDesc = "HPE Smart アレイ E208i-p SR Gen10"
+smart_E208e-p.DeviceDesc = "HPE Smart アレイ E208e-p SR Gen10"
+smart_E208i-c.DeviceDesc = "HPE Smart アレイ E208i-c SR Gen10"
+smart_H250i.DeviceDesc = "SmartHBA H250i コントローラ"
+smart_E208i-a.DeviceDesc = "HPE Smart アレイ E208i-a SR Gen10"
+smart_P408e-m.DeviceDesc = "HPE Smart アレイ P408e-m SR Gen10"
+smart_P204i-c.DeviceDesc = "HPE Smart アレイ P204i-c SR Gen10"
+smart_P204i-b.DeviceDesc = "HPE Smart アレイ P204i-b SR Gen10"
+smart_P416ie-m.DeviceDesc = "HPE Smart アレイ P416ie-m SR G10"
+smart_P816i-a.DeviceDesc = "HPE Smart アレイ P816i-a SR Gen10"
+smart_P408i-sb.DeviceDesc = "HPE Smart アレイ P408i-sb SR G10"
+smart_3154-8i.DeviceDesc = "SmartRAID 3154-8i コントローラ"
+smart_3152-8i.DeviceDesc = "SmartRAID 3152-8i コントローラ"
+smart_3151-4i.DeviceDesc = "SmartRAID 3151-4i コントローラ"
+smart_3101-4i.DeviceDesc = "SmartRAID 3101-4i コントローラ"
+smart_3154-8e.DeviceDesc = "SmartRAID 3154-8e コントローラ"
+smart_3102-8i.DeviceDesc = "SmartRAID 3102-8i コントローラ"
+smart_3100.DeviceDesc = "SmartRAID 3100 コントローラ"
+smart_2100-8i.DeviceDesc = "SmartHBA 2100-8i コントローラ"
+smart_2100-4i.DeviceDesc = "SmartHBA 2100-4i コントローラ"
+smart_1100-8i.DeviceDesc = "HBA 1100-8i コントローラ"
+smart_1100-4i.DeviceDesc = "HBA 1100-4i コントローラ"
+smart_2100-8e.DeviceDesc = "SmartHBA 2100-8e コントローラ"
+smart_1100-8e.DeviceDesc = "HBA 1100-8e コントローラ"
+smart_2100-4i4e.DeviceDesc = "SmartHBA 2100-4i4e コントローラ"
+smart_1100.DeviceDesc = "HBA 1100 コントローラ"
+smart_2100.DeviceDesc = "SmartHBA 2100 コントローラ"
+smart_QS-8204-8i.DeviceDesc = "QS-8204-8i コントローラ"
+smart_QS-8236-16i.DeviceDesc = "QS-8236-16i コントローラ"
+smart_QS-8238-16i.DeviceDesc = "QS-8238-16i コントローラ"
+smart_QS-8240-24i.DeviceDesc = "QS-8240-24i コントローラ"
+smart_QS-8242-24i.DeviceDesc = "QS-8242-24i コントローラ"
+smart_1100-16i.DeviceDesc = "HBA 1100-16i コントローラ"
+smart_1100-16e.DeviceDesc = "HBA 1100-16e コントローラ"
+smart_1100-8i8e.DeviceDesc = "HBA 1100-8i8e コントローラ"
+smart_1100-24i.DeviceDesc = "HBA 1100-24i コントローラ"
+smart_3154-16i.DeviceDesc = "SmartRAID 3154-16i コントローラ"
+smart_3154-24i.DeviceDesc = "SmartRAID 3154-24i コントローラ"
+smart_3154-8i16e.DeviceDesc = "SmartRAID 3154-8i16e コントローラ"
+smart_3154-8i8e.DeviceDesc = "SmartRAID 3154-8i8e コントローラ"
+smart_3162-8i/e/d.DeviceDesc = "SmartRAID 3162-8i /e /d コントローラ"
+smart_3162-8i/e.DeviceDesc = "SmartRAID 3162-8i /e コントローラ"
+smart_3162-8i.DeviceDesc = "SmartRAID 3162-8i コントローラ"
+smart_2100A-8i.DeviceDesc = "SmartHBA 2100A-8i コントローラ"
+smart_2100-8i8e.DeviceDesc = "SmartHBA 2100-8i8e コントローラ"
+smart_2100-24i.DeviceDesc = "SmartHBA 2100-24i コントローラ"
+smart_2100-16i.DeviceDesc = "SmartHBA 2100-16i コントローラ"
+smart_FiberhomeAIS-8204-8i.DeviceDesc = "Fiberhome SmartRAID AIS-8204-8i コントローラ"
+smart_FiberhomeAIS-8222-8i.DeviceDesc = "Fiberhome SmartHBA AIS-8222-8i コントローラ"
+smart_FiberhomeAIS-8236-16i.DeviceDesc = "Fiberhome SmartRAID AIS-8236-16i コントローラ"
+smart_FiberhomeAIS-8238-16i.DeviceDesc = "Fiberhome SmartHBA AIS-8238-16i コントローラ"
+smart_FOXCONN8242-24i.DeviceDesc = "HBA 8242-24i コントローラ"
+smart_P460-M4.DeviceDesc = "UN RAID P460-M4 コントローラ"
+smart_P460-B4.DeviceDesc = "UN RAID P460-B4 コントローラ"
+smart_P460-M2.DeviceDesc = "UN RAID P460-M2 コントローラ"
+smart_P460-B2.DeviceDesc = "UN RAID P460-B2 コントローラ"
+smart_H460-M1.DeviceDesc = "UN HBA H460-M1 コントローラ"
+smart_H460-B1.DeviceDesc = "UN HBA H460-B1 コントローラ"
+smart_P2404-Mf-4i-2GB.DeviceDesc = "UN RAID P2404-Mf-4i-2GB コントローラ"
+smart_P2404-Mf-4i-1GB.DeviceDesc = "UN RAID P2404-Mf-4i-1GB コントローラ"
+smart_P4408-Mf-8i-2GB.DeviceDesc = "UN RAID P4408-Mf-8i-2GB コントローラ"
+smart_P4408-Mf-8i-4GB.DeviceDesc = "UN RAID P4408-Mf-8i-4GB コントローラ"
+smart_INSPUR8236-16i.DeviceDesc = "INSPUR RAID 8236-16i コントローラ"
+smart_INSPUR8238-16i.DeviceDesc = "INSPUR SMART-HBA 8238-16i コントローラ"
+smart_INSPUR8240-24i.DeviceDesc = "INSPUR RAID 8240-24i コントローラ"
+smart_INSPUR8242-24i.DeviceDesc = "INSPUR SMART-HBA 8242-24i コントローラ"
+smart_ADVANTECHMIC-8312BridgeB.DeviceDesc = "ADVANTECH SKY-9200 MIC-8312BridgeB コントローラ"
+smart_INSPURPM8222-SHBA.DeviceDesc = "INSPUR  PM8222-SHBA コントローラ"
+smart_INSPURPM8204-2GB.DeviceDesc = "INSPUR  PM8204-2GB コントローラ"
+smart_INSPURPM8204-4GB.DeviceDesc = "INSPUR  PM8204-4GB コントローラ"
+smart_INSPURPM8222-HBA.DeviceDesc = "INSPUR  PM8222-HBA コントローラ"
+smart_HUAWEISR465C-M4G.DeviceDesc = "HUAWEI SmartROC-HD SR465C-M 4G コントローラ"
+smart_HUAWEISR455C-M2G.DeviceDesc = "HUAWEI SmartROC SR455C-M 2G コントローラ"
+smart_HUAWEISR155-M.DeviceDesc = "HUAWEI SmartIOC SR155-M  コントローラ"
+smart_HUAWEISR765-M.DeviceDesc = "HUAWEI SmartIOC-HD SR765-M  コントローラ"
+smart_HUAWEISR455C-ME4G.DeviceDesc = "HUAWEI SmartROC-e SR455C-ME 4G コントローラ"
+smart_HUAWEISR455C-M4G.DeviceDesc = "HUAWEI SmartROC SR455C-M 4G コントローラ"
+smart_SmartStorage.DeviceDesc = "SmartStorage コントローラ"
+smart_SmartStorageDDA.DeviceDesc = "SmartStorage コントローラ (DDA)"
+pcip.SVCDESC = "PCI Proxy Driver"
+
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+REG_BINARY             = 0x00030003
+CREATE_KEYONLY         = 0x00000010
+

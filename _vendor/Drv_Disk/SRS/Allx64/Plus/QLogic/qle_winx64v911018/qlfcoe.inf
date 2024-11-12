@@ -1,0 +1,236 @@
+; QLFCOE.INF - This file is used by Setup to install QLogic PCI FCoE Windows STOR PnP Miniport Driver
+; Copyright 1996-2013 QLogic Corporation 
+
+[version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%QLOGIC%
+CatalogFile=qlfcoe.cat
+DriverVer=03/08/2013,9.1.10.18
+
+[SourceDisksNames]
+1=%Floppy_Desc%,,,
+
+[SourceDisksFiles]
+qlfcoe.sys=1
+qlsdm.dll=1
+qlsdmx64.dll=1
+qlco.dll=1
+qlcox64.dll=1
+Qlpropx64.dll=1
+QlFcx64.exe=1
+
+[DestinationDirs]
+ApiFileList = 10,\SysWOW64
+ApiFileListx64 = 11
+DefaultDestDir = 12 ; DIRID_DRIVERS
+CoInstallerFileList = 10,\SysWOW64
+CoInstallerFileListx64 = 11
+PropertyFileList = 11
+
+[ApiFileList]
+qlsdm.dll
+
+[ApiFileListx64]
+qlsdm.dll, qlsdmx64.dll
+
+[CoInstallerFileList]
+qlco1009.dll, qlco.dll
+
+[CoInstallerFileListx64]
+qlco1009.dll, qlcox64.dll
+
+[PropertyFileList]
+QlPPFcoe.dll, Qlpropx64.dll
+QlFc.exe,QlFcx64.exe
+
+[Manufacturer]
+%QLOGIC%=QLOGIC, NTamd64, NTamd64.6.0
+
+;*******************************
+;QLogic Manufacturer device list
+
+[QLOGIC]
+
+[QLOGIC.NTamd64]
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_2432&SUBSYS_004A1137
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_8001
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_8432&SUBSYS_010E1077
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_8021
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_8031
+
+[QLOGIC.NTamd64.6.0]
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_2432&SUBSYS_004A1137&REV_02
+%qlfcoe.DeviceDesc% = qlfcoe_LM_Inst, PCI\VEN_1077&DEV_2432&SUBSYS_004A1137&REV_03
+%qlfcoe.DeviceDesc% = qlfcoe_LM_Inst, PCI\VEN_1077&DEV_8001
+%qlfcoe.DeviceDesc% = qlfcoe_Inst, PCI\VEN_1077&DEV_8432&SUBSYS_010E1077&REV_02
+%qlfcoe.DeviceDesc% = qlfcoe_LM_Inst, PCI\VEN_1077&DEV_8432&SUBSYS_010E1077&REV_03
+%qlfcoe.DeviceDesc% = qlfcoe_LM_InstP3P, PCI\VEN_1077&DEV_8021
+%qlfcoe.DeviceDesc% = qlfcoe_LM_Inst, PCI\VEN_1077&DEV_8031
+
+[ControlFlags]
+ExcludeFromSelect = PCI\VEN_1077&DEV_2432&SUBSYS_004A1137
+ExcludeFromSelect = PCI\VEN_1077&DEV_8001
+ExcludeFromSelect = PCI\VEN_1077&DEV_8432&SUBSYS_010E1077
+ExcludeFromSelect = PCI\VEN_1077&DEV_8021
+ExcludeFromSelect = PCI\VEN_1077&DEV_8031
+
+[qlfcoe_Inst]
+CopyFiles = @qlfcoe.sys
+CopyFiles = ApiFileList
+CopyFiles = ApiFileListx64
+CopyFiles = PropertyFileList
+AddReg = qlfcoe_Registry_Update
+AddReg = ql2xhai2_Registry_Update
+
+[qlfcoe_NoIO_Inst]
+CopyFiles = @qlfcoe.sys
+CopyFiles = ApiFileList
+CopyFiles = ApiFileListx64
+CopyFiles = PropertyFileList
+AddReg = qlfcoe_Registry_Update
+AddReg = ql2xhai2_Registry_Update
+
+[qlfcoe_LM_Inst]
+CopyFiles = @qlfcoe.sys
+CopyFiles = ApiFileList
+CopyFiles = ApiFileListx64
+CopyFiles = PropertyFileList
+AddReg = qlfcoe_Registry_Update
+AddReg = ql2xhai2_Registry_Update
+
+[qlfcoe_LM_InstP3P]
+CopyFiles = @qlfcoe.sys
+CopyFiles = ApiFileList
+CopyFiles = ApiFileListx64
+CopyFiles = PropertyFileList
+AddReg = qlfcoe_Registry_Update
+AddReg = ql2xhai2_Registry_Update
+
+[qlfcoe_NoIO_LM_Inst]
+CopyFiles = @qlfcoe.sys
+CopyFiles = ApiFileList
+CopyFiles = ApiFileListx64
+CopyFiles = PropertyFileList
+AddReg = qlfcoe_Registry_Update
+AddReg = ql2xhai2_Registry_Update
+
+[qlfcoe_Registry_Update]
+HKLM,SYSTEM\CurrentControlSet\Services\qlfcoe\Parameters\Device,BusType,0x00010001,0x00000006
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x3C
+HKLM,SOFTWARE\Microsoft\Windows\CurrentVersion\Run,QLogicSaveSystemInfo,%REG_EXPAND_SZ%,"rundll32.exe qlco1009.dll,QLSaveSystemInfo"
+HKR,,EnumPropPages32,0,"QlPPFcoe.dll,QlPropPageProvider"
+
+[ql2xhai2_Registry_Update]
+HKLM,SOFTWARE\Wow6432Node\SNIA\HBA\QL2X00,LibraryFile,0x00000000,"%10%\SysWOW64"
+
+[qlfcoe_Inst.Services]
+AddService = qlfcoe, %SPSVCINST_ASSOCSERVICE%, qlfcoe_Service_Inst, Miniport_EventLog_Inst
+
+[qlfcoe_LM_Inst.Services]
+AddService = qlfcoe, %SPSVCINST_ASSOCSERVICE%, qlfcoe_Service_Inst, Miniport_EventLog_Inst
+
+[qlfcoe_LM_InstP3P.Services]
+AddService = qlfcoe, %SPSVCINST_ASSOCSERVICE%, qlfcoe_Service_Inst, Miniport_EventLog_Inst
+
+[qlfcoe_NoIO_Inst.Services]
+AddService = qlfcoe, %SPSVCINST_ASSOCSERVICE%, qlfcoe_Service_Inst, Miniport_EventLog_Inst
+
+[qlfcoe_NoIO_LM_Inst.Services]
+AddService = qlfcoe, %SPSVCINST_ASSOCSERVICE%, qlfcoe_Service_Inst, Miniport_EventLog_Inst
+
+[qlfcoe_Service_Inst]
+DisplayName    = %qlfcoe.DriverDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\qlfcoe.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[qlfcoe_LM_Inst.HW]
+AddReg = qlfcoe_LM_Registry_Update
+
+[qlfcoe_LM_InstP3P.HW]
+AddReg = qlfcoe_LMP3P_Registry_Update
+
+[qlfcoe_NoIO_Inst.HW]
+Include=machine.inf
+Needs=PciIoSpaceNotRequired
+
+[qlfcoe_NoIO_LM_Inst.HW]
+AddReg = qlfcoe_LM_Registry_Update
+Include=machine.inf
+Needs=PciIoSpaceNotRequired
+
+[qlfcoe_LM_Registry_Update]
+HKR,Interrupt Management,,0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, 0, 0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\Affinity Policy", 0, 0x00000010
+HKR, "Interrupt Management\Affinity Policy", DevicePolicy, 0x00010001, 5
+HKR,,EnumPropPages32,0,"QlPPFcoe.dll,QlPropPageProvider"
+
+[qlfcoe_LMP3P_Registry_Update]
+HKR,Interrupt Management,,0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, 0, 0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, MSISupported, 0x00010001, 1
+HKR, Interrupt Management\MessageSignaledInterruptProperties, MessageNumberLimit, 0x00010001, 2
+HKR, "Interrupt Management\Affinity Policy", 0, 0x00000010
+HKR, "Interrupt Management\Affinity Policy", DevicePolicy, 0x00010001, 5
+HKR,,EnumPropPages32,0,"QlPPFcoe.dll,QlPropPageProvider"
+
+[qlfcoe_Inst.CoInstallers]
+CopyFiles = CoInstallerFileList
+CopyFiles = CoInstallerFileListx64
+AddReg = CoInstallers_AddReg
+
+[qlfcoe_LM_Inst.CoInstallers]
+CopyFiles = CoInstallerFileList
+CopyFiles = CoInstallerFileListx64
+AddReg = CoInstallers_AddReg
+
+[qlfcoe_LM_InstP3P.CoInstallers]
+CopyFiles = CoInstallerFileList
+CopyFiles = CoInstallerFileListx64
+AddReg = CoInstallers_AddReg
+
+[qlfcoe_NoIO_Inst.CoInstallers]
+CopyFiles = CoInstallerFileList
+CopyFiles = CoInstallerFileListx64
+AddReg = CoInstallers_AddReg
+
+[qlfcoe_NoIO_LM_Inst.CoInstallers]
+CopyFiles = CoInstallerFileList
+CopyFiles = CoInstallerFileListx64
+AddReg = CoInstallers_AddReg
+
+[CoInstallers_AddReg]
+HKLM,SYSTEM\CurrentControlSet\Services\qlfcoe\Parameters\Device,DriverParameter,0x00000000,""
+HKR,,CoInstallers32,0x00010000,"qlco1009.dll, QLCoDeviceInstall"
+
+[Strings]
+QLOGIC = "QLogic"
+qlfcoe.DriverDesc = "QLogic [FCoE] STOR Miniport Driver (wx64)"
+qlfcoe.DeviceDesc = "QLogic [FCoE] Adapter"
+Floppy_Desc = "QLogic Software Diskette"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

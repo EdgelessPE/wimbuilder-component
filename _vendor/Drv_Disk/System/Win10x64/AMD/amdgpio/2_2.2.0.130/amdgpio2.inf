@@ -1,0 +1,79 @@
+;/*++
+;
+;(C) Copyright 2014-2022  Advanced Micro Devices, Inc.
+;
+;Module Name:
+;
+;    amdgpio2.inf
+;
+;Abstract:
+;    INF file for installing AMD GPIO v2 Controller Driver.
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%AMD%
+DriverVer = 06/03/2022,2.2.0.130
+CatalogFile=amdgpio2.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = AMD GPIO Installation Disk
+
+[SourceDisksFiles.amd64]
+amdgpio2.sys = 1,
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%AMD%=Amd,NTamd64
+
+[Amd.NTamd64]
+%GPIO.DeviceDesc% = GPIO_Inst,ACPI\GPIO0010
+%GPIO.DeviceDesc% = GPIO_Inst,ACPI\AMD0030
+%GPIO.DeviceDesc% = GPIO_Inst,ACPI\AMDI0030
+%GPIO.DeviceDesc% = GPIO_Inst,ACPI\AMDI0031
+
+[GPIO_Inst.NT]
+Copyfiles = GPIOCopyFiles
+Reboot
+
+[GPIOCopyFiles]
+amdgpio2.sys
+
+[GPIO_Inst.NT.Services]
+AddService = amdgpio2,%SPSVCINST_ASSOCSERVICE%,GPIO_Service_Inst
+
+[GPIO_Service_Inst]
+DisplayName    = %GPIO.SvcDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\amdgpio2.sys
+LoadOrderGroup = Extended Base
+
+[strings]
+AMD                 = "Advanced Micro Devices, Inc"
+GPIO.DeviceDesc     = "AMD GPIO Controller"
+GPIO.SvcDesc        = "AMD GPIO Client Driver"
+DiskId1 = "AMD GPIO Installation Disk"
+
+SPSVCINST_TAGTOFRONT   = 0x00000003
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_SYSTEM_START   = 1
+SERVICE_DEMAND_START   = 3
+SERVICE_ERROR_NORMAL   = 1
+SERVICE_ERROR_IGNORE   = 0
+SERVICE_ERROR_CRITICAL = 3
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+

@@ -1,0 +1,71 @@
+;
+; TPS659xx.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ManufacturerName%
+CatalogFile=TPS659xx.cat
+DriverVer = 07/22/2021,1.0.10.2
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+; ================= Class section =====================
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+TPS659xx.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%TPS659xx.DeviceDesc%=TPS659xx_Device, ACPI\INT3515
+
+[TPS659xx_Device.NT]
+AddReg = TPS659xx_Device.AddReg
+CopyFiles=Drivers_Dir
+
+[TPS659xx_Device.NT.HW]
+AddReg = TPS659xx_Device.AddReg
+TPS65987_Device.AddReg
+
+[Drivers_Dir]
+TPS659xx.sys
+
+;-------------- Service installation
+[TPS659xx_Device.NT.Services]
+AddService = TPS659xx,%SPSVCINST_ASSOCSERVICE%, TPS659xx_Service_Inst
+
+; -------------- TPS659xx driver install sections
+[TPS659xx_Service_Inst]
+DisplayName    = %TPS659xx.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\TPS659xx.sys
+
+[TPS659xx_Device.NT.Wdf]
+KmdfService =  TPS659xx, TPS659xx_wdfsect
+[TPS659xx_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[TPS659xx_Device.AddReg]
+HKR,"WDF","WdfDirectedPowerTransitionEnable",0x00010001,1
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="Texas Instruments"
+DiskName = "TPS659xx Installation Disk"
+TPS659xx.DeviceDesc = "TPS659xx Device"
+TPS659xx.SVCDESC = "TPS659xx Service"

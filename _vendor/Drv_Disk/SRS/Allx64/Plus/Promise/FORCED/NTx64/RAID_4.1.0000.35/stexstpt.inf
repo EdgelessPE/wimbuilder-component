@@ -1,0 +1,119 @@
+; stexstpt.INF
+; Copyright Tue 08/22/2006 Promise Technology, Inc.
+;
+[Version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+CatalogFile=stexstpt.cat
+Provider=%PROMISE%
+DriverVer=10/15/2009, 4.1.0000.35
+;
+
+[DestinationDirs] 
+stex.Files.amd64_12 = 12
+
+[SourceDisksNames.amd64]
+0=%Desc_amd640%
+
+[SourceDisksFiles.amd64]
+stexstpt.sys=0,
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer] 
+%Promise%=Promise, ntamd64
+
+[Promise.ntamd64]
+%stexYosemiteDesc%=stex_Inst,PCI\VEN_105A&DEV_8650
+%stexYosemiteDesc%=stex_Inst,PCI\VEN_105A&DEV_3360
+%stexDesc%=stex_Inst,PCI\VEN_105A&DEV_8350
+%stexDesc%=stex_Inst,PCI\VEN_105A&DEV_4302
+%stexDesc%=stex_Inst,PCI\VEN_105A&DEV_C350
+%stexDesc%=stex_Inst,PCI\VEN_105A&DEV_E350
+%stex7250Desc%=stex_Inst,PCI\VEN_105A&DEV_7250
+%stexYellowstoneDesc%=stex_Inst,PCI\VEN_105A&DEV_8760
+;%Promise_Raid_ConsoleDesc%=NODRV,SCSI\ProcessorPromise_
+
+;[NODRV]
+;CopyFiles=MoveNODRV
+
+;[MoveNODRV]
+
+;[NODRV.Services]
+;
+; this is blank to just allow the install to succeed
+;
+;AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[stex_Inst.ntamd64] 
+CopyFiles = stex.Files.amd64_12 
+
+[stex_Inst.ntamd64.Services] 
+AddService = stexstpt,0x00000002,stex_Service_Instamd64, stex_EventLog_Inst 
+
+[stex_Service_Instamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType =   %SERVICE_BOOT_START% 
+ErrorControl =     %SERVICE_ERROR_NORMAL% 
+ServiceBinary =  %12%\stexstpt.sys 
+LoadOrderGroup = "SCSI Storport"
+AddReg = pnpsafe_pci_addreg
+AddReg = bus_type_raid
+
+[stex.Files.amd64_12] 
+stexstpt.sys
+
+[stex_EventLog_Inst] 
+AddReg = stex_EventLog_Inst.AddReg 
+ 
+[stex_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001
+HKR, Parameters\Device,"RESET",0x00010001,1
+HKLM,"SYSTEM\CurrentControlSet\Services\stexstpt\Parameters\Device","NumberOfRequests",0x00010001,1024 
+HKLM,"SYSTEM\CurrentControlSet\Services\disk","TimeoutValue",0x00010001,90
+
+[bus_type_raid]
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+;[pnpsafe_isa_addreg] 
+;HKR, Parameters\PnpInterface, 1, 0x00010001, 0x00000001 
+
+;[pnpsafe_eisa_addreg] 
+;HKR, Parameters\PnpInterface, 2, 0x00010001, 0x00000001 
+
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+Promise= "Promise Technology, Inc." 
+Desc_amd640= "Promise SuperTrak SATA/SAS RAID Controller Driver - 64bits platform" 
+stexYellowstoneDesc = "Promise SuperTrak SAS 6G RAID Controller"
+stexYosemiteDesc= "Promise SuperTrak SAS RAID Controller"
+stexDesc= "Promise SuperTrak EX SATA Series (tm) Controller" 
+stex7250Desc= "Vitesse 7250 Series SAS RAID (tm) Controller"
+Promise_Raid_ConsoleDesc= "Promise RAID Console"
+
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
+
+SPSVCINST_ASSOCSERVICE=0x00000002

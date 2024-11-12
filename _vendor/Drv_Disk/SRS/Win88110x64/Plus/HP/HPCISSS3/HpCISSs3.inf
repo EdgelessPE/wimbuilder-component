@@ -1,0 +1,468 @@
+;Copyright ｩ 2014-2017 Microsemi Corporation All rights reserved.
+;
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%MICROSEMI%
+CatalogFile=HpCISSs3.cat
+DriverVer=06/28/2017,100.20.0.64
+
+[SourceDisksNames.amd64]
+1=%DISK%,HpCISSs3.sys,,
+
+[SourceDisksFiles.amd64]
+HpCISSs3.sys=1,,
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%MICROSEMI%=MI_HDC,ntamd64,ntamd64.6.2,ntamd64.6.3,ntamd64.10.0
+
+[MI_HDC] ;Default
+;Prevents installation on 2008 and 2008R2
+
+[MI_HDC.ntamd64] ;Default Architecture
+;Prevents installation on 2008 and 2008R2
+
+[MI_HDC.ntamd64.6.2] ;Server2012 and Windows 8 64-bit
+%smart_P222.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3350103C
+%smart_P420.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3351103C
+%smart_P420i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3354103C
+%smart_P421.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3352103C
+%smart_P425u.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3358103C
+%smart_P822.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3353103C
+%smart_P220i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3355103C
+%smart_P721m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3356103C
+%smart_p1224.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00761590
+%smart_p1228.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_007D1590
+%smart_p1228m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00771590
+%smart_p1224e.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00871590
+%smart_p1228e.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00881590
+%smart_p1228em.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00891590
+%smart_P430i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1920103C
+%smart_P230i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1928103C
+%smart_P830i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1921103C
+%smart_P430.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1922103C
+%smart_P431.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1923103C
+%smart_P830.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1924103C
+%smart_P831.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1925103C
+%smart_P731m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1926103C
+%smart_AMP_BOARD.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1927103C
+%smart_P530.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1929103C
+%smart_P531.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_192A103C
+%smart_P244br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BD103C
+%smart_P741m.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BE103C
+%smart_H240ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BF103C
+%smart_P440ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C0103C
+%smart_P840ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C1103C
+%smart_P440.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C2103C
+%smart_P441.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C3103C
+%smart_P841.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C5103C
+%smart_H244br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C6103C
+%smart_H240.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C7103C
+%smart_H241.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C8103C
+%smart_P246br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CA103C
+%smart_P840.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CB103C
+%smart_P542D.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CC103C
+%smart_P240nr.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CD103C
+%smart_H240nr.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CE103C
+%smart_LUXOR_FVB.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_2208103C
+%smart_SmartHBA-SA.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05809005
+%smart_SmartHBA-SA-8i.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05819005
+%smart_SmartHBA-SA-8i8e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05829005
+%smart_SmartHBA-SA-8e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05839005
+%smart_SmartHBA-SA-16i.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05849005
+%smart_SmartHBA-SA-4i4e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05859005
+
+[MI_HDC.ntamd64.6.3] ;Server2012 R2 and Windows 8.1 64-bit
+%smart_P222.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3350103C
+%smart_P420.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3351103C
+%smart_P420i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3354103C
+%smart_P421.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3352103C
+%smart_P425u.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3358103C
+%smart_P822.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3353103C
+%smart_P220i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3355103C
+%smart_P721m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3356103C
+%smart_p1224.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00761590
+%smart_p1228.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_007D1590
+%smart_p1228m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00771590
+%smart_p1224e.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00871590
+%smart_p1228e.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00881590
+%smart_p1228em.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00891590
+%smart_P430i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1920103C
+%smart_P230i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1928103C
+%smart_P830i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1921103C
+%smart_P430.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1922103C
+%smart_P431.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1923103C
+%smart_P830.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1924103C
+%smart_P831.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1925103C
+%smart_P731m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1926103C
+%smart_AMP_BOARD.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1927103C
+%smart_P530.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1929103C
+%smart_P531.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_192A103C
+%smart_P244br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BD103C
+%smart_P741m.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BE103C
+%smart_H240ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BF103C
+%smart_P440ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C0103C
+%smart_P840ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C1103C
+%smart_P440.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C2103C
+%smart_P441.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C3103C
+%smart_P841.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C5103C
+%smart_H244br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C6103C
+%smart_H240.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C7103C
+%smart_H241.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C8103C
+%smart_P246br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CA103C
+%smart_P840.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CB103C
+%smart_P542D.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CC103C
+%smart_P240nr.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CD103C
+%smart_H240nr.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CE103C
+%smart_LUXOR_FVB.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_2208103C
+%smart_SmartHBA-SA.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05809005
+%smart_SmartHBA-SA-8i.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05819005
+%smart_SmartHBA-SA-8i8e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05829005
+%smart_SmartHBA-SA-8e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05839005
+%smart_SmartHBA-SA-16i.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05849005
+%smart_SmartHBA-SA-4i4e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05859005
+
+
+[MI_HDC.ntamd64.10.0] ;Server2016 and Windows 10.0 64-bit
+%smart_P222.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3350103C
+%smart_P420.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3351103C
+%smart_P420i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3354103C
+%smart_P421.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3352103C
+%smart_P425u.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3358103C
+%smart_P822.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3353103C
+%smart_P220i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3355103C
+%smart_P721m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323B&SUBSYS_3356103C
+%smart_p1224.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00761590
+%smart_p1228.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_007D1590
+%smart_p1228m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00771590
+%smart_p1224e.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00871590
+%smart_p1228e.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00881590
+%smart_p1228em.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_1590&DEV_0075&SUBSYS_00891590
+%smart_P430i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1920103C
+%smart_P230i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1928103C
+%smart_P830i.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1921103C
+%smart_P430.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1922103C
+%smart_P431.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1923103C
+%smart_P830.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1924103C
+%smart_P831.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1925103C
+%smart_P731m.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1926103C
+%smart_AMP_BOARD.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1927103C
+%smart_P530.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_1929103C
+%smart_P531.DeviceDesc% = HpCISSs3_Inst_V8, PCI\VEN_103C&DEV_323C&SUBSYS_192A103C
+%smart_P244br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BD103C
+%smart_P741m.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BE103C
+%smart_H240ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21BF103C
+%smart_P440ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C0103C
+%smart_P840ar.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C1103C
+%smart_P440.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C2103C
+%smart_P441.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C3103C
+%smart_P841.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C5103C
+%smart_H244br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C6103C
+%smart_H240.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C7103C
+%smart_H241.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21C8103C
+%smart_P246br.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CA103C
+%smart_P840.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CB103C
+%smart_P542D.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CC103C
+%smart_P240nr.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CD103C
+%smart_H240nr.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_21CE103C
+%smart_LUXOR_FVB.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_103C&DEV_3239&SUBSYS_2208103C
+%smart_SmartHBA-SA.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05809005
+%smart_SmartHBA-SA-8i.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05819005
+%smart_SmartHBA-SA-8i8e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05829005
+%smart_SmartHBA-SA-8e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05839005
+%smart_SmartHBA-SA-16i.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05849005
+%smart_SmartHBA-SA-4i4e.DeviceDesc% = HpCISSs3_Inst_V64, PCI\VEN_9005&DEV_0290&SUBSYS_05859005
+
+
+[HpCISSs3_Inst_V0.ntamd64]
+CopyFiles = @HpCISSs3.sys
+
+[HpCISSs3_Inst_V0.ntamd64.Services]
+AddService = HpCISSs3, %SPSVCINST_ASSOCSERVICE%, HpCISSs3_Service_Inst, HpCISSs3_EventLog_Inst
+
+[HpCISSs3_Inst_V1.ntamd64]
+CopyFiles = @HpCISSs3.sys
+
+[HpCISSs3_Inst_V1.ntamd64.Services]
+AddService = HpCISSs3, %SPSVCINST_ASSOCSERVICE%, HpCISSs3_Service_Inst, HpCISSs3_EventLog_Inst
+
+[HpCISSs3_Inst_V8.ntamd64]
+CopyFiles = @HpCISSs3.sys
+
+[HpCISSs3_Inst_V8.ntamd64.Services]
+AddService = HpCISSs3, %SPSVCINST_ASSOCSERVICE%, HpCISSs3_Service_Inst, HpCISSs3_EventLog_Inst
+
+[HpCISSs3_Inst_V16.ntamd64]
+CopyFiles = @HpCISSs3.sys
+
+[HpCISSs3_Inst_V16.ntamd64.Services]
+AddService = HpCISSs3, %SPSVCINST_ASSOCSERVICE%, HpCISSs3_Service_Inst, HpCISSs3_EventLog_Inst
+
+[HpCISSs3_Inst_V64.ntamd64]
+CopyFiles = @HpCISSs3.sys
+
+[HpCISSs3_Inst_V64.ntamd64.Services]
+AddService = HpCISSs3, %SPSVCINST_ASSOCSERVICE%, HpCISSs3_Service_Inst, HpCISSs3_EventLog_Inst
+
+
+[HpCISSs3_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\HpCISSs3.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+AddReg         = IO_timeout_addreg
+
+[HpCISSs3_EventLog_Inst]
+AddReg = HpCISSs3_EventLog_AddReg
+
+[HpCISSs3_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\HpCISSs3.sys"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg]
+HKR, ,                          "Tag",                        %REG_DWORD%,  0x103
+HKR, "Parameters\PnpInterface", "5",                          %REG_DWORD%,  0x00000001
+HKR, "Parameters\Device",       "DriverParameter",            %REG_SZ%,     "CSMI=None;"
+HKR, "Parameters",              "BusType",                    %REG_DWORD%,  0x0000000A
+HKR, "Parameters\Drive",        "EnableQueryAccessAlignment", %REG_DWORD%,  0x00000001
+
+[IO_timeout_addreg]
+HKR, "System\CurrentControlSet\Services\HpCISSs3\Parameters", "IoTimeoutValue", %REG_DWORD%, 0x0000003C
+
+
+[HpCISSs3_Inst_V0.ntamd64.HW]
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+[HpCISSs3_Inst_V1.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+[HpCISSs3_Inst_V8.ntamd64.HW]
+AddReg=Msi8Support_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+[HpCISSs3_Inst_V16.ntamd64.HW]
+AddReg=Msi16Support_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+[HpCISSs3_Inst_V64.ntamd64.HW]
+AddReg=Msi64Support_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+[MsiSupport_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000001
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x01
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[Msi8Support_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000008
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x01
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[Msi16Support_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000010
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x01
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[Msi64Support_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000040
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[SupportStorportIPM_addreg]
+; Enables Storport IPM for this adapter
+HKR, "StorPort", "EnableIdlePowerManagement", %REG_DWORD%, 0x01
+
+[AdditionalSenseData_addreg]
+; Sense data size not to exceed 40 bytes for driver versions < 6.22.
+HKR, "StorPort", "TotalSenseDataBytes", %REG_DWORD%, 0x28
+
+[EnableFull64Bit_addreg]
+; Instruct driver to use 64 bit addressing through storport if supported on this machine.
+HKLM, "System\CurrentControlSet\Services\HpCISSs3\Parameters\Device", "EnableFull64Bit", %REG_BINARY%,  0x1
+
+
+[Strings]
+MICROSEMI = "Microsemi Corporation."
+DISK = "SmartArray, SmartHBA, and Smart Array SAS/SATA Controller Support"
+smart_P222.DeviceDesc = "Smart Array P222 Controller"
+smart_P420.DeviceDesc = "Smart Array P420 Controller"
+smart_P420i.DeviceDesc = "Smart Array P420i Controller"
+smart_P421.DeviceDesc = "Smart Array P421 Controller"
+smart_P425u.DeviceDesc = "Smart Array P425u Controller"
+smart_P822.DeviceDesc = "Smart Array P822 Controller"
+smart_P220i.DeviceDesc = "Smart Array P220i Controller"
+smart_P721m.DeviceDesc = "Smart Array P721m Controller"
+smart_p1224.DeviceDesc = "HP Storage p1224 Array Controller"
+smart_p1228.DeviceDesc = "HP Storage p1228 Array Controller"
+smart_p1228m.DeviceDesc = "HP Storage p1228m Array Controller"
+smart_p1224e.DeviceDesc = "HP Storage p1224e Array Controller"
+smart_p1228e.DeviceDesc = "HP Storage p1228e Array Controller"
+smart_p1228em.DeviceDesc = "HP Storage p1228em Array Controller"
+smart_P430i.DeviceDesc = "Smart Array P430i Controller"
+smart_P230i.DeviceDesc = "Smart Array P230i Controller"
+smart_P830i.DeviceDesc = "Smart Array P830i Controller"
+smart_P430.DeviceDesc = "Smart Array P430 Controller"
+smart_P431.DeviceDesc = "Smart Array P431 Controller"
+smart_P830.DeviceDesc = "Smart Array P830 Controller"
+smart_P831.DeviceDesc = "Smart Array P831 Controller"
+smart_P731m.DeviceDesc = "Smart Array P731m Controller"
+smart_AMP_BOARD.DeviceDesc = "Smart Array AMP_BOARD Controller"
+smart_P530.DeviceDesc = "Smart Array P530 Controller"
+smart_P531.DeviceDesc = "Smart Array P531 Controller"
+smart_P244br.DeviceDesc = "Smart Array P244br Controller"
+smart_P741m.DeviceDesc = "Smart Array P741m Controller"
+smart_H240ar.DeviceDesc = "Smart Array H240ar Controller"
+smart_P440ar.DeviceDesc = "Smart Array P440ar Controller"
+smart_P840ar.DeviceDesc = "Smart Array P840ar Controller"
+smart_P440.DeviceDesc = "Smart Array P440 Controller"
+smart_P441.DeviceDesc = "Smart Array P441 Controller"
+smart_P841.DeviceDesc = "Smart Array P841 Controller"
+smart_H244br.DeviceDesc = "Smart HBA H244br Controller"
+smart_H240.DeviceDesc = "Smart HBA H240 Controller"
+smart_H241.DeviceDesc = "Smart HBA H241 Controller"
+smart_P246br.DeviceDesc = "Smart Array P246br Controller"
+smart_P840.DeviceDesc = "Smart Array P840 Controller"
+smart_P542D.DeviceDesc = "Smart Array P542D Controller"
+smart_P240nr.DeviceDesc = "Smart Array P240nr Controller"
+smart_H240nr.DeviceDesc = "Smart HBA H240nr Controller"
+smart_LUXOR_FVB.DeviceDesc = "Smart Array LUXOR_FVB Controller"
+smart_SmartHBA-SA.DeviceDesc = "SmartHBA-SA Controller"
+smart_SmartHBA-SA-8i.DeviceDesc = "SmartHBA-SA-8i Controller"
+smart_SmartHBA-SA-8i8e.DeviceDesc = "SmartHBA-SA-8i8e Controller"
+smart_SmartHBA-SA-8e.DeviceDesc = "SmartHBA-SA-8e Controller"
+smart_SmartHBA-SA-16i.DeviceDesc = "SmartHBA-SA-16i Controller"
+smart_SmartHBA-SA-4i4e.DeviceDesc = "SmartHBA-SA-4i4e Controller"
+smart_Generic.DeviceDesc = "Smart Array Controller"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+REG_BINARY             = 0x00030003
+CREATE_KEYONLY         = 0x00000010
+
+;**Japanese**********************************
+[Strings.0411]
+MICROSEMI = "Microsemi Corporation."
+DISK = "SmartArray, SmartHBA, Smart アレイ SAS/SATA コントローラ Support"
+smart_P222.DeviceDesc = "Smart アレイ P222 コントローラ"
+smart_P420.DeviceDesc = "Smart アレイ P420 コントローラ"
+smart_P420i.DeviceDesc = "Smart アレイ P420i コントローラ"
+smart_P421.DeviceDesc = "Smart アレイ P421 コントローラ"
+smart_P425u.DeviceDesc = "Smart アレイ P425u コントローラ"
+smart_P822.DeviceDesc = "Smart アレイ P822 コントローラ"
+smart_P220i.DeviceDesc = "Smart アレイ P220i コントローラ"
+smart_P721m.DeviceDesc = "Smart アレイ P721m コントローラ"
+smart_p1224.DeviceDesc = "HP Storage p1224 アレイ コントローラ"
+smart_p1228.DeviceDesc = "HP Storage p1228 アレイ コントローラ"
+smart_p1228m.DeviceDesc = "HP Storage p1228m アレイ コントローラ"
+smart_p1224e.DeviceDesc = "HP Storage p1224e アレイ コントローラ"
+smart_p1228e.DeviceDesc = "HP Storage p1228e アレイ コントローラ"
+smart_p1228em.DeviceDesc = "HP Storage p1228em アレイ コントローラ"
+smart_P430i.DeviceDesc = "Smart アレイ P430i コントローラ"
+smart_P230i.DeviceDesc = "Smart アレイ P230i コントローラ"
+smart_P830i.DeviceDesc = "Smart アレイ P830i コントローラ"
+smart_P430.DeviceDesc = "Smart アレイ P430 コントローラ"
+smart_P431.DeviceDesc = "Smart アレイ P431 コントローラ"
+smart_P830.DeviceDesc = "Smart アレイ P830 コントローラ"
+smart_P831.DeviceDesc = "Smart アレイ P831 コントローラ"
+smart_P731m.DeviceDesc = "Smart アレイ P731m コントローラ"
+smart_AMP_BOARD.DeviceDesc = "Smart アレイ AMP_BOARD コントローラ"
+smart_P530.DeviceDesc = "Smart アレイ P530 コントローラ"
+smart_P531.DeviceDesc = "Smart アレイ P531 コントローラ"
+smart_P244br.DeviceDesc = "Smart アレイ P244br コントローラ"
+smart_P741m.DeviceDesc = "Smart アレイ P741m コントローラ"
+smart_H240ar.DeviceDesc = "Smart アレイ H240ar コントローラ"
+smart_P440ar.DeviceDesc = "Smart アレイ P440ar コントローラ"
+smart_P840ar.DeviceDesc = "Smart アレイ P840ar コントローラ"
+smart_P440.DeviceDesc = "Smart アレイ P440 コントローラ"
+smart_P441.DeviceDesc = "Smart アレイ P441 コントローラ"
+smart_P841.DeviceDesc = "Smart アレイ P841 コントローラ"
+smart_H244br.DeviceDesc = "Smart HBA H244br コントローラ"
+smart_H240.DeviceDesc = "Smart HBA H240 コントローラ"
+smart_H241.DeviceDesc = "Smart HBA H241 コントローラ"
+smart_P246br.DeviceDesc = "Smart アレイ P246br コントローラ"
+smart_P840.DeviceDesc = "Smart アレイ P840 コントローラ"
+smart_P542D.DeviceDesc = "Smart アレイ P542D コントローラ"
+smart_P240nr.DeviceDesc = "Smart アレイ P240nr コントローラ"
+smart_H240nr.DeviceDesc = "Smart HBA H240nr コントローラ"
+smart_LUXOR_FVB.DeviceDesc = "Smart アレイ LUXOR_FVB コントローラ"
+smart_SmartHBA-SA.DeviceDesc = "SmartHBA-SA コントローラ"
+smart_SmartHBA-SA-8i.DeviceDesc = "SmartHBA-SA-8i コントローラ"
+smart_SmartHBA-SA-8i8e.DeviceDesc = "SmartHBA-SA-8i8e コントローラ"
+smart_SmartHBA-SA-8e.DeviceDesc = "SmartHBA-SA-8e コントローラ"
+smart_SmartHBA-SA-16i.DeviceDesc = "SmartHBA-SA-16i コントローラ"
+smart_SmartHBA-SA-4i4e.DeviceDesc = "SmartHBA-SA-4i4e コントローラ"
+smart_Generic.DeviceDesc = "Smart アレイ コントローラ"
+
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+REG_BINARY             = 0x00030003
+CREATE_KEYONLY         = 0x00000010
+

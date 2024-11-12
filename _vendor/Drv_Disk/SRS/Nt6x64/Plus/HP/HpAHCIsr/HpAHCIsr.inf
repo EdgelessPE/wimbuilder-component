@@ -1,0 +1,109 @@
+;Copyright (c) 2004-2012 Hewlett-Packard Development Company, L.P. ALL RIGHTS RESERVED.
+;HP Confidential.
+
+
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%HP%
+CatalogFile=HpAHCIsr.cat
+CatalogFile.ntx86=HpAHCIsr.cat
+DriverVer = 08/20/2013, 6.18.4.64
+
+
+[SourceDisksNames]
+1=%DISK%,HpAHCIsr.sys,,
+
+[SourceDisksFiles]
+HpAHCIsr.sys=1,,
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[Manufacturer]
+%HP%=HP_HDC,ntx86,ntamd64
+
+
+[HP_HDC.ntx86] ;32-Bit
+%ich10r.DeviceDesc%      = HpAHCIsr_Inst.ntx86, PCI\VEN_8086&DEV_3a25&SUBSYS_3118103C
+%pch.DeviceDesc%         = HpAHCIsr_Inst.ntx86, PCI\VEN_8086&DEV_3b25&SUBSYS_3118103C
+%SP5100.DeviceDesc%      = HpAHCIsr_Inst.ntx86, PCI\VEN_1002&DEV_4391&SUBSYS_1778103C
+%c204.DeviceDesc%        = HpAHCIsr_Inst.ntx86, PCI\VEN_8086&DEV_1c04&SUBSYS_3118103C
+
+[HP_HDC.ntamd64] ;64-Bit
+%ich10r.DeviceDesc%      = HpAHCIsr_Inst.ntamd64, PCI\VEN_8086&DEV_3a25&SUBSYS_3118103C
+%pch.DeviceDesc%         = HpAHCIsr_Inst.ntamd64, PCI\VEN_8086&DEV_3b25&SUBSYS_3118103C
+%SP5100.DeviceDesc%      = HpAHCIsr_Inst.ntamd64, PCI\VEN_1002&DEV_4391&SUBSYS_1778103C
+%c204.DeviceDesc%        = HpAHCIsr_Inst.ntamd64, PCI\VEN_8086&DEV_1c04&SUBSYS_3118103C
+
+[HpAHCIsr_Inst.ntx86]
+CopyFiles = @HpAHCIsr.sys  ; copy to DefaultDestDir
+
+[HpAHCIsr_Inst.ntamd64]
+CopyFiles = @HpAHCIsr.sys  ; copy to DefaultDestDir
+
+
+[HpAHCIsr_Inst.ntx86.Services]
+AddService = HpAHCIsr, %SPSVCINST_ASSOCSERVICE%, HpAHCIsr_Service_Inst, HpAHCIsr_EventLog_Inst
+
+[HpAHCIsr_Inst.ntamd64.Services]
+AddService = HpAHCIsr, %SPSVCINST_ASSOCSERVICE%, HpAHCIsr_Service_Inst, HpAHCIsr_EventLog_Inst
+
+
+[HpAHCIsr_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\HpAHCIsr.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+AddReg         = boot_ctrl_addreg
+
+[HpAHCIsr_EventLog_Inst]
+AddReg = HpAHCIsr_EventLog_AddReg
+
+
+[HpAHCIsr_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+
+[pnpsafe_pci_addreg]
+HKR, ,                          "Tag",             %REG_DWORD%,  0x103
+HKR, "Parameters\PnpInterface", "5",               %REG_DWORD%,  0x00000001
+HKR, "Parameters\Device",       "DriverParameter", %REG_SZ%,     "CSMI=None;"
+HKR, "Parameters",              "BusType",         %REG_DWORD%,  00000008
+
+
+[boot_ctrl_addreg]
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_8086&DEV_3a25&SUBSYS_3118103C", "Service", %REG_SZ%, "HpAHCIsr"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_8086&DEV_3a25&SUBSYS_3118103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_8086&DEV_3b25&SUBSYS_3118103C", "Service", %REG_SZ%, "HpAHCIsr"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_8086&DEV_3b25&SUBSYS_3118103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_1002&DEV_4391&SUBSYS_1778103C", "Service", %REG_SZ%, "HpAHCIsr"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_1002&DEV_4391&SUBSYS_1778103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_8086&DEV_1c04&SUBSYS_3118103C", "Service", %REG_SZ%, "HpAHCIsr"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\PCI#VEN_8086&DEV_1c04&SUBSYS_3118103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+
+[Strings]
+HP                      = "Hewlett-Packard Company"
+DISK                    = "HP SATA RAID Controller Support"
+ich10r.DeviceDesc       = "HP Smart Array B110i SATA RAID Controller"
+pch.DeviceDesc          = "HP Smart Array B110i SATA RAID Controller"
+SP5100.DeviceDesc       = "HP Smart Array B110i SATA RAID Controller"
+c204.DeviceDesc         = "HP Smart Array B110i SATA RAID Controller"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000

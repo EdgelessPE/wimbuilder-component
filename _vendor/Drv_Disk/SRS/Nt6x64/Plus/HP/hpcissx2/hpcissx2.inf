@@ -1,0 +1,346 @@
+;Copyright (c) 2004-2013 Hewlett-Packard Development Company, L.P. ALL RIGHTS RESERVED.
+;HP Confidential.
+
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%HP%
+CatalogFile=HpCISSs2.cat
+DriverVer=10/28/2013,6.28.0.64
+
+[SourceDisksNames.amd64]
+1=%DISK%,HpCISSs2.sys,,
+
+[SourceDisksFiles.amd64]
+HpCISSs2.sys=1,,
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%HP%=HP_HDC,ntamd64,ntamd64.6.0,ntamd64.6.1
+
+[HP_HDC] ;Default
+;Nothing Here
+[HP_HDC.ntamd64] ;Default Architecture
+;Nothing Here
+[HP_HDC.ntamd64.6.0] ;Server2008 ES 64-bit
+%smart_P800.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3223103C
+%smart_P700m.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_323D103C
+%smart_P600.DeviceDesc% = HpCISSs2_Inst_V0 , PCI\VEN_103C&DEV_3220&SUBSYS_3225103C
+%smart_P400.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3234103C
+%smart_P400I.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3235103C
+%smart_E500.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3237103C
+%smart_E200.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3238&SUBSYS_3212103C
+%smart_E200I.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3238&SUBSYS_3211103C
+%smart_SDK_Test_Board.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3232&SUBSYS_40A00E11
+%smart_P212.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3241103C
+%smart_P410.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3243103C
+%smart_P410i.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3245103C
+%smart_P411.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3247103C
+%smart_P812.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3249103C
+%smart_P712m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_324A103C
+%smart_P711m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_324B103C
+%smart_1210m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_333F&SUBSYS_333F103C
+%smart_P222.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3350103C
+%smart_P420.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3351103C
+%smart_P420i.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3354103C
+%smart_P421.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3352103C
+%smart_P822.DeviceDesc% = HpCISSs2_Inst_V16 , PCI\VEN_103C&DEV_323B&SUBSYS_3353103C
+%smart_P220i.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3355103C
+%smart_P721m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3356103C
+
+[HP_HDC.ntamd64.6.1] ;Server2008 R2 64-bit
+%smart_P800.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3223103C
+%smart_P700m.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_323D103C
+%smart_P600.DeviceDesc% = HpCISSs2_Inst_V0 , PCI\VEN_103C&DEV_3220&SUBSYS_3225103C
+%smart_P400.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3234103C
+%smart_P400I.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3235103C
+%smart_E500.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3230&SUBSYS_3237103C
+%smart_E200.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3238&SUBSYS_3212103C
+%smart_E200I.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3238&SUBSYS_3211103C
+%smart_SDK_Test_Board.DeviceDesc% = HpCISSs2_Inst_V1 , PCI\VEN_103C&DEV_3232&SUBSYS_40A00E11
+%smart_P212.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3241103C
+%smart_P410.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3243103C
+%smart_P410i.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3245103C
+%smart_P411.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3247103C
+%smart_P812.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_3249103C
+%smart_P712m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_324A103C
+%smart_P711m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323A&SUBSYS_324B103C
+%smart_1210m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_333F&SUBSYS_333F103C
+%smart_P222.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3350103C
+%smart_P420.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3351103C
+%smart_P420i.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3354103C
+%smart_P421.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3352103C
+%smart_P822.DeviceDesc% = HpCISSs2_Inst_V16 , PCI\VEN_103C&DEV_323B&SUBSYS_3353103C
+%smart_P220i.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3355103C
+%smart_P721m.DeviceDesc% = HpCISSs2_Inst_V8 , PCI\VEN_103C&DEV_323B&SUBSYS_3356103C
+
+[HpCISSs2_Inst_V0.ntamd64]
+CopyFiles = @HpCISSs2.sys
+
+[HpCISSs2_Inst_V0.ntamd64.Services]
+AddService = HpCISSs2, %SPSVCINST_ASSOCSERVICE%, HpCISSs2_Service_Inst, HpCISSs2_EventLog_Inst
+
+[HpCISSs2_Inst_V1.ntamd64]
+CopyFiles = @HpCISSs2.sys
+
+[HpCISSs2_Inst_V1.ntamd64.Services]
+AddService = HpCISSs2, %SPSVCINST_ASSOCSERVICE%, HpCISSs2_Service_Inst, HpCISSs2_EventLog_Inst
+
+[HpCISSs2_Inst_V8.ntamd64]
+CopyFiles = @HpCISSs2.sys
+
+[HpCISSs2_Inst_V8.ntamd64.Services]
+AddService = HpCISSs2, %SPSVCINST_ASSOCSERVICE%, HpCISSs2_Service_Inst, HpCISSs2_EventLog_Inst
+
+[HpCISSs2_Inst_V16.ntamd64]
+CopyFiles = @HpCISSs2.sys
+
+[HpCISSs2_Inst_V16.ntamd64.Services]
+AddService = HpCISSs2, %SPSVCINST_ASSOCSERVICE%, HpCISSs2_Service_Inst, HpCISSs2_EventLog_Inst
+
+[HpCISSs2_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\HpCISSs2.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+AddReg         = boot_ctrl_addreg
+AddReg         = IO_timeout_addreg
+
+[HpCISSs2_EventLog_Inst]
+AddReg = HpCISSs2_EventLog_AddReg
+
+[HpCISSs2_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\HpCISSs2.sys"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg]
+HKR, ,                          "Tag",                        %REG_DWORD%,  0x103
+HKR, "Parameters\PnpInterface", "5",                          %REG_DWORD%,  0x00000001
+HKR, "Parameters\Device",       "DriverParameter",            %REG_SZ%,     "CSMI=None;"
+HKR, "Parameters",              "BusType",                    %REG_NOCLOBBER_DWORD%,  00000008
+HKR, "Parameters\Drive",        "EnableQueryAccessAlignment", %REG_DWORD%,  0x00000001
+
+[boot_ctrl_addreg]
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3223103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3223103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_323D103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_323D103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3220&SUBSYS_3225103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3220&SUBSYS_3225103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3234103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3234103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3235103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3235103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3237103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3230&SUBSYS_3237103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3238&SUBSYS_3212103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3238&SUBSYS_3212103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3238&SUBSYS_3211103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3238&SUBSYS_3211103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3232&SUBSYS_40A00E11", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_3232&SUBSYS_40A00E11", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3241103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3241103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3243103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3243103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3245103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3245103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3247103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3247103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3249103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_3249103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_324A103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_324A103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_324B103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323A&SUBSYS_324B103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_333F&SUBSYS_333F103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_333F&SUBSYS_333F103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3350103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3350103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3351103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3351103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3354103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3354103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3352103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3352103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3353103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3353103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3355103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3355103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3356103C", "Service", %REG_SZ%, "HpCISSs2"
+HKLM, "SYSTEM\CurrentControlSet\Control\CriticalDeviceDatabase\pci#VEN_103C&DEV_323B&SUBSYS_3356103C", "ClassGUID", %REG_SZ%, "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
+
+[IO_timeout_addreg]
+HKLM, "System\CurrentControlSet\Services\Disk", "TimeOutValue", %REG_NOCLOBBER_DWORD%, 0x0000003C
+
+[HpCISSs2_Inst_V0.ntamd64.HW]
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=AdditionalSenseData_addreg
+AddReg=SupportStorportIPM_addreg
+AddReg=EnableFull64Bit_addreg
+
+
+[HpCISSs2_Inst_V1.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+
+[HpCISSs2_Inst_V8.ntamd64.HW]
+AddReg=Msi8Support_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+
+[HpCISSs2_Inst_V16.ntamd64.HW]
+AddReg=Msi16Support_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired, PciASPMOptOut
+AddReg=SupportStorportIPM_addreg
+AddReg=AdditionalSenseData_addreg
+AddReg=EnableFull64Bit_addreg
+
+
+[MsiSupport_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000001
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_NOCLOBBER_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_NOCLOBBER_DWORD%, 0x01
+
+[Msi8Support_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000008
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[Msi16Support_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+;Used to limit the number of vectors to fewer than those requested by the controller.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000010
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_DWORD%, 0x01
+
+[SupportStorportIPM_addreg]
+; Enables Storport IPM for this adapter
+HKR, "StorPort", "EnableIdlePowerManagement", %REG_DWORD%, 0x01
+
+[AdditionalSenseData_addreg]
+; Sense data size not to exceed 40 bytes for driver versions < 6.22.
+HKR, "StorPort", "TotalSenseDataBytes", %REG_DWORD%, 0x28
+
+[EnableFull64Bit_addreg]
+; Instruct driver to use 64 bit addressing through storport if supported on this machine.
+HKLM, "System\CurrentControlSet\Services\HpCISSs2\Parameters\Device", "EnableFull64Bit", %REG_BINARY%,  0x0
+
+
+
+[Strings]
+HP = "Hewlett-Packard Company"
+DISK = "Smart Array SAS/SATA Controller Support"
+smart_P800.DeviceDesc = "Smart Array P800 Controller"
+smart_P700m.DeviceDesc = "Smart Array P700m Controller"
+smart_P600.DeviceDesc = "Smart Array P600 Controller"
+smart_P400.DeviceDesc = "Smart Array P400 Controller"
+smart_P400I.DeviceDesc = "Smart Array P400I Controller"
+smart_E500.DeviceDesc = "Smart Array E500 Controller"
+smart_E200.DeviceDesc = "Smart Array E200 Controller"
+smart_E200I.DeviceDesc = "Smart Array E200I Controller"
+smart_SDK_Test_Board.DeviceDesc = "Smart Array SDK_Test_Board Controller"
+smart_P212.DeviceDesc = "Smart Array P212 Controller"
+smart_P410.DeviceDesc = "Smart Array P410 Controller"
+smart_P410i.DeviceDesc = "Smart Array P410i Controller"
+smart_P411.DeviceDesc = "Smart Array P411 Controller"
+smart_P812.DeviceDesc = "Smart Array P812 Controller"
+smart_P712m.DeviceDesc = "Smart Array P712m Controller"
+smart_P711m.DeviceDesc = "Smart Array P711m Controller"
+smart_1210m.DeviceDesc = "Storage Works 1210m Controller"
+smart_P222.DeviceDesc = "Smart Array P222 Controller"
+smart_P420.DeviceDesc = "Smart Array P420 Controller"
+smart_P420i.DeviceDesc = "Smart Array P420i Controller"
+smart_P421.DeviceDesc = "Smart Array P421 Controller"
+smart_P822.DeviceDesc = "Smart Array P822 Controller"
+smart_P220i.DeviceDesc = "Smart Array P220i Controller"
+smart_P721m.DeviceDesc = "Smart Array P721m Controller"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+REG_BINARY             = 0x00030003
+CREATE_KEYONLY         = 0x00000010
+
+;**Japanese**********************************
+[Strings.0411]
+HP = "Hewlett-Packard Company"
+DISK = "Smart アレイ SAS/SATA コントローラ Support"
+smart_P800.DeviceDesc = "Smart アレイ P800 コントローラ"
+smart_P700m.DeviceDesc = "Smart アレイ P700m コントローラ"
+smart_P600.DeviceDesc = "Smart アレイ P600 コントローラ"
+smart_P400.DeviceDesc = "Smart アレイ P400 コントローラ"
+smart_P400I.DeviceDesc = "Smart アレイ P400I コントローラ"
+smart_E500.DeviceDesc = "Smart アレイ E500 コントローラ"
+smart_E200.DeviceDesc = "Smart アレイ E200 コントローラ"
+smart_E200I.DeviceDesc = "Smart アレイ E200I コントローラ"
+smart_SDK_Test_Board.DeviceDesc = "Smart アレイ SDK_Test_Board コントローラ"
+smart_P212.DeviceDesc = "Smart アレイ P212 コントローラ"
+smart_P410.DeviceDesc = "Smart アレイ P410 コントローラ"
+smart_P410i.DeviceDesc = "Smart アレイ P410i コントローラ"
+smart_P411.DeviceDesc = "Smart アレイ P411 コントローラ"
+smart_P812.DeviceDesc = "Smart アレイ P812 コントローラ"
+smart_P712m.DeviceDesc = "Smart アレイ P712m コントローラ"
+smart_P711m.DeviceDesc = "Smart アレイ P711m コントローラ"
+smart_1210m.DeviceDesc = "Storage Works 1210m コントローラ"
+smart_P222.DeviceDesc = "Smart アレイ P222 コントローラ"
+smart_P420.DeviceDesc = "Smart アレイ P420 コントローラ"
+smart_P420i.DeviceDesc = "Smart アレイ P420i コントローラ"
+smart_P421.DeviceDesc = "Smart アレイ P421 コントローラ"
+smart_P822.DeviceDesc = "Smart アレイ P822 コントローラ"
+smart_P220i.DeviceDesc = "Smart アレイ P220i コントローラ"
+smart_P721m.DeviceDesc = "Smart アレイ P721m コントローラ"
+
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+REG_BINARY             = 0x00030003
+CREATE_KEYONLY         = 0x00000010
+

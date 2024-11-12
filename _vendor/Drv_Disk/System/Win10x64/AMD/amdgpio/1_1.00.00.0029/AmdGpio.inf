@@ -1,0 +1,97 @@
+;/*++
+;
+;(C) Copyright 2012-2013  AMD, Inc.
+;
+;Module Name:
+;
+;    AmdGpio.INF
+;
+;Abstract:
+;    INF file for installing AMD GPIO Controller Driver.
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%AMD%
+DriverVer=06/23/2013,1.00.00.0029
+CatalogFile=AmdGpio.cat
+
+;[SourceDisksNames]
+;3426=windows cd
+
+;[SourceDisksFiles]
+;AmdGpio.sys = 3426
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = AMD GPIO Installation Disk
+
+[SourceDisksFiles.x86]
+AmdGpio.sys = 1,\x86
+
+[SourceDisksFiles.amd64]
+AmdGpio.sys = 1,\x64 
+
+[ControlFlags]
+;BasicDriverOk = *
+ExcludeFromSelect = *
+
+;******************************************
+; Amd Gpio Client driver Install Section
+;******************************************
+
+[Manufacturer]
+;%AMD%=Amd,NT$ARCH$
+%AMD%=Amd,NTx86,NTamd64
+
+;[Amd.NT$ARCH$]
+;%GPIO.DeviceDesc% = GPIO_Inst,ACPI\GPIO0001
+[Amd.NTx86]
+%GPIO.DeviceDesc% = GPIO_Inst,ACPI\GPIO0001
+
+[Amd.NTamd64]
+%GPIO.DeviceDesc% = GPIO_Inst,ACPI\GPIO0001
+
+[GPIO_Inst.NT]
+Copyfiles = GPIOCopyFiles
+
+[GPIOCopyFiles]
+AmdGpio.sys
+
+[GPIO_Inst.NT.Services]
+AddService = AmdGpio,%SPSVCINST_ASSOCSERVICE%,GPIO_Service_Inst
+
+[GPIO_Service_Inst]
+DisplayName    = %GPIO.SvcDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\AmdGpio.sys
+LoadOrderGroup = Extended Base
+
+[strings]
+; localizable strings
+AMD                 = "Advanced Micro Devices, Inc"
+MSFT                = "AMD"
+GPIO.DeviceDesc     = "AMD GPIO Controller"
+GPIO.SvcDesc        = "AMD GPIO Client Driver"
+DiskId1 = "AMD GPIO Installation Disk"
+
+; non-localizable strings
+SPSVCINST_TAGTOFRONT   = 0x00000003
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_SYSTEM_START   = 1
+SERVICE_DEMAND_START   = 3
+SERVICE_ERROR_NORMAL   = 1
+SERVICE_ERROR_IGNORE   = 0
+SERVICE_ERROR_CRITICAL = 3
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000

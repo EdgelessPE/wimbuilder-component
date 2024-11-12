@@ -1,0 +1,126 @@
+; QL40XSCS.INF - This file is used by Setup to install
+; the QL40XX Windows STOR Miniport Driver
+; Copyright 1996-2006 QLogic Corporation 
+
+[version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%QLOGIC%
+CatalogFile=ql40xx.cat
+DriverVer=08/29/2012,2.1.4.27
+
+[SourceDisksNames]
+1=%Floppy_Desc%,,,
+
+[SourceDisksFiles]
+ql40xx.sys=1
+ql4x00pp.dll=1
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+ql4x00pp_File_Copy = 11
+
+[Manufacturer]
+%QLOGIC%=QLOGIC,NTamd64
+
+;*******************************
+;QLogic Manufacturer device list
+[QLOGIC.NTamd64]
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4032&SUBSYS_01071077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4032&SUBSYS_014F1077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4032&SUBSYS_01581077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4032&SUBSYS_036C1014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4032&SUBSYS_036E1014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4032&SUBSYS_03721014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_01221077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_01241077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_01281077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_012E1077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_02CF1014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_02D01014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_02E21014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4022&SUBSYS_03221014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_01121077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_01141077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_011E1077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_01201077
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_02CF1014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_02D01014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_02E01014
+%ql40xx.DeviceDesc% = ql40xx_Inst, PCI\VEN_1077&DEV_4010&SUBSYS_02E21014
+
+[ControlFlags]
+ExcludeFromSelect = PCI\VEN_1077&DEV_4032&SUBSYS_01071077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4032&SUBSYS_014F1077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4032&SUBSYS_01581077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4032&SUBSYS_036C1014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4032&SUBSYS_036E1014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4032&SUBSYS_03721014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_01221077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_01241077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_01281077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_012E1077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_02CF1014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_02D01014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_02E21014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4022&SUBSYS_03221014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_01121077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_01141077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_011E1077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_01201077
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_02CF1014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_02D01014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_02E01014
+ExcludeFromSelect = PCI\VEN_1077&DEV_4010&SUBSYS_02E21014
+
+[ql40xx_Inst]
+CopyFiles = ql40xx_File_Copy, ql4x00pp_File_Copy
+AddReg = ql40xx_Registry_Update
+
+[ql40xx_File_Copy]
+ql40xx.sys
+
+[ql4x00pp_File_Copy]
+ql4x00pp.dll
+
+[ql40xx_Registry_Update]
+HKR,,EnumPropPages32,,"ql4x00pp.dll,QLPropPageProvider"
+HKLM,SYSTEM\CurrentControlSet\Services\ql40xx\Parameters\Device,DriverParameter,0x00000000,""
+HKLM,SYSTEM\CurrentControlSet\Services\ql40xx\Parameters,BusType,0x00010001,0x9
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x4B
+
+[ql40xx_Inst.Services]
+AddService = ql40xx, %SPSVCINST_ASSOCSERVICE%, ql40xx_Service_Inst, Miniport_EventLog_Inst
+
+[ql40xx_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\ql40xx.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,%%SystemRoot%%\System32\IoLogMsg.dll
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[Strings]
+QLOGIC = "QLogic"
+ql40xx.DeviceDesc = "QLogic iSCSI Adapter"
+Floppy_Desc = "QLogic Software Diskette"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

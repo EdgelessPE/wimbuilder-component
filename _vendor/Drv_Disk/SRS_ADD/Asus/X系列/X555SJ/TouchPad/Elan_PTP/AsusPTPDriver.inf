@@ -1,0 +1,84 @@
+;============================================================================ 
+; Installation file (.inf) for Windows 8.
+;
+; Copyright (c) ASUS Tek
+;============================================================================
+
+[Version]
+Signature   = "$Windows NT$"
+Class		= HIDClass
+ClassGuid	= {745a17a0-74d3-11d0-b6fe-00a0c90f57da};HIDClassGuid
+Provider    = %VenderName%
+DriverVer=03/26/2015,8.2.0.9
+CatalogFile = AsusSGDrv.cat
+
+
+[DestinationDirs]
+DefaultDestDir					= 12    ; DIRID_DRIVERS
+AsusSGDrv_Inst.CopyFiles.NT		= 12    ; Driver directory
+
+ 
+;----------------------------------------------------------------------------
+; Common File Copy and Registry Operations
+;----------------------------------------------------------------------------
+[AsusSGDrv_Inst.CopyFiles.NT]
+AsusSGDrv.sys
+
+;----------------------------------------------------------------------------
+; Manufacturer Section
+;----------------------------------------------------------------------------
+[Manufacturer]
+%VenderName%=ASUSMfg, NTamd64, NTx86
+
+[ASUSMfg.NTx86]
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE2000&Col03						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN2000&Col01						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17E0&MI_02&Col02		;PTP Devices
+
+[ASUSMfg.NTamd64]
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\FTE2000&Col03						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\ELAN2000&Col01						;PTP Devices
+%ASUS_INPUT_DEVICE.DeviceDesc%=AsusSGDrv_Inst, HID\Vid_0B05&Pid_17E0&MI_02&Col02		;PTP Devices
+
+[AsusSGDrv_Inst.NT]
+CopyFiles= AsusSGDrv_Inst.CopyFiles.NT
+
+;-------------- Service installation
+[AsusSGDrv_Inst.NT.Services]
+AddService = AsusPTPSGDrv,%SPSVCINST_ASSOCSERVICE%, AsusSGDrv_Service_Inst
+
+
+;-------------- PTPFilter driver install sections
+[AsusSGDrv_Service_Inst]
+DisplayName    = %AsusSGDrv.SvcDesc%
+ServiceType    = 1  ;SERVICE_KERNEL_DRIVER
+StartType      = 3  ;SERVICE_DEMAND_START
+ErrorControl   = 1  ;SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AsusSGDrv.sys
+LoadOrderGroup = Extended Base
+
+
+
+; ---------------------------------------------------------
+; Source Media Section
+; ---------------------------------------------------------
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+AsusSGDrv.sys = 1
+
+
+; Strings Section
+; ---------------------------------------------------------
+[Strings]
+SPSVCINST_ASSOCSERVICE			= 0x00000002
+VenderName						= "ASUS"
+AsusSGDrv.SvcDesc				= "ASUS HID Service"
+DiskName						= "ASUSWare Driver Disk"
+ASUS_INPUT_DEVICE.DeviceDesc	= "ASUS HID PTP"
+
+
+; Driver Information Entries
+DriverProduct   = "ASUS Touchpad Device Driver"
+

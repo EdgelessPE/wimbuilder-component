@@ -1,0 +1,39 @@
+;///////////////////////////////////////////////
+; This INF file installs the MegaSR driver
+;
+; Copyright © 2006 LSI Corporation.
+;///////////////////////////////////////////////
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%LSI%
+CatalogFile.ntamd64=MegaSR1.cat
+DriverVer=02/16/2016,17.01.2016.0216
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%LSI%=LSI,NTamd64
+
+[LSI.NTamd64]
+%NULL.DeviceDesc%     = NODRV, SCSI\Other__RAID___DummyDevice____    
+
+[NODRV]
+
+[NODRV.Services]
+;
+; this is blank to just allow the install to succeed
+;
+AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[strings]
+LSI                   = "LSI Corporation."
+NULL.DeviceDesc       = "RAID Virtual Device"
+
+;*************************************************************
+;Handy macro substitutions (non-localizable)
+;*************************************************************
+SPSVCINST_ASSOCSERVICE = 0x00000002

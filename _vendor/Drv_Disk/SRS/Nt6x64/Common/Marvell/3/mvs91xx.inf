@@ -1,0 +1,206 @@
+;=============================================================================
+; Copyright (c) 2009. Marvell International Ltd.
+; 
+; INF for Windows XP, Windows server 2003, Windows Vista and Windows 7
+;
+;============================================================================= 
+
+[Version]
+signature= "$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+CatalogFile=mvs91xx.cat
+Provider=%Marvell%
+DriverVer=05/05/2015,1.2.0.1047
+
+[DestinationDirs] 
+mvs91xx.Files.amd64_12 = 12 
+CoInstaller_CopyFiles = 11
+
+[SourceDisksNames.amd64]
+0=%Desc_amd640%
+
+[SourceDisksFiles.amd64]
+mvs91xx.sys=0,
+mv91xxm.dll=0,
+mvxxmm.sys=0,
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer] 
+%Marvell%=Marvell,ntamd64
+
+[Marvell.ntamd64]
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9171&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9179&CC_0101
+%mvs91xxrDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9191&CC_0104
+;
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9172&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_917A&CC_0101
+%mvs91xxrDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9192&CC_0104
+;
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9182&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_918A&CC_0101
+%mvs91xxrDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_91A2&CC_0104
+;
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9170&CC_0106
+;
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9186&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_918E&CC_0101
+%mvs91xxrDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_91A6&CC_0104
+;
+%mvs92xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9220&CC_0106
+%mvs92xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9230&CC_0106
+%mvs92xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9215&CC_0106
+%mvs92xxDesc%=mvs91xx_Inst,PCI\VEN_1B4B&DEV_9235&CC_0106
+;
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_9123&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_914D&CC_0101
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_9128&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_91A3&CC_0101
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_9130&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_91B0&CC_0101
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_9120&CC_0106
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_91A0&CC_0101
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_90A3&CC_0101
+%mvs91xxDesc%=mvs91xx_Inst_Io,PCI\VEN_1B4B&DEV_91A8&CC_0101
+;
+
+;[NODRV]
+;CopyFiles=MoveNODRV
+
+;[MoveNODRV]
+
+;[NODRV.Services]
+;
+; this is blank to just allow the install to succeed
+;
+;AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[mvs91xx_Inst.ntamd64] 
+CopyFiles = mvs91xx.Files.amd64_12 
+;CopyINF = mvnodrv.inf,
+AddReg = mvs91xx_Registry_Update,mvs91xx_policy_update
+
+[mvs91xx_Inst_Io.ntamd64] 
+CopyFiles = mvs91xx.Files.amd64_12 
+;CopyINF = mvnodrv.inf,
+AddReg = mvs91xx_Registry_Update,mvs91xx_policy_update
+
+
+[mvs91xx_policy_update]
+HKR,,"CacheModuleEnable",,"1"
+
+;  ******** Change disk time out value from default 10s to 60s ********
+[mvs91xx_Registry_Update]
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x3C
+
+[mvs91xx_Inst.ntamd64.Services] 
+AddService = mvs91xx,0x00000002,mvs91xx_Service_Instamd64, mvs91xx_EventLog_Inst 
+
+[mvs91xx_Inst_Io.ntamd64.Services] 
+AddService = mvs91xx,0x00000002,mvs91xx_Service_Instamd64, mvs91xx_EventLog_Inst 
+
+[mvs91xx_Service_Instamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_NORMAL% 
+ServiceBinary = %12%\mvs91xx.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+AddReg = bus_type_sata_addreg
+AddReg	= DDInstall_AddReg_HW_Removal_Policy
+
+[mvs91xx_Inst.ntamd64.HW]
+Include	= machine.inf
+Needs	= PciIoSpaceNotRequired
+AddReg = mvs91xx_Registry_Update_HW
+
+[mvs91xx_Registry_Update_HW]
+HKR,Interrupt Management,,0x00000010
+HKR,Interrupt Management\MessageSignaledInterruptProperties,,0x00000010
+HKR,Interrupt Management\MessageSignaledInterruptProperties,MSISupported,0x00010001,1
+HKR,Interrupt Management\MessageSignaledInterruptProperties,MessageNumberLimit,0x00010001,1
+
+[mvs91xx_Inst.ntamd64.CoInstallers]
+AddReg = mvs91xx_Inst.ntamd64.CoInstallers_AddReg    
+CopyFiles=CoInstaller_CopyFiles
+
+[mvs91xx_Inst_Io.ntamd64.CoInstallers]
+AddReg = mvs91xx_Inst.ntamd64.CoInstallers_AddReg    
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+mv91xxm.dll
+
+[mvs91xx_Inst.ntamd64.CoInstallers_AddReg]
+HKR,,EnumPropPages32,,"mv91xxm.dll,ESATAPortPropPageProvider"
+; ******** Uninstall section ********
+[DefaultUninstall]
+DelFiles = mvs91xx.DelFiles
+
+[DefaultUninstall.Services]
+DelService = mvs91xx
+
+[mvs91xx.DelFiles]
+mvs91xx.sys,,,
+;  **********************************
+
+[mvs91xx.Files.amd64_12] 
+mvs91xx.sys
+mvxxmm.sys
+
+[mvs91xx_EventLog_Inst] 
+AddReg = mvs91xx_EventLog_Inst.AddReg 
+ 
+[mvs91xx_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\Drivers\mvs91xx.sys" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001 
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 0x000000FF
+HKR, "Parameters\Device", "MaximumSGList", 0x00010001, 0x000000FF
+HKR, Settings, MAX_SG_ENTRY, 0x00010001, 0
+
+[bus_type_sata_addreg]
+HKR, "Parameters", "BusType", 0x00010001, 0x0000000b
+
+[DDInstall_AddReg_HW_Removal_Policy]
+HKR,,"RemovalPolicy",0x00010001,3
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+Marvell= "Marvell Inc." 
+Desc_amd640= "Marvell 91xx SATA 6G Controller Driver" 
+mvs91xxDesc= "Marvell 91xx SATA 6G Controller" 
+mvs91xxrDesc= "Marvell 91xx SATA 6G RAID Controller" 
+mvs92xxDesc= "Marvell 92xx SATA 6G Controller" 
+
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
+
+SPSVCINST_ASSOCSERVICE=0x00000002
+
+
+
+
+
+
+

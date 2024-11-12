@@ -1,0 +1,79 @@
+; Copyright (c) 2003-2015 Emulex. All rights reserved.
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       =  ElxPlus
+ClassGuid   =  {2D3B1222-B28A-44f7-BE45-3D7FD2F57C43}
+Provider    =  %EMULEX%
+DriverVer=01/25/2016,11.0.247.0
+CatalogFile =  elxplus.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskId%,,,""
+
+[SourceDisksFiles]
+elxplus.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[ClassInstall32]
+AddReg = ElxPlusClassAddReg
+
+[ElxPlusClassAddReg]
+HKR,,,,%ElxPlusClassName%
+HKR,,Icon,,"-27"
+HKR,,SilentInstall,,1
+
+[Manufacturer]
+%EMULEX%=EMULEX, NTamd64
+
+[EMULEX.NTamd64]
+;
+%elxplus.Desc% = elxplus, root\elxplus
+
+[elxplus.NT]
+CopyFiles = Drivers_Dir
+
+[elxplus.NT.HW]
+DelReg = elxadjct.DelReg
+
+[elxadjct.DelReg]
+HKLM,System\CurrentControlSet\Services\elxadjct
+
+[Drivers_Dir]
+elxplus.sys
+
+;-------------- Service installation
+
+[elxplus.NT.Services]
+AddService = elxplus,%SPSVCINST_ASSOCSERVICE%, elxplus_Service_Inst, elxplus_EventLog_Inst
+
+[elxplus_Service_Inst]
+DisplayName    = %elxplus.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 0               ; SERVICE_BOOT_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\elxplus.sys
+LoadOrderGroup = System Bus Extender
+Dependencies   = +SCSI Miniport
+
+[elxplus_EventLog_Inst]
+AddReg = elxplus_EventLog_AddReg
+
+[elxplus_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\elxplus.sys"
+HKR,,TypesSupported,0x00010001,7
+
+[Strings]
+EMULEX                  = "Emulex"
+ElxPlusClassName        = "Emulex PLUS"
+DiskId                  = "Emulex PLUS Installation Disk"
+elxplus.Desc            = "Emulex PLUS"
+elxplus.SVCDESC         = "Emulex PLUS Service"
+
+SPSVCINST_ASSOCSERVICE  = 0x00000002

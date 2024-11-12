@@ -1,0 +1,189 @@
+;Copyright 2014-2015 PMC-Sierra, Inc.
+;Portions Copyright 2008-2014 Hewlett-Packard Development Company, L.P
+;PMC Confidential.
+
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%PMC%
+CatalogFile=HPSA3.cat
+DriverVer=04/07/2016,62.12.0.64
+
+
+[SourceDisksNames]
+1=%DISK%,HPpSA.sys,,
+1=%DISK%,libsa3.sys,,
+1=%DISK%,HPSA3.sys,,
+1=%DISK%,hpsa3co002.dll,,
+
+
+[SourceDisksFiles]
+HPpSA.sys=1,,
+libsa3.sys=1,,
+HPSA3.sys=1,,
+hpsa3co002.dll=1,,
+
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+HPSA3CoCopyFilesSection = 11 ;Coinstaller
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[Manufacturer]
+%PMC%=PMC_HDC,ntamd64.6.2
+
+
+[PMC_HDC.ntamd64.6.2]
+;Physical Devices - HPpSA
+%wellsburg6.DeviceDesc%  = HPpSA_Inst.ntamd64, PCI\VEN_8086&DEV_8D06&SUBSYS_009C1590
+%wellsburg4.DeviceDesc%  = HPpSA_Inst.ntamd64, PCI\VEN_8086&DEV_8D66&SUBSYS_009D1590
+%sunrisept8a.DeviceDesc% = HPpSA_Inst.ntamd64, PCI\VEN_8086&DEV_A107&SUBSYS_00C01590
+%sunrisept8b.DeviceDesc% = HPpSA_Inst.ntamd64, PCI\VEN_8086&DEV_A106&SUBSYS_00C01590
+
+; HAL devices - HpSA3
+%glp_sna.DeviceDesc%    = HpSA3_Inst.ntamd64, PCI\VEN_103C&DEV_193F&SUBSYS_3381103C
+
+
+[HPpSA_Inst.ntamd64]
+CopyFiles = CopyAllDriversSection
+
+[HPSA3_Inst.ntamd64]
+CopyFiles = CopyAllDriversSection
+
+[CopyAllDriversSection]
+libsa3.sys, ,,%COPYFLG_NOPRUNE%
+Hpsa3.sys,  ,,%COPYFLG_NOPRUNE%
+HPpSA.sys,  ,,%COPYFLG_NOPRUNE%
+
+
+[HPSA3_Inst.ntamd64.CoInstallers]
+CopyFiles = HPSA3CoCopyFilesSection
+AddReg = HPSA3Co_AddReg
+
+
+[HPpSA_Inst.ntamd64.CoInstallers]
+CopyFiles = HPSA3CoCopyFilesSection
+AddReg = HPSA3Co_AddReg
+
+
+[HPSA3CoCopyFilesSection]
+hpsa3co002.dll,,,%COPYFLG_NOPRUNE%
+
+
+[HPSA3Co_AddReg] 
+HKR,,CoInstallers32,0x10000,"hpsa3co002.dll,HPSa3CoInstall"
+
+
+[HPpSA_Inst.ntamd64.Services]
+AddService = HPpSA,0x00000002,HPpSA_Service_Inst,HPpSA_EventLog_Inst   ;registry type NOCLOBBER
+
+
+[HPpSA_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\HPpSA.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg_common,pnpsafe_pci_addreg_hppsa
+
+
+[HpPSA_EventLog_Inst]
+AddReg = HpPSA_EventLog_AddReg
+
+
+[HpPSA_EventLog_AddReg]
+;HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+;HKR,,TypesSupported,%REG_DWORD%,7
+
+
+[HPSA3_Inst.ntamd64.Services]
+AddService=HPSA3,0x00000002,HPSA3_Service_Inst, HPSA3_EventLog_Inst   ;registry type NOCLOBBER
+
+
+[HPSA3_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\HPSA3.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg_common,pnpsafe_pci_addreg_hpsa3
+Dependencies   = HPpSA
+
+
+[HPSA3_EventLog_Inst]
+AddReg = HPSA3_EventLog_AddReg
+
+
+[HPSA3_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+
+[pnpsafe_pci_addreg_common]
+HKR, "Parameters\PnpInterface", "5",               %REG_DWORD%,  0x00000001
+HKR, "Parameters\Device",       "DriverParameter", %REG_SZ%,     "CSMI=None;"
+HKR, "Parameters",              "BusType",         %REG_NOCLOBBER_DWORD%,  00000008
+
+[pnpsafe_pci_addreg_hppsa]
+HKR, ,                          "Tag",             %REG_DWORD%,  0xc
+
+[pnpsafe_pci_addreg_hpsa3]
+HKR, ,                          "Tag",             %REG_DWORD%,  0xd
+
+
+[HPpSA_Inst.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Needs=PciIoSpaceNotRequired,PciASPMOptOut
+
+
+[HPSA3_Inst.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Needs=PciIoSapceNotRequired,PciASPMOptOut
+
+
+[MsiSupport_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000010
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_NOCLOBBER_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_NOCLOBBER_DWORD%, 0x00
+
+
+[Strings]
+PMC = "PMC-Sierra Company"
+DISK = "Smart Array Controller Support"
+
+
+; SATA controllers
+wellsburg6.DeviceDesc      = "Dynamic Smart Array B140i 6 port"
+wellsburg4.DeviceDesc      = "Dynamic Smart Array B140i 4 port"
+sunrisept8a.DeviceDesc     = "Dynamic Smart Array B140i 8 port"
+sunrisept8b.DeviceDesc     = "Dynamic Smart Array B140i 8 port"
+
+
+; HAL controllers
+glp_sna.DeviceDesc         = "Dynamic Smart Array B140i"
+
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+CREATE_KEYONLY         = 0x00000010
+COPYFLG_NOPRUNE        = 0x00002000

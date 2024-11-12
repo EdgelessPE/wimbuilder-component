@@ -1,0 +1,71 @@
+;*****************************************************************************
+; INF for AppleUSBVHCI
+; Copyright © 2018 Apple Inc. All Rights Reserved.
+;*****************************************************************************
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%APPLE%
+CatalogFile=AppleUSBVHCI.cat
+DriverVer = 05/15/2019,6.1.7500.5
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+AppleUSBVHCI.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%APPLE%=APPLE,NTamd64
+
+[APPLE.NTamd64]
+%AppleUSBVHCI.DeviceDesc%=AppleUSBVHCI_Device,  PCI\VEN_106B&DEV_1801
+
+[AppleUSBVHCI_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+AppleUSBVHCI.sys
+
+;;------ MSI support ------
+[AppleUSBVHCI_Device.NT.hw]
+AddReg = MsiSupportStd
+
+[MsiSupportStd]
+HKR, "Interrupt Management",,0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties",,0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1
+
+;-------------- Service installation
+[AppleUSBVHCI_Device.NT.Services]
+AddService = AppleUSBVHCI,%SPSVCINST_ASSOCSERVICE%, AppleUSBVHCI_Service_Inst
+
+; -------------- AppleUSBVHCI driver install sections
+[AppleUSBVHCI_Service_Inst]
+DisplayName    = %AppleUSBVHCI.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AppleUSBVHCI.sys
+LoadOrderGroup = Base
+
+[AppleUSBVHCI_Device.NT.Wdf]
+KmdfService =  AppleUSBVHCI, AppleUSBVHCI_wdfsect
+[AppleUSBVHCI_wdfsect]
+KmdfLibraryVersion = 1.25
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+APPLE = "Apple Inc."
+DiskName = "AppleUSBVHCI Installation Disk"
+AppleUSBVHCI.DeviceDesc = "Apple USB Virtual Host Controller"
+AppleUSBVHCI.SVCDESC = "Apple USB Virtual Host Controller"

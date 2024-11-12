@@ -1,0 +1,190 @@
+;Copyright 2017 Microsemi Corporation
+;Portions Copyright 2008-2014 Hewlett-Packard Development Company, L.P
+;MSCC Confidential.
+
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%MSCC%
+CatalogFile=SmartDQ.cat
+DriverVer=11/16/2017,62.2.20.64
+
+
+[SourceDisksNames]
+1=%DISK%,SmartDQa.sys,,
+1=%DISK%,SmartDQp.sys,,
+1=%DISK%,SmartDQr.sys,,
+1=%DISK%,SmartDQco002.dll,,
+
+[SourceDisksFiles]
+SmartDQa.sys=1,,
+SmartDQp.sys=1,,
+SmartDQr.sys=1,,
+SmartDQco002.dll=1,,
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+SmartDQcoCopyFilesSection = 11 ;Coinstaller
+
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+
+[Manufacturer]
+%MSCC%=MSCC_HDC,ntamd64.6.2
+
+
+[MSCC_HDC.ntamd64.6.2]
+; Gen10 Intel IDs
+%lewisburg8hpe.DeviceDesc%        = SmartDQp_Inst.ntamd64, PCI\VEN_8086&DEV_A206&SUBSYS_00E51590
+%lewisburg6hpe.DeviceDesc%        = SmartDQp_Inst.ntamd64, PCI\VEN_8086&DEV_A256&SUBSYS_00E61590
+%lewisburg8hpeprod.DeviceDesc%    = SmartDQp_Inst.ntamd64, PCI\VEN_8086&DEV_A186&SUBSYS_00E51590
+%lewisburg6hpeprod.DeviceDesc%    = SmartDQp_Inst.ntamd64, PCI\VEN_8086&DEV_A1D6&SUBSYS_00E61590
+%cannonlakehpe.DeviceDesc%        = SmartDQp_Inst.ntamd64, PCI\VEN_8086&DEV_A356&SUBSYS_028C1590
+
+; HAL devices - SmartDQa
+%glp_g10hpe.DeviceDesc%       = SmartDQa_Inst.ntamd64, PCI\VEN_103C&DEV_193F&SUBSYS_00E41590
+
+
+[SmartDQp_Inst.ntamd64]
+CopyFiles = CopyAllDriversSection
+
+[SmartDQa_Inst.ntamd64]
+CopyFiles = CopyAllDriversSection
+
+[CopyAllDriversSection]
+SmartDQa.sys, ,,%COPYFLG_NOPRUNE%
+SmartDQp.sys, ,,%COPYFLG_NOPRUNE%
+SmartDQr.sys, ,,%COPYFLG_NOPRUNE%
+
+
+[SmartDQa_Inst.ntamd64.CoInstallers]
+CopyFiles = SmartDQcoCopyFilesSection
+AddReg = SmartDQco_AddReg
+
+
+[SmartDQp_Inst.ntamd64.CoInstallers]
+CopyFiles = SmartDQcoCopyFilesSection
+AddReg = SmartDQco_AddReg
+
+
+[SmartDQcoCopyFilesSection]
+SmartDQco002.dll,,,%COPYFLG_NOPRUNE%
+
+
+[SmartDQco_AddReg] 
+HKR,,CoInstallers32,0x10000,"SmartDQco002.dll,HPSa3CoInstall"
+
+
+[SmartDQp_Inst.ntamd64.Services]
+AddService = SmartDQp,0x00000002,SmartDQp_Service_Inst,SmartDQp_EventLog_Inst   ;registry type NOCLOBBER
+
+
+[SmartDQp_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\SmartDQp.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg_common,pnpsafe_pci_addreg_smartdqp
+
+
+[SmartDQp_EventLog_Inst]
+AddReg = SmartDQp_EventLog_AddReg
+
+
+[SmartDQp_EventLog_AddReg]
+;HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+;HKR,,TypesSupported,%REG_DWORD%,7
+
+
+[SmartDQa_Inst.ntamd64.Services]
+AddService=SmartDQa,0x00000002,SmartDQa_Service_Inst, SmartDQa_EventLog_Inst   ;registry type NOCLOBBER
+
+
+[SmartDQa_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\SmartDQa.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg_common,pnpsafe_pci_addreg_smartdqa
+Dependencies   = SmartDQp
+
+
+[SmartDQa_EventLog_Inst]
+AddReg = SmartDQa_EventLog_AddReg
+
+
+[SmartDQa_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+
+[pnpsafe_pci_addreg_common]
+HKR, "Parameters\PnpInterface", "5",               %REG_DWORD%,  0x00000001
+HKR, "Parameters\Device",       "DriverParameter", %REG_SZ%,     "CSMI=None;"
+HKR, "Parameters",              "BusType",         %REG_NOCLOBBER_DWORD%,  00000008
+
+[pnpsafe_pci_addreg_smartdqp]
+HKR, ,                          "Tag",             %REG_DWORD%,  0xc
+
+[pnpsafe_pci_addreg_smartdqa]
+HKR, ,                          "Tag",             %REG_DWORD%,  0xd
+
+
+[SmartDQp_Inst.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Include=pci.inf
+Needs=PciIoSpaceNotRequired.HW,PciASPMOptOut.HW
+
+
+[SmartDQa_Inst.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Include=pci.inf
+Needs=PciIoSpaceNotRequired.HW,PciASPMOptOut.HW
+
+
+[MsiSupport_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 32
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_NOCLOBBER_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_NOCLOBBER_DWORD%, 0x00
+
+
+[Strings]
+MSCC = "Microsemi Corporation"
+DISK = "Smart Array Controller Support"
+
+; Gen10 SATA
+lewisburg8hpe.DeviceDesc      = "HPE Smart Array S100i SR SATA 8 port"
+lewisburg6hpe.DeviceDesc      = "HPE Smart Array S100i SR SATA 6 port"
+lewisburg8hpeprod.DeviceDesc  = "HPE Smart Array S100i SR SATA 8 port"
+lewisburg6hpeprod.DeviceDesc  = "HPE Smart Array S100i SR SATA 6 port"
+cannonlakehpe.DeviceDesc      = "HPE Smart Array S100i SR SATA 8 port"
+
+
+; HAL controllers
+glp_g10hpe.DeviceDesc         = "HPE Smart Array S100i SR Gen10 SW RAID"
+
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+CREATE_KEYONLY         = 0x00000010
+COPYFLG_NOPRUNE        = 0x00002000

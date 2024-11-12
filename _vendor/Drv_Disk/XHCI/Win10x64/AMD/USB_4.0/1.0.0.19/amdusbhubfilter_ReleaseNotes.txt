@@ -1,0 +1,26 @@
+AMD USB4 USB3 Root Hub Filter Driver
+======================================
+
+Installation Notes:
+--------------------------------------
+Install via Windows Device Manager as outlined in the Readme file.
+
+Known Issues:
+--------------------------------------
+None
+
+Revision History:
+--------------------------------------
+1.0.0.3 02/11/2022
+Initial version with D0Entry and D0exit indication to AMD USB4 CM
+
+Copyright:
+-----------
+(c) Copyright 2022 Advanced Micro Devices, Inc.All rights reserved.
+
+LIMITATION OF LIABILITY:THE MATERIALS ARE PROVIDED AS IS WITHOUT ANY EXPRESS OR IMPLIED WARRANTY OF ANY KIND INCLUDING WARRANTIES OF MERCHANTABILITY, NONINFRINGEMENT OF THIRD-PARTY INTELLECTUAL PROPERTY, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN NO EVENT SHALL AMD OR ITS SUPPLIERS BE LIABLE FOR ANY DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS INTERRUPTION, LOSS OF INFORMATION) ARISING OUT OF THE USE OF OR INABILITY TO USE THE MATERIALS, EVEN IF AMD HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. BECAUSE SOME JURISDICTIONS PROHIBIT THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+
+AMD does not assume any responsibility for any errors which may appear in the Materials nor any responsibility to support or update the Materials.AMD retains the right to make changes to its test specifications at any time,without notice.NO SUPPORT OBLIGATION:AMD is not obligated to furnish, support, or make any further information, software, technical information, know-how, or show-how available to you. 
+
+U.S. GOVERNMENT RESTRICTED RIGHTS:The Materials and documentation are provided with RESTRICTED RIGHTS.Use, duplication or disclosure by the Government is subject to restrictions as set forth in FAR52.227014 and DFAR252.227-7013, et seq, or its successor.Use of the Materials by the Government constitutes acknowledgment of AMD's proprietary rights in them.
+

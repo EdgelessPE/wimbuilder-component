@@ -1,0 +1,87 @@
+;/*++
+;
+;Copyright (c) 1990-1999 ASUS Corp. Corporation All rights Reserved
+;
+;Module Name:
+;
+;    AsusVBus.INF
+;  
+;Abstract: 
+;    INF file for installing Asus Virtual bus enumerator driver
+;
+;--*/
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%asus% 
+DriverVer=11/27/2013,1.0.0.5 
+CatalogFile=AsusVBus.cat
+
+[DestinationDirs]
+DefaultDestDir = 12 
+
+;win2000
+
+[SourceDisksNames]
+1 = %DiskId1%,,,""
+
+[SourceDisksFiles]
+AsusVBus.sys  = 1,,
+
+;*****************************************
+; ToasterBus  Install Section
+;*****************************************
+
+[Manufacturer]
+%AsusMfg%=AsusVBus, NTamd64, NTx86
+
+[AsusVBus.NTamd64]
+%AsusVBus.DeviceDesc%=AsusVBus_Device, root\AsusVBus
+
+[AsusVBus.NTx86]
+%AsusVBus.DeviceDesc%=AsusVBus_Device, root\AsusVBus
+
+[AsusVBus.NT]
+;
+; These are the Asus Virtual bus pnp ids
+;
+
+%AsusVBus.DeviceDesc%=AsusVBus_Device, root\AsusVBus
+
+[AsusVBus_Device.NT]
+CopyFiles=Drivers_Dir
+
+[AsusVBus_Devices.NT.HW]
+AddReg=AsusVBus_Device.NT.AddReg
+
+[AsusVBus_Device.NT.AddReg]                            
+HKR,,DeviceCharacteristics,0x10001,0x0100         ; Use same security checks on relative opens
+HKR,,Security,,"D:P(A;;GA;;;BA)(A;;GA;;;SY)"      ; Allow generic-all access to Built-in administrators and Local system 
+
+[Drivers_Dir]
+AsusVBus.sys
+
+
+;-------------- Service installation
+[AsusVBus_Device.NT.Services]
+AddService = AsusVBus,%SPSVCINST_ASSOCSERVICE%, AsusVBus_Service_Inst
+
+; -------------- busenum driver install sections
+[AsusVBus_Service_Inst]
+DisplayName    = "AsusVBus"
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START 
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AsusVBus.sys
+LoadOrderGroup = Extended Base
+
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+asus   = "ASUS Tek. Corporation" 
+AsusMfg = "(Asus Virtual Bus Enumertor)"
+DiskId1 = "Asus Virtual Bus Enumator Installation Disk #1"
+AsusVBus.DeviceDesc = "Asus Virtual Bus Enumerator"
+AsusVBus.SVCDESC = "Asus Virtual Bus Enumertor"
+

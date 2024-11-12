@@ -1,0 +1,78 @@
+; stexstpt.INF
+; Copyright (c) 2011-2016 Promise Technology, Inc.
+;
+[Version]
+signature="$Windows NT$"
+Class=System
+ClassGUID={4D36E97D-E325-11CE-BFC1-08002BE10318}
+CatalogFile=stexstpt.cat
+Provider=%Provider%
+DriverVer=03/03/2017, 6.2.0.6
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+
+[SourceDisksFiles]
+
+[Manufacturer]
+%Promise%=Promise, ntamd64
+%SymplyStor%=SymplyStor, ntamd64
+%GSPD%=GSPD, ntamd64
+
+; These are formed using the device ID for the actual LUN exposed
+; you might have processor, array, or Other
+; Subject to change in later OSes
+; as more device types are added to SPC-x
+[Promise.ntamd64]
+%Promise_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorPromise_RAID_Console____1.00
+%Promise_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorPromise____Pegasus_V-LUN
+%Promise_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorPromise___Pegasus2_V-LUN
+%Promise_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorPromise___Pegasus3_V-LUN
+
+[SymplyStor.ntamd64]
+%SymplyStor_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorSymply__RAID_Console____1.00
+%SymplyStor_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorSymply__SymplyStor_V-LUN
+
+[GSPD.ntamd64]
+%GSPD_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorGSPD____RAID_Console____1.00
+%GSPD_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorHGST_______G-SPEED_V-LUN0504
+%GSPD_Raid_ConsoleDesc%=NO_DRV,SCSI\ProcessorHGST_________GSPD3_V-LUN
+
+[NO_DRV]
+Include=machine.inf
+Needs=NO_DRV
+
+[NO_DRV.Services]
+;
+; this is blank to just allow the install to succeed
+; this is the important bit
+; you will wind up with a device string in device manager
+; and no banged out devnode
+; Null service of course does nothing.
+; You can use your device by opening the FDO via the port \\.\ScsiN
+; and passthrough commands then set the bus/target/LUN
+;
+Include=machine.inf
+Needs=NO_DRV.Services
+AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[strings]
+
+;  *******Localizable Strings*******
+Provider = "Promise Technology, Inc."
+
+Promise= "Promise Technology, Inc."
+Promise_Raid_ConsoleDesc= "Promise RAID Console"
+
+SymplyStor = "Symply Inc."
+SymplyStor_Raid_ConsoleDesc= "Symply RAID Console"
+
+GSPD= "G-Technology, Inc."
+GSPD_Raid_ConsoleDesc= "G-Technology RAID Console"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+

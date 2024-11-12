@@ -1,0 +1,161 @@
+;
+; Copyright (C) 2004-2007 TOSHIBA CORPORATION. All Rights Reserved.
+;
+; TOSHIBA RAID Driver
+;
+
+[Version] 
+Signature = "$Windows NT$" 
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318} 
+Provider=%TOSHIBA% 
+CatalogFile=KR10.cat
+DriverVer = 02/20/2007, 1.10.0016
+
+[DestinationDirs] 
+KR10IWV.Files.x86_12 = 12
+KR10IWV64.Files.ntamd64_12 = 12
+KR10NWV.Files.x86_12 = 12
+KR10NWV64.Files.ntamd64_12 = 12
+
+[SourceDisksNames]
+0=%Desc_x860%,KR10,,\
+
+[SourceDisksFiles.x86]
+KR10I.sys=0,,
+KR10N.sys=0,,
+
+[SourceDisksFiles.amd64]
+KR10I64.sys=0,,
+KR10N64.sys=0,,
+
+[Manufacturer] 
+%TOSHIBA%=TOSHIBA, NTx86.6.0, NTamd64.6.0
+
+[TOSHIBA]
+
+[TOSHIBA.NTx86.6.0]
+%KR10Desc%=KR10I_InstWV,PCI\VEN_8086&DEV_2653&SUBSYS_0F001179
+%KR10Desc%=KR10I_InstWV,PCI\VEN_8086&DEV_27C5&SUBSYS_0F001179
+%KR10Desc%=KR10N_InstWV,PCI\VEN_8086&DEV_2653&SUBSYS_0F101179
+%KR10Desc%=KR10N_InstWV,PCI\VEN_8086&DEV_27C5&SUBSYS_0F101179
+
+[TOSHIBA.NTamd64.6.0]
+%KR10Desc%=KR10I_InstWV64,PCI\VEN_8086&DEV_2653&SUBSYS_0F001179
+%KR10Desc%=KR10I_InstWV64,PCI\VEN_8086&DEV_27C5&SUBSYS_0F001179
+%KR10Desc%=KR10N_InstWV64,PCI\VEN_8086&DEV_2653&SUBSYS_0F101179
+%KR10Desc%=KR10N_InstWV64,PCI\VEN_8086&DEV_27C5&SUBSYS_0F101179
+
+; for Windows Vista
+[KR10I_InstWV.NTx86] 
+CopyFiles = KR10IWV.Files.x86_12
+AddReg = KR10.reg.x86_12 
+
+[KR10I_InstWV.NTx86.Services] 
+AddService = KR10I,0x00000002,KR10I_Service_Instx86, KR10_EventLog_Inst 
+
+[KR10IWV.Files.x86_12]
+KR10I.sys
+
+[KR10I_Service_Instx86] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_CRITICAL% 
+ServiceBinary = %12%\KR10I.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+
+[KR10N_InstWV.NTx86] 
+CopyFiles = KR10NWV.Files.x86_12
+AddReg = KR10.reg.x86_12 
+
+[KR10N_InstWV.NTx86.Services] 
+AddService = KR10N,0x00000002,KR10N_Service_Instx86, KR10_EventLog_Inst 
+
+[KR10NWV.Files.x86_12]
+KR10N.sys
+
+[KR10N_Service_Instx86] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_CRITICAL% 
+ServiceBinary = %12%\KR10N.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+
+[KR10.reg.x86_12]
+HKLM, SYSTEM\CurrentControlSet\Services\Disk, "TimeOutValue", 0x00010001, 0x00000028
+
+; for Windows Vista x64
+[KR10I_InstWV64.NTamd64] 
+CopyFiles = KR10IWV64.Files.NTamd64_12
+AddReg = KR10.reg.NTamd64_12 
+
+[KR10I_InstWV64.NTamd64.Services] 
+AddService = KR10I64, 0x00000002, KR10I_Service_InstNTamd64, KR10_EventLog_Inst
+
+[KR10IWV64.Files.NTamd64_12]
+KR10I64.sys
+
+[KR10I_Service_InstNTamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_CRITICAL% 
+ServiceBinary = %12%\KR10I64.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+
+[KR10N_InstWV64.NTamd64] 
+CopyFiles = KR10NWV64.Files.NTamd64_12
+AddReg = KR10.reg.NTamd64_12 
+
+[KR10N_InstWV64.NTamd64.Services] 
+AddService = KR10N64, 0x00000002, KR10N_Service_InstNTamd64, KR10_EventLog_Inst
+
+[KR10NWV64.Files.NTamd64_12]
+KR10N64.sys
+
+[KR10N_Service_InstNTamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_CRITICAL% 
+ServiceBinary = %12%\KR10N64.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+
+[KR10.reg.NTamd64_12]
+HKLM, SYSTEM\CurrentControlSet\Services\Disk, "TimeOutValue", 0x00010001, 0x00000028
+
+
+[KR10_EventLog_Inst] 
+AddReg = KR10_EventLog_Inst.AddReg 
+
+[KR10_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001 
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+TOSHIBA = "TOSHIBA CORPORATION" 
+Desc_x860 = "TOSHIBA RAID Driver Disk" 
+KR10Desc = "TOSHIBA RAID" 
+
+;  *******Non Localizable Strings******* 
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 

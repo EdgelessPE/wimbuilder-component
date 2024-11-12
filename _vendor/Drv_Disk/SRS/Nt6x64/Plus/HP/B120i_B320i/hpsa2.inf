@@ -1,0 +1,112 @@
+;Copyright (c) 2004-2014 Hewlett-Packard Development Company, L.P. ALL RIGHTS RESERVED.
+;HP Confidential.
+
+[version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%HP%
+DriverVer=09/06/2016,6.16.0.64
+CatalogFile=HPSA2.cat
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%HP%=HP_HDC,ntamd64.6.0
+
+[HP_HDC.ntamd64.6.0]
+%accelerator.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_1590&DEV_005F&SUBSYS_005F1590
+%sas_2pt.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_1590&DEV_0047&SUBSYS_00471590
+%sas_8pt.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_1590&DEV_0045&SUBSYS_00451590
+%sata_pats.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_8086&DEV_1D04&SUBSYS_00481590
+%sata_pch1.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_8086&DEV_1C04&SUBSYS_006C1590
+%lynx_point.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_8086&DEV_8C06&SUBSYS_00841590
+%lynx_point2.DeviceDesc% = HpSA2_Inst.ntamd64, PCI\VEN_8086&DEV_8C04&SUBSYS_00841590
+
+
+[HPSA2_Inst.ntamd64]
+CopyFiles=DefaultDestDir
+
+[DefaultDestDir]
+libsa.sys,,,2
+HPSA2.sys,,,2
+
+[SourceDisksNames]
+1=%DISK%,libsa.sys,,
+1=%DISK%,HPSA2.sys,,
+
+[SourceDisksFiles]
+libsa.sys=1,,
+HPSA2.sys=1,,
+
+[HPSA2_Inst.ntamd64.Services]
+AddService=HPSA2,0x00000002,HPSA2_Service_Inst, HPSA2_EventLog_Inst
+
+[HPSA2_Service_Inst]
+DisplayName    = %HPSA2.ServiceDesc%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 0                  ; SERVICE_BOOT_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\HPSA2.sys                            
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+
+
+[HPSA2_EventLog_Inst]
+AddReg = HPSA2_EventLog_AddReg
+
+[HPSA2_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg]
+HKR, ,                          "Tag",             %REG_DWORD%,  0xd
+HKR, "Parameters\PnpInterface", "5",               %REG_DWORD%,  0x00000001
+HKR, "Parameters\Device",       "DriverParameter", %REG_SZ%,     "CSMI=None;"
+HKR, "Parameters",              "BusType",         %REG_NOCLOBBER_DWORD%,  00000008
+
+
+[HPSA2_Inst.ntamd64.HW]
+AddReg=MsiSupport_addreg
+Include=machine.inf
+Needs=PciIoSapceNotRequired,PciASPMOptOut
+
+
+[MsiSupport_addreg]
+HKR, Interrupt Management, %CREATE_KEYONLY%
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", %CREATE_KEYONLY%
+;Set to a nonzero value to enable MSI or MSI-x support.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MSISupported", %REG_DWORD%, 0x00000001
+;Max number of MSI or MSI-X vectors a driver can manage from one device.
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", "MessageNumberLimit", %REG_DWORD%, 0x0000010
+HKR, "Interrupt Management\Affinity Policy", "DevicePolicy", %REG_NOCLOBBER_DWORD%, 0x05
+HKR, "Interrupt Management\Affinity Policy", "GroupPolicy", %REG_NOCLOBBER_DWORD%, 0x00
+
+[Strings]
+HP = "Hewlett-Packard Company"
+DISK = "Smart Array Controller Support"
+HPSA2.ServiceDesc = "Smart Array (libsa) Storport Driver"
+accelerator.DeviceDesc = "HP Dynamic Smart Array Accelerator Manager"
+sas_2pt.DeviceDesc = "HP Dynamic Smart Array B320i RAID Controller"
+sas_8pt.DeviceDesc = "HP Dynamic Smart Array B320i RAID Controller"
+sata_pats.DeviceDesc = "HP Dynamic Smart Array B120i SATA RAID Controller"
+sata_pch1.DeviceDesc = "HP Dynamic Smart Array B120i SATA RAID Controller"
+lynx_point.DeviceDesc = "HP Dynamic Smart Array B120i SATA RAID Controller"
+lynx_point2.DeviceDesc = "HP Dynamic Smart Array B120i SATA RAID Controller"
+
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001
+REG_SZ                 = 0x00000000
+REG_NOCLOBBER_DWORD    = 0x00010003
+CREATE_KEYONLY         = 0x00000010

@@ -1,0 +1,468 @@
+;-----------------------------------------------------------------------------
+;
+; bcraid5.inf = Installation for Dell EMC PERC S140 device driver
+;
+; Copyright (c) 2002-2008 Ciprico Inc.  All rights reserved.
+; Copyright (c) 2008-2011 Dot Hill Systems Corp.  All rights reserved.
+; Copyright © 2020 Dell Inc. or its subsidiaries.  All Rights Reserved.  Dell, EMC, and other trademarks are trademarks of Dell Inc. or its subsidiaries.  Other trademarks may be trademarks of their respective owners.
+;
+;-----------------------------------------------------------------------------
+;
+; - Class and ClassGUID specify the type of driver and must match
+;     (see $DDKPATH/inc/api/devguid.h).
+; - Driver provided by Dell Inc. for Dell EMC PERC S140 5.5 software.
+;   (5.5.4.0000)
+;
+;-----------------------------------------------------------------------------
+
+[Version]
+Signature              = "$Windows NT$"
+Provider               = %DELL%
+Class                  = SCSIAdapter
+ClassGUID              = {4D36E97B-E325-11CE-BFC1-08002BE10318}
+CatalogFile            = bcraid5.cat
+PnpLockDown            = 1
+DriverVer              = 11/07/2020,5.5.4.0000
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksNames]
+1 = %bcraid_Desc%,,,""
+
+;-----------------------------------------------------------------------------
+
+[SourceDisksFiles]
+bcraid554.sys = 1,,
+bcraidf5.sys = 1,,
+coinstaller5.dll = 1,,
+bcupdate.exe = 1,,
+
+;-----------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir = 12   ;%WinDir%\System32\Drivers directory on NT-based systems
+CoInstaller_CopyFiles = 11
+
+;-----------------------------------------------------------------------------
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;-----------------------------------------------------------------------------
+
+[Manufacturer]
+%DELL% = DELL, ntamd64
+
+;-----------------------------------------------------------------------------
+
+[DELL.ntamd64]
+;NVMe Controller/Drives
+
+;Samsung Vendor and Device IDs for NVMe
+
+;Samsung PM1725
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A821&SUBSYS_1FC11028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A821&SUBSYS_1FC21028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A821&SUBSYS_1FB71028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A821&SUBSYS_1FC41028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A821&SUBSYS_1FB81028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A821&SUBSYS_1FB91028
+
+;Samsung PM1725a
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FD91028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FDA1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FDB1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FDC1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FDD1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FDE1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FDF1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FE01028
+
+;SAMSUNG PM1725b
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF31028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF41028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF51028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF61028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF71028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF81028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A822&SUBSYS_1FF91028
+
+;Samsung PM1733 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20701028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20711028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20721028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20731028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20971028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20981028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20991028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_209A1028 
+     
+ ;Samsung PM1735 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20401028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20411028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20421028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20431028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20441028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20451028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20461028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20901028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20911028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20921028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20931028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20941028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20951028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_20961028
+
+;Samsung PM1733 V2
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21261028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21271028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21281028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21291028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21301028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21311028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21321028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21331028
+
+;Samsung PM1735 V2
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21181028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21191028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21201028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21211028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21221028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21231028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21241028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_144D&DEV_A824&SUBSYS_21251028
+
+;Intel Vendor and Device IDs for NVMe
+
+;Intel P4500
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FE11028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FE21028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FE31028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FE41028
+
+;Intel P4600
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A55&SUBSYS_1FE51028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A55&SUBSYS_1FE61028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A55&SUBSYS_1FE71028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A55&SUBSYS_1FE81028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A55&SUBSYS_1FE91028
+
+;Intel Coldstream P4800
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_2701&SUBSYS_20001028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_2701&SUBSYS_20011028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_2701&SUBSYS_20021028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_2701&SUBSYS_200A1028 
+
+;INTEL P4510 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_20031028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_20041028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_20051028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FFF1028
+
+;INTEL P4610
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FEE1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FEF1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0A54&SUBSYS_1FF01028
+
+;INTEL P5500 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_20641028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_20651028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_20661028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_21021028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_21031028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_21041028 
+     
+;INTEL P5600 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_20601028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_20611028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_20621028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_209E1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_209F1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_8086&DEV_0B60&SUBSYS_21001028 
+
+
+;TOSHIBA CD5
+
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1179&DEV_0110&SUBSYS_1FFB1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1179&DEV_0110&SUBSYS_1FFC1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1179&DEV_0110&SUBSYS_1FFD1028
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1179&DEV_0110&SUBSYS_1FFE1028
+
+;KIOXIA CD6 VRI 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20781028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20791028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_207A1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_207B1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_207C1028 
+
+     
+;KIOXIA CM6 RI 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_207E1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_207F1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20801028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20811028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_210A1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_210B1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_210C1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_210D1028 
+     
+;KIOXIA CM6 MU 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20841028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20851028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_20861028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_210E1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_210F1028 
+%bcraid_Desc% = bcraid_Inst_VST_nvme, PCI\VEN_1E0F&DEV_0007&SUBSYS_21101028
+
+;First SATA Controller with super SKU
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07151028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07161028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07281028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07371028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07471028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07481028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07491028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07571028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07CA1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07C91028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07CB1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07651028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07661028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07E51028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07FC1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_080A1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_080B1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_08381028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_08C21028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A256&subsys_07171028
+
+;Second SATA Controller with super SKU
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07151028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07161028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07281028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07371028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07471028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07481028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07491028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07571028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07CA1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07C91028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07CB1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07651028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07661028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07E51028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07FC1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_080A1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_080B1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_08381028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_08C21028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A206&subsys_07171028
+
+;First SATA Controller with production SKU
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07151028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07161028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07281028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07371028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07471028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07481028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07491028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07571028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07CA1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07C91028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07CB1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07651028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07661028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07E51028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07FC1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_080A1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_080B1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_08381028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_08C21028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&subsys_07171028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A1D6&SUBSYS_09C71028
+
+;Second SATA Controller with production SKU
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07151028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07161028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07281028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07371028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07471028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07481028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07491028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07571028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07CA1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07C91028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07CB1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07651028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07661028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07E51028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07FC1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_080A1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_080B1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_08381028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_08C21028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&subsys_07171028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A186&SUBSYS_09C71028
+
+;Single SATA Controller 
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A356&subsys_088E1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A356&subsys_088F1028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A356&subsys_08901028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_8086&DEV_A356&subsys_08911028
+
+
+
+;AMD SATA Controller
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_1022&DEV_7916&subsys_07F91028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_1022&DEV_7916&subsys_07F81028
+%bcraid_Desc% = bcraid_Inst_VST, PCI\VEN_1022&DEV_7916&subsys_07F71028
+
+;-----------------------------------------------------------------------------
+
+; We use these section names (bcraid_Inst_VST & bcraid_Inst_VST_nvme) in our co-installer, so any change in these names here should reflect in the co-installer as well
+[bcraid_Inst_VST]
+CopyFiles = DefaultDestDir
+
+[bcraid_Inst_VST_nvme]
+CopyFiles = DefaultDestDir
+;To increase ranking score
+FeatureScore = 0x00
+
+;-----------------------------------------------------------------------------
+
+[DefaultDestDir]
+bcraid554.sys,,,0x00002004
+bcraidf5.sys,,,0x00002004
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst_VST.HW]
+AddReg=LowerFilterAddReg
+
+[bcraid_Inst_VST_nvme.HW]
+AddReg  = msi_addreg
+AddReg  = LowerFilterAddReg
+
+;-----------------------------------------------------------------------------
+
+[LowerFilterAddReg]
+HKR,,"LowerFilters",0x00010000,"bcraidf5"
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Inst_VST.Services]
+AddService = bcraid554, 0x00000002, bcraid_Service_Inst_VST
+AddService = bcraidf5,,filter_Service_Inst_VST
+
+[bcraid_Inst_VST_nvme.Services]
+AddService = bcraid554, 0x00000002, bcraid_Service_Inst_VST, nvme_EventLog_Inst
+AddService = bcraidf5,,filter_Service_Inst_VST
+
+;-----------------------------------------------------------------------------
+
+[msi_addreg]
+HKR, Interrupt Management, 0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, 0x00000010
+HKR, Interrupt Management\MessageSignaledInterruptProperties, MSISupported,       %REG_DWORD%,   1
+
+; The MessageNumberLimit entry specifies the maximum number of MSIs to allocate. 
+; For PCI 2.2, MessageNumberLimit must be 1, 2, 4, 8, or 16. For PCI 3.0, MessageNumberLimit can be any number up to 2,048.
+; Set it to 129 so that 128 IO Queues and 1 Admin Queue can have different messages.
+; Note that this number should be increased to "Processor Count + 1" if the driver runs on machine with more processors.
+HKR, Interrupt Management\MessageSignaledInterruptProperties, MessageNumberLimit, %REG_DWORD%,   129
+HKR, Interrupt Management\Affinity Policy, 0x00000010
+HKR, Interrupt Management\Affinity Policy, DevicePolicy, %REG_DWORD%, 5 ;IrqPolicySpreadMessagesAcrossAllProcessors
+
+; Specifies that the device's interrupts are of high priority. This setting is appropriate for devices that require low latency. IrqPriorityHigh (3)
+HKR, Interrupt Management\Affinity Policy, DevicePriority, %REG_DWORD%, 3
+
+; Allow interrupt happens on processors beyond group 0. (e.g. might be in a single group other than 0)
+HKR, Interrupt Management\Affinity Policy, GroupPolicy, %REG_DWORD%, 1
+
+;-----------------------------------------------------------------------------
+
+[bcraid_Service_Inst_VST]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_SEVERE%
+ServiceBinary  = %12%\bcraid554.sys
+LoadOrderGroup = SCSI miniport
+AddReg         = bcraid_Inst_AddReg, bcraid_Inst_VST_AddReg
+AddReg         = Parameters
+
+;-----------------------------------------------------------------------------
+
+[Parameters]
+HKR, Parameters\Device, Namespaces,                 %REG_DWORD%, 0x00000001 ; max number of namespaces supported
+HKR, Parameters\Device, MaxTXSize,                  %REG_DWORD%, 0x00020000 ; max trasnfer size
+HKR, Parameters\Device, AdQEntries,                 %REG_DWORD%, 0x00000080 ; admin queue size (num of entries)
+HKR, Parameters\Device, IoQEntries,                 %REG_DWORD%, 0x00000400 ; IO queue size (num of entries)
+HKR, Parameters\Device, IntCoalescingTime,          %REG_DWORD%, 0x00000002 ; time threshold for INT coalescing
+HKR, Parameters\Device, IntCoalescingEntries,       %REG_DWORD%, 0x00000002 ; # of entries threadhold for INT coalescing
+
+;-----------------------------------------------------------------------------
+
+[nvme_EventLog_Inst]
+AddReg = nvme_EventLog_AddReg
+
+;-----------------------------------------------------------------------------
+
+[nvme_EventLog_AddReg]
+HKR,,EventMessageFile, %REG_EXPAND_SZ%, "%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,   %REG_DWORD%,     7
+
+
+
+;-----------------------------------------------------------------------------
+[bcraid_Inst_AddReg]
+HKR, "Parameters\PnpInterface", 5,                  %REG_DWORD%, 0x00000001
+HKR, "Parameters",              "BusType",          %REG_DWORD%, 0x00000008
+HKR, "Parameters",              "IoTimeoutValue",   %REG_DWORD%, 0x00000078
+
+;-----------------------------------------------------------------------------
+[bcraid_Inst_VST_AddReg]
+HKR, "Parameters\Device", "DriverParameter", 0, "VST"
+
+;-------------- Coinstaller installation--------------------------------------
+
+[bcraid_Inst_VST.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+
+[bcraid_Inst_VST_nvme.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+;-----------------------------------------------------------------------------
+
+[CoInstaller_CopyFiles]
+coinstaller5.dll
+bcupdate.exe
+
+;-----------------------------------------------------------------------------
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000,"coinstaller5.dll, CoInstallerEntry"
+
+;-----------------------------------------------------------------------------
+[filter_Service_Inst_VST]
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_BOOT_START%
+ErrorControl  = %SERVICE_ERROR_SEVERE%
+ServiceBinary = %12%\bcraidf5.sys
+
+;-----------------------------------------------------------------------------
+
+[Strings]
+DELL                    = "Dell Inc."
+bcraid_Desc             = "Dell EMC PERC S140 Controller [storport]"
+; Non-Localizable Strings
+REG_EXPAND_SZ           = 0x00020000
+REG_DWORD               = 0x00010001
+SERVICE_KERNEL_DRIVER   = 1
+SERVICE_BOOT_START      = 0
+SERVICE_ERROR_NORMAL    = 1
+SERVICE_ERROR_SEVERE    = 2
+

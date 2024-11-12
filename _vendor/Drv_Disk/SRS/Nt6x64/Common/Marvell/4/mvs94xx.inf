@@ -1,0 +1,128 @@
+;=============================================================================
+; Copyright (c) 2006. Marvell International Ltd.
+; 
+; INF for Windows 2K, Windows XP, Windows server 2003 and Windows Vista
+;
+;============================================================================= 
+
+[Version]
+signature= "$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+CatalogFile=mvs94xx.cat
+Provider=%Marvell%
+DriverVer=08/02/2012,4.0.1.1
+
+[DestinationDirs] 
+mvs94xx.Files.amd64_12 = 12 
+
+[SourceDisksNames.amd64]
+0=%Desc_amd640%
+
+[SourceDisksFiles.amd64]
+mvs94xx.sys=0,
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer] 
+%Marvell%=Marvell,ntamd64
+
+[Marvell.ntamd64]
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_11AB&DEV_9480
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_11AB&DEV_948F
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_9480
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_948F
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_9440
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_9445
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_9485
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_9580
+%mvs94xxDesc%=mvs94xx_Inst,PCI\VEN_1B4B&DEV_9588
+
+;[NODRV]
+;CopyFiles=MoveNODRV
+
+;[MoveNODRV]
+
+;[NODRV.Services]
+;
+; this is blank to just allow the install to succeed
+;
+;AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[mvs94xx_Inst.ntamd64] 
+CopyFiles = mvs94xx.Files.amd64_12 
+CopyINF = mvnodrv.inf,
+AddReg = mvs94xx_Registry_Update,
+
+
+;  ******** Change disk time out value from default 10s to 60s ********
+[mvs94xx_Registry_Update]
+HKLM,SYSTEM\CurrentControlSet\Services\Disk,TimeOutValue,0x00010001,0x3C
+
+[mvs94xx_Inst.ntamd64.Services] 
+AddService = mvs94xx,0x00000002,mvs94xx_Service_Instamd64, mvs94xx_EventLog_Inst 
+
+[mvs94xx_Service_Instamd64] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_BOOT_START% 
+ErrorControl = %SERVICE_ERROR_NORMAL% 
+ServiceBinary = %12%\mvs94xx.sys 
+LoadOrderGroup = "SCSI Miniport"
+AddReg = pnpsafe_pci_addreg
+AddReg = bus_type_raid_addreg
+
+; ******** Uninstall section ********
+[DefaultUninstall]
+DelFiles = mvs94xx.DelFiles
+
+[DefaultUninstall.Services]
+DelService = mvs94xx
+
+[mvs94xx.DelFiles]
+mvs94xx.sys,,,
+;  **********************************
+
+[mvs94xx.Files.amd64_12] 
+mvs94xx.sys
+
+[mvs94xx_EventLog_Inst] 
+AddReg = mvs94xx_EventLog_Inst.AddReg 
+ 
+[mvs94xx_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\Drivers\mvs94xx.sys" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[pnpsafe_pci_addreg] 
+HKR, Parameters\PnpInterface, 5, 0x00010001, 0x00000001 
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 0x000000FF
+HKR, "Parameters\Device", "MaximumSGList", 0x00010001, 0x000000FF
+
+[bus_type_raid_addreg]
+HKR, "Parameters", "BusType", 0x00010001, 0x00000008
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+Marvell= "Marvell Inc." 
+Desc_amd640= "Marvell 94xx SAS/SATA RAID Controller Driver" 
+mvs94xxDesc= "Marvell 94xx SAS/SATA RAID Controller" 
+
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
+
+SPSVCINST_ASSOCSERVICE=0x00000002

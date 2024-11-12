@@ -1,0 +1,139 @@
+; 
+; hptiop.INF
+; 
+; INF file of RR3xxx/RR4xxx/RS62xx/RS63xx controller for Windows x64 version
+; Copyright (c) HighPoint Technologies, Inc. All rights reserved
+;
+[Version]
+signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%HIGHPOINT%
+CatalogFile= hptiop.cat
+DriverVer=12/16/2013, 1.6.4.0
+
+[DestinationDirs]
+DefaultDestDir  = 12 ; DIRID_DRIVERS
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%HIGHPOINT%=HighPoint, NTamd64
+
+[HighPoint.NTamd64]
+%rr3220.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3220
+%rr3320.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3320
+%rr3520.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3520
+%rr4320.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4320
+%rr3510.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3510
+%rr3511.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3511
+%rr3521.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3521
+%rr3522.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3522
+%rr3410.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3410
+%rr3540.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3540
+%rr3530.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3530
+%rr3560.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3560
+%rr4322.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4322
+%rr4321.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4321
+%rr4210.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4210
+%rr4211.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4211
+%rr4310.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4310
+%rr4311.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4311
+%rr4400.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4400
+%rr4520.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4520
+%rr4522.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_4522
+%rr3610.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3610
+%rr3611.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3611
+%rr3620.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3620
+%rr3622.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3622
+%rr3640.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3640
+%rr3660.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3660
+%rr3680.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3680
+%rr3690.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_3690
+%rs6228.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_6228
+%rs6328.DeviceDesc%=hptiopPCI,PCI\VEN_1103&DEV_6328
+
+[hptiopPCI.NTamd64]
+CopyFiles=@hptiop.sys
+CopyINF=hptrcm.inf
+
+[hptiopPCI.NTamd64.HW]
+Include	= machine.inf
+Needs	= PciIoSpaceNotRequired
+
+[hptiopPCI.NTamd64.Services]
+AddService = hptiop, %SPSVCINST_ASSOCSERVICE%, hptiopPCI_Service_Inst, Miniport_EventLog_Inst
+
+[hptiopPCI_Service_Inst]
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\hptiop.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_pci_addreg
+
+[pnpsafe_pci_addreg]
+HKR, "Parameters\PnpInterface", "5", 0x00010001, 0x00000001
+HKR, "Parameters\Device", "MaximumSGList", 0x00010001, 0x41
+HKR, "Parameters\Device", "NumberOfRequests", 0x00010001, 0x101
+HKR, "Parameters", "BusType", 0x00010001, 0x0000008
+HKLM, "System\CurrentControlSet\Services\Disk", "TimeOutValue", 0x00010001, 0x0000003C
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,7
+
+[SourceDisksNames]
+1 = %InstallDisk%,,,,
+
+[SourceDisksFiles]
+;;hptiop.inf = 1,,
+hptiop.sys = 1,,
+
+[strings]
+HighPoint="HighPoint"
+rr3220.DeviceDesc="RocketRAID 3220 SATA Controller"
+rr3320.DeviceDesc="RocketRAID 3320 SATA Controller"
+rr3520.DeviceDesc="RocketRAID 3520 SATA Controller"
+rr4320.DeviceDesc="RocketRAID 4320 SAS Controller"
+rr3510.DeviceDesc="RocketRAID 3510 SATA Controller"
+rr3511.DeviceDesc="RocketRAID 3511 SATA Controller"
+rr3521.DeviceDesc="RocketRAID 3521 SATA Controller"
+rr3522.DeviceDesc="RocketRAID 3522 SATA Controller"
+rr3410.DeviceDesc="RocketRAID 3410 SATA Controller"
+rr3540.DeviceDesc="RocketRAID 3540 SATA Controller"
+rr3530.DeviceDesc="RocketRAID 3530 SATA Controller"
+rr3560.DeviceDesc="RocketRAID 3560 SATA Controller"
+rr4322.DeviceDesc="RocketRAID 4322 SAS Controller"
+rr4321.DeviceDesc="RocketRAID 4321 SAS Controller"
+rr4210.DeviceDesc="RocketRAID 4210 SAS Controller"
+rr4211.DeviceDesc="RocketRAID 4211 SAS Controller"
+rr4310.DeviceDesc="RocketRAID 4310 SAS Controller"
+rr4311.DeviceDesc="RocketRAID 4311 SAS Controller"
+rr4400.DeviceDesc="RocketRAID 44xx Series SAS Controller"
+rr4520.DeviceDesc="RocketRAID 4520 SAS Controller"
+rr4522.DeviceDesc="RocketRAID 4522 SAS Controller"
+rr3610.DeviceDesc="RocketRAID 3610 SATA Controller"
+rr3611.DeviceDesc="RocketRAID 3611 SATA Controller"
+rr3620.DeviceDesc="RocketRAID 3620 SATA Controller"
+rr3622.DeviceDesc="RocketRAID 3622 SATA Controller"
+rr3640.DeviceDesc="RocketRAID 3640 SATA Controller"
+rr3660.DeviceDesc="RocketRAID 3660 SATA Controller"
+rr3680.DeviceDesc="RocketRAID 3680 SATA Controller"
+rr3690.DeviceDesc="RocketRAID 3690 SATA Controller"
+rs6228.DeviceDesc="RocketStor 6228"
+rs6328.DeviceDesc="RocketStor 6328"
+InstallDisk = "RR3xxx/RR4xxx/RS6228/RS6328"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+REG_EXPAND_SZ          = 0x00020000
+REG_DWORD              = 0x00010001

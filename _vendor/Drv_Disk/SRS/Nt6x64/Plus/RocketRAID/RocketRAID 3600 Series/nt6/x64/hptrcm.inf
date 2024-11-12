@@ -1,0 +1,43 @@
+; 
+; hptrcm.INF
+; 
+; INF file of RR3xxx/4xxx controller
+; Copyright (c) HighPoint Technologies, Inc. All rights reserved
+;
+[Version]
+signature="$Windows NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%HIGHPOINT%
+CatalogFile= hptiop.cat
+DriverVer=10/21/2013, 1.6.0.0
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+
+[SourceDisksFiles]
+
+[Manufacturer]
+%HIGHPOINT%=HighPoint, NTamd64
+
+[HighPoint.NTamd64]
+%HPTRCM.DeviceDesc% = NODRV, SCSI\ProcessorHPT_____RCM_DEVICE______
+
+[NODRV.NTamd64]
+AddReg=NODRV_AddReg
+
+[NODRV.NTamd64.Services]
+AddService = , %SPSVCINST_ASSOCSERVICE%   ; null service install
+
+[NODRV_AddReg]
+;Dummy AddReg section 
+
+[strings]
+HighPoint="HighPoint"
+HPTRCM.DeviceDesc = "HighPoint RCM Device"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002

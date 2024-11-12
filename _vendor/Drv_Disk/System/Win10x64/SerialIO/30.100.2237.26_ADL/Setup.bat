@@ -1,0 +1,1 @@
+pnputil -i -a *.inf

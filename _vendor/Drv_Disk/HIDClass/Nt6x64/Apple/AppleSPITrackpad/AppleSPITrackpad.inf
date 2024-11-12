@@ -1,0 +1,103 @@
+;
+; AppleSPITrackpad.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider=%APPLE%
+CatalogFile=AppleSPITrackpad.cat
+DriverVer=10/19/2016,6.1.6700.0
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+AppleSPITrackpad.sys  = 1,,
+hidkmdf.sys = 1
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%APPLE%=APPLE,NTamd64
+
+[APPLE.NTamd64]
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0272&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0273&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0275&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0276&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0277&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0278&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0279&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0290&MI_02
+%AppleSPITrackpad.DeviceDesc%=AppleSPITrackpad_Device, SPI\VID_05ac&PID_0291&MI_02
+
+[AppleSPITrackpad_Device.NT]
+CopyFiles=Drivers_Dir
+
+[AppleSPITrackpad_Device.NT.HW]
+AddReg = AppleSPITrackpad_Device.AddReg 
+
+[AppleSPITrackpad_Device.AddReg]
+HKR,,"LowerFilters",0x00010000,"AppleSPITrackpad"
+
+[Drivers_Dir]
+AppleSPITrackpad.sys
+
+;-------------- Service installation
+[AppleSPITrackpad_Device.NT.Services]
+AddService = AppleSPITrackpad,, AppleSPITrackpad_Service_Inst
+AddService = mshidkmdf, 0x000001fa, mshidkmdf.AddService ;flag 0x2 sets this as the service for the device
+
+[mshidkmdf.AddService]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\mshidkmdf.sys
+
+; -------------- AppleSPITrackpad driver install sections
+[AppleSPITrackpad_Service_Inst]
+DisplayName    = %AppleSPITrackpad.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\AppleSPITrackpad.sys
+LoadOrderGroup = Extended Base
+
+;
+;--- AppleSPITrackpad_Device Coinstaller installation ------
+;
+
+[DestinationDirs]
+AppleSPITrackpad_Device_CoInstaller_CopyFiles = 11
+
+[AppleSPITrackpad_Device.NT.CoInstallers]
+AddReg=AppleSPITrackpad_Device_CoInstaller_AddReg
+CopyFiles=AppleSPITrackpad_Device_CoInstaller_CopyFiles
+
+[AppleSPITrackpad_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01011.dll,WdfCoInstaller"
+
+[AppleSPITrackpad_Device_CoInstaller_CopyFiles]
+WdfCoInstaller01011.dll
+
+[SourceDisksFiles]
+WdfCoInstaller01011.dll=1 ; make sure the number matches with SourceDisksNames
+
+[AppleSPITrackpad_Device.NT.Wdf]
+KmdfService =  AppleSPITrackpad, AppleSPITrackpad_wdfsect
+[AppleSPITrackpad_wdfsect]
+KmdfLibraryVersion = 1.11
+
+[Strings]
+APPLE = "Apple Inc."
+ClassName="AppleSPITrackpad"
+DiskName = "AppleSPITrackpad Installation Disk"
+AppleSPITrackpad.DeviceDesc = "Apple SPI Trackpad"
+AppleSPITrackpad.SVCDESC = "AppleSPITrackpad Service"

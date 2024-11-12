@@ -1,0 +1,153 @@
+;
+; archba.inf for Adaptec SAS controllers.
+;
+; This INF installs the Storport miniport.
+;
+; Copyright 2009-2015 Adaptec, Inc.
+; Copyright 2015 PMC-Sierra, Inc.
+; All rights reserved.
+;
+; This software contains the valuable trade secrets of Adaptec or its licensors.
+; The software is protected under international copyright laws and treaties.
+; This software may only be used in accordance with the terms of its accompanying license agreement.
+;
+
+[Version]
+Signature = "$Windows NT$"
+Class = SCSIAdapter
+ClassGUID = {4d36e97b-e325-11ce-bfc1-08002be10318}
+Provider = %ADPT%
+CatalogFile = archba.cat
+DriverVer=03/04/2016,7.5.0.50666
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1 = %disk1%, raidisk1,
+
+[SourceDisksFiles]
+archba.sys = 1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+
+[Manufacturer]
+%ADPT%=ADAPTEC, NTx86, NTamd64
+
+[ADAPTEC]
+
+[ADAPTEC.NTx86]
+%adptKatmai016.DeviceDesc% = archba_MSIX,       PCI\VEN_9005&DEV_028D&SUBSYS_06509005
+%adptKatmai160.DeviceDesc% = archba_MSIX,       PCI\VEN_9005&DEV_028D&SUBSYS_06519005
+%adptKatmai08.DeviceDesc% = archba_MSIX,        PCI\VEN_9005&DEV_028D&SUBSYS_06529005
+%adptKatmai80.DeviceDesc% = archba_MSIX,        PCI\VEN_9005&DEV_028D&SUBSYS_06539005
+%adptKatmai88.DeviceDesc% = archba_MSIX,        PCI\VEN_9005&DEV_028D&SUBSYS_06549005
+%adptKatmaioem1.DeviceDesc% = archba_MSIX,      PCI\VEN_9005&DEV_028D&SUBSYS_06709005
+%adptKatmaioem2.DeviceDesc% = archba_MSIX,      PCI\VEN_9005&DEV_028D&SUBSYS_06719005
+%adptKatmaiCisco.DeviceDesc% = archba_MSIX,     PCI\VEN_9005&DEV_028D&SUBSYS_01A01137
+%adptKatmaiDell.DeviceDesc% = archba_MSIX,      PCI\VEN_9005&DEV_028D&SUBSYS_06039005
+
+
+[ADAPTEC.NTamd64]
+%adptKatmai016.DeviceDesc% = archba_MSIX,       PCI\VEN_9005&DEV_028D&SUBSYS_06509005
+%adptKatmai160.DeviceDesc% = archba_MSIX,       PCI\VEN_9005&DEV_028D&SUBSYS_06519005
+%adptKatmai08.DeviceDesc% = archba_MSIX,        PCI\VEN_9005&DEV_028D&SUBSYS_06529005
+%adptKatmai80.DeviceDesc% = archba_MSIX,        PCI\VEN_9005&DEV_028D&SUBSYS_06539005
+%adptKatmai88.DeviceDesc% = archba_MSIX,        PCI\VEN_9005&DEV_028D&SUBSYS_06549005
+%adptKatmaioem1.DeviceDesc% = archba_MSIX,      PCI\VEN_9005&DEV_028D&SUBSYS_06709005
+%adptKatmaioem2.DeviceDesc% = archba_MSIX,      PCI\VEN_9005&DEV_028D&SUBSYS_06719005
+%adptKatmaiCisco.DeviceDesc% = archba_MSIX,     PCI\VEN_9005&DEV_028D&SUBSYS_01A01137
+%adptKatmaiDell.DeviceDesc% = archba_MSIX,      PCI\VEN_9005&DEV_028D&SUBSYS_06039005
+
+
+[archba_MSIX.NT]
+CopyFiles = @archba.sys
+
+[archba_MSIX.NT.Services]
+AddService = archba, %SPSVCINST_ASSOCSERVICE%, archba_Service_Inst, Miniport_EventLog_Inst
+
+
+[archba_MSIX.NT.HW]
+Include=machine.inf
+Needs=PciASPMOptOut
+Needs=PciIoSpaceNotRequired
+AddReg = archba_AddRegMSIX.HW
+
+
+
+[archba_Service_Inst]
+DisplayName    = %archba_ServiceName%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\archba.sys
+LoadOrderGroup = SCSI miniport
+AddReg         = archba_Parameters_Inst
+AddReg         = Bus_Type_SAS
+
+[Bus_Type_SAS]
+HKR, "Parameters", "BusType", %FLG_ADDREG_TYPE_REG_DWORD%, 0x0000000A
+
+
+[archba_Parameters_Inst]
+HKR, "Parameters\PnpInterface", "5", %FLG_ADDREG_TYPE_REG_DWORD%, 1
+HKR, "Parameters\Device", "DriverParameter", %FLG_ADDREG_TYPE_SZ%, "BLEDCheck=1 devqd=254 forceintx=0 kernalprint=0"
+
+
+[Miniport_EventLog_Inst]
+AddReg = Miniport_EventLog_AddReg
+
+[Miniport_EventLog_AddReg]
+HKR,,EventMessageFile,%FLG_ADDREG_TYPE_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%FLG_ADDREG_TYPE_REG_DWORD%,7
+
+;-------------------------;
+; MSIX registry sections ;
+;-------------------------;
+
+[archba_AddRegMSIX.HW]
+HKR, "Interrupt Management", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", 0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 32
+
+HKR, "Interrupt Management\Affinity Policy", 0x00000010
+HKR, "Interrupt Management\Affinity Policy", DevicePolicy, 0x00010001, 0x05
+
+[Strings]
+;localizable
+ADPT = "Adaptec"
+disk1 = "Adaptec SAS HBA Device Drivers"
+
+adptKatmai016.DeviceDesc = "Adaptec HBA 1000 16e"
+adptKatmai160.DeviceDesc = "Adaptec HBA 1000 16i"
+adptKatmai08.DeviceDesc = "Adaptec HBA 1000 8e"
+adptKatmai80.DeviceDesc = "Adaptec HBA 1000 8i"
+adptKatmai88.DeviceDesc = "Adaptec HBA 1000 8i8e"
+adptKatmaioem1.DeviceDesc = "Adaptec SmartIOC 2000"
+adptKatmaioem2.DeviceDesc = "Adaptec SmartIOC 2000"
+adptKatmaiCisco.DeviceDesc = "Cisco 12G Modular SAS Pass-through Controller"
+adptKatmaiDell.DeviceDesc = "SmartHBA 2000 8i"
+archba_ServiceName = "Adaptec SAS/SATA-II HBA Storport's Miniport Driver"
+
+
+;non-localizable
+;=================================================================
+COPYFLG_FORCE_FILE_IN_USE = 0x00000008
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SPSVCINST_NOCLOBBER_DISPLAYNAME = 0x00000008
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_WIN32_OWN_PROCESS = 0x10
+SERVICE_BOOT_START     = 0
+SERVICE_SYSTEM_START   = 1
+SERVICE_AUTO_START     = 2
+SERVICE_DEMAND_START   = 3
+SERVICE_NO_START       = 4
+SERVICE_ERROR_IGNORE   = 0
+SERVICE_ERROR_NORMAL   = 1
+FLG_ADDREG_TYPE_SZ = 0x00000000
+FLG_ADDREG_TYPE_EXPAND_SZ = 0x00020000
+FLG_ADDREG_TYPE_MULTI_SZ = 0x00010000
+FLG_ADDREG_TYPE_REG_DWORD  = 0x00010001
