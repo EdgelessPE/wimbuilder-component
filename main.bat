@@ -423,6 +423,10 @@ if "x%opt[Edgeless.opt_transparentCMD]%"=="xtrue" (
   %append1%opt_transparentCMD.wcs%append2%
 )
 
+if "x%opt[Edgeless.opt_hideSearchOnTaskBar]%"=="xtrue" (
+  %append1%opt_hideSearchOnTaskBar.wcs%append2%
+)
+
 ::执行run.wcs
 ::%finish%
 title Edgeless Patch Finished

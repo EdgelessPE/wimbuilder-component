@@ -212,6 +212,7 @@ var $patches_opt = {
     "Edgeless.opt_removeNewShortcut":true,
     "Edgeless.opt_removeSearchIndex":true,
     "Edgeless.opt_transparentCMD":true,
+    "Edgeless.opt_hideSearchOnTaskBar":true,
     "Edgeless.Slim":"0",
     "Edgeless.patch_vc":true,
     "Edgeless.drv_disk":true,
