@@ -17,6 +17,7 @@ export type FormCommands = FormCommand | FormCommand[];
 interface BasicForm {
     key: string;
     label: string;
+    htmlCommented?: boolean;
 }
 
 export interface CheckboxForm extends BasicForm {
@@ -54,6 +55,8 @@ export interface FormGroup {
 
 export interface FormPage {
     page: string;
-    title: string;
+    title?: string;
+    batchTitle?: string;
     groups: FormGroup[];
+    commandOrder?: Partial<Record<FormStage, string[]>>;
 }

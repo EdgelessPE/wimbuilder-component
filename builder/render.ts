@@ -44,7 +44,7 @@ export const renderCheckbox = (form: CheckboxForm): string => {
         ...checked,
         '  />',
         `  ${escapeHtml(form.label)}`,
-        '</label>',
+        '</label><br/>',
     ].join('\n');
 };
 
@@ -76,14 +76,26 @@ const renderRadioOption = (
 export const renderRadio = (form: RadioForm): string =>
     form.options.map((option) => renderRadioOption(form, option)).join('\n<br />\n');
 
+const renderHtmlComment = (form: Form, content: string): string => {
+    if (!form.htmlCommented) {
+        return content;
+    }
+
+    if (content.includes('--')) {
+        throw new Error(`HTML 注释内容不能包含 --：${form.key}`);
+    }
+
+    return `<!--\n${content}\n-->`;
+};
+
 export const renderForm = (form: Form): string => {
     switch (form.type) {
         case 'checkbox':
-            return renderCheckbox(form);
+            return renderHtmlComment(form, renderCheckbox(form));
         case 'input':
-            return renderInput(form);
+            return renderHtmlComment(form, renderInput(form));
         case 'radio':
-            return renderRadio(form);
+            return renderHtmlComment(form, renderRadio(form));
     }
 };
 
@@ -106,7 +118,7 @@ export const renderGroup = (group: FormGroup): string => {
 };
 
 export const renderPage = (page: FormPage): string => [
-    renderPageTitle(page.title),
+    ...(page.title === undefined ? [] : [renderPageTitle(page.title)]),
     ...page.groups.map(renderGroup),
     '',
 ].join('\n');
