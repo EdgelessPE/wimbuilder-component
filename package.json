@@ -1,0 +1,16 @@
+{
+  "name": "wimbuilder-component-builder",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "node builder/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}
