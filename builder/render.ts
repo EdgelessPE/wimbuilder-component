@@ -32,6 +32,9 @@ export const escapeHtml = (value: string): string => value
 export const renderPageTitle = (title: string): string =>
     `<legend>${escapeHtml(title)}</legend>`;
 
+export const renderPatchName = (patchName: string): string =>
+    `patch_name = ${JSON.stringify(patchName)};`;
+
 export const renderCheckbox = (form: CheckboxForm): string => {
     const checked = form.checked ? ['    checked'] : [];
 

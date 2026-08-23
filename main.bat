@@ -22,7 +22,7 @@ set finish=.\_utils\pecmd.exe load run.wcs
 
 ::调用精简脚本
 if "x%opt[Edgeless.Slim]%" neq "x0" (
-  call .\Slim\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
+  call .\_vendor\FirPE\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
   title Edgeless Patch Running...
 )
 

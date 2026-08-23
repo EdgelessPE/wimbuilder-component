@@ -30,13 +30,14 @@ const checkbox = (
 });
 
 const slimCommand = batch([
-    'call .\\Slim\\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%',
+    'call .\\_vendor\\FirPE\\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%',
     'title Edgeless Patch Running...',
 ]);
 
 export const pages: FormPage[] = [
     {
         page: 'Slim',
+        patchName: '精简',
         batchTitle: '调用精简脚本',
         groups: [
             {
@@ -227,6 +228,7 @@ export const pages: FormPage[] = [
     },
     {
         page: 'Files',
+        patchName: '文件',
         batchTitle: 'File',
         groups: [
             {
@@ -406,6 +408,7 @@ export const pages: FormPage[] = [
     },
     {
         page: 'Patch',
+        patchName: '补丁',
         title: '补丁',
         batchTitle: 'Patch',
         groups: [
@@ -426,6 +429,7 @@ export const pages: FormPage[] = [
     },
     {
         page: 'Optimization',
+        patchName: '优化',
         groups: [
             {
                 type: 'group',

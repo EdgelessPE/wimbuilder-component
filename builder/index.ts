@@ -7,6 +7,7 @@ import {
     writeFile,
 } from 'node:fs/promises';
 import path from 'node:path';
+import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import iconv from 'iconv-lite';
 
@@ -17,6 +18,7 @@ import {
     renderCheckboxCommand,
     renderInputCommand,
     renderPage,
+    renderPatchName,
     renderRadioCommand,
 } from './render.ts';
 import type {
@@ -31,7 +33,8 @@ import type {
 interface OutputTask {
     path: string;
     content: string;
-    encoding: 'gb2312' | 'utf8';
+    encoding: 'gb2312' | 'utf8' | 'utf16le';
+    lineEndingReference?: string;
 }
 
 interface EncodedOutputTask {
@@ -239,6 +242,16 @@ const validatePages = (formPages: FormPage[]): void => {
     const allKeys = new Set<string>();
 
     for (const page of formPages) {
+        if (page.patchName !== undefined) {
+            if (page.page === '') {
+                throw new Error('根页面不能生成 zh-CN.js。');
+            }
+
+            if (page.patchName.trim() === '') {
+                throw new Error(`页面名称不能为空：${page.page}`);
+            }
+        }
+
         for (const group of page.groups) {
             validateGroup(group, allKeys);
         }
@@ -297,14 +310,53 @@ const loadBatchTemplate = async (stage: FormStage): Promise<string> => {
     return template;
 };
 
-const encodeOutput = (task: OutputTask): EncodedOutputTask => {
-    const content = task.content
+const matchReferenceLineEndings = async (
+    content: string,
+    referencePath: string | undefined,
+): Promise<string> => {
+    let normalized = content
         .replaceAll('\r\n', '\n')
-        .replaceAll('\r', '\n')
-        .replaceAll('\n', '\r\n');
+        .replaceAll('\r', '\n');
+
+    if (referencePath === undefined) {
+        return normalized;
+    }
+
+    const reference = await readFile(referencePath);
+    const firstLineFeed = reference.indexOf(0x0a);
+    const lineEnding = firstLineFeed > 0 && reference[firstLineFeed - 1] === 0x0d
+        ? '\r\n'
+        : '\n';
+    const hasFinalLineEnding = reference.length > 0
+        && (reference.at(-1) === 0x0a || reference.at(-1) === 0x0d);
+
+    normalized = normalized.replace(/\n+$/, '');
+
+    if (hasFinalLineEnding) {
+        normalized += '\n';
+    }
+
+    return normalized.replaceAll('\n', lineEnding);
+};
+
+const encodeOutput = async (task: OutputTask): Promise<EncodedOutputTask> => {
+    const content = await matchReferenceLineEndings(
+        task.content,
+        task.lineEndingReference,
+    );
 
     if (task.encoding === 'utf8') {
         return { path: task.path, content: Buffer.from(content, 'utf8') };
+    }
+
+    if (task.encoding === 'utf16le') {
+        return {
+            path: task.path,
+            content: Buffer.concat([
+                Buffer.from([0xff, 0xfe]),
+                iconv.encode(content, 'utf16-le'),
+            ]),
+        };
     }
 
     const encoded = iconv.encode(content, 'gb2312');
@@ -320,6 +372,28 @@ const encodeOutput = (task: OutputTask): EncodedOutputTask => {
 const writeOutput = async (task: EncodedOutputTask): Promise<void> => {
     await mkdir(path.dirname(task.path), { recursive: true });
     await writeFile(task.path, task.content);
+};
+
+const renameWithRetry = async (
+    source: string,
+    target: string,
+): Promise<void> => {
+    const retryableCodes = new Set(['EBUSY', 'ENOTEMPTY', 'EPERM']);
+
+    for (let attempt = 0; ; attempt += 1) {
+        try {
+            await rename(source, target);
+            return;
+        } catch (error) {
+            const code = (error as NodeJS.ErrnoException).code;
+
+            if (attempt >= 5 || code === undefined || !retryableCodes.has(code)) {
+                throw error;
+            }
+
+            await delay(50 * 2 ** attempt);
+        }
+    }
 };
 
 const replaceDist = async (tasks: EncodedOutputTask[]): Promise<void> => {
@@ -339,7 +413,7 @@ const replaceDist = async (tasks: EncodedOutputTask[]): Promise<void> => {
         await rm(backupDir, { recursive: true, force: true });
 
         try {
-            await rename(distDir, backupDir);
+            await renameWithRetry(distDir, backupDir);
             oldDistMoved = true;
         } catch (error) {
             if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
@@ -348,10 +422,10 @@ const replaceDist = async (tasks: EncodedOutputTask[]): Promise<void> => {
         }
 
         try {
-            await rename(stagingDir, distDir);
+            await renameWithRetry(stagingDir, distDir);
         } catch (error) {
             if (oldDistMoved) {
-                await rename(backupDir, distDir);
+                await renameWithRetry(backupDir, distDir);
                 oldDistMoved = false;
             }
 
@@ -366,31 +440,48 @@ const replaceDist = async (tasks: EncodedOutputTask[]): Promise<void> => {
     }
 };
 
-export async function main(pages: FormPage[]): Promise<void> {
+export async function main(formPages: FormPage[]): Promise<void> {
     validateFormCommandHandlers();
-    validatePages(pages);
+    validatePages(formPages);
 
     const outputTasks: OutputTask[] = [];
     const batchSections = new Map<FormStage, BatchSection[]>();
-    const pageOutputs = new Set<string>();
+    const outputPaths = new Set<string>();
 
-    for (const page of pages) {
-        const outputPath = resolvePageOutput(page.page);
-
+    const reserveOutputPath = (outputPath: string): void => {
         const comparableOutputPath = process.platform === 'win32'
             ? outputPath.toLocaleLowerCase('en-US')
             : outputPath;
 
-        if (pageOutputs.has(comparableOutputPath)) {
-            throw new Error(`页面输出路径重复：${outputPath}`);
+        if (outputPaths.has(comparableOutputPath)) {
+            throw new Error(`输出路径重复：${outputPath}`);
         }
 
-        pageOutputs.add(comparableOutputPath);
+        outputPaths.add(comparableOutputPath);
+    };
+
+    for (const page of formPages) {
+        const outputPath = resolvePageOutput(page.page);
+        reserveOutputPath(outputPath);
         outputTasks.push({
             path: outputPath,
             content: renderPage(page),
             encoding: 'gb2312',
+            lineEndingReference: path.join(projectDir, page.page, 'main.html'),
         });
+
+        if (page.patchName !== undefined) {
+            const localeOutputPath = path.join(
+                path.dirname(outputPath),
+                'zh-CN.js',
+            );
+            reserveOutputPath(localeOutputPath);
+            outputTasks.push({
+                path: localeOutputPath,
+                content: renderPatchName(page.patchName),
+                encoding: 'utf16le',
+            });
+        }
 
         for (const [stage, commands] of collectPageCommands(page)) {
             const sections = batchSections.get(stage) ?? [];
@@ -411,14 +502,17 @@ export async function main(pages: FormPage[]): Promise<void> {
             ))
             .join('\n\n');
 
+        const outputPath = path.join(distDir, `${stage}.bat`);
+        reserveOutputPath(outputPath);
         outputTasks.push({
-            path: path.join(distDir, `${stage}.bat`),
+            path: outputPath,
             content: renderBatchTemplate(template, commands),
             encoding: 'utf8',
+            lineEndingReference: path.join(projectDir, `${stage}.bat`),
         });
     }
 
-    const encodedTasks = outputTasks.map(encodeOutput);
+    const encodedTasks = await Promise.all(outputTasks.map(encodeOutput));
 
     await replaceDist(encodedTasks);
 }

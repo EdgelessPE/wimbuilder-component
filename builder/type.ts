@@ -55,6 +55,7 @@ export interface FormGroup {
 
 export interface FormPage {
     page: string;
+    patchName?: string;
     title?: string;
     batchTitle?: string;
     groups: FormGroup[];

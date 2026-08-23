@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import iconv from 'iconv-lite';
 
 import { pages } from './config.ts';
+import { renderPatchName } from './render.ts';
 
 interface HtmlControl {
     type: string;
@@ -21,6 +22,16 @@ const distDir = path.join(projectDir, 'dist');
 
 const decodeHtml = async (filePath: string): Promise<string> =>
     iconv.decode(await readFile(filePath), 'gb2312');
+
+const readUtf16Le = async (filePath: string): Promise<Buffer> => {
+    const content = await readFile(filePath);
+
+    if (content[0] !== 0xff || content[1] !== 0xfe) {
+        throw new Error(`${filePath} 必须使用 UTF-16LE BOM 编码。`);
+    }
+
+    return content;
+};
 
 const normalizeText = (content: string): string => content
     .replace(/<[^>]*>/g, ' ')
@@ -165,6 +176,97 @@ const verifyBatch = async (): Promise<void> => {
     }
 };
 
+const lineEndingSignature = (content: Buffer): {
+    style: 'crlf' | 'lf' | 'mixed' | 'none';
+    final: boolean;
+} => {
+    let crlfCount = 0;
+    let lfCount = 0;
+
+    for (let index = 0; index < content.length; index += 1) {
+        if (content[index] !== 0x0a) {
+            continue;
+        }
+
+        if (index > 0 && content[index - 1] === 0x0d) {
+            crlfCount += 1;
+        } else {
+            lfCount += 1;
+        }
+    }
+
+    return {
+        style: crlfCount === 0 && lfCount === 0
+            ? 'none'
+            : crlfCount > 0 && lfCount > 0
+                ? 'mixed'
+                : crlfCount > 0
+                ? 'crlf'
+                : 'lf',
+        final: content.length > 0
+            && (content.at(-1) === 0x0a || content.at(-1) === 0x0d),
+    };
+};
+
+const verifyLineEndings = async (): Promise<void> => {
+    const relativePaths = [
+        ...pages.map((page) => path.join(page.page, 'main.html')),
+        'main.bat',
+        'last.bat',
+    ];
+
+    for (const relativePath of relativePaths) {
+        const original = await readFile(path.join(projectDir, relativePath));
+        const generated = await readFile(path.join(distDir, relativePath));
+        assertEqual(
+            `${relativePath} 的换行符`,
+            lineEndingSignature(original),
+            lineEndingSignature(generated),
+        );
+    }
+};
+
+const verifyPatchNames = async (): Promise<void> => {
+    for (const page of pages) {
+        if (page.patchName === undefined) {
+            continue;
+        }
+
+        const relativePath = path.join(page.page, 'zh-CN.js');
+        const original = await readUtf16Le(path.join(projectDir, relativePath));
+        const generated = await readUtf16Le(path.join(distDir, relativePath));
+        const generatedText = iconv.decode(generated.subarray(2), 'utf16-le');
+
+        assertEqual(
+            `${relativePath} 的 patch_name`,
+            renderPatchName(page.patchName),
+            generatedText,
+        );
+        assertEqual(
+            `${relativePath} 的编码和内容`,
+            original.toString('hex'),
+            generated.toString('hex'),
+        );
+    }
+};
+
+const verifySlimScript = async (): Promise<void> => {
+    const filePath = path.join(
+        projectDir,
+        '_vendor',
+        'FirPE',
+        'FirPE_Slim.cmd',
+    );
+    const content = await readFile(filePath);
+
+    if (content.length === 0) {
+        throw new Error(`${filePath} 不能为空。`);
+    }
+};
+
 await verifyHtml();
 await verifyBatch();
-console.log('dist 与原版的表单行为和有效 BAT 命令一致。');
+await verifyLineEndings();
+await verifyPatchNames();
+await verifySlimScript();
+console.log('dist 与原版的表单行为、BAT 命令、页面名称和换行符一致。');
