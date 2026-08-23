@@ -13,6 +13,8 @@ const batch = (
     command: () => content,
 });
 
+const runWcsScript = (name: string): string => `%append1%${name}.wcs%append2%`;
+
 const checkbox = (
     key: string,
     label: string,
@@ -99,7 +101,7 @@ export const pages: FormPage[] = [
                         label: '版权',
                         children: [
                             checkbox('main_oem', '写入OEM信息', batch([
-                                '%append1%main_oem.wcs%append2%',
+                                runWcsScript('main_oem'),
                                 'type .\\_commands\\main_oem.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
                             ])),
                             checkbox('main_version', '配置version.txt', batch(
@@ -141,10 +143,10 @@ export const pages: FormPage[] = [
                                 ),
                             },
                             checkbox('main_explorerRibbon', '收起资源管理器功能区', batch(
-                                '%append1%main_explorerRibbon.wcs%append2%',
+                                runWcsScript('main_explorerRibbon'),
                             )),
                             checkbox('main_displayHiddenFiles', '显示隐藏文件（系统级除外）', batch(
-                                '%append1%main_displayHiddenFiles.wcs%append2%',
+                                runWcsScript('main_displayHiddenFiles'),
                                 { stage: 'last' },
                             )),
                             checkbox('main_rightClickMenu', '清理右键菜单', batch(
@@ -153,14 +155,14 @@ export const pages: FormPage[] = [
                             checkbox('main_fixManage', '修复此电脑右键菜单管理', batch(
                                 'type .\\_commands\\main_fixManage.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
                             )),
-                            checkbox('main_dpi', 'DPI自适应', batch('%append1%main_dpi.wcs%append2%')),
+                            checkbox('main_dpi', 'DPI自适应', batch(runWcsScript('main_dpi'))),
                         ],
                     },
                     {
                         type: 'group',
                         label: '第三方软件配置',
                         children: [
-                            checkbox('main_7zPolish', '7-Zip优化', batch('%append1%main_7zPolish.wcs%append2%')),
+                            checkbox('main_7zPolish', '7-Zip优化', batch(runWcsScript('main_7zPolish'))),
                             checkbox('main_initStartIsBack', '自定义StartIsBack样式', batch([
                                 '@REM del /f /s /q "%x%\\Program Files\\StartIsBack"',
                                 '@REM rd /s /q "%x%\\Program Files\\StartIsBack"',
@@ -169,7 +171,7 @@ export const pages: FormPage[] = [
                             ])),
                         ],
                     },
-                    checkbox('main_cleanCursors', '清理光标组件', batch('%append1%main_cleanCursors.wcs%append2%')),
+                    checkbox('main_cleanCursors', '清理光标组件', batch(runWcsScript('main_cleanCursors'))),
                     checkbox('main_orderdrv', '整理盘符', batch(
                         'xcopy /s /r /y .\\_vendor\\File_OrderDrv\\* "%x%\\Windows\\System32\\"',
                     )),
@@ -187,17 +189,17 @@ export const pages: FormPage[] = [
                     )),
                     checkbox('main_wcs', '.wcs（含xcmd）', batch([
                         'copy /y .\\_vendor\\Exec_Xcmd\\xcmd.exe %x%\\Windows\\System32\\xcmd.exe',
-                        '%append1%main_wcs.wcs%append2%',
+                        runWcsScript('main_wcs'),
                     ])),
-                    checkbox('main_7z', '.7z右键加载', batch('%append1%main_7z.wcs%append2%')),
-                    checkbox('main_7zf', '.7zf', batch('%append1%main_7zf.wcs%append2%')),
-                    checkbox('main_7zl', '.7zl', batch('%append1%main_7zl.wcs%append2%')),
-                    checkbox('main_eth', '主题包/资源包(.eth .eis .els .ems .esc .ess)', batch('%append1%main_eth.wcs%append2%')),
+                    checkbox('main_7z', '.7z右键加载', batch(runWcsScript('main_7z'))),
+                    checkbox('main_7zf', '.7zf', batch(runWcsScript('main_7zf'))),
+                    checkbox('main_7zl', '.7zl', batch(runWcsScript('main_7zl'))),
+                    checkbox('main_eth', '主题包/资源包(.eth .eis .els .ems .esc .ess)', batch(runWcsScript('main_eth'))),
                     checkbox('main_iso', '智能虚拟光驱', batch([
                         'md "%x%\\Users\\Imdisk"',
                         'xcopy /s /r /y "%workshop%\\Users\\Imdisk\\*" "%x%\\Users\\Imdisk\\"',
                         'type .\\_commands\\main_iso_removeImdiskMenu.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onBootFinished\\_Preset.wcs"',
-                        '%append1%main_iso.wcs%append2%',
+                        runWcsScript('main_iso'),
                     ])),
                     checkbox('main_explainPartialTypes', '解释部分类型文件', batch(
                         'type .\\_commands\\main_explainPartialTypes.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
@@ -216,7 +218,7 @@ export const pages: FormPage[] = [
                 type: 'group',
                 children: [
                     checkbox('apple', 'HFS和MNT支持', batch([
-                        '%append1%apple.wcs%append2%',
+                        runWcsScript('apple'),
                         'xcopy /s /r /y .\\_vendor\\Lib_Apple\\* "%x%\\Windows\\System32\\drivers\\"',
                     ])),
                 ],
@@ -411,11 +413,11 @@ export const pages: FormPage[] = [
                 type: 'group',
                 children: [
                     checkbox('patch_vc', 'Visual C++ 9补丁', batch([
-                        '%append1%patch_vc.wcs%append2%',
+                        runWcsScript('patch_vc'),
                         'xcopy /s /r /y .\\_vendor\\Lib_VC9\\* "%x%\\"',
                     ])),
                     checkbox('patch_mklink', 'mklink补丁（不需要）', batch(
-                        '%append1%patch_mklink.wcs%append2%',
+                        runWcsScript('patch_mklink'),
                         { commented: true },
                     ), { htmlCommented: true }),
                 ],
@@ -441,7 +443,7 @@ export const pages: FormPage[] = [
                     ]),
                     checkbox('opt_keyboard', '设置美式键盘', batch([
                         'type .\\_commands\\opt_keyboard.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\beforeLocalBoost\\_Preset.wcs"',
-                        '%append1%opt_keyboard.wcs%append2%',
+                        runWcsScript('opt_keyboard'),
                     ])),
                     checkbox('opt_taskmgr', '汉化任务管理器', batch(
                         [
@@ -465,7 +467,7 @@ export const pages: FormPage[] = [
                         'call AddFiles \\Windows\\System32\\Windows.UI.FileExplorer.dll',
                     )),
                     checkbox('opt_ExplorerRibbon', '启动时资源管理器功能区最小化', batch(
-                        '%append1%opt_ExplorerRibbon.wcs%append2%',
+                        runWcsScript('opt_ExplorerRibbon'),
                     )),
                 ],
             },
@@ -473,17 +475,17 @@ export const pages: FormPage[] = [
                 type: 'group',
                 label: 'FirPE优化',
                 children: [
-                    checkbox('opt_remove_rtf', '去掉新建菜单中的RTF', batch('%append1%opt_remove_rtf.wcs%append2%')),
-                    checkbox('opt_remove_undo', '去掉右键还原到以前版本', batch('%append1%opt_remove_undo.wcs%append2%')),
-                    checkbox('opt_autoAllPrograms', '开始菜单自动跳转所有程序', batch('%append1%opt_autoAllPrograms.wcs%append2%')),
-                    checkbox('opt_fastShutdown', '快速关机', batch('%append1%opt_fastShutdown.wcs%append2%')),
-                    checkbox('opt_hideBootWindow', '隐藏启动小窗口', batch('%append1%opt_hideBootWindow.wcs%append2%')),
-                    checkbox('opt_minPENetwork', '最小化PENetwork', batch('%append1%opt_minPENetwork.wcs%append2%')),
-                    checkbox('opt_netDelay', '改善网络启动延时', batch('%append1%opt_netDelay.wcs%append2%')),
-                    checkbox('opt_removeNewShortcut', '移除新建菜单的BMP图像', batch('%append1%opt_removeNewShortcut.wcs%append2%')),
-                    checkbox('opt_removeSearchIndex', '移除搜索时索引提示', batch('%append1%opt_removeSearchIndex.wcs%append2%')),
-                    checkbox('opt_transparentCMD', '亚克力cmd', batch('%append1%opt_transparentCMD.wcs%append2%')),
-                    checkbox('opt_hideSearchOnTaskBar', '移除任务栏搜索', batch('%append1%opt_hideSearchOnTaskBar.wcs%append2%')),
+                    checkbox('opt_remove_rtf', '去掉新建菜单中的RTF', batch(runWcsScript('opt_remove_rtf'))),
+                    checkbox('opt_remove_undo', '去掉右键还原到以前版本', batch(runWcsScript('opt_remove_undo'))),
+                    checkbox('opt_autoAllPrograms', '开始菜单自动跳转所有程序', batch(runWcsScript('opt_autoAllPrograms'))),
+                    checkbox('opt_fastShutdown', '快速关机', batch(runWcsScript('opt_fastShutdown'))),
+                    checkbox('opt_hideBootWindow', '隐藏启动小窗口', batch(runWcsScript('opt_hideBootWindow'))),
+                    checkbox('opt_minPENetwork', '最小化PENetwork', batch(runWcsScript('opt_minPENetwork'))),
+                    checkbox('opt_netDelay', '改善网络启动延时', batch(runWcsScript('opt_netDelay'))),
+                    checkbox('opt_removeNewShortcut', '移除新建菜单的BMP图像', batch(runWcsScript('opt_removeNewShortcut'))),
+                    checkbox('opt_removeSearchIndex', '移除搜索时索引提示', batch(runWcsScript('opt_removeSearchIndex'))),
+                    checkbox('opt_transparentCMD', '亚克力cmd', batch(runWcsScript('opt_transparentCMD'))),
+                    checkbox('opt_hideSearchOnTaskBar', '移除任务栏搜索', batch(runWcsScript('opt_hideSearchOnTaskBar'))),
                 ],
             },
         ],
