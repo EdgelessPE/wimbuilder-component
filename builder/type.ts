@@ -3,10 +3,15 @@ export interface FormCtx {
     val: string;
 }
 
+export type FormStage = 'main' | 'last';
+
 export interface FormCommand {
+    stage?: FormStage;
     command: (ctx: FormCtx) => string | string[];
     commented?: boolean;
 }
+
+export type FormCommands = FormCommand | FormCommand[];
 
 // Form
 interface BasicForm {
@@ -17,19 +22,19 @@ interface BasicForm {
 export interface CheckboxForm extends BasicForm {
     type: 'checkbox';
     checked?: boolean;
-    command: FormCommand;
+    command: FormCommands;
 }
 
 export interface InputForm extends BasicForm {
     type: 'input';
     defaultValue?: string;
-    command: FormCommand;
+    command: FormCommands;
 }
 
 export interface RadioOption {
     label: string;
     value: string;
-    command?: FormCommand;
+    command?: FormCommands;
 }
 
 export interface RadioForm extends BasicForm {
