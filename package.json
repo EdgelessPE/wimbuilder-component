@@ -4,7 +4,8 @@
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "node builder/index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify": "pnpm build && node builder/verify.ts"
   },
   "dependencies": {
     "iconv-lite": "^0.7.0"

@@ -31,6 +31,7 @@ import type {
 interface OutputTask {
     path: string;
     content: string;
+    encoding: 'gb2312' | 'utf8';
 }
 
 interface EncodedOutputTask {
@@ -43,12 +44,7 @@ interface BatchSection {
     commands: string[];
 }
 
-interface CollectedCommand {
-    key: string;
-    content: string;
-}
-
-type CollectedCommands = Map<FormStage, CollectedCommand[]>;
+type CollectedCommands = Map<FormStage, string[]>;
 
 const builderDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.dirname(builderDir);
@@ -98,7 +94,6 @@ const resolvePageOutput = (page: string): string => {
 
 const collectCommands = (
     target: CollectedCommands,
-    key: string,
     commands: FormCommands | undefined,
     render: (command: FormCommand) => string,
 ): void => {
@@ -109,7 +104,7 @@ const collectCommands = (
     for (const command of normalizeCommands(commands)) {
         const stage = command.stage ?? 'main';
         const stageCommands = target.get(stage) ?? [];
-        stageCommands.push({ key, content: render(command) });
+        stageCommands.push(render(command));
         target.set(stage, stageCommands);
     }
 };
@@ -150,7 +145,6 @@ const formCommandHandlers: FormCommandHandler[] = [
     defineFormCommandHandler('checkbox', (form, key, target) => {
         collectCommands(
             target,
-            form.key,
             form.command,
             (command) => renderCheckboxCommand(key, command),
         );
@@ -158,7 +152,6 @@ const formCommandHandlers: FormCommandHandler[] = [
     defineFormCommandHandler('input', (form, key, target) => {
         collectCommands(
             target,
-            form.key,
             form.command,
             (command) => renderInputCommand(key, command),
         );
@@ -167,7 +160,6 @@ const formCommandHandlers: FormCommandHandler[] = [
         for (const option of form.options) {
             collectCommands(
                 target,
-                form.key,
                 option.command,
                 (command) => renderRadioCommand(key, option, command),
             );
@@ -200,12 +192,11 @@ const validateFormCommandHandlers = (): void => {
 
 const validateGroup = (
     group: FormGroup,
-    pageKeys: Set<string>,
     allKeys: Set<string>,
 ): void => {
     for (const child of group.children) {
         if (child.type === 'group') {
-            validateGroup(child, pageKeys, allKeys);
+            validateGroup(child, allKeys);
             continue;
         }
 
@@ -220,7 +211,6 @@ const validateGroup = (
             throw new Error(`表单 key 重复：${child.key}`);
         }
 
-        pageKeys.add(child.key);
         allKeys.add(comparableKey);
 
         if (child.type === 'radio') {
@@ -249,26 +239,8 @@ const validatePages = (formPages: FormPage[]): void => {
     const allKeys = new Set<string>();
 
     for (const page of formPages) {
-        const pageKeys = new Set<string>();
-
         for (const group of page.groups) {
-            validateGroup(group, pageKeys, allKeys);
-        }
-
-        for (const [stage, orderedKeys] of Object.entries(page.commandOrder ?? {})) {
-            const seen = new Set<string>();
-
-            for (const key of orderedKeys) {
-                if (seen.has(key)) {
-                    throw new Error(`${page.page} 的 ${stage} 命令顺序存在重复 key：${key}`);
-                }
-
-                if (!pageKeys.has(key)) {
-                    throw new Error(`${page.page} 的 ${stage} 命令顺序包含未知 key：${key}`);
-                }
-
-                seen.add(key);
-            }
+            validateGroup(group, allKeys);
         }
     }
 };
@@ -301,48 +273,13 @@ const collectGroupCommands = (
 };
 
 const collectPageCommands = (page: FormPage): Map<FormStage, string[]> => {
-    const collected = new Map<FormStage, CollectedCommand[]>();
+    const collected: CollectedCommands = new Map();
 
     for (const group of page.groups) {
         collectGroupCommands(group, collected);
     }
 
-    const commands = new Map<FormStage, string[]>();
-
-    for (const [stage, stageCommands] of collected) {
-        const configuredOrder = page.commandOrder?.[stage];
-
-        if (configuredOrder !== undefined) {
-            const positions = new Map(
-                configuredOrder.map((key, index) => [key, index]),
-            );
-            const actualKeys = new Set(stageCommands.map(({ key }) => key));
-
-            for (const key of configuredOrder) {
-                if (!actualKeys.has(key)) {
-                    throw new Error(
-                        `${page.page} 的 ${stage} 命令顺序包含该阶段不存在的 key：${key}`,
-                    );
-                }
-            }
-
-            for (const key of actualKeys) {
-                if (!positions.has(key)) {
-                    throw new Error(
-                        `${page.page} 的 ${stage} 命令顺序缺少 key：${key}`,
-                    );
-                }
-            }
-
-            stageCommands.sort((left, right) =>
-                (positions.get(left.key) ?? Number.MAX_SAFE_INTEGER)
-                - (positions.get(right.key) ?? Number.MAX_SAFE_INTEGER));
-        }
-
-        commands.set(stage, stageCommands.map(({ content }) => content));
-    }
-
-    return commands;
+    return collected;
 };
 
 const loadBatchTemplate = async (stage: FormStage): Promise<string> => {
@@ -360,11 +297,20 @@ const loadBatchTemplate = async (stage: FormStage): Promise<string> => {
     return template;
 };
 
-const encodeGb2312 = (task: OutputTask): EncodedOutputTask => {
-    const encoded = iconv.encode(task.content, 'gb2312');
+const encodeOutput = (task: OutputTask): EncodedOutputTask => {
+    const content = task.content
+        .replaceAll('\r\n', '\n')
+        .replaceAll('\r', '\n')
+        .replaceAll('\n', '\r\n');
+
+    if (task.encoding === 'utf8') {
+        return { path: task.path, content: Buffer.from(content, 'utf8') };
+    }
+
+    const encoded = iconv.encode(content, 'gb2312');
     const decoded = iconv.decode(encoded, 'gb2312');
 
-    if (decoded !== task.content) {
+    if (decoded !== content) {
         throw new Error(`输出包含 GB2312 无法表示的字符：${task.path}`);
     }
 
@@ -443,6 +389,7 @@ export async function main(pages: FormPage[]): Promise<void> {
         outputTasks.push({
             path: outputPath,
             content: renderPage(page),
+            encoding: 'gb2312',
         });
 
         for (const [stage, commands] of collectPageCommands(page)) {
@@ -458,16 +405,20 @@ export async function main(pages: FormPage[]): Promise<void> {
     for (const [stage, sections] of batchSections) {
         const template = await loadBatchTemplate(stage);
         const commands = sections
-            .map((section) => renderBatchSection(section.title, section.commands))
+            .map((section) => renderBatchSection(
+                section.title,
+                section.commands,
+            ))
             .join('\n\n');
 
         outputTasks.push({
             path: path.join(distDir, `${stage}.bat`),
             content: renderBatchTemplate(template, commands),
+            encoding: 'utf8',
         });
     }
 
-    const encodedTasks = outputTasks.map(encodeGb2312);
+    const encodedTasks = outputTasks.map(encodeOutput);
 
     await replaceDist(encodedTasks);
 }

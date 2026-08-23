@@ -7,7 +7,7 @@ import type {
 
 const batch = (
     content: string | string[],
-    options: Pick<FormCommand, 'stage' | 'commented'> = {},
+    options: Omit<FormCommand, 'command'> = {},
 ): FormCommand => ({
     ...options,
     command: () => content,
@@ -26,6 +26,11 @@ const checkbox = (
     checked: true,
     command,
 });
+
+const slimCommand = batch([
+    'call .\\Slim\\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%',
+    'title Edgeless Patch Running...',
+]);
 
 export const pages: FormPage[] = [
     {
@@ -46,18 +51,12 @@ export const pages: FormPage[] = [
                             {
                                 label: '安全精简',
                                 value: '1',
-                                command: batch([
-                                    'call .\\Slim\\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%',
-                                    'title Edgeless Patch Running...',
-                                ]),
+                                command: slimCommand,
                             },
                             {
                                 label: '普通精简',
                                 value: '2',
-                                command: batch([
-                                    'call .\\Slim\\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%',
-                                    'title Edgeless Patch Running...',
-                                ]),
+                                command: slimCommand,
                             },
                         ],
                     },
@@ -82,6 +81,135 @@ export const pages: FormPage[] = [
         ],
     },
     {
+        page: '',
+        batchTitle: 'main配置',
+        groups: [
+            {
+                type: 'group',
+                label: 'Edgeless特性',
+                children: [
+                    checkbox('main_pecmd', '替换pecmd.ini（和Launcher.bat）', batch([
+                        'copy /y .\\_vendor\\Files_pecmd\\Pecmd.ini "%x%\\Windows\\System32\\"',
+                        'copy /y .\\_vendor\\Files_pecmd\\OnShutdown.wcs "%x%\\Windows\\System32\\"',
+                        '@REM copy /y .\\_vendor\\Files_pecmd\\Launcher.bat "%x%\\Program Files\\"',
+                        'copy /y .\\_vendor\\Files_pecmd\\_Config.wcs "%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Config.wcs"',
+                    ])),
+                    {
+                        type: 'group',
+                        label: '版权',
+                        children: [
+                            checkbox('main_oem', '写入OEM信息', batch([
+                                '%append1%main_oem.wcs%append2%',
+                                'type .\\_commands\\main_oem.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
+                            ])),
+                            checkbox('main_version', '配置version.txt', batch(
+                                'copy /y .\\_config\\version.txt "%x%\\Program Files\\"',
+                            )),
+                            checkbox('main_wp', '设置默认壁纸和头像', batch([
+                                'copy /y .\\_vendor\\Files\\user-200.png "%x%\\ProgramData\\Microsoft\\User Account Pictures\\"',
+                                'del /f /q "%x%\\ProgramData\\Microsoft\\User Account Pictures\\*.accountpicture-ms"',
+                                'reg delete HKLM\\Tmp_Software\\Microsoft\\Windows\\CurrentVersion\\PropertySystem\\PropertyHandlers\\.accountpicture-ms /va /f',
+                                'reg delete HKLM\\Tmp_Default\\Software\\Microsoft\\Windows\\CurrentVersion\\AccountPicture /v SourceId /f',
+                                '',
+                                'copy /y .\\_vendor\\Files\\img0.jpg "%x%\\Windows\\Web\\Wallpaper\\Windows\\"',
+                                'set "opt[shell.wallpaper]=%cd%\\_vendor\\Files\\img0.jpg"',
+                            ])),
+                            checkbox('main_checkUpdate', '检查更新', batch([
+                                'del /f /q %x%\\Windows\\SystemResources\\systemcpl.dll.mun',
+                                'copy /y .\\_vendor\\Bin_Update\\systemcpl.dll.mun %x%\\Windows\\SystemResources\\systemcpl.dll.mun',
+                            ])),
+                            checkbox('main_activate', '激活PE', batch([
+                                'del /f /q %x%\\Windows\\System32\\zh-CN\\systemcpl.dll.mui',
+                                'copy /y .\\_vendor\\Bin_Activate\\systemcpl.dll.mui %x%\\Windows\\System32\\zh-CN\\systemcpl.dll.mui',
+                            ])),
+                            checkbox('main_pinBrowsers', '固定浏览器到任务栏', batch(
+                                'type .\\_commands\\main_pinBrowsers.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
+                            )),
+                        ],
+                    },
+                    {
+                        type: 'group',
+                        label: '资源管理器',
+                        children: [
+                            {
+                                type: 'input',
+                                key: 'main_desktopIconSize',
+                                label: '桌面图标大小',
+                                defaultValue: '48',
+                                command: batch(
+                                    'reg add "HKLM\\Tmp_Software\\Microsoft\\Windows\\Shell\\Bags\\1\\Desktop" /f /v "IconSize" /t REG_DWORD /d %opt[Edgeless.main_desktopIconSize]%',
+                                ),
+                            },
+                            checkbox('main_explorerRibbon', '收起资源管理器功能区', batch(
+                                '%append1%main_explorerRibbon.wcs%append2%',
+                            )),
+                            checkbox('main_displayHiddenFiles', '显示隐藏文件（系统级除外）', batch(
+                                '%append1%main_displayHiddenFiles.wcs%append2%',
+                                { stage: 'last' },
+                            )),
+                            checkbox('main_rightClickMenu', '清理右键菜单', batch(
+                                'type .\\_commands\\main_rightClickMenu.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
+                            )),
+                            checkbox('main_fixManage', '修复此电脑右键菜单管理', batch(
+                                'type .\\_commands\\main_fixManage.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
+                            )),
+                            checkbox('main_dpi', 'DPI自适应', batch('%append1%main_dpi.wcs%append2%')),
+                        ],
+                    },
+                    {
+                        type: 'group',
+                        label: '第三方软件配置',
+                        children: [
+                            checkbox('main_7zPolish', '7-Zip优化', batch('%append1%main_7zPolish.wcs%append2%')),
+                            checkbox('main_initStartIsBack', '自定义StartIsBack样式', batch([
+                                '@REM del /f /s /q "%x%\\Program Files\\StartIsBack"',
+                                '@REM rd /s /q "%x%\\Program Files\\StartIsBack"',
+                                '@REM xcopy /s /r /y .\\_vendor\\Soft_SIB\\* "%x%\\Program Files\\"',
+                                'type .\\_commands\\main_initStartIsBack.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\beforeLocalBoost\\_Preset.wcs"',
+                            ])),
+                        ],
+                    },
+                    checkbox('main_cleanCursors', '清理光标组件', batch('%append1%main_cleanCursors.wcs%append2%')),
+                    checkbox('main_orderdrv', '整理盘符', batch(
+                        'xcopy /s /r /y .\\_vendor\\File_OrderDrv\\* "%x%\\Windows\\System32\\"',
+                    )),
+                    checkbox('main_emoji', '添加emoji字体', batch(
+                        '  call AddFiles \\Windows\\fonts\\seguiemj.ttf',
+                    )),
+                ],
+            },
+            {
+                type: 'group',
+                label: '文件类型关联',
+                children: [
+                    checkbox('main_enhancedType', '增强类型（启动后重导入至HKCU）', batch(
+                        'type .\\_commands\\main_enhancedType.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDiskFound\\_Preset.wcs"',
+                    )),
+                    checkbox('main_wcs', '.wcs（含xcmd）', batch([
+                        'copy /y .\\_vendor\\Exec_Xcmd\\xcmd.exe %x%\\Windows\\System32\\xcmd.exe',
+                        '%append1%main_wcs.wcs%append2%',
+                    ])),
+                    checkbox('main_7z', '.7z右键加载', batch('%append1%main_7z.wcs%append2%')),
+                    checkbox('main_7zf', '.7zf', batch('%append1%main_7zf.wcs%append2%')),
+                    checkbox('main_7zl', '.7zl', batch('%append1%main_7zl.wcs%append2%')),
+                    checkbox('main_eth', '主题包/资源包(.eth .eis .els .ems .esc .ess)', batch('%append1%main_eth.wcs%append2%')),
+                    checkbox('main_iso', '智能虚拟光驱', batch([
+                        'md "%x%\\Users\\Imdisk"',
+                        'xcopy /s /r /y "%workshop%\\Users\\Imdisk\\*" "%x%\\Users\\Imdisk\\"',
+                        'type .\\_commands\\main_iso_removeImdiskMenu.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onBootFinished\\_Preset.wcs"',
+                        '%append1%main_iso.wcs%append2%',
+                    ])),
+                    checkbox('main_explainPartialTypes', '解释部分类型文件', batch(
+                        'type .\\_commands\\main_explainPartialTypes.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onDesktopShown\\_Preset.wcs"',
+                    )),
+                    checkbox('main_explainOpenWithNotepad', '添加Open with Notepad', batch(
+                        'type .\\_commands\\main_explainOpenWithNotepad.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onBootFinished\\_Preset.wcs"',
+                    )),
+                ],
+            },
+        ],
+    },
+    {
         page: 'Apple',
         groups: [
             {
@@ -98,30 +226,6 @@ export const pages: FormPage[] = [
     {
         page: 'Files',
         batchTitle: 'File',
-        commandOrder: {
-            main: [
-                'file_system32',
-                'file_syswow64',
-                'file_systemResources',
-                'file_users',
-                'files_dynamic',
-                'files_easydown',
-                'files_Imdisk',
-                'files_downloader',
-                'files_ept',
-                'files_loader',
-                'files_localboost',
-                'files_addin',
-                'files_log',
-                'files_update',
-                'files_theme',
-                'files_udisk',
-                'files_setx',
-                'files_dpinst',
-                'files_input',
-                'files_firsttimeaid',
-            ],
-        },
         groups: [
             {
                 type: 'group',
@@ -320,29 +424,6 @@ export const pages: FormPage[] = [
     },
     {
         page: 'Optimization',
-        commandOrder: {
-            main: [
-                'opt_cn',
-                'opt_pin',
-                'opt_keyboard',
-                'opt_taskmgr',
-                'opt_remove_rtf',
-                'opt_remove_undo',
-                'opt_loadDrivers',
-                'opt_cnUser',
-                'opt_firefox',
-                'opt_ExplorerRibbon',
-                'opt_autoAllPrograms',
-                'opt_fastShutdown',
-                'opt_hideBootWindow',
-                'opt_minPENetwork',
-                'opt_netDelay',
-                'opt_removeNewShortcut',
-                'opt_removeSearchIndex',
-                'opt_transparentCMD',
-                'opt_hideSearchOnTaskBar',
-            ],
-        },
         groups: [
             {
                 type: 'group',
@@ -364,8 +445,8 @@ export const pages: FormPage[] = [
                     ])),
                     checkbox('opt_taskmgr', '汉化任务管理器', batch(
                         [
-                            'rem wimbuilder2 已经复制此文件',
-                            'rem 此处再次替换不同版本会导致任务管理器显示空白窗口',
+                            'wimbuilder2 已经复制此文件',
+                            '此处再次替换不同版本会导致任务管理器显示空白窗口',
                             'copy /y .\\_vendor\\File_Taskmgr\\Taskmgr.exe.mui "%x%\\Windows\\System32\\ZH-CN\\"',
                         ],
                         { commented: true },

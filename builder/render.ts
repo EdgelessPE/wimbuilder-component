@@ -13,7 +13,7 @@ const indent = (content: string, spaces = 2): string => {
     const prefix = ' '.repeat(spaces);
     return content
         .split('\n')
-        .map((line) => `${prefix}${line}`)
+        .map((line) => line.length === 0 ? '' : `${prefix}${line}`)
         .join('\n');
 };
 
@@ -55,7 +55,7 @@ export const renderInput = (form: InputForm): string => {
 
     return [
         `<label class="left_label">${escapeHtml(form.label)}:</label><br/>`,
-        `<input type="text" name="Edgeless.${escapeHtml(form.key)}" class="right_val opt_item"${value}/>`
+        `<input type="text" name="Edgeless.${escapeHtml(form.key)}" class="right_val opt_item"${value}/><br/>`
     ].join('\n');
 };
 
@@ -134,7 +134,7 @@ export const renderCommandBody = (
 const renderCondition = (
     condition: string,
     body: string,
-    commented?: boolean,
+    formCommand: FormCommand,
 ): string => {
     const result = [
         `if ${condition} (`,
@@ -142,7 +142,9 @@ const renderCondition = (
         ')',
     ].join('\n');
 
-    return commented ? comment(result) : result;
+    return formCommand.commented
+        ? comment(result)
+        : result;
 };
 
 export const renderCheckboxCommand = (
@@ -151,7 +153,7 @@ export const renderCheckboxCommand = (
 ): string => {
     const value = `%opt[${key}]%`;
     const body = renderCommandBody(formCommand, value);
-    return renderCondition(`"x${value}"=="xtrue"`, body, formCommand.commented);
+    return renderCondition(`"x${value}"=="xtrue"`, body, formCommand);
 };
 
 export const renderInputCommand = (
@@ -160,7 +162,9 @@ export const renderInputCommand = (
 ): string => {
     const value = `%opt[${key}]%`;
     const body = renderCommandBody(formCommand, value);
-    return formCommand.commented ? comment(body) : body;
+    return formCommand.commented
+        ? comment(body)
+        : body;
 };
 
 export const renderRadioCommand = (
@@ -173,7 +177,7 @@ export const renderRadioCommand = (
     return renderCondition(
         `"x${value}"=="x${option.value}"`,
         body,
-        formCommand.commented,
+        formCommand,
     );
 };
 

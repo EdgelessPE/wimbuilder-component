@@ -58,5 +58,4 @@ export interface FormPage {
     title?: string;
     batchTitle?: string;
     groups: FormGroup[];
-    commandOrder?: Partial<Record<FormStage, string[]>>;
 }
