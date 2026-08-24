@@ -1,0 +1,6 @@
+*.bat whitespace=cr-at-eol
+*.cmd whitespace=cr-at-eol
+*.html whitespace=cr-at-eol
+*.json text eol=lf
+*.ts text eol=lf
+*.yaml text eol=lf

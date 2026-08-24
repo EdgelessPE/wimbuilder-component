@@ -21,8 +21,13 @@ set append2=
 set finish=.\_utils\pecmd.exe load run.wcs
 
 ::调用精简脚本
-if "x%opt[Edgeless.Slim]%" neq "x0" (
-  call .\Slim\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
+if "x%opt[Edgeless.Slim]%"=="x1" (
+  call .\_vendor\FirPE\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
+  title Edgeless Patch Running...
+)
+
+if "x%opt[Edgeless.Slim]%"=="x2" (
+  call .\_vendor\FirPE\FirPE_Slim.cmd %x% %opt[Edgeless.Slim]%
   title Edgeless Patch Running...
 )
 
@@ -150,8 +155,9 @@ if "x%opt[Edgeless.main_explainPartialTypes]%"=="xtrue" (
   type .\_commands\main_explainPartialTypes.wcs>>"%x%\Program Files\Edgeless\system_hooks\onDesktopShown\_Preset.wcs"
 )
 
-if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
-
+if "x%opt[Edgeless.main_explainOpenWithNotepad]%"=="xtrue" (
+  type .\_commands\main_explainOpenWithNotepad.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
+)
 
 ::Apple
 if "x%opt[Edgeless.apple]%"=="xtrue" (
@@ -159,10 +165,7 @@ if "x%opt[Edgeless.apple]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\Lib_Apple\* "%x%\Windows\System32\drivers\"
 )
 
-
 ::File
-::xcopy /s /r /y .\core\Update\source\* .\
-
 if "x%opt[Edgeless.file_system32]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_System32\* "%x%\Windows\System32\"
   call AddFiles \Windows\System32\msvc*.dll
@@ -254,24 +257,14 @@ if "x%opt[Edgeless.file_users]%"=="xtrue" (
   xcopy /s /r /y .\_vendor\File_Users\* "%x%\Users\"
 )
 
-if "x%opt[Edgeless.files_dynamic]%"=="xtrue" (
-  md "%x%\Program Files\Edgeless\dynamic_creator"
-  xcopy /s /r /y "%workshop%\Program Files\Edgeless\dynamic_creator\*" "%x%\Program Files\Edgeless\dynamic_creator\"
+if "x%opt[Edgeless.files_loader]%"=="xtrue" (
+  md "%x%\Program Files\Edgeless\plugin_loader"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_loader\*" "%x%\Program Files\Edgeless\plugin_loader\"
 )
 
-if "x%opt[Edgeless.files_easydown]%"=="xtrue" (
-  md "%x%\Program Files\Edgeless\EasyDown"
-  xcopy /s /r /y "%workshop%\Program Files\Edgeless\EasyDown\*" "%x%\Program Files\Edgeless\EasyDown\"
-)
-
-if "x%opt[Edgeless.files_Imdisk]%"=="xtrue" (
-  md "%x%\Program Files\Edgeless\Imdisk"
-  xcopy /s /r /y "%workshop%\Program Files\Edgeless\Imdisk\*" "%x%\Program Files\Edgeless\Imdisk\"
-)
-
-if "x%opt[Edgeless.files_downloader]%"=="xtrue" (
-  md "%x%\Program Files\Edgeless\plugin_downloader"
-  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_downloader\*" "%x%\Program Files\Edgeless\plugin_downloader\"
+if "x%opt[Edgeless.files_theme]%"=="xtrue" (
+  md "%x%\Program Files\Edgeless\theme_processer"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\theme_processer\*" "%x%\Program Files\Edgeless\theme_processer\"
 )
 
 if "x%opt[Edgeless.files_ept]%"=="xtrue" (
@@ -280,14 +273,19 @@ if "x%opt[Edgeless.files_ept]%"=="xtrue" (
   type .\_commands\files_ept.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
 )
 
-if "x%opt[Edgeless.files_loader]%"=="xtrue" (
-  md "%x%\Program Files\Edgeless\plugin_loader"
-  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_loader\*" "%x%\Program Files\Edgeless\plugin_loader\"
+if "x%opt[Edgeless.files_downloader]%"=="xtrue" (
+  md "%x%\Program Files\Edgeless\plugin_downloader"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_downloader\*" "%x%\Program Files\Edgeless\plugin_downloader\"
 )
 
 if "x%opt[Edgeless.files_localboost]%"=="xtrue" (
   md "%x%\Program Files\Edgeless\plugin_localboost"
   xcopy /s /r /y "%workshop%\Program Files\Edgeless\plugin_localboost\*" "%x%\Program Files\Edgeless\plugin_localboost\"
+)
+
+if "x%opt[Edgeless.files_dynamic]%"=="xtrue" (
+  md "%x%\Program Files\Edgeless\dynamic_creator"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\dynamic_creator\*" "%x%\Program Files\Edgeless\dynamic_creator\"
 )
 
 if "x%opt[Edgeless.files_addin]%"=="xtrue" (
@@ -305,9 +303,14 @@ if "x%opt[Edgeless.files_update]%"=="xtrue" (
   xcopy /s /r /y "%workshop%\Program Files\Edgeless\system_update\*" "%x%\Program Files\Edgeless\system_update\"
 )
 
-if "x%opt[Edgeless.files_theme]%"=="xtrue" (
-  md "%x%\Program Files\Edgeless\theme_processer"
-  xcopy /s /r /y "%workshop%\Program Files\Edgeless\theme_processer\*" "%x%\Program Files\Edgeless\theme_processer\"
+if "x%opt[Edgeless.files_easydown]%"=="xtrue" (
+  md "%x%\Program Files\Edgeless\EasyDown"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\EasyDown\*" "%x%\Program Files\Edgeless\EasyDown\"
+)
+
+if "x%opt[Edgeless.files_Imdisk]%"=="xtrue" (
+  md "%x%\Program Files\Edgeless\Imdisk"
+  xcopy /s /r /y "%workshop%\Program Files\Edgeless\Imdisk\*" "%x%\Program Files\Edgeless\Imdisk\"
 )
 
 if "x%opt[Edgeless.files_udisk]%"=="xtrue" (
@@ -331,7 +334,6 @@ if "x%opt[Edgeless.files_input]%"=="xtrue" (
 if "x%opt[Edgeless.files_firsttimeaid]%"=="xtrue" (
   copy /y .\_vendor\Files\应急包.7z "%x%\Program Files\"
 )
-
 
 ::Patch
 if "x%opt[Edgeless.patch_vc]%"=="xtrue" (
@@ -357,19 +359,11 @@ if "x%opt[Edgeless.opt_keyboard]%"=="xtrue" (
   %append1%opt_keyboard.wcs%append2%
 )
 
-rem wimbuilder2 已经复制此文件
-rem 此处再次替换不同版本会导致任务管理器显示空白窗口
-rem if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
-rem   copy /y .\_vendor\File_Taskmgr\Taskmgr.exe.mui "%x%\Windows\System32\ZH-CN\"
-rem )
-
-if "x%opt[Edgeless.opt_remove_rtf]%"=="xtrue" (
-  %append1%opt_remove_rtf.wcs%append2%
-)
-
-if "x%opt[Edgeless.opt_remove_undo]%"=="xtrue" (
-  %append1%opt_remove_undo.wcs%append2%
-)
+@REM if "x%opt[Edgeless.opt_taskmgr]%"=="xtrue" (
+@REM   wimbuilder2 已经复制此文件
+@REM   此处再次替换不同版本会导致任务管理器显示空白窗口
+@REM   copy /y .\_vendor\File_Taskmgr\Taskmgr.exe.mui "%x%\Windows\System32\ZH-CN\"
+@REM )
 
 if "x%opt[Edgeless.opt_loadDrivers]%"=="xtrue" (
   type .\_commands\opt_loadDrivers.wcs>>"%x%\Program Files\Edgeless\system_hooks\onBootFinished\_Preset.wcs"
@@ -389,6 +383,14 @@ if "x%opt[Edgeless.opt_firefox]%"=="xtrue" (
 
 if "x%opt[Edgeless.opt_ExplorerRibbon]%"=="xtrue" (
   %append1%opt_ExplorerRibbon.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_remove_rtf]%"=="xtrue" (
+  %append1%opt_remove_rtf.wcs%append2%
+)
+
+if "x%opt[Edgeless.opt_remove_undo]%"=="xtrue" (
+  %append1%opt_remove_undo.wcs%append2%
 )
 
 if "x%opt[Edgeless.opt_autoAllPrograms]%"=="xtrue" (
