@@ -25,7 +25,7 @@ const checkbox = (
     type: 'checkbox',
     key,
     label,
-    checked: true,
+    checked: false,
     command,
 });
 

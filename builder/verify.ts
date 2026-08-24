@@ -18,7 +18,7 @@ interface HtmlControl {
 
 const builderDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.dirname(builderDir);
-const distDir = path.join(projectDir, 'dist');
+const outputDir = projectDir;
 
 const decodeHtml = async (filePath: string): Promise<string> =>
     iconv.decode(await readFile(filePath), 'gb2312');
@@ -149,12 +149,19 @@ const verifyHtml = async (): Promise<void> => {
     for (const page of pages) {
         const relativePath = path.join(page.page, 'main.html');
         const original = await decodeHtml(path.join(projectDir, relativePath));
-        const generated = await decodeHtml(path.join(distDir, relativePath));
+        const generated = await decodeHtml(path.join(outputDir, relativePath));
+        const generatedControls = collectControls(generated);
+
+        if (generatedControls.some((control) => (
+            control.type === 'checkbox' && control.checked
+        ))) {
+            throw new Error(`${relativePath} 中的 checkbox 默认状态必须为不选中。`);
+        }
 
         assertEqual(
             `${relativePath} 的表单控件`,
             collectControls(original),
-            collectControls(generated),
+            generatedControls,
         );
         assertEqual(
             `${relativePath} 的分组标题`,
@@ -167,7 +174,7 @@ const verifyHtml = async (): Promise<void> => {
 const verifyBatch = async (): Promise<void> => {
     for (const fileName of ['main.bat', 'last.bat']) {
         const original = await readFile(path.join(projectDir, fileName), 'utf8');
-        const generated = await readFile(path.join(distDir, fileName), 'utf8');
+        const generated = await readFile(path.join(outputDir, fileName), 'utf8');
         assertEqual(
             `${fileName} 的独立命令块`,
             normalizeBatchBlocks(original),
@@ -217,7 +224,7 @@ const verifyLineEndings = async (): Promise<void> => {
 
     for (const relativePath of relativePaths) {
         const original = await readFile(path.join(projectDir, relativePath));
-        const generated = await readFile(path.join(distDir, relativePath));
+        const generated = await readFile(path.join(outputDir, relativePath));
         assertEqual(
             `${relativePath} 的换行符`,
             lineEndingSignature(original),
@@ -234,7 +241,7 @@ const verifyPatchNames = async (): Promise<void> => {
 
         const relativePath = path.join(page.page, 'zh-CN.js');
         const original = await readUtf16Le(path.join(projectDir, relativePath));
-        const generated = await readUtf16Le(path.join(distDir, relativePath));
+        const generated = await readUtf16Le(path.join(outputDir, relativePath));
         const generatedText = iconv.decode(generated.subarray(2), 'utf16-le');
 
         assertEqual(
@@ -269,4 +276,4 @@ await verifyBatch();
 await verifyLineEndings();
 await verifyPatchNames();
 await verifySlimScript();
-console.log('dist 与原版的表单行为、BAT 命令、页面名称和换行符一致。');
+console.log('生成文件的表单行为、BAT 命令、页面名称和换行符验证通过。');
