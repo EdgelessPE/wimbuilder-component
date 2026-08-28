@@ -1,13 +1,9 @@
 import {
     mkdir,
-    mkdtemp,
     readFile,
-    rename,
-    rm,
     writeFile,
 } from 'node:fs/promises';
 import path from 'node:path';
-import { setTimeout as delay } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import iconv from 'iconv-lite';
 
@@ -51,7 +47,7 @@ type CollectedCommands = Map<FormStage, string[]>;
 
 const builderDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.dirname(builderDir);
-const distDir = path.join(projectDir, 'dist');
+const outputDir = projectDir;
 const templateDir = path.join(builderDir, 'templates');
 
 const normalizeCommands = (commands: FormCommands): FormCommand[] =>
@@ -81,15 +77,15 @@ const resolvePageOutput = (page: string): string => {
         }
     }
 
-    const pageDir = path.resolve(distDir, page);
-    const relative = path.relative(distDir, pageDir);
+    const pageDir = path.resolve(outputDir, page);
+    const relative = path.relative(outputDir, pageDir);
 
     if (
         relative === '..'
         || relative.startsWith(`..${path.sep}`)
         || path.isAbsolute(relative)
     ) {
-        throw new Error(`页面目录不能位于 dist 之外：${page}`);
+        throw new Error(`页面目录不能位于项目目录之外：${page}`);
     }
 
     return path.join(pageDir, 'main.html');
@@ -374,72 +370,6 @@ const writeOutput = async (task: EncodedOutputTask): Promise<void> => {
     await writeFile(task.path, task.content);
 };
 
-const renameWithRetry = async (
-    source: string,
-    target: string,
-): Promise<void> => {
-    const retryableCodes = new Set(['EBUSY', 'ENOTEMPTY', 'EPERM']);
-
-    for (let attempt = 0; ; attempt += 1) {
-        try {
-            await rename(source, target);
-            return;
-        } catch (error) {
-            const code = (error as NodeJS.ErrnoException).code;
-
-            if (attempt >= 5 || code === undefined || !retryableCodes.has(code)) {
-                throw error;
-            }
-
-            await delay(50 * 2 ** attempt);
-        }
-    }
-};
-
-const replaceDist = async (tasks: EncodedOutputTask[]): Promise<void> => {
-    const stagingDir = await mkdtemp(path.join(projectDir, '.dist-'));
-    const backupDir = path.join(projectDir, 'dist.backup');
-    let oldDistMoved = false;
-
-    try {
-        await Promise.all(tasks.map((task) => {
-            const relativePath = path.relative(distDir, task.path);
-            return writeOutput({
-                path: path.join(stagingDir, relativePath),
-                content: task.content,
-            });
-        }));
-
-        await rm(backupDir, { recursive: true, force: true });
-
-        try {
-            await renameWithRetry(distDir, backupDir);
-            oldDistMoved = true;
-        } catch (error) {
-            if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
-                throw error;
-            }
-        }
-
-        try {
-            await renameWithRetry(stagingDir, distDir);
-        } catch (error) {
-            if (oldDistMoved) {
-                await renameWithRetry(backupDir, distDir);
-                oldDistMoved = false;
-            }
-
-            throw error;
-        }
-
-        if (oldDistMoved) {
-            await rm(backupDir, { recursive: true, force: true });
-        }
-    } finally {
-        await rm(stagingDir, { recursive: true, force: true });
-    }
-};
-
 export async function main(formPages: FormPage[]): Promise<void> {
     validateFormCommandHandlers();
     validatePages(formPages);
@@ -502,7 +432,7 @@ export async function main(formPages: FormPage[]): Promise<void> {
             ))
             .join('\n\n');
 
-        const outputPath = path.join(distDir, `${stage}.bat`);
+        const outputPath = path.join(outputDir, `${stage}.bat`);
         reserveOutputPath(outputPath);
         outputTasks.push({
             path: outputPath,
@@ -514,7 +444,7 @@ export async function main(formPages: FormPage[]): Promise<void> {
 
     const encodedTasks = await Promise.all(outputTasks.map(encodeOutput));
 
-    await replaceDist(encodedTasks);
+    await Promise.all(encodedTasks.map(writeOutput));
 }
 
 const entryPath = process.argv[1] === undefined
