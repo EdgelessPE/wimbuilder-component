@@ -495,14 +495,14 @@ export const pages: FormPage[] = [
         ],
     },
     {
-        page: 'Edge',
+        page: 'Fixup',
         patchName: '修复 Edge 浏览器',
         title: '修复 Edge 浏览器',
         batchTitle: '修复 Edge 浏览器',
         groups: [
             {
                 type: 'group',
-                label: '兼容性修复',
+                label: '插件包兼容性',
                 children: [
                     checkbox(
                         'edge_fix',
