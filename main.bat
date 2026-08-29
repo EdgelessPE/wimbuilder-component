@@ -429,6 +429,26 @@ if "x%opt[Edgeless.opt_hideSearchOnTaskBar]%"=="xtrue" (
   %append1%opt_hideSearchOnTaskBar.wcs%append2%
 )
 
+::修复 Edge 浏览器
+if "x%opt[Edgeless.edge_fix]%"=="xtrue" (
+  echo Repairing Microsoft Edge compatibility...
+  @REM Remove stale WindowTabManager declarations only when the implementation is absent.
+  if not exist "%x%\Windows\System32\Windows.Internal.UI.Shell.WindowTabManager.dll" (
+    reg delete "HKLM\Tmp_Software\Classes\OneCoreContracts\Windows.Internal.PlatformExtensions.WindowTabManagerContract" /f >nul 2>nul
+    reg delete "HKLM\Tmp_Software\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Internal.UI.Shell.DesktopWindowTabManagerContractExtension" /f >nul 2>nul
+    reg delete "HKLM\Tmp_Software\WOW6432Node\Microsoft\WindowsRuntime\ActivatableClassId\Windows.Internal.UI.Shell.DesktopWindowTabManagerContractExtension" /f >nul 2>nul
+    reg delete "HKLM\Tmp_Software\Microsoft\WindowsRuntime\WellKnownContracts" /v Windows.UI.Shell.WindowTabManagerContract /f >nul 2>nul
+    reg delete "HKLM\Tmp_Software\WOW6432Node\Microsoft\WindowsRuntime\WellKnownContracts" /v Windows.UI.Shell.WindowTabManagerContract /f >nul 2>nul
+  )
+  @REM Restore WinSxS read access required by restricted and AppContainer renderers.
+  icacls "%x%\Windows\WinSxS" /grant *S-1-5-12:^(OI^)^(CI^)^(RX^) /T /C
+  if errorlevel 1 exit /b 1
+  icacls "%x%\Windows\WinSxS" /grant *S-1-15-2-1:^(OI^)^(CI^)^(RX^) /T /C
+  if errorlevel 1 exit /b 1
+  icacls "%x%\Windows\WinSxS" /grant *S-1-15-2-2:^(OI^)^(CI^)^(RX^) /T /C
+  if errorlevel 1 exit /b 1
+)
+
 ::执行run.wcs
 ::%finish%
 title Edgeless Patch Finished

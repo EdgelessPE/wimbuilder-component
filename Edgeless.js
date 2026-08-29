@@ -224,6 +224,7 @@ var $patches_opt = {
     "imdisk.ramdisk":false,
     "imdisk.drive_letter":"B:",
     "imdisk.disk_size":"2048",
+    "Edgeless.edge_fix":true,
     "_._._":""
 }
 

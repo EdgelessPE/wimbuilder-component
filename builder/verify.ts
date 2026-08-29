@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import iconv from 'iconv-lite';
 
-import { pages } from './config.ts';
+import { pages, presetOptions } from './config.ts';
 import { renderPatchName } from './render.ts';
 
 interface HtmlControl {
@@ -271,9 +271,37 @@ const verifySlimScript = async (): Promise<void> => {
     }
 };
 
+const verifyPresetOptions = async (): Promise<void> => {
+    const content = (await readFile(path.join(projectDir, 'Edgeless.js')))
+        .toString('latin1');
+    const markerMatches = content.match(/^    "_\._\._":""$/gm) ?? [];
+
+    if (markerMatches.length !== 1) {
+        throw new Error(
+            `Edgeless.js 中的预设选项插入标记应存在且仅存在一次。`,
+        );
+    }
+
+    for (const [key, value] of Object.entries(presetOptions)) {
+        const expected = `    ${JSON.stringify(key)}:${JSON.stringify(value)},`;
+        const serializedKey = JSON.stringify(key);
+        const matches = content.split(/\r\n|\n/).filter((line) => {
+            const property = line.trim().match(/^("(?:[^"\\]|\\.)*")\s*:/);
+            return property?.[1] === serializedKey;
+        });
+
+        if (matches.length !== 1 || matches[0] !== expected) {
+            throw new Error(
+                `Edgeless.js 中的预设选项 ${key} 应存在且仅存在一次，并且值必须正确。`,
+            );
+        }
+    }
+};
+
 await verifyHtml();
 await verifyBatch();
 await verifyLineEndings();
 await verifyPatchNames();
 await verifySlimScript();
+await verifyPresetOptions();
 console.log('生成文件的表单行为、BAT 命令、页面名称和换行符验证通过。');
