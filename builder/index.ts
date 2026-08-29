@@ -434,6 +434,7 @@ export async function main(formPages: FormPage[]): Promise<void> {
     const batchSections = new Map<FormStage, BatchSection[]>();
     const outputPaths = new Set<string>();
     const presetPath = path.join(projectDir, 'Edgeless.js');
+    const presetTemplatePath = path.join(templateDir, 'Edgeless.js');
 
     const reserveOutputPath = (outputPath: string): void => {
         const comparableOutputPath = process.platform === 'win32'
@@ -503,7 +504,7 @@ export async function main(formPages: FormPage[]): Promise<void> {
     reserveOutputPath(presetPath);
     encodedTasks.push({
         path: presetPath,
-        content: renderPreset(await readFile(presetPath), presetOptions),
+        content: renderPreset(await readFile(presetTemplatePath), presetOptions),
     });
 
     await Promise.all(encodedTasks.map(writeOutput));
