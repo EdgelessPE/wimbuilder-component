@@ -496,9 +496,8 @@ export const pages: FormPage[] = [
     },
     {
         page: 'Fixup',
-        patchName: '修复 Edge 浏览器',
-        title: '修复 Edge 浏览器',
-        batchTitle: '修复 Edge 浏览器',
+        patchName: '修复',
+        batchTitle: '修复',
         groups: [
             {
                 type: 'group',
