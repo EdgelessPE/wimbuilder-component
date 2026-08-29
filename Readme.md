@@ -6,6 +6,12 @@
 * 下载 Windows 10/11 系统镜像并挂载
 * 下载最新[稳定版](https://slore.lanzoux.com/b00z5zy6b)或[开发版](https://github.com/slorelee/wimbuilder2)的 Wimbuilder2
 * 克隆本仓库：`git clone https://github.com/EdgelessPE/wimbuilder-component.git`
+* 进入仓库目录并安装依赖、构建组件：
+    ```batch
+    cd wimbuilder-component
+    pnpm install
+    pnpm build
+    ```
 * 解压 Wimbuilder2至 `Wimbuilder2` 目录，以管理员身份运行 cmd 并执行以下命令，注意替换变量 `EWC_DIR` 为实际的 `wimbuilder-component` 所在目录
     ```batch
     set EWC_DIR=%cd%\wimbuilder-component

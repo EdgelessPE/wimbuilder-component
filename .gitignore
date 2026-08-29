@@ -1,3 +1,11 @@
 /dist/
 node_modules
 /.pnpm-store/
+
+# Builder generated files
+/main.html
+/main.bat
+/last.bat
+/Edgeless.js
+/**/main.html
+/**/zh-CN.js

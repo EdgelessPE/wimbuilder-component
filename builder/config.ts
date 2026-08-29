@@ -337,7 +337,7 @@ export const pages: FormPage[] = [
                             checkbox('files_ept', 'ept', batch([
                                 'md "%x%\\Program Files\\Edgeless\\plugin_ept"',
                                 'xcopy /s /r /y "%workshop%\\Program Files\\Edgeless\\plugin_ept\\*" "%x%\\Program Files\\Edgeless\\plugin_ept\\"',
-                                'type .\\_commands\\files_ept.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\onBootFinished\\_Preset.wcs"',
+                                'type .\\_commands\\files_ept.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\beforePluginLoading\\_Preset.wcs"',
                             ])),
                             checkbox('files_downloader', '插件下载器', batch([
                                 'md "%x%\\Program Files\\Edgeless\\plugin_downloader"',
@@ -494,4 +494,43 @@ export const pages: FormPage[] = [
             },
         ],
     },
+    {
+        page: 'Fixup',
+        patchName: '修复',
+        batchTitle: '修复',
+        groups: [
+            {
+                type: 'group',
+                label: '插件包兼容性',
+                children: [
+                    checkbox(
+                        'edge_fix',
+                        '修复 Edge 闪退和 RESULT_CODE_MISSING_DATA',
+                        batch([
+                            'echo Repairing Microsoft Edge compatibility...',
+                            '@REM Remove stale WindowTabManager declarations only when the implementation is absent.',
+                            'if not exist "%x%\\Windows\\System32\\Windows.Internal.UI.Shell.WindowTabManager.dll" (',
+                            '  reg delete "HKLM\\Tmp_Software\\Classes\\OneCoreContracts\\Windows.Internal.PlatformExtensions.WindowTabManagerContract" /f >nul 2>nul',
+                            '  reg delete "HKLM\\Tmp_Software\\Microsoft\\WindowsRuntime\\ActivatableClassId\\Windows.Internal.UI.Shell.DesktopWindowTabManagerContractExtension" /f >nul 2>nul',
+                            '  reg delete "HKLM\\Tmp_Software\\WOW6432Node\\Microsoft\\WindowsRuntime\\ActivatableClassId\\Windows.Internal.UI.Shell.DesktopWindowTabManagerContractExtension" /f >nul 2>nul',
+                            '  reg delete "HKLM\\Tmp_Software\\Microsoft\\WindowsRuntime\\WellKnownContracts" /v Windows.UI.Shell.WindowTabManagerContract /f >nul 2>nul',
+                            '  reg delete "HKLM\\Tmp_Software\\WOW6432Node\\Microsoft\\WindowsRuntime\\WellKnownContracts" /v Windows.UI.Shell.WindowTabManagerContract /f >nul 2>nul',
+                            ')',
+                            '@REM Restore WinSxS read access required by restricted and AppContainer renderers.',
+                            'icacls "%x%\\Windows\\WinSxS" /grant *S-1-5-12:^(OI^)^(CI^)^(RX^) /T /C',
+                            'if errorlevel 1 exit /b 1',
+                            'icacls "%x%\\Windows\\WinSxS" /grant *S-1-15-2-1:^(OI^)^(CI^)^(RX^) /T /C',
+                            'if errorlevel 1 exit /b 1',
+                            'icacls "%x%\\Windows\\WinSxS" /grant *S-1-15-2-2:^(OI^)^(CI^)^(RX^) /T /C',
+                            'if errorlevel 1 exit /b 1',
+                        ]),
+                    ),
+                ],
+            },
+        ],
+    },
 ];
+
+export const presetOptions: Readonly<Record<string, boolean>> = {
+    'Edgeless.edge_fix': true,
+};

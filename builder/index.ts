@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import iconv from 'iconv-lite';
 
-import { pages } from './config.ts';
+import { pages, presetOptions } from './config.ts';
 import {
     renderBatchSection,
     renderBatchTemplate,
@@ -318,7 +318,17 @@ const matchReferenceLineEndings = async (
         return normalized;
     }
 
-    const reference = await readFile(referencePath);
+    let reference: Buffer;
+
+    try {
+        reference = await readFile(referencePath);
+    } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+            return normalized;
+        }
+
+        throw error;
+    }
     const firstLineFeed = reference.indexOf(0x0a);
     const lineEnding = firstLineFeed > 0 && reference[firstLineFeed - 1] === 0x0d
         ? '\r\n'
@@ -370,6 +380,52 @@ const writeOutput = async (task: EncodedOutputTask): Promise<void> => {
     await writeFile(task.path, task.content);
 };
 
+const renderPreset = (
+    template: Buffer,
+    options: Readonly<Record<string, boolean>>,
+): Buffer => {
+    const marker = '    "_._._":""';
+    let rendered = template.toString('latin1');
+    const markerMatches = rendered.match(/^    "_\._\._":""$/gm) ?? [];
+
+    if (markerMatches.length !== 1) {
+        throw new Error(
+            `Edgeless.js 中的预设选项插入标记应存在且仅存在一次，实际为 ${markerMatches.length} 次。`,
+        );
+    }
+
+    for (const [key, value] of Object.entries(options)) {
+        if (!/^[\x20-\x7e]+$/.test(key)) {
+            throw new Error(`Edgeless.js 预设选项 key 必须为 ASCII：${key}`);
+        }
+
+        const serializedKey = JSON.stringify(key);
+        const lines = rendered.split(/(?<=\r\n|\n)/);
+        const matchingIndexes = lines.flatMap((line, index) => {
+            const property = line.trim().match(/^("(?:[^"\\]|\\.)*")\s*:/);
+            return property?.[1] === serializedKey ? [index] : [];
+        });
+        const line = `    ${serializedKey}:${JSON.stringify(value)},`;
+
+        if (matchingIndexes.length > 1) {
+            throw new Error(`Edgeless.js 中的预设选项 ${key} 重复。`);
+        }
+
+        if (matchingIndexes.length === 1) {
+            const index = matchingIndexes[0];
+            const newline = lines[index].endsWith('\r\n')
+                ? '\r\n'
+                : lines[index].endsWith('\n') ? '\n' : '';
+            lines[index] = `${line}${newline}`;
+            rendered = lines.join('');
+        } else {
+            rendered = rendered.replace(marker, `${line}\r\n${marker}`);
+        }
+    }
+
+    return Buffer.from(rendered, 'latin1');
+};
+
 export async function main(formPages: FormPage[]): Promise<void> {
     validateFormCommandHandlers();
     validatePages(formPages);
@@ -377,6 +433,8 @@ export async function main(formPages: FormPage[]): Promise<void> {
     const outputTasks: OutputTask[] = [];
     const batchSections = new Map<FormStage, BatchSection[]>();
     const outputPaths = new Set<string>();
+    const presetPath = path.join(projectDir, 'Edgeless.js');
+    const presetTemplatePath = path.join(templateDir, 'Edgeless.js');
 
     const reserveOutputPath = (outputPath: string): void => {
         const comparableOutputPath = process.platform === 'win32'
@@ -443,6 +501,11 @@ export async function main(formPages: FormPage[]): Promise<void> {
     }
 
     const encodedTasks = await Promise.all(outputTasks.map(encodeOutput));
+    reserveOutputPath(presetPath);
+    encodedTasks.push({
+        path: presetPath,
+        content: renderPreset(await readFile(presetTemplatePath), presetOptions),
+    });
 
     await Promise.all(encodedTasks.map(writeOutput));
 }
