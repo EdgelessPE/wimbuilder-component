@@ -271,6 +271,71 @@ const verifySlimScript = async (): Promise<void> => {
     }
 };
 
+const verifyPinBrowsers = async (): Promise<void> => {
+    const directory = path.join(
+        projectDir,
+        '_vendor',
+        'File_Project',
+        'Program Files',
+        'Edgeless',
+        'system_addin',
+        'pin_browsers',
+    );
+    const pinScript = iconv.decode(
+        await readFile(path.join(directory, 'pin.wcs')),
+        'gb18030',
+    );
+    const targetScript = await readFile(
+        path.join(directory, 'get_target.cmd'),
+        'utf8',
+    );
+    const helper = await readFile(path.join(directory, 'get_lnk.exe'));
+    const helperSource = await readFile(
+        path.join(directory, 'get_lnk.cpp'),
+        'utf8',
+    );
+
+    for (const required of [
+        'read arguments.txt,1,arguments',
+        "Taskbar:Pin('%exePath%','%lnkName%','%arguments%')",
+    ]) {
+        if (!pinScript.includes(required)) {
+            throw new Error(`pin.wcs 缺少快捷方式参数保留逻辑：${required}`);
+        }
+    }
+
+    for (const forbidden of [
+        'file "%lnkPath%"',
+        'link X:\\Users\\Default\\Desktop\\%lnkName%',
+        "Taskbar:Pin('%exePath%','%lnkName%','%homePage%')",
+    ]) {
+        if (pinScript.includes(forbidden)) {
+            throw new Error(`pin.wcs 仍包含会丢失快捷方式参数的旧逻辑：${forbidden}`);
+        }
+    }
+
+    if (!targetScript.includes(
+        'get_lnk.exe %1 target.txt arguments.txt X:\\Users\\Config\\HomePage.txt',
+    )) {
+        throw new Error('get_target.cmd 未使用原生 Shell Link 读取工具。');
+    }
+
+    if (helper.length < 2 || helper[0] !== 0x4d || helper[1] !== 0x5a) {
+        throw new Error('get_lnk.exe 不是有效的 Windows PE 文件。');
+    }
+
+    for (const required of [
+        'shellLink->GetArguments(arguments, kBufferSize)',
+        'shellLink->SetArguments(arguments)',
+        'persistFile->Save(argv[1], TRUE)',
+        '!endsWithArgument(arguments, appendedArgument)',
+    ]) {
+        if (!helperSource.includes(required)) {
+            throw new Error(`get_lnk.cpp 缺少快捷方式参数处理逻辑：${required}`);
+        }
+    }
+};
+
 const verifyPresetOptions = async (): Promise<void> => {
     const content = (await readFile(path.join(projectDir, 'Edgeless.js')))
         .toString('latin1');
@@ -303,5 +368,6 @@ await verifyBatch();
 await verifyLineEndings();
 await verifyPatchNames();
 await verifySlimScript();
+await verifyPinBrowsers();
 await verifyPresetOptions();
 console.log('生成文件的表单行为、BAT 命令、页面名称和换行符验证通过。');

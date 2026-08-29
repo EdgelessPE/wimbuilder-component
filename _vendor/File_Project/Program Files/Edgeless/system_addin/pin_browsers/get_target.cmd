@@ -1,7 +1,4 @@
 @echo off
-del /f /q target.txt
-for /f "delims=" %%c in ('type %1 ^|find /v "" ^| findstr /I /C:".exe"') do (
-    set paf=%%c
-)
-set "paf=%paf:\=\\%"
-echo %paf%>target.txt
+del /f /q target.txt arguments.txt 2>nul
+get_lnk.exe %1 target.txt arguments.txt X:\Users\Config\HomePage.txt
+if errorlevel 1 del /f /q target.txt arguments.txt 2>nul

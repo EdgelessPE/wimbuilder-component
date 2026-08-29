@@ -57,25 +57,23 @@ writ X:\Users\Log.txt,$+0,pin_browsers-处理%lnkName%
 
 //获得实际exe路径
 exec =!get_target.cmd "%lnkPath%"
-read target.txt,1,exePath
-writ X:\Users\Log.txt,$+0,pin_browsers-实际路径：%exePath%
+ifex target.txt,
+{
+    read target.txt,1,exePath
+    envi arguments=
+    read arguments.txt,1,arguments
+    writ X:\Users\Log.txt,$+0,pin_browsers-实际路径：%exePath%
+    writ X:\Users\Log.txt,$+0,pin_browsers-启动参数：%arguments%
 
-//判断是否需要固定到任务栏
-ifex X:\Users\Config\DisablePinBrowsers,!call Pin
-
-//判断是否需要替换主页
-ifex |%homePage%=Disable,!call ChangeHome
+    //判断是否需要固定到任务栏
+    ifex X:\Users\Config\DisablePinBrowsers,!call Pin
+}
+ifex target.txt,!writ X:\Users\Log.txt,$+0,pin_browsers-无法读取快捷方式，保留原文件
 
 _END
 
 
 _SUB Pin
-writ X:\Users\Log.txt,$+0,pin_browsers-写命令：('%exePath%','%lnkName%','%homePage%')
-writ-GBK list.lua,$+0,Taskbar:Pin('%exePath%','%lnkName%','%homePage%')
-_END
-
-_SUB ChangeHome
-file "%lnkPath%"
-writ X:\Users\Log.txt,$+0,pin_browsers-执行命令：link %lnkPath%,%exePath%,%homePage%
-link X:\Users\Default\Desktop\%lnkName%,%exePath%,%homePage%
+writ X:\Users\Log.txt,$+0,pin_browsers-写命令：('%exePath%','%lnkName%','%arguments%')
+writ-GBK list.lua,$+0,Taskbar:Pin('%exePath%','%lnkName%','%arguments%')
 _END
