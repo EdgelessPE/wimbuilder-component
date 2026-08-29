@@ -225,6 +225,19 @@ const verifyLineEndings = async (): Promise<void> => {
     for (const relativePath of relativePaths) {
         const original = await readFile(path.join(projectDir, relativePath));
         const generated = await readFile(path.join(outputDir, relativePath));
+
+        if (relativePath.endsWith('.bat')) {
+            const signature = lineEndingSignature(generated);
+
+            if (signature.style !== 'crlf') {
+                throw new Error(
+                    `${relativePath} 必须仅使用 Windows CRLF 换行，实际为 ${signature.style}。`,
+                );
+            }
+
+            continue;
+        }
+
         assertEqual(
             `${relativePath} 的换行符`,
             lineEndingSignature(original),

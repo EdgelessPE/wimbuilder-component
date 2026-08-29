@@ -30,6 +30,7 @@ interface OutputTask {
     path: string;
     content: string;
     encoding: 'gb2312' | 'utf8' | 'utf16le';
+    lineEnding?: 'crlf';
     lineEndingReference?: string;
 }
 
@@ -345,11 +346,27 @@ const matchReferenceLineEndings = async (
     return normalized.replaceAll('\n', lineEnding);
 };
 
+const forceLineEndings = (
+    content: string,
+    lineEnding: NonNullable<OutputTask['lineEnding']>,
+): string => {
+    const normalized = content
+        .replaceAll('\r\n', '\n')
+        .replaceAll('\r', '\n');
+
+    switch (lineEnding) {
+        case 'crlf':
+            return normalized.replaceAll('\n', '\r\n');
+    }
+};
+
 const encodeOutput = async (task: OutputTask): Promise<EncodedOutputTask> => {
-    const content = await matchReferenceLineEndings(
-        task.content,
-        task.lineEndingReference,
-    );
+    const content = task.lineEnding === undefined
+        ? await matchReferenceLineEndings(
+            task.content,
+            task.lineEndingReference,
+        )
+        : forceLineEndings(task.content, task.lineEnding);
 
     if (task.encoding === 'utf8') {
         return { path: task.path, content: Buffer.from(content, 'utf8') };
@@ -496,7 +513,7 @@ export async function main(formPages: FormPage[]): Promise<void> {
             path: outputPath,
             content: renderBatchTemplate(template, commands),
             encoding: 'utf8',
-            lineEndingReference: path.join(projectDir, `${stage}.bat`),
+            lineEnding: 'crlf',
         });
     }
 
