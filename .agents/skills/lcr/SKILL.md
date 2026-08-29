@@ -11,7 +11,7 @@ description: Use Lite Command RPC (lcr) on Windows to execute commands, manage a
 
 | 接口简介 | 请求示例 | 响应示例 |
 | --- | --- | --- |
-| `/exec`：执行命令并等待完成。请求可选 `cwd`、`timeout`、`interpreter`、`script_mode`、`detached`。 | `/exec -H "Content-Type: application/json" --data-raw '{"command":"whoami","interpreter":"cmd"}'` | `{"ok":true,"exit_code":0,"stdout":"...","stderr":"","timed_out":false,"error":null}` |
+| `/exec`：执行命令并等待完成。请求可选 `cwd`、`timeout`、`interpreter`、`script_mode`、`detached`、`output_encoding`。 | `/exec -H "Content-Type: application/json" --data-raw '{"command":"echo hello","interpreter":"cmd"}'` | `{"ok":true,"exit_code":0,"stdout":"...","stderr":"","timed_out":false,"error":null}` |
 | `/exec/stream`：流式执行命令，返回 NDJSON 事件。请求字段同 `/exec`。 | `/exec/stream -H "Content-Type: application/json" --data-raw '{"command":"ping 127.0.0.1 -n 4"}'` | `{"type":"stdout","data":"..."}`，最终为 `exit`、`timeout` 或 `error` 事件。 |
 | `/spawn`：异步启动命令，立即返回会话。请求字段同 `/exec`。 | `/spawn -H "Content-Type: application/json" --data-raw '{"command":"ping 127.0.0.1 -n 10"}'` | `{"session_id":"1234-1","pid":5678,"status":"running"}` |
 | `/spawn/result`：查询异步任务状态及新增输出；轮询时传回 `*_next_offset`。 | `/spawn/result -H "Content-Type: application/json" --data-raw '{"session_id":"1234-1","stdout_offset":0,"stderr_offset":0}'` | `{"session_id":"1234-1","status":"exited","exit_code":0,"stdout":"done\r\n","stderr":"","stdout_next_offset":6,"stderr_next_offset":0}` |
