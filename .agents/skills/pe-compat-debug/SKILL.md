@@ -10,8 +10,8 @@ description: 调试 Windows PE 中应用程序的兼容性问题。
 ## 调试环境
 
 - Windows 10 宿主机：`192.168.5.138`，运行 VirtualBox 虚拟机。
-- 目标调试 PE：VirtualBox 中的 `WimBuilder2` 虚拟机，地址为 `192.168.5.148`。
-- 参考对照 PE：VirtualBox 中的 `Edgeless` 虚拟机，地址为 `192.168.5.164`。
+- 目标调试 PE：VirtualBox 中的 `WimBuilder2` 虚拟机，地址为 `192.168.5.148`，Edgeless 目录位于 `C:\Edgeless`，支持读写。
+- 参考对照 PE：VirtualBox 中的 `Edgeless` 虚拟机，地址为 `192.168.5.164`，没有持久化目录。
 - 三个环境均可通过 LCR 连接。两个 PE 环境中的 LCR 没有命令执行限制；宿主机中的 LCR 仅支持有限命令（`VBoxManage` 等）。若宿主机现有命令权限不足，应向用户请求添加所需命令，不要尝试绕过限制。
 
 ## 准备
