@@ -376,6 +376,69 @@ const verifyPresetOptions = async (): Promise<void> => {
     }
 };
 
+const verifySogouPinyinCompat = async (): Promise<void> => {
+    const directory = path.join(projectDir, '_vendor', 'SogouPinyinCompat');
+    const executable = await readFile(path.join(directory, 'SogouPinyinCompat.exe'));
+    const source = await readFile(
+        path.join(directory, 'SogouPinyinCompat.cpp'),
+        'utf8',
+    );
+    const hook = await readFile(
+        path.join(projectDir, '_commands', 'main_sogouPinyinCompat.wcs'),
+        'utf8',
+    );
+
+    if (executable.length < 0x40 || executable[0] !== 0x4d || executable[1] !== 0x5a) {
+        throw new Error('SogouPinyinCompat.exe 不是有效的 Windows PE 文件。');
+    }
+
+    const peOffset = executable.readUInt32LE(0x3c);
+    const machine = executable.readUInt16LE(peOffset + 4);
+    if (machine !== 0x8664) {
+        throw new Error('SogouPinyinCompat.exe 必须是 x64 程序。');
+    }
+
+    for (const required of [
+        'SOFTWARE\\Microsoft\\CTF\\TIP',
+        'SogouTSF.ime',
+        'sogou_pinyin_',
+        'kmenureg.exe',
+        'Image File Execution Options',
+        '--kmenureg-stub',
+        'installDebugger(debugger64, debugger)',
+        'installDebugger(debugger32, debugger)',
+        'restoreDebugger(debugger32)',
+        'restoreDebugger(debugger64)',
+        'EnableLanguageProfile',
+        'Keyboard Layouts\\E0200804',
+        'Ime File',
+        'SogouPY.ime',
+        'Layout Text',
+        'Layout File',
+        'kbdus.dll',
+        'registerImmLayout()',
+        'LoadKeyboardLayoutW(',
+        'ActivateKeyboardLayout(',
+        'SPI_SETDEFAULTINPUTLANG',
+        'WM_INPUTLANGCHANGEREQUEST',
+        'explorer.exe',
+        'ctfmon.exe',
+        'kRegistrationStableMs',
+        'kInstallerGoneStableMs',
+        'kExplorerSettleMs',
+        'waitForAllInstallers(kInstallerExitTimeoutMs)',
+        'ctfmonLaunched=',
+    ]) {
+        if (!source.includes(required)) {
+            throw new Error('SogouPinyinCompat.cpp 缺少兼容逻辑：' + required);
+        }
+    }
+
+    if (!hook.includes('EXEC @!"%ProgramFiles%\\Edgeless\\system_addin\\SogouPinyinCompat.exe"')) {
+        throw new Error('搜狗兼容监视器未在插件加载前异步启动。');
+    }
+};
+
 await verifyHtml();
 await verifyBatch();
 await verifyLineEndings();
@@ -383,4 +446,5 @@ await verifyPatchNames();
 await verifySlimScript();
 await verifyPinBrowsers();
 await verifyPresetOptions();
+await verifySogouPinyinCompat();
 console.log('生成文件的表单行为、BAT 命令、页面名称和换行符验证通过。');

@@ -164,6 +164,10 @@ export const pages: FormPage[] = [
                         label: '第三方软件配置',
                         children: [
                             checkbox('main_7zPolish', '7-Zip优化', batch(runWcsScript('main_7zPolish'))),
+                            checkbox('main_sogouPinyinCompat', '搜狗拼音 WinPE 兼容修复', batch([
+                                'copy /y .\\_vendor\\SogouPinyinCompat\\SogouPinyinCompat.exe "%x%\\Program Files\\Edgeless\\system_addin\\"',
+                                'type .\\_commands\\main_sogouPinyinCompat.wcs>>"%x%\\Program Files\\Edgeless\\system_hooks\\beforePluginLoading\\_Preset.wcs"',
+                            ])),
                             checkbox('main_initStartIsBack', '自定义StartIsBack样式', batch([
                                 '@REM del /f /s /q "%x%\\Program Files\\StartIsBack"',
                                 '@REM rd /s /q "%x%\\Program Files\\StartIsBack"',
@@ -533,4 +537,5 @@ export const pages: FormPage[] = [
 
 export const presetOptions: Readonly<Record<string, boolean>> = {
     'Edgeless.edge_fix': true,
+    'Edgeless.main_sogouPinyinCompat': true,
 };

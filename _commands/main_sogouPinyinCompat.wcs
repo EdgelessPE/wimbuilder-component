@@ -1,0 +1,2 @@
+// Watch Sogou Pinyin setup, skip unsupported shell-extension work, and activate its WinPE IMM layout.
+EXEC @!"%ProgramFiles%\Edgeless\system_addin\SogouPinyinCompat.exe"
